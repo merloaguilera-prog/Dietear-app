@@ -64,3 +64,21 @@ nav{height:82px;background:#fffefbed;backdrop-filter:blur(18px);box-shadow:0 -10
 
 /* Nevera inteligente + gráficas */
 .fridgeIdeas,.evolutionCharts{margin:18px 0;padding:20px;border-radius:24px;border:1px solid #d5e2d2;background:#f9fcf7}.fridgeIdeas h3,.evolutionCharts h2{margin:5px 0;color:#294b32;font-weight:400}.fridgeIdeas p{color:#718078}.fridgeIdeaGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.fridgeIdeaGrid article{padding:15px;border:1px solid #dbe5d8;background:#fff;border-radius:18px;display:grid;gap:9px}.fridgeIdeaGrid article>span{font-size:27px}.fridgeIdeaGrid article div{display:grid;gap:3px}.fridgeIdeaGrid small{color:#78857b}.fridgeIdeaGrid button{border:0;border-radius:12px;padding:10px;background:#eef6ec;color:#315f40}.chartTitle{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.chartTitle>div:last-child{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.chartTitle button{border:1px solid #d5e2d2;background:#fff;border-radius:999px;padding:8px 10px;color:#5e7063}.chartTitle button.active{background:#315f40;color:#fff}.nativeChart{height:190px;display:flex;align-items:flex-end;gap:7px;padding:25px 4px 4px;border-bottom:1px solid #ccd9ca;margin-top:15px}.chartPoint{height:100%;flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;min-width:30px}.chartPoint b{font-size:10px;font-weight:500;color:#496450}.chartPoint i{width:min(22px,70%);min-height:5px;background:#789b7d;border-radius:7px 7px 2px 2px;margin:4px 0}.chartPoint small{font-size:9px;color:#7b867e;white-space:nowrap}.chartCaption{font-size:11px;color:#748078}@media(max-width:700px){.fridgeIdeaGrid{grid-template-columns:1fr}.chartTitle{display:grid}.chartTitle>div:last-child{justify-content:flex-start}.nativeChart{overflow-x:auto}.chartPoint{min-width:38px}}
+
+/* DIETEAR · color sereno y funcional, sin saturación */
+:root{--sage:#eaf5e7;--mint:#e8f7f1;--water:#e7f5f7;--peach:#fff0e5;--lav:#f1ecfb;--sun:#fff6d9;--rose:#fbeaf1;--ink:#254032;--line:#d5e5d2}
+button,.card,.quick button,.moduleCard,.goal,.careGrid button{transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+button:active,.quick button:active,.careGrid button:active{transform:scale(.98)}
+.quick>*:nth-child(7n+1),.moduleGrid>*:nth-child(7n+1){background:var(--sage)!important;border-color:#cbe3c5!important}
+.quick>*:nth-child(7n+2),.moduleGrid>*:nth-child(7n+2){background:var(--water)!important;border-color:#c7e3e7!important}
+.quick>*:nth-child(7n+3),.moduleGrid>*:nth-child(7n+3){background:var(--peach)!important;border-color:#f0d9c7!important}
+.quick>*:nth-child(7n+4),.moduleGrid>*:nth-child(7n+4){background:var(--lav)!important;border-color:#ddd2f0!important}
+.quick>*:nth-child(7n+5),.moduleGrid>*:nth-child(7n+5){background:var(--sun)!important;border-color:#ebdfb6!important}
+.quick>*:nth-child(7n+6),.moduleGrid>*:nth-child(7n+6){background:var(--rose)!important;border-color:#ecd0dc!important}
+.quick>*:nth-child(7n),.moduleGrid>*:nth-child(7n){background:var(--mint)!important;border-color:#c8e4d8!important}
+.quick button,.moduleGrid button,.careGrid button{color:var(--ink);box-shadow:0 7px 18px rgba(48,84,59,.07)}
+.quick button:hover,.moduleGrid button:hover,.careGrid button:hover{transform:translateY(-2px);box-shadow:0 10px 23px rgba(48,84,59,.12)}
+.goal:nth-child(4n+1){background:#f3faef}.goal:nth-child(4n+2){background:#eef9fa}.goal:nth-child(4n+3){background:#fff8e8}.goal:nth-child(4n){background:#f7f1fb}
+.careGrid button:nth-child(5n+1){background:#f1f8ee}.careGrid button:nth-child(5n+2){background:#eef8f5}.careGrid button:nth-child(5n+3){background:#fff5eb}.careGrid button:nth-child(5n+4){background:#f4f0fb}.careGrid button:nth-child(5n){background:#fdf1f5}
+.bottom button.active{background:#e6f4e8;color:#245b37;border-radius:16px}
+.toast{background:#315f3e!important;color:#fff!important;border-radius:18px!important;box-shadow:0 10px 30px rgba(28,65,39,.18)!important}
