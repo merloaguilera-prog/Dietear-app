@@ -89,3 +89,9 @@ button:active,.quick button:active,.careGrid button:active{transform:scale(.98)}
 .foodCheck>button{border:1px solid #bcd8c1;border-radius:15px;padding:12px 18px;background:#e5f3e7;color:#28553a;font-weight:600}
 .foodCheck .gentleResult{grid-column:1/-1;margin:0}
 @media(max-width:620px){.foodCheck{grid-template-columns:1fr}.foodCheck .gentleResult{grid-column:auto}}
+
+.dietBuilder{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;padding:20px;border:1.5px solid #cfe4d3;border-radius:24px;background:linear-gradient(135deg,#f2faef,#f7fbf6)}
+.dietBuilder label{display:grid;gap:7px;font-size:.82rem;font-weight:600;color:#365643}
+.dietBuilder input,.dietBuilder select{width:100%;border:1px solid #d7e5d7;border-radius:14px;padding:13px;background:#fff;color:#294333;font:inherit}
+.dietBuilder .primaryAction{grid-column:1/-1}
+@media(max-width:720px){.dietBuilder{grid-template-columns:1fr}.dietBuilder .primaryAction{grid-column:auto}}
