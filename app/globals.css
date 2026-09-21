@@ -95,3 +95,7 @@ button:active,.quick button:active,.careGrid button:active{transform:scale(.98)}
 .dietBuilder input,.dietBuilder select{width:100%;border:1px solid #d7e5d7;border-radius:14px;padding:13px;background:#fff;color:#294333;font:inherit}
 .dietBuilder .primaryAction{grid-column:1/-1}
 @media(max-width:720px){.dietBuilder{grid-template-columns:1fr}.dietBuilder .primaryAction{grid-column:auto}}
+
+.fastingNotice{margin-top:10px;padding:14px 15px;border:1.5px solid #dfd5a9;border-radius:16px;background:#fff9e8;color:#4b4a34;font-weight:400}
+.fastingNotice b{display:block;margin-bottom:5px;color:#3d523f}
+.fastingNotice p{margin:0;line-height:1.5;font-size:.82rem}
