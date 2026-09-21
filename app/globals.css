@@ -99,3 +99,13 @@ button:active,.quick button:active,.careGrid button:active{transform:scale(.98)}
 .fastingNotice{margin-top:10px;padding:14px 15px;border:1.5px solid #dfd5a9;border-radius:16px;background:#fff9e8;color:#4b4a34;font-weight:400}
 .fastingNotice b{display:block;margin-bottom:5px;color:#3d523f}
 .fastingNotice p{margin:0;line-height:1.5;font-size:.82rem}
+
+.trendsHero{width:100%;display:flex;align-items:center;gap:14px;text-align:left;margin:18px 0 12px;padding:17px 19px;border:1.5px solid #e6d6ad;border-radius:22px;background:linear-gradient(135deg,#fff9e7,#f2f8ea);color:#304b39;box-shadow:0 8px 22px rgba(70,82,48,.07)}
+.trendsHero>span{font-size:1.65rem}.trendsHero div{display:grid;gap:3px;flex:1}.trendsHero small{font-weight:400;opacity:.78}.trendsHero strong{font-size:.82rem}
+.trendsPanel{padding:20px;border:1.5px solid #e5d9b7;border-radius:25px;background:#fffdf6;margin-bottom:18px}
+.trendsIntro h2{margin:4px 0}.trendsIntro p{margin:5px 0 17px;color:#607064}
+.trendCards{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.trendCards button{display:flex;align-items:center;gap:10px;text-align:left;padding:14px;border:1.5px solid #dce7d6;border-radius:18px;background:#f6faf2;color:#30483a}
+.trendCards button:nth-child(2n){background:#f0f8f7;border-color:#d1e5e2}.trendCards button:nth-child(3n){background:#fff6ea;border-color:#eadcc6}.trendCards button>span{font-size:1.35rem}.trendCards button div{display:grid;gap:3px;flex:1}.trendCards small{font-size:.72rem;font-weight:400;opacity:.72}.trendCards i{font-style:normal}
+.trendRule{display:flex;gap:10px;align-items:center;margin-top:15px;padding:13px 15px;border-radius:16px;background:#f3f5ec;color:#4c5c4e;font-size:.82rem}.trendRule span{font-weight:400}
+@media(max-width:850px){.trendCards{grid-template-columns:repeat(2,1fr)}}@media(max-width:540px){.trendCards{grid-template-columns:1fr}.trendsHero strong{display:none}.trendRule{align-items:flex-start;flex-direction:column}}
