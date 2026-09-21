@@ -82,3 +82,10 @@ button:active,.quick button:active,.careGrid button:active{transform:scale(.98)}
 .careGrid button:nth-child(5n+1){background:#f1f8ee}.careGrid button:nth-child(5n+2){background:#eef8f5}.careGrid button:nth-child(5n+3){background:#fff5eb}.careGrid button:nth-child(5n+4){background:#f4f0fb}.careGrid button:nth-child(5n){background:#fdf1f5}
 .bottom button.active{background:#e6f4e8;color:#245b37;border-radius:16px}
 .toast{background:#315f3e!important;color:#fff!important;border-radius:18px!important;box-shadow:0 10px 30px rgba(28,65,39,.18)!important}
+
+/* Funciones activas · análisis sencillo */
+.foodCheck{display:grid;grid-template-columns:1fr auto;gap:12px;margin-top:18px;padding:18px;border:1.5px solid #cfe4d3;border-radius:22px;background:#f4faf3}
+.foodCheck input{min-width:0;border:1px solid #d8e6d9;border-radius:15px;padding:14px 16px;background:#fff;font:inherit}
+.foodCheck>button{border:1px solid #bcd8c1;border-radius:15px;padding:12px 18px;background:#e5f3e7;color:#28553a;font-weight:600}
+.foodCheck .gentleResult{grid-column:1/-1;margin:0}
+@media(max-width:620px){.foodCheck{grid-template-columns:1fr}.foodCheck .gentleResult{grid-column:auto}}
