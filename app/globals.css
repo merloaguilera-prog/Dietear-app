@@ -109,3 +109,10 @@ button:active,.quick button:active,.careGrid button:active{transform:scale(.98)}
 .trendCards button:nth-child(2n){background:#f0f8f7;border-color:#d1e5e2}.trendCards button:nth-child(3n){background:#fff6ea;border-color:#eadcc6}.trendCards button>span{font-size:1.35rem}.trendCards button div{display:grid;gap:3px;flex:1}.trendCards small{font-size:.72rem;font-weight:400;opacity:.72}.trendCards i{font-style:normal}
 .trendRule{display:flex;gap:10px;align-items:center;margin-top:15px;padding:13px 15px;border-radius:16px;background:#f3f5ec;color:#4c5c4e;font-size:.82rem}.trendRule span{font-weight:400}
 @media(max-width:850px){.trendCards{grid-template-columns:repeat(2,1fr)}}@media(max-width:540px){.trendCards{grid-template-columns:1fr}.trendsHero strong{display:none}.trendRule{align-items:flex-start;flex-direction:column}}
+
+.activityLogger{display:grid;grid-template-columns:1.1fr .8fr;gap:13px;margin:17px 0;padding:18px;border:1.5px solid #cfe0e7;border-radius:22px;background:linear-gradient(135deg,#f1f9fa,#f6f4fb)}
+.activityLogger>div:first-child{display:grid;gap:3px}.activityLogger small{font-weight:400;color:#68776f}
+.activityLogger select{border:1px solid #d3e2e5;border-radius:14px;background:#fff;padding:12px;font:inherit;color:#30483a}
+.activityMinutes{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}.activityMinutes button{border:1px solid #d4e2e2;border-radius:999px;background:#fff;padding:9px 13px;color:#365247}.activityMinutes button.selected{background:#e2f1ea;border-color:#a9cdb8;font-weight:700}
+.activityLogger .primaryAction{grid-column:1/-1}
+@media(max-width:620px){.activityLogger{grid-template-columns:1fr}.activityMinutes,.activityLogger .primaryAction{grid-column:auto}}
