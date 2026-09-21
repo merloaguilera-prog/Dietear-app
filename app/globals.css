@@ -116,3 +116,9 @@ button:active,.quick button:active,.careGrid button:active{transform:scale(.98)}
 .activityMinutes{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}.activityMinutes button{border:1px solid #d4e2e2;border-radius:999px;background:#fff;padding:9px 13px;color:#365247}.activityMinutes button.selected{background:#e2f1ea;border-color:#a9cdb8;font-weight:700}
 .activityLogger .primaryAction{grid-column:1/-1}
 @media(max-width:620px){.activityLogger{grid-template-columns:1fr}.activityMinutes,.activityLogger .primaryAction{grid-column:auto}}
+
+.wellbeingLogger{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:17px 0;padding:18px;border:1.5px solid #ded8eb;border-radius:22px;background:linear-gradient(135deg,#f7f3fb,#f2f8f4)}
+.wellbeingLogger>div{grid-column:1/-1;display:grid;gap:3px}.wellbeingLogger small{font-weight:400;color:#6d746e}
+.wellbeingLogger label{display:grid;gap:6px;font-size:.8rem;color:#506258}.wellbeingLogger select{border:1px solid #dcdfe1;border-radius:14px;background:#fff;padding:11px;font:inherit;color:#30483a}
+.wellbeingLogger .primaryAction{grid-column:1/-1}
+@media(max-width:650px){.wellbeingLogger{grid-template-columns:1fr}.wellbeingLogger>div,.wellbeingLogger .primaryAction{grid-column:auto}}
