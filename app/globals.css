@@ -122,3 +122,9 @@ button:active,.quick button:active,.careGrid button:active{transform:scale(.98)}
 .wellbeingLogger label{display:grid;gap:6px;font-size:.8rem;color:#506258}.wellbeingLogger select{border:1px solid #dcdfe1;border-radius:14px;background:#fff;padding:11px;font:inherit;color:#30483a}
 .wellbeingLogger .primaryAction{grid-column:1/-1}
 @media(max-width:650px){.wellbeingLogger{grid-template-columns:1fr}.wellbeingLogger>div,.wellbeingLogger .primaryAction{grid-column:auto}}
+
+.measureLogger{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:17px 0;padding:18px;border:1.5px solid #eadcc9;border-radius:22px;background:linear-gradient(135deg,#fff7ec,#f4f8ee)}
+.measureLogger>div{grid-column:1/-1;display:grid;gap:3px}.measureLogger small{font-weight:400;color:#6d756d}
+.measureLogger label{display:grid;gap:6px;font-size:.8rem;color:#506258}.measureLogger input{border:1px solid #dedfd8;border-radius:14px;background:#fff;padding:12px;font:inherit;color:#30483a}
+.measureLogger .primaryAction{grid-column:1/-1}
+@media(max-width:580px){.measureLogger{grid-template-columns:1fr}.measureLogger>div,.measureLogger .primaryAction{grid-column:auto}}
