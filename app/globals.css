@@ -209,3 +209,27 @@ input,select,textarea{color:#203f2c;border-width:2px;border-color:#91b59a;backgr
 input::placeholder,textarea::placeholder{color:#63796a;opacity:1}
 .primaryAction,.branchActions button,.planActions button,.aiComposer button,.moduleTop button,.weekNavigator button{border-width:2px}
 nav b{color:#294a35;font-weight:700}
+
+
+/* Contraste reforzado v2 · revisión visual sobre capturas 23 sep 2026 */
+html,body{color:#173522}
+body,p,label,span,li{color:#294733}
+small,.muted,.subtitle,.helper,.hint{color:#3f5947!important;opacity:1!important}
+input,select,textarea{color:#173522!important;border:2px solid #8db397!important;background:#fff!important}
+input::placeholder,textarea::placeholder{color:#566f5d!important;opacity:1!important}
+button{color:#173f27!important}
+.grid>button,.goal,.planDay,.dashboardCards article,.metricCards article,.bridgeStats article,.careGrid button,.fridgeIdeaGrid article,.shoppingList>button,.appsGrid article,.chartSummary article,.gentleResult,.emptyState,.aiAnswer{box-shadow:0 3px 10px rgba(45,88,54,.06)}
+.grid>button{border-width:3px!important}
+.connectedModule,.realModule,.profileStudio,.progressReal,.planner,.shoppingBox,.nutritionBridge,.progressDashboard,.metricStudio,.aiForest,.carePanel,.natureActions,.connectedApps{border-width:3px!important;border-color:#5d9b68!important}
+.goal,.planDay,.dashboardCards article,.metricCards article,.bridgeStats article,.careGrid button,.fridgeIdeaGrid article,.shoppingList>button,.appsGrid article,.chartSummary article{border-width:2.5px!important}
+.planDay:nth-child(4n+1),.goal:nth-child(4n+1),.dashboardCards article:nth-child(4n+1),.metricCards article:nth-child(4n+1){border-color:#65a66d!important;background:#fbfef9}
+.planDay:nth-child(4n+2),.goal:nth-child(4n+2),.dashboardCards article:nth-child(4n+2),.metricCards article:nth-child(4n+2){border-color:#54a99a!important;background:#effaf7}
+.planDay:nth-child(4n+3),.goal:nth-child(4n+3),.dashboardCards article:nth-child(4n+3),.metricCards article:nth-child(4n+3){border-color:#c29a3d!important;background:#fff8e5}
+.planDay:nth-child(4n),.goal:nth-child(4n),.dashboardCards article:nth-child(4n),.metricCards article:nth-child(4n){border-color:#829f5b!important;background:#f5faef}
+.planDay label,.goal label,.planner label,.profileStudio label,.progressReal label,.measureLogger label,.wellbeingLogger label{color:#31513a!important;font-weight:600}
+.planDay input,.planDay select,.planner input,.planner select{border-color:#a4bca8!important}
+.primaryAction{background:#2f7144!important;color:#fff!important;border:2px solid #255f38!important;font-weight:750!important}
+.weekNavigator button,.rangePills button,.activityMinutes button,.appsGrid article button,.branchActions button,.planActions button{border:2px solid #79aa82!important;color:#244b31!important;font-weight:700!important}
+.weekNavigator button:hover,.rangePills button:hover,.activityMinutes button:hover,.appsGrid article button:hover{border-color:#397b4c!important;background:#e7f4e8!important}
+.trendCards button{border-width:2.5px!important}
+.trendRule,.sourceRule,.gentleResult,.emptyState,.aiAnswer{border-width:2.5px!important}
