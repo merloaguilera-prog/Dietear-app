@@ -182,3 +182,30 @@ input,select,textarea{min-height:44px}
 .planDay>div:first-child span{font-size:.875rem}
 .planDay label{font-size:.875rem}
 @media(max-width:720px){.weekNavigator{width:100%;justify-content:center}.weekNavigator b{min-width:155px}.weekNavigator button:last-child{width:100%}.plannerHead{align-items:stretch}}
+
+
+/* Accesibilidad visual reforzada · 23 sep 2026
+   Más contraste, marcos vegetales con presencia y texto legible. */
+:root{--dietear-ink:#183b27;--dietear-text:#294a35;--dietear-muted:#465f4e;--dietear-green:#4f8b5c;--dietear-mint:#559b8c;--dietear-olive:#83964e;--dietear-gold:#ad8a3d}
+body{color:var(--dietear-text)}
+p,small,label,.muted,.subtitle{color:var(--dietear-muted)}
+h1,h2,h3,h4,strong,b{color:var(--dietear-ink)}
+button{color:#23452f;font-weight:650}
+.grid>button:nth-child(4n+1){border:2.5px solid #5e9b66;background:#edf7e9}
+.grid>button:nth-child(4n+2){border:2.5px solid #58a092;background:#eaf7f3}
+.grid>button:nth-child(4n+3){border:2.5px solid #b49343;background:#fff8df}
+.grid>button:nth-child(4n){border:2.5px solid #829b62;background:#f0f6e7}
+.grid>button b,.grid>button strong{color:#173d25}
+.grid>button p,.grid>button small{color:#405d48;opacity:1}
+.connectedModule,.realModule,.profileStudio,.progressReal,.planner,.shoppingBox,.nutritionBridge,.progressDashboard,.metricStudio,.aiForest,.carePanel,.natureActions{border:2.5px solid #76aa7b;box-shadow:0 8px 24px rgba(39,91,53,.09)}
+.goal,.planDay,.dashboardCards article,.metricCards article,.bridgeStats article,.careGrid button,.fridgeIdeaGrid article,.shoppingList>button,.appsGrid article,.chartSummary article{border-width:2px;border-color:#91bb86}
+.goal:nth-child(2n),.planDay:nth-child(2n),.careGrid button:nth-child(2n){border-color:#72b4a7;background:#f0faf7}
+.goal:nth-child(4n+3),.planDay:nth-child(4n+3){border-color:#c5a856;background:#fff9e7}
+.gentleResult,.emptyState,.aiAnswer,.trendRule,.sourceRule{border:2px solid #7eaf82;color:#294a35}
+.trendCards button{border:2px solid #76a979;color:#294a35}.trendCards button:nth-child(2n){border-color:#6daf9f}.trendCards button:nth-child(3n){border-color:#c2a04e}
+.activityLogger{border:2px solid #71a9b4}.wellbeingLogger{border:2px solid #9c87b6}.measureLogger{border:2px solid #c0a05b}.connectedApps{border:2px solid #72aa86}
+.activityLogger small,.wellbeingLogger small,.measureLogger small,.appsHead p,.appsHead small,.appsGrid article small,.chartSummary small,.chartTitle p{color:#465f4e;opacity:1}
+input,select,textarea{color:#203f2c;border-width:2px;border-color:#91b59a;background:#fff}
+input::placeholder,textarea::placeholder{color:#63796a;opacity:1}
+.primaryAction,.branchActions button,.planActions button,.aiComposer button,.moduleTop button,.weekNavigator button{border-width:2px}
+nav b{color:#294a35;font-weight:700}
