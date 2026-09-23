@@ -233,3 +233,24 @@ button{color:#173f27!important}
 .weekNavigator button:hover,.rangePills button:hover,.activityMinutes button:hover,.appsGrid article button:hover{border-color:#397b4c!important;background:#e7f4e8!important}
 .trendCards button{border-width:2.5px!important}
 .trendRule,.sourceRule,.gentleResult,.emptyState,.aiAnswer{border-width:2.5px!important}
+
+
+/* Ajuste v3 · mismo grosor visual, tonos más oscuros */
+.grid>button{border-width:2px!important}
+.connectedModule,.realModule,.profileStudio,.progressReal,.planner,.shoppingBox,.nutritionBridge,.progressDashboard,.metricStudio,.aiForest,.carePanel,.natureActions,.connectedApps{border-width:2px!important}
+.goal,.planDay,.dashboardCards article,.metricCards article,.bridgeStats article,.careGrid button,.fridgeIdeaGrid article,.shoppingList>button,.appsGrid article,.chartSummary article{border-width:2px!important}
+.trendCards button,.trendRule,.sourceRule,.gentleResult,.emptyState,.aiAnswer{border-width:2px!important}
+input,select,textarea{border-width:1.5px!important}
+.weekNavigator button,.rangePills button,.activityMinutes button,.appsGrid article button,.branchActions button,.planActions button,.primaryAction{border-width:1.5px!important}
+
+/* Oscurecer marcos sin engrosarlos */
+.grid>button:nth-child(4n+1){border-color:#367a45!important}
+.grid>button:nth-child(4n+2){border-color:#347f73!important}
+.grid>button:nth-child(4n+3){border-color:#98731e!important}
+.grid>button:nth-child(4n){border-color:#607b3f!important}
+.connectedModule,.realModule,.profileStudio,.progressReal,.planner,.shoppingBox,.nutritionBridge,.progressDashboard,.metricStudio,.aiForest,.carePanel,.natureActions,.connectedApps{border-color:#3f7f4e!important}
+.planDay:nth-child(4n+1),.goal:nth-child(4n+1),.dashboardCards article:nth-child(4n+1),.metricCards article:nth-child(4n+1){border-color:#43834d!important}
+.planDay:nth-child(4n+2),.goal:nth-child(4n+2),.dashboardCards article:nth-child(4n+2),.metricCards article:nth-child(4n+2){border-color:#398679!important}
+.planDay:nth-child(4n+3),.goal:nth-child(4n+3),.dashboardCards article:nth-child(4n+3),.metricCards article:nth-child(4n+3){border-color:#9d7927!important}
+.planDay:nth-child(4n),.goal:nth-child(4n),.dashboardCards article:nth-child(4n),.metricCards article:nth-child(4n){border-color:#637f43!important}
+input,select,textarea{border-color:#6f9277!important}
