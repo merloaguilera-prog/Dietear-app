@@ -174,3 +174,11 @@ input,select,textarea{min-height:44px}
 .branchActions button,.primaryAction,.planActions button,.aiComposer button,.moduleTop button{min-height:44px}
 #dietear-assistant{scroll-margin-top:86px}
 @media(max-width:720px){.grid>button{min-height:94px}.grid button>b{font-size:1rem}.grid button>p{font-size:.875rem;line-height:1.4}nav b{font-size:.75rem}}
+
+.weekNavigator{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:16px}
+.weekNavigator b{font-size:1rem;color:#31583b;min-width:190px;text-align:center}
+.weekNavigator button{min-height:42px;border:2px solid #a9cda9;border-radius:13px;padding:7px 13px;background:#f0f8ec;color:#31583b;font-weight:650}
+.weekNavigator button:hover{background:#e0f0df;border-color:#74aa7e}
+.planDay>div:first-child span{font-size:.875rem}
+.planDay label{font-size:.875rem}
+@media(max-width:720px){.weekNavigator{width:100%;justify-content:center}.weekNavigator b{min-width:155px}.weekNavigator button:last-child{width:100%}.plannerHead{align-items:stretch}}
