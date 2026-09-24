@@ -271,3 +271,5 @@ input,select,textarea{border-color:#6f9277!important}
 .weekNavigator button,.rangePills button,.activityMinutes button,.appsGrid article button,.branchActions button,.planActions button,.trendCards button,.moduleTop button{border-color:#417d51!important}
 .rangePills button.active{border-color:#2e7143!important;background:#e1f2e4}
 .quick button:focus-visible,.week button:focus-visible{outline-color:#286c40}
+
+.historyStrip button{margin-left:auto;border:1.5px solid #397a49;border-radius:10px;padding:6px 10px;background:#fff;color:#21452d;font-weight:700}
