@@ -273,3 +273,18 @@ input,select,textarea{border-color:#6f9277!important}
 .quick button:focus-visible,.week button:focus-visible{outline-color:#286c40}
 
 .historyStrip button{margin-left:auto;border:1.5px solid #397a49;border-radius:10px;padding:6px 10px;background:#fff;color:#21452d;font-weight:700}
+
+/* Recetas: pasos legibles y controles claros */
+.recipeIdeaList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0}
+.recipeIdea{border:1.5px solid #397a49;border-radius:20px;padding:17px;background:#fbfef9}
+.recipeIdea:nth-child(2n){border-color:#347f73;background:#f4fbf8}
+.recipeIdea:nth-child(3n){border-color:#98731e;background:#fffdf5}
+.recipeIdeaHead{display:flex;gap:12px;align-items:center}.recipeIdeaHead>span{font-size:2rem}
+.recipeIdeaHead h3{margin:0;color:#183b27;font-size:1.05rem}.recipeIdeaHead p{margin:5px 0 0;color:#294733}
+.recipeIdeaActions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.recipeIdeaActions button{border:1.5px solid #397a49;border-radius:12px;padding:9px 12px;background:#edf7ed;color:#173f27;font-weight:700}
+.recipeIdeaActions button:last-child{background:#2f7144;color:#fff!important}
+.recipeIdeaDetail{margin-top:14px;padding:14px;border:1.5px solid #648d69;border-radius:14px;background:#fff;color:#203f2c}
+.recipeIdeaDetail h4{margin:10px 0 5px;color:#183b27}.recipeIdeaDetail ul,.recipeIdeaDetail ol{padding-left:22px;margin:6px 0 12px}
+.recipeIdeaDetail li{margin:6px 0;line-height:1.45;color:#203f2c}.recipeIdeaDetail p{margin:12px 0 0;color:#294733}
+@media(max-width:700px){.recipeIdeaList{grid-template-columns:1fr}.recipeIdeaActions button{flex:1}}
