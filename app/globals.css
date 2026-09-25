@@ -306,3 +306,9 @@ nav button.active span{background:#fff;border:1.5px solid #6b9f76;border-radius:
 nav .historyNav{color:#355e40!important;background:#f5faf4!important;border:1px solid #c7dbc9!important}
 nav .historyNav span{font-size:24px!important;font-weight:800}
 @media(max-width:720px){nav{height:76px!important;gap:2px;padding:4px!important}nav button{width:14.28%!important;min-width:0!important;padding:3px 1px!important}nav b{font-size:8px!important}nav span{font-size:18px!important}nav button.active span{width:29px;height:29px}.page{padding-bottom:104px!important}}
+
+
+/* Conversación rápida en Inicio */
+.quickConversation{margin-top:14px;border:2px solid #6e9d75;border-radius:20px;background:#fbfefb;padding:14px;box-shadow:0 8px 24px #315f3a12}
+.quickConversationHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.quickConversationHead div{display:flex;flex-direction:column;gap:2px}.quickConversationHead small{color:#477653;font-weight:800;letter-spacing:.6px}.quickConversationHead b{color:#173d27}.quickConversationHead button{border:1.5px solid #789e7e;border-radius:12px;background:#fff;color:#294d33;padding:7px 11px;font-weight:700}
+.quickQuestion{display:flex;gap:9px;align-items:flex-start;border:1px solid #c7ddca;border-radius:14px;padding:10px 12px;margin:7px 0;background:#f0f8f0}.quickQuestion p{margin:0!important;color:#173d27!important;line-height:1.4}.quickHint{font-size:12px!important;color:#48644e!important;margin:10px 2px 0!important}
