@@ -296,3 +296,13 @@ button[style*="background:#2f"],button[style*="background: #2f"],.primary,.darkG
 .connectedModule .moduleTop{margin-bottom:12px}
 .openingHero,.openingShade{border-width:2px!important}
 .ask,.week,.special,.motivation{border-width:1.5px!important}
+
+
+/* Navegación fija más clara y actual */
+nav{height:82px!important;gap:4px;padding:5px 8px!important;box-shadow:0 -8px 28px #244b2d18}
+nav button{width:min(160px,14.28%)!important;border-radius:16px!important;transition:background .18s ease,transform .18s ease,color .18s ease!important}
+nav button.active{color:#245f36!important;background:#e2f2e5!important;border-top:0!important;box-shadow:inset 0 0 0 2px #78a982!important;transform:translateY(-3px)}
+nav button.active span{background:#fff;border:1.5px solid #6b9f76;border-radius:50%;width:34px;height:34px;display:grid;place-items:center}
+nav .historyNav{color:#355e40!important;background:#f5faf4!important;border:1px solid #c7dbc9!important}
+nav .historyNav span{font-size:24px!important;font-weight:800}
+@media(max-width:720px){nav{height:76px!important;gap:2px;padding:4px!important}nav button{width:14.28%!important;min-width:0!important;padding:3px 1px!important}nav b{font-size:8px!important}nav span{font-size:18px!important}nav button.active span{width:29px;height:29px}.page{padding-bottom:104px!important}}
