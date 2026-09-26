@@ -320,3 +320,20 @@ nav .historyNav span{font-size:24px!important;font-weight:800}
 
 /* Sprint de contraste y jerarquía */
 .hero{border:2.25px solid #6f9e77!important}.ask{border:1.5px solid #9fbea4!important}.careHero{border:2px solid #78a982!important}.trendsHero{border:1.5px solid #9eb49a!important}.primaryAction,.fridgeAdd button,.careTitle button,.careAsk button{color:#fff!important}.quick button.purple{color:#fff!important}.special{border:1.5px solid #9b7ab0!important}
+
+
+/* Regla global DIETEAR: botones verdes oscuros siempre con texto/iconos blancos */
+button.primary,button.darkGreen,button.ctaPrimary,button.primaryAction,
+.fridgeAdd button,.careTitle button,.careAsk button,
+.recipeIdeaActions button:last-child,
+button[style*="background:#2f"],button[style*="background: #2f"],
+button[style*="background:#1f"],button[style*="background: #1f"],
+button[style*="background:#3f"],button[style*="background: #3f"]{color:#fff!important}
+button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
+.fridgeAdd button *,.careTitle button *,.careAsk button *,
+.recipeIdeaActions button:last-child *{color:#fff!important}
+
+/* TODO SUMA: controles simétricos para corregir registros */
+.goalAdjust{display:flex;align-items:center;gap:7px}
+.goalAdjust button{width:36px;height:36px;border-radius:12px;border:1.5px solid #4f825b;background:#2f7144;color:#fff!important;font-size:22px;font-weight:800;display:grid;place-items:center;padding:0}
+.goalAdjust button:disabled{background:#dfe9df;color:#718276!important;border-color:#b9cbbd;opacity:.75}
