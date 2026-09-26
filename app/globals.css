@@ -348,3 +348,11 @@ button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
 
 /* Contraste global adicional para superficies verdes oscuras */
 button[style*="background: rgb(49, 95, 64)"],button[style*="background:rgb(49, 95, 64)"]{color:#fff!important}
+
+
+/* Navegación interna: la tarjeta abierta queda visible bajo el encabezado */
+.connectedModule,.nutritionBridge,.plannerGrid,.progressReal,.profileStudio{scroll-margin-top:24px}
+
+/* Contraste coherente en acciones principales y ramas */
+.branchActions button.primaryAction,.connectedModule .primaryAction,.moduleTop button.primaryAction{background:#2f7144!important;color:#fff!important;border-color:#255f38!important}
+.branchActions button.primaryAction *,.connectedModule .primaryAction *{color:#fff!important}
