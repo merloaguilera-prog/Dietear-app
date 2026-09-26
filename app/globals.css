@@ -337,3 +337,14 @@ button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
 .goalAdjust{display:flex;align-items:center;gap:7px}
 .goalAdjust button{width:36px;height:36px;border-radius:12px;border:1.5px solid #4f825b;background:#2f7144;color:#fff!important;font-size:22px;font-weight:800;display:grid;place-items:center;padding:0}
 .goalAdjust button:disabled{background:#dfe9df;color:#718276!important;border-color:#b9cbbd;opacity:.75}
+
+
+/* Pulido de Inicio: Menos platos y más zapatos */
+.natureActions{border:2.5px solid #5f9669!important;background:linear-gradient(125deg,#eef7ea,#fbfdf7 55%,#edf7f1)!important}
+.natureButtons button{border:2px solid #86ad8b!important;border-radius:18px!important;background:#f9fcf7!important;color:#183d26!important;box-shadow:0 3px 10px rgba(39,91,53,.06)}
+.natureButtons button:nth-child(2n){border-color:#6f9f79!important;background:#f2f8f1!important}
+.natureButtons button span,.natureButtons button b{color:#183d26!important}
+.natureButtons button:focus-visible{outline:3px solid #2f7144;outline-offset:2px}
+
+/* Contraste global adicional para superficies verdes oscuras */
+button[style*="background: rgb(49, 95, 64)"],button[style*="background:rgb(49, 95, 64)"]{color:#fff!important}
