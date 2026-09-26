@@ -356,3 +356,15 @@ button[style*="background: rgb(49, 95, 64)"],button[style*="background:rgb(49, 9
 /* Contraste coherente en acciones principales y ramas */
 .branchActions button.primaryAction,.connectedModule .primaryAction,.moduleTop button.primaryAction{background:#2f7144!important;color:#fff!important;border-color:#255f38!important}
 .branchActions button.primaryAction *,.connectedModule .primaryAction *{color:#fff!important}
+
+
+/* Tarjetas principales: más legibles sin engrosar la tipografía */
+.grid>button{border-width:2px!important;box-shadow:0 4px 14px rgba(39,91,53,.07)!important}
+.grid>button>p{color:#294734!important}
+.connectedModule{border-radius:22px!important;background:#fcfefb!important}
+.moduleTop button,.branchActions button{border-width:1.5px!important}
+
+/* Premium menos rígido y más respirado */
+.premiumZone,.proZone{border-radius:24px!important}
+.premiumCards article,.proAccess article{border-radius:20px!important;padding:18px!important}
+.premiumCards{gap:14px!important}
