@@ -476,3 +476,19 @@ button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
   border:1.5px solid #2f683f!important;
 }
 .metricForm>button:disabled{opacity:.62!important}
+
+
+/* Perfil: estados verdes seleccionados y CTA con blanco inequívoco */
+.timePills .selected,.timePills .selected *,
+.profileReady button,.profileReady button *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+.timePills .selected{background:#39794b!important;border-color:#2f683f!important}
+.profileReady button{background:#39794b!important;border:1.5px solid #2f683f!important}
+
+/* Pie: icono de la sección activa siempre blanco */
+nav button.active span,nav button.active span *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
