@@ -745,3 +745,19 @@ button.selected,button.selected *,button.active,button.active *,
 .quickRecipeFoot{display:flex;justify-content:center;gap:12px}.quickRecipeFoot button{min-width:220px}
 .quickRecipesStudio .recipeIdea{border-radius:23px!important;border-width:1.7px!important;box-shadow:0 5px 14px rgba(42,91,53,.06)}
 @media(max-width:700px){.quickRecipesHero{padding:16px;align-items:flex-start}.quickRecipeArt{min-width:105px;padding:10px}.quickRecipeArt span{font-size:29px}.quickRecipesHero h2{font-size:25px}.quickRecipePrompt{align-items:stretch;flex-direction:column}.quickRecipePrompt button{width:100%}.quickRecipeFoot{flex-direction:column}.quickRecipeFoot button{width:100%;min-width:0}}
+
+
+/* Analizar alimento · buscador protagonista, acción compacta */
+.foodCheckVisual{display:grid!important;grid-template-columns:1fr!important;gap:16px!important;padding:0!important;border:0!important;background:transparent!important}
+.foodCheckHero{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px;border:1.8px solid #78aa81;border-radius:27px;background:radial-gradient(circle at 88% 18%,#e4f3df,transparent 31%),linear-gradient(130deg,#fbfef8,#fff9eb)}
+.foodCheckHero h2{font-size:31px;margin:5px 0}.foodCheckHero p{max-width:720px;margin:0;color:#526a59}
+.foodCheckArt{min-width:185px;display:flex;justify-content:center;align-items:center;padding:17px;border:1.5px solid #a8caa9;border-radius:23px;background:rgba(255,255,255,.82)}
+.foodCheckArt span{font-size:42px;margin:0 -2px}
+.foodCheckSteps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.foodCheckSteps>span{padding:11px 14px;border:1.4px solid #b2cfb1;border-radius:17px;background:#f9fcf7;display:flex;align-items:center;gap:9px}.foodCheckSteps b{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#39794b;color:#fff!important}
+.foodCheckSearch{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:stretch;padding:15px;border:1.6px solid #a2c5a4;border-radius:21px;background:#fff}
+.foodCheckSearch input{width:100%!important;min-height:56px!important;margin:0!important;border-radius:16px!important}
+.foodCheckSearch button{width:auto!important;min-width:145px!important;margin:0!important;padding:0 20px!important;border-radius:16px!important;background:#2f7745!important;color:#fff!important;font-weight:800!important;border:1.5px solid #245f37!important}
+.foodCheckSearch button *{color:#fff!important}
+.foodCheckResult{border-radius:20px!important;border:1.6px solid #75a97e!important;background:#f4faef!important;padding:18px!important}
+.foodCheckNotice{display:flex;align-items:center;gap:9px;padding:11px 14px;border-radius:16px;background:#fff9ea;border:1px solid #d6bf7b}.foodCheckNotice small{color:#5c604f}
+@media(max-width:700px){.foodCheckHero{padding:16px;align-items:flex-start}.foodCheckArt{min-width:95px;padding:10px}.foodCheckArt span{font-size:27px}.foodCheckHero h2{font-size:25px}.foodCheckSteps{grid-template-columns:1fr}.foodCheckSearch{grid-template-columns:1fr}.foodCheckSearch button{width:100%!important;min-height:48px}}
