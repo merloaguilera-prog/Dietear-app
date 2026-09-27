@@ -23,7 +23,7 @@ export default function HealthMetrics({profile,setProfile,history,register}){
       <label>Peso actual (kg)<input type="number" min="0" inputMode="decimal" value={m.weight} onChange={e=>setM({...m,weight:e.target.value})}/></label>
       <label>Altura (cm)<input type="number" min="0" inputMode="decimal" value={m.height} onChange={e=>setM({...m,height:e.target.value})}/></label>
       <label>Cintura (cm)<input type="number" min="0" inputMode="decimal" value={m.waist} onChange={e=>setM({...m,waist:e.target.value})}/></label>
-      <button className="saveMetricButton" onClick={save} disabled={!validWeight&&!validWaist}>Guardar registro</button>
+      <button className="saveMetricButton" onClick={save} disabled={!validWeight&&!validWaist}><span>Guardar registro</span></button>
     </div>
     {!complete&&<p className="helper">Para calcular energía necesitamos: sexo (hombre/mujer), edad, peso, altura y nivel de actividad. Completa los datos que falten en tu ficha.</p>}
     <div className="metricCards">
