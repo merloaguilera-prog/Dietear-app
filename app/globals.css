@@ -461,3 +461,18 @@ button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
   color:#fff!important;
 }
 .pathCount span{opacity:.92!important}
+
+
+/* Guardar registro: blanco incluso cuando el formulario aún no permite guardar */
+.metricForm>button,
+.metricForm>button:disabled,
+.metricForm>button:not(:disabled),
+.metricForm>button *,
+.metricForm>button:disabled *,
+.metricForm>button:not(:disabled) *{
+  background:#39794b!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1.5px solid #2f683f!important;
+}
+.metricForm>button:disabled{opacity:.62!important}
