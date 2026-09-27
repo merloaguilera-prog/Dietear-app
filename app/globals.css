@@ -673,3 +673,24 @@ button.selected,button.selected *,button.active,button.active *,
 .shoppingStudio .emptyState{padding:22px!important;border:1.8px dashed #75a97e!important;border-radius:20px!important;background:#f7fbf3!important;text-align:center}
 .shoppingPlanCta{border-radius:18px!important;min-height:58px!important;font-size:17px!important}
 @media(max-width:700px){.shoppingHero{padding:17px}.shoppingHeroArt{min-width:100px;grid-template-columns:repeat(2,45px)}.shoppingHeroArt span{height:45px;font-size:25px;border-radius:14px}.shoppingMiniCards{grid-template-columns:1fr}.shoppingHero h2{font-size:29px}}
+
+
+/* Mi Compra · ilustración con más personalidad */
+.shoppingHero{position:relative;background:radial-gradient(circle at 86% 22%,rgba(231,244,223,.95),transparent 28%),linear-gradient(125deg,#f7fbf1 0%,#fffaf0 58%,#eef8f0 100%)!important}
+.shoppingHero:after{content:"";position:absolute;right:-55px;bottom:-75px;width:210px;height:210px;border:1px solid rgba(83,139,92,.16);border-radius:50%}
+.shoppingHeroArt{position:relative!important;min-width:220px!important;height:170px;display:block!important}
+.shoppingBag{position:absolute;right:24px;bottom:4px;width:142px;height:116px;border-radius:18px 18px 28px 28px;background:linear-gradient(145deg,#d9b47b,#c89b5b);border:2px solid #a77b42;box-shadow:0 12px 24px rgba(75,80,45,.13);z-index:2}
+.shoppingBag:before{content:"";position:absolute;inset:8px;border:1px dashed rgba(255,255,255,.48);border-radius:13px 13px 21px 21px}
+.bagHandle{position:absolute;left:38px;top:-35px;width:62px;height:48px;border:8px solid #b7894f;border-bottom:0;border-radius:38px 38px 0 0}
+.shoppingBag>b{position:absolute;bottom:13px;left:0;right:0;text-align:center;font-size:12px;letter-spacing:.14em;color:#fff!important}
+.shoppingBag .food{position:absolute;font-size:40px;filter:drop-shadow(0 4px 3px rgba(0,0,0,.08))}
+.foodBroccoli{left:4px;top:-32px;transform:rotate(-10deg)}
+.foodTomato{left:49px;top:-27px}
+.foodCarrot{right:2px;top:-35px;transform:rotate(15deg)}
+.foodBread{right:28px;top:7px;font-size:34px!important;transform:rotate(-10deg)}
+.shoppingSpark{position:absolute;z-index:1;font-size:24px}
+.shoppingSpark.s1{left:12px;top:18px;transform:rotate(-18deg)}
+.shoppingSpark.s2{right:2px;top:6px;font-size:18px}
+.shoppingMiniCards article{transition:transform .18s ease,box-shadow .18s ease}
+.shoppingMiniCards article:hover{transform:translateY(-2px);box-shadow:0 7px 16px rgba(42,91,53,.09)}
+@media(max-width:700px){.shoppingHeroArt{min-width:125px!important;height:130px}.shoppingBag{right:4px;width:98px;height:83px}.bagHandle{left:25px;top:-27px;width:44px;height:36px;border-width:6px}.shoppingBag .food{font-size:29px}.foodTomato{left:35px}.foodBread{font-size:24px!important;right:17px}.shoppingBag>b{font-size:9px}.shoppingSpark.s1{left:0}}
