@@ -694,3 +694,25 @@ button.selected,button.selected *,button.active,button.active *,
 .shoppingMiniCards article{transition:transform .18s ease,box-shadow .18s ease}
 .shoppingMiniCards article:hover{transform:translateY(-2px);box-shadow:0 7px 16px rgba(42,91,53,.09)}
 @media(max-width:700px){.shoppingHeroArt{min-width:125px!important;height:130px}.shoppingBag{right:4px;width:98px;height:83px}.bagHandle{left:25px;top:-27px;width:44px;height:36px;border-width:6px}.shoppingBag .food{font-size:29px}.foodTomato{left:35px}.foodBread{font-size:24px!important;right:17px}.shoppingBag>b{font-size:9px}.shoppingSpark.s1{left:0}}
+
+
+/* Mi Plan · resumen visual con más personalidad */
+.planSummaryVisual{padding:22px!important;border:1.8px solid #70a67c!important;border-radius:28px!important;background:radial-gradient(circle at 93% 10%,rgba(230,244,220,.9),transparent 26%),linear-gradient(135deg,#fbfef9,#f4f9ef)!important;box-shadow:0 7px 18px rgba(42,91,53,.06)}
+.planSummaryVisual .planSummaryHead{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.planSummaryVisual .planSummaryHead>div:last-child{display:flex;flex-direction:column;gap:3px}
+.planSummaryVisual .planSummaryHead b{font-size:24px}
+.planSummaryVisual .planSummaryHead p{margin:2px 0 0;color:#5a7060}
+.planSummaryIllustration{display:flex;align-items:flex-end;gap:0;min-width:105px;padding:10px 8px;border-radius:22px;background:#fff;border:1.5px solid #acd0ad;box-shadow:0 5px 12px rgba(42,91,53,.07)}
+.planSummaryIllustration span{font-size:31px;margin-right:-4px;filter:drop-shadow(0 3px 2px rgba(0,0,0,.05))}
+.planSummaryCards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0 17px}
+.planSummaryCards article{position:relative;min-height:105px;padding:15px;border:1.7px solid #8fbd91;border-radius:21px;background:#fff;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+.planSummaryCards article:nth-child(2){background:#eef8f6;border-color:#72aaa3}
+.planSummaryCards article:nth-child(3){background:#fff8e8;border-color:#c5a04b}
+.planSummaryCards article>span{font-size:30px}
+.planSummaryCards article div{display:flex;flex-direction:column}
+.planSummaryCards article b{font-size:16px}
+.planSummaryCards article small{color:#617466}
+.planSummaryCards article strong{font-size:30px;color:#225d36}
+.planSummaryVisual .planSummaryActions{display:flex!important;gap:12px!important;justify-content:center!important}
+.planSummaryVisual .planSummaryActions button{min-width:190px;min-height:52px;border-radius:18px!important;padding:11px 18px!important}
+@media(max-width:700px){.planSummaryVisual{padding:16px!important}.planSummaryIllustration{min-width:88px}.planSummaryIllustration span{font-size:25px}.planSummaryCards{grid-template-columns:1fr}.planSummaryCards article{min-height:78px}.planSummaryVisual .planSummaryActions{flex-direction:column}.planSummaryVisual .planSummaryActions button{width:100%;min-width:0}}
