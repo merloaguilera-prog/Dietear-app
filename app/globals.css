@@ -376,3 +376,8 @@ nav button.active span{background:#315f40!important;color:#fff!important;box-sha
 nav button.active b{color:#174a2b!important}
 nav .historyNav:disabled{opacity:.35!important;cursor:default!important}
 nav .historyNav:not(:disabled){color:#244b30!important}
+
+
+/* Cierre de contraste: ninguna superficie verde oscura queda con texto oscuro */
+.toast{color:#fff!important}
+.toast *{color:#fff!important}
