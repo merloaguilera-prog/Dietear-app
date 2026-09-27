@@ -761,3 +761,18 @@ button.selected,button.selected *,button.active,button.active *,
 .foodCheckResult{border-radius:20px!important;border:1.6px solid #75a97e!important;background:#f4faef!important;padding:18px!important}
 .foodCheckNotice{display:flex;align-items:center;gap:9px;padding:11px 14px;border-radius:16px;background:#fff9ea;border:1px solid #d6bf7b}.foodCheckNotice small{color:#5c604f}
 @media(max-width:700px){.foodCheckHero{padding:16px;align-items:flex-start}.foodCheckArt{min-width:95px;padding:10px}.foodCheckArt span{font-size:27px}.foodCheckHero h2{font-size:25px}.foodCheckSteps{grid-template-columns:1fr}.foodCheckSearch{grid-template-columns:1fr}.foodCheckSearch button{width:100%!important;min-height:48px}}
+
+/* Tarjetas principales · más atractivas, claras y con identidad vegetal */
+.featureGrid{gap:15px!important}
+.featureCard{position:relative;overflow:hidden;min-height:145px!important;padding:20px!important;border:1.8px solid #8db58f!important;border-radius:25px!important;background:linear-gradient(145deg,#fff,#f2f8ee)!important;box-shadow:0 7px 18px rgba(42,88,52,.08)!important;text-align:left!important;transition:transform .18s ease,box-shadow .18s ease}
+.featureCard::after{content:"";position:absolute;width:105px;height:105px;border-radius:50%;right:-38px;top:-35px;background:radial-gradient(circle,#d9edcf 0 38%,#eef7e9 39% 64%,transparent 65%);opacity:.9;pointer-events:none}
+.featureCard:hover{transform:translateY(-3px);box-shadow:0 12px 25px rgba(42,88,52,.13)!important}
+.featureCard>span{position:relative;z-index:1;width:53px;height:53px;display:grid!important;place-items:center;border-radius:17px;background:#e5f2de!important;border:1.4px solid #91b892!important;font-size:27px!important;margin-bottom:12px!important}
+.featureCard>b{position:relative;z-index:1;display:block;font-size:17px!important;color:#173f27!important;margin-bottom:6px}
+.featureCard>p{position:relative;z-index:1;color:#52675a!important;margin:0!important;font-size:13px!important}
+.featureCard>i{position:absolute!important;right:16px!important;bottom:14px!important;width:31px;height:31px;display:grid!important;place-items:center;border-radius:50%;background:#39794b!important;color:#fff!important;font-style:normal!important}
+.featureCard:nth-child(3n+2){background:linear-gradient(145deg,#fffdf7,#f7f0dc)!important;border-color:#bea85e!important}.featureCard:nth-child(3n+2)>span{background:#fbf0ce!important;border-color:#cfb96e!important}
+.featureCard:nth-child(3n){background:linear-gradient(145deg,#fbfffe,#eaf6f2)!important;border-color:#76a79a!important}.featureCard:nth-child(3n)>span{background:#dff1eb!important;border-color:#82afa3!important}
+.featureGrid-plan .featureCard:first-child{background:linear-gradient(140deg,#eaf6e4,#fff8df)!important;border:2.2px solid #4f8c5c!important;box-shadow:0 10px 24px rgba(46,103,60,.14)!important}
+.featureGrid-plan .featureCard:first-child::before{content:"ELIGE TU DIETA";position:absolute;right:13px;top:13px;padding:5px 9px;border-radius:999px;background:#39794b;color:#fff;font-size:10px;font-weight:800;letter-spacing:.05em;z-index:2}
+@media(max-width:700px){.featureGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.featureCard{min-height:137px!important;padding:15px!important;border-radius:20px!important}.featureCard>span{width:45px;height:45px;font-size:23px!important}.featureCard>b{font-size:15px!important}.featureCard>p{font-size:12px!important;padding-right:15px}.featureGrid-plan .featureCard:first-child::before{font-size:8px;right:8px;top:8px}}
