@@ -381,3 +381,17 @@ nav .historyNav:not(:disabled){color:#244b30!important}
 /* Cierre de contraste: ninguna superficie verde oscura queda con texto oscuro */
 .toast{color:#fff!important}
 .toast *{color:#fff!important}
+
+
+/* Cierre visual global: tarjetas y botones siempre quedan delimitados */
+.gentleResult,.bridgeSetup,.profilePulse,.premiumCards article,.proAccess article,
+.connectedModule,.realModule,.profileStudio,.progressReal,.metricStudio,
+.premiumZone,.proZone,.pageIdentity{
+  border:1.5px solid #86ad8b!important;
+}
+.quick button,.grid>button,.moduleGrid button,.careGrid button,.planActions button,
+.branchActions button,.moduleTop button,.shoppingList>button,.recipeIdeaActions button,
+.fridgeAdd button,.weekNavigator button{
+  border:1.5px solid #86ad8b!important;
+}
+.pageIdentity{border-width:2px!important}
