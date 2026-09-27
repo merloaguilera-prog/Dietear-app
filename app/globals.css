@@ -395,3 +395,11 @@ nav .historyNav:not(:disabled){color:#244b30!important}
   border:1.5px solid #86ad8b!important;
 }
 .pageIdentity{border-width:2px!important}
+
+
+/* Inicio: los cuatro accesos rápidos mantienen su color y ganan definición */
+.quick button{border-width:2.25px!important;box-shadow:0 5px 14px rgba(45,76,54,.08)!important}
+.quick button:nth-child(1){border-color:#75a97d!important}
+.quick button:nth-child(2){border-color:#6aa6bb!important}
+.quick button:nth-child(3){border-color:#d39a62!important}
+.quick button:nth-child(4){border-color:#7954a4!important}
