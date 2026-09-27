@@ -581,3 +581,12 @@ button.saveMetricButton,button.saveMetricButton:disabled{
   -webkit-text-fill-color:#fff!important;
   opacity:1!important;
 }
+
+
+/* Mi Camino: textos internos aislados para impedir herencia oscura */
+.pathCount .pathCountNumber,
+.pathCount .pathCountLabel{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+}
