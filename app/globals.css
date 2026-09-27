@@ -590,3 +590,15 @@ button.saveMetricButton,button.saveMetricButton:disabled{
   -webkit-text-fill-color:#fff!important;
   opacity:1!important;
 }
+
+
+/* Gráficas: cualquier métrica seleccionada conserva icono y texto blancos */
+.chartTitle button.chartMetricActive,
+.chartTitle button.chartMetricActive>span,
+.chartTitle button.chartMetricActive>span *{
+  background:#39794b!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:#2f683f!important;
+  opacity:1!important;
+}
