@@ -571,3 +571,13 @@ button.saveMetricButton,button.saveMetricButton:disabled{
   .progressQuickActions{gap:10px!important}
   .progressQuickActions button{flex:1 1 145px!important}
 }
+
+
+/* Guardar registro: el texto visible tiene su propia capa blanca */
+.saveMetricButton>span,
+.saveMetricButton:disabled>span,
+.metricStudio .saveMetricButton>span{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+}
