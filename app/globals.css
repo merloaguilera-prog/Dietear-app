@@ -444,3 +444,13 @@ button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
   color:#fff!important;
   border-color:#2f683f!important;
 }
+
+
+/* Progreso: CTAs y filtro activo verde oscuro siempre con blanco */
+.metricForm button:not(:disabled),.metricForm button:not(:disabled *,
+.chartTitle button.active,.chartTitle button.active *{
+  color:#fff!important;
+}
+.metricForm button:not(:disabled){background:#39794b!important;border:1.5px solid #2f683f!important}
+.chartTitle button.active{background:#39794b!important;border-color:#2f683f!important}
+.metricForm button:disabled{background:#9fb7a6!important;color:#fff!important;opacity:.65}
