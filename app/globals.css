@@ -602,3 +602,32 @@ button.saveMetricButton,button.saveMetricButton:disabled{
   border-color:#2f683f!important;
   opacity:1!important;
 }
+
+
+/* REGLA VISUAL DIETEAR: toda superficie verde oscura lleva contenido blanco */
+.darkGreenSurface,.darkGreenSurface *,
+button.primary,button.primary *,button.darkGreen,button.darkGreen *,
+button.ctaPrimary,button.ctaPrimary *,button.primaryAction,button.primaryAction *,
+button.selected,button.selected *,button.active,button.active *,
+.aiModes .selected,.aiModes .selected *,.goalAdjust button:not(:disabled),.goalAdjust button:not(:disabled) *,
+.profilePulse,.profilePulse *,.pathCount,.pathCount *,
+.profileReady button,.profileReady button *,.motivation button,.motivation button *,
+.metricForm>button,.metricForm>button *,.saveMetricButton,.saveMetricButton *,
+.planActions button:first-child,.planActions button:first-child *,
+.chartTitle button.active,.chartTitle button.active *,
+.toast,.toast *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+/* También cubre tarjetas/bocadillos verdes oscuros definidos por estilo inline */
+[style*="background:#315f40"],[style*="background: #315f40"],
+[style*="background:#39794b"],[style*="background: #39794b"],
+[style*="background:#2f7144"],[style*="background: #2f7144"],
+[style*="background:#376f47"],[style*="background: #376f47"],
+[style*="background:#315f40"] *,[style*="background: #315f40"] *,
+[style*="background:#39794b"] *,[style*="background: #39794b"] *,
+[style*="background:#2f7144"] *,[style*="background: #2f7144"] *,
+[style*="background:#376f47"] *,[style*="background: #376f47"] *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
