@@ -513,3 +513,18 @@ button.selected *,button.active *,.selected button *,.active button *,
 .metricForm>button *,.planActions button:first-child *{
   color:#fff!important;-webkit-text-fill-color:#fff!important
 }
+
+
+/* Perfil publicado: prioridad máxima para los dos CTAs verdes */
+.profileStudio .timePills button.selected,
+.profileStudio .timePills button.selected *,
+.profileStudio .profileReady button,
+.profileStudio .profileReady button *{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+.profileStudio .timePills button.selected,
+.profileStudio .profileReady button{
+  background-color:#39794b!important;
+  border-color:#2f683f!important;
+}
