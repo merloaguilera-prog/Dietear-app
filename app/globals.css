@@ -403,3 +403,16 @@ nav .historyNav:not(:disabled){color:#244b30!important}
 .quick button:nth-child(2){border-color:#6aa6bb!important}
 .quick button:nth-child(3){border-color:#d39a62!important}
 .quick button:nth-child(4){border-color:#7954a4!important}
+
+
+/* Regla definitiva: todo botón verde oscuro usa texto e iconos blancos */
+.aiModes .selected,.aiComposer>button:not(:disabled),.motivation button,
+button.primary,button.darkGreen,button.ctaPrimary,button.primaryAction,
+.fridgeAdd button,.careTitle button,.careAsk button,.recipeIdeaActions button:last-child{
+  color:#fff!important;
+}
+.aiModes .selected *,.aiComposer>button:not(:disabled) *,.motivation button *,
+button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
+.fridgeAdd button *,.careTitle button *,.careAsk button *,.recipeIdeaActions button:last-child *{
+  color:#fff!important;
+}
