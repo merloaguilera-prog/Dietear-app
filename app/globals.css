@@ -423,3 +423,15 @@ button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
   color:#fff!important;
 }
 .profilePulse span{opacity:.9!important}
+
+
+/* DIETEAR IA: CTA de pregunta siempre verde con texto blanco, también en espera */
+.aiComposer>button,
+.aiComposer>button:disabled{
+  background:#39794b!important;
+  color:#fff!important;
+  border:1.5px solid #2f683f!important;
+}
+.aiComposer>button *,
+.aiComposer>button:disabled *{color:#fff!important}
+.aiComposer>button:disabled{opacity:.58!important}
