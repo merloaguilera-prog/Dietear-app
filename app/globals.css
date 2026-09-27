@@ -492,3 +492,24 @@ nav button.active span,nav button.active span *{
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
 }
+
+
+/* Contraste final por color real: cualquier botón verde oscuro conserva contenido blanco */
+button[style*="#315f40"],button[style*="#376f47"],button[style*="#39794b"],button[style*="#3d754c"],
+button[style*="rgb(49, 95, 64)"],button[style*="rgb(55, 111, 71)"],button[style*="rgb(57, 121, 75)"],
+button[style*="#315f40"] *,button[style*="#376f47"] *,button[style*="#39794b"] *,button[style*="#3d754c"] *{
+  color:#fff!important;-webkit-text-fill-color:#fff!important
+}
+/* Estados activos/seleccionados que usan la paleta verde oscura */
+button.selected,button.active,.selected button,.active button,
+.timePills .selected,.chartTitle button.active,.aiModes .selected,
+.goalAdjust button:not(:disabled),.profileReady button,.motivation button,
+.metricForm>button,.planActions button:first-child{
+  color:#fff!important;-webkit-text-fill-color:#fff!important
+}
+button.selected *,button.active *,.selected button *,.active button *,
+.timePills .selected *,.chartTitle button.active *,.aiModes .selected *,
+.goalAdjust button:not(:disabled) *,.profileReady button *,.motivation button *,
+.metricForm>button *,.planActions button:first-child *{
+  color:#fff!important;-webkit-text-fill-color:#fff!important
+}
