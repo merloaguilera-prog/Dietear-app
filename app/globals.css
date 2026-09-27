@@ -539,3 +539,10 @@ button.saveMetricButton,button.saveMetricButton:disabled{
   border:1.5px solid #2f683f!important;
 }
 .saveMetricButton:disabled{opacity:.62!important}
+
+
+/* Inicio · Tendencias: marco más definido manteniendo el tono cálido */
+.trendsHero{
+  border:2.25px solid #8b865c!important;
+  box-shadow:0 0 0 4px rgba(139,134,92,.12),0 6px 16px rgba(55,75,58,.07)!important;
+}
