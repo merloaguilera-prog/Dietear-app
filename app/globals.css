@@ -795,3 +795,17 @@ button.selected,button.selected *,button.active,button.active *,
 
 /* Cambio de comida en un toque */
 .easyAlternatives{display:grid!important;gap:6px!important;padding-bottom:3px}.easyAlternatives>button{display:grid!important;grid-template-columns:auto 1fr!important;gap:7px!important;text-align:left!important;align-items:center!important;min-height:38px!important;padding:7px 9px!important;border:1.2px solid #8eb395!important;border-radius:11px!important;background:#f3f9ef!important;color:#21492e!important;font-weight:800!important}.easyAlternatives>button span{font-size:11px!important;font-weight:500!important;color:#4d6254!important}.mealMovePanel>small:nth-of-type(2){margin-top:2px;padding-top:6px;border-top:1px solid #d9e6d7}
+
+/* Pulido visual alegre y elegante · identidad DIETEAR */
+body{background:radial-gradient(circle at 8% 4%,#edf7e8 0,transparent 23%),radial-gradient(circle at 94% 10%,#fff3d6 0,transparent 18%),linear-gradient(180deg,#fbfdf9,#f7faf5)!important}
+.sectionTitle{position:relative;overflow:hidden;display:flex!important;align-items:center;gap:16px;padding:20px 22px!important;border:1.8px solid #83aa88!important;border-radius:27px!important;background:linear-gradient(125deg,#f4faef,#fffaf0)!important;box-shadow:0 8px 20px rgba(40,82,49,.07)}
+.sectionTitle::after{content:"";position:absolute;right:-28px;bottom:-45px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,#dcefd4 0 38%,transparent 40%);opacity:.8}
+.sectionTitleIcon{position:relative;z-index:1;flex:0 0 66px;width:66px;height:66px;display:grid;place-items:center;border-radius:22px;background:linear-gradient(145deg,#dcefd5,#fff4ce);border:1.5px solid #8fb593;font-size:34px;box-shadow:inset 0 1px 0 #fff,0 5px 12px rgba(51,92,58,.08)}
+.sectionTitle>div:last-child{position:relative;z-index:1}.sectionTitle h1{margin:2px 0 3px!important;color:#173f27!important}.sectionTitle p{margin:0!important;color:#52675a!important}.sectionTitle small{color:#4e7658!important;font-weight:800;letter-spacing:.04em}
+.sectionTitle-plan{background:linear-gradient(125deg,#edf8e9,#fff7dd)!important}.sectionTitle-progreso{background:linear-gradient(125deg,#eef8f0,#edf8f5)!important}.sectionTitle-perfil{background:linear-gradient(125deg,#f5f9ee,#fff5e8)!important}
+.connectedModule{border-radius:27px!important;border-width:1.8px!important;box-shadow:0 8px 20px rgba(43,82,49,.07)!important}
+.planDay{border-radius:23px!important;box-shadow:0 5px 14px rgba(42,81,49,.06)!important}.planDay:nth-child(3n+2){background:#fffdf7!important;border-color:#c7b372!important}.planDay:nth-child(3n){background:#f7fcfa!important;border-color:#86afa4!important}
+.grid button:focus-visible,.dietPick button:focus-visible,.planDay button:focus-visible{outline:3px solid #39794b!important;outline-offset:3px}
+nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12px)}nav button{border-radius:16px!important}nav button.active{background:linear-gradient(145deg,#39794b,#285f3a)!important;color:#fff!important;box-shadow:0 6px 13px rgba(45,100,58,.23)!important}nav button.active *{color:#fff!important}
+.toast{border-radius:18px!important;box-shadow:0 9px 25px rgba(35,73,43,.18)!important}
+@media(max-width:700px){.sectionTitle{padding:15px!important;gap:11px;border-radius:22px!important}.sectionTitleIcon{width:52px;height:52px;flex-basis:52px;border-radius:17px;font-size:27px}.sectionTitle h1{font-size:24px!important}}
