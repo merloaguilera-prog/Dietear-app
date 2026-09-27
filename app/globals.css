@@ -730,3 +730,18 @@ button.selected,button.selected *,button.active,button.active *,
 .createDietForm label{font-weight:700;color:#234c31}.createDietForm input,.createDietForm select{margin-top:7px}
 .createDietSave{min-height:58px!important;border-radius:19px!important;font-size:17px!important}
 @media(max-width:700px){.createDietVisual{padding:14px!important}.createDietHero{align-items:flex-start;padding:15px}.createDietArt{min-width:92px;padding:10px 5px}.createDietArt span{font-size:28px}.createDietHero h3{font-size:21px}.createDietStep{align-items:flex-start;flex-wrap:wrap}.createDietForm{grid-template-columns:1fr;padding:14px}}
+
+
+/* Recetas rápidas · escaparate útil y visual */
+.quickRecipesStudio{display:grid;gap:16px}
+.quickRecipesHero{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px;border:1.8px solid #75a982;border-radius:27px;background:radial-gradient(circle at 88% 20%,#e7f3df,transparent 30%),linear-gradient(130deg,#fbfef8,#fff8ea)}
+.quickRecipesHero h2{font-size:32px;margin:6px 0}.quickRecipesHero p{max-width:680px;margin:0;color:#536b59}
+.quickRecipeArt{min-width:190px;display:flex;align-items:center;justify-content:center;padding:18px;border:1.5px solid #a9caa9;border-radius:24px;background:rgba(255,255,255,.78);box-shadow:0 8px 18px rgba(45,91,53,.08)}
+.quickRecipeArt span{font-size:45px;margin:0 -2px;filter:drop-shadow(0 4px 3px rgba(0,0,0,.06))}
+.quickRecipeFilters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}.quickRecipeFilters button,.quickRecipeFoot button{border:1.5px solid #7eac84;border-radius:18px;background:#f8fcf5;padding:12px 17px;font-weight:700;color:#173f27}
+.quickRecipeFilters button:nth-child(2){background:#fff7e7;border-color:#c5a24e}.quickRecipeFilters button:nth-child(3){background:#edf8f6;border-color:#6da79f}
+.quickRecipePrompt{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 20px;border-radius:22px;border:1.5px solid #8db68e;background:linear-gradient(120deg,#eef8e9,#f9fcf6)}
+.quickRecipePrompt>div{display:flex;flex-direction:column;gap:4px}.quickRecipePrompt span{color:#586e5e}.quickRecipePrompt button{border:1.5px solid #245f37;border-radius:17px;background:#2f7745;color:#fff!important;padding:13px 18px;font-weight:800}.quickRecipePrompt button *{color:#fff!important}
+.quickRecipeFoot{display:flex;justify-content:center;gap:12px}.quickRecipeFoot button{min-width:220px}
+.quickRecipesStudio .recipeIdea{border-radius:23px!important;border-width:1.7px!important;box-shadow:0 5px 14px rgba(42,91,53,.06)}
+@media(max-width:700px){.quickRecipesHero{padding:16px;align-items:flex-start}.quickRecipeArt{min-width:105px;padding:10px}.quickRecipeArt span{font-size:29px}.quickRecipesHero h2{font-size:25px}.quickRecipePrompt{align-items:stretch;flex-direction:column}.quickRecipePrompt button{width:100%}.quickRecipeFoot{flex-direction:column}.quickRecipeFoot button{width:100%;min-width:0}}
