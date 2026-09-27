@@ -716,3 +716,17 @@ button.selected,button.selected *,button.active,button.active *,
 .planSummaryVisual .planSummaryActions{display:flex!important;gap:12px!important;justify-content:center!important}
 .planSummaryVisual .planSummaryActions button{min-width:190px;min-height:52px;border-radius:18px!important;padding:11px 18px!important}
 @media(max-width:700px){.planSummaryVisual{padding:16px!important}.planSummaryIllustration{min-width:88px}.planSummaryIllustration span{font-size:25px}.planSummaryCards{grid-template-columns:1fr}.planSummaryCards article{min-height:78px}.planSummaryVisual .planSummaryActions{flex-direction:column}.planSummaryVisual .planSummaryActions button{width:100%;min-width:0}}
+
+
+/* Crear mi dieta · misma riqueza visual que Todo Dietas */
+.createDietVisual{display:grid;gap:18px!important;padding:20px!important;border:1.5px solid #b5d3b5!important;border-radius:28px!important;background:linear-gradient(145deg,#fbfef9,#f3f9ef)!important}
+.createDietHero{display:flex;gap:18px;align-items:center;padding:20px;border-radius:24px;border:1.5px solid #9fc49f;background:radial-gradient(circle at 12% 10%,#e7f4df,transparent 36%),#fff}
+.createDietHero h3{margin:5px 0 6px;font-size:25px;color:#173f27}.createDietHero p{margin:0;color:#526a59}
+.createDietArt{min-width:145px;display:flex;align-items:end;justify-content:center;padding:16px 10px;border-radius:22px;background:linear-gradient(145deg,#eff8e9,#fff8e8)}
+.createDietArt span{font-size:42px;margin:0 -3px;filter:drop-shadow(0 4px 3px rgba(0,0,0,.06))}
+.createDietStep{display:flex;align-items:center;gap:10px;margin:2px 0 -4px}.createDietStep>b{display:flex;align-items:center;gap:8px;font-size:18px}.createDietStep>b>span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#39794b;color:#fff!important}.createDietStep>small{color:#607464}
+.createDietChoices{margin-top:4px!important}
+.createDietForm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:18px;border:1.5px solid #b8d6b8;border-radius:22px;background:#fff}
+.createDietForm label{font-weight:700;color:#234c31}.createDietForm input,.createDietForm select{margin-top:7px}
+.createDietSave{min-height:58px!important;border-radius:19px!important;font-size:17px!important}
+@media(max-width:700px){.createDietVisual{padding:14px!important}.createDietHero{align-items:flex-start;padding:15px}.createDietArt{min-width:92px;padding:10px 5px}.createDietArt span{font-size:28px}.createDietHero h3{font-size:21px}.createDietStep{align-items:flex-start;flex-wrap:wrap}.createDietForm{grid-template-columns:1fr;padding:14px}}
