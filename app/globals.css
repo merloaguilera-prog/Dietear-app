@@ -528,3 +528,14 @@ button.selected *,button.active *,.selected button *,.active button *,
   background-color:#39794b!important;
   border-color:#2f683f!important;
 }
+
+
+/* Guardar registro: selector propio para que ningún estilo genérico lo pise */
+.saveMetricButton,.saveMetricButton:disabled,.saveMetricButton:not(:disabled),
+button.saveMetricButton,button.saveMetricButton:disabled{
+  background:#39794b!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1.5px solid #2f683f!important;
+}
+.saveMetricButton:disabled{opacity:.62!important}
