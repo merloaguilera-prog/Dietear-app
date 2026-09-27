@@ -416,3 +416,10 @@ button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
 .fridgeAdd button *,.careTitle button *,.careAsk button *,.recipeIdeaActions button:last-child *{
   color:#fff!important;
 }
+
+
+/* Perfil: tarjeta verde oscura con contraste accesible */
+.profilePulse,.profilePulse span,.profilePulse b,.profilePulse small{
+  color:#fff!important;
+}
+.profilePulse span{opacity:.9!important}
