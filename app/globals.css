@@ -435,3 +435,12 @@ button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
 .aiComposer>button *,
 .aiComposer>button:disabled *{color:#fff!important}
 .aiComposer>button:disabled{opacity:.58!important}
+
+
+/* Mi Plan: Generar compra, CTA verde oscuro con contraste completo */
+.planActions button:first-child,
+.planActions button:first-child *{
+  background:#39794b!important;
+  color:#fff!important;
+  border-color:#2f683f!important;
+}
