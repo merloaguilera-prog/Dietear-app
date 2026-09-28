@@ -809,3 +809,7 @@ body{background:radial-gradient(circle at 8% 4%,#edf7e8 0,transparent 23%),radia
 nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12px)}nav button{border-radius:16px!important}nav button.active{background:linear-gradient(145deg,#39794b,#285f3a)!important;color:#fff!important;box-shadow:0 6px 13px rgba(45,100,58,.23)!important}nav button.active *{color:#fff!important}
 .toast{border-radius:18px!important;box-shadow:0 9px 25px rgba(35,73,43,.18)!important}
 @media(max-width:700px){.sectionTitle{padding:15px!important;gap:11px;border-radius:22px!important}.sectionTitleIcon{width:52px;height:52px;flex-basis:52px;border-radius:17px;font-size:27px}.sectionTitle h1{font-size:24px!important}}
+
+/* Dietas especiales · información clara sin complicar */
+.dietBadge{display:inline-flex!important;width:max-content;margin:-3px 0 11px;padding:4px 8px;border-radius:999px;background:#eef6e9;color:#356143!important;border:1px solid #a6c3a7;font-size:9px!important;font-weight:900!important;letter-spacing:.05em}.dietPick.rose .dietBadge{background:#fff0e9;border-color:#d3a58f;color:#7b4938!important}
+.dietPreviewDetail{margin-top:10px;padding:10px 12px;border-radius:14px;background:#edf7e9;border:1px solid #a4c3a5;color:#355640;font-size:13px;line-height:1.45}.fastingNotice{margin-top:8px;padding:10px 12px;border-radius:14px;background:#fff5e8;border:1px solid #d7b584;color:#654e34;font-size:12px;line-height:1.45}
