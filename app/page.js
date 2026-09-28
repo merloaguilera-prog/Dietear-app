@@ -36,6 +36,10 @@ const DIET_CATALOG=[
  {n:8,name:"Semana rápida",icon:"⏱️",tone:"green",note:"Platos fáciles · poco tiempo",shift:1},
  {n:9,name:"Sin lactosa",icon:"🌿",tone:"gold",note:"Adaptable a tu ficha",shift:3},
  {n:10,name:"Sin gluten",icon:"🌱",tone:"teal",note:"Adaptable a tu ficha",shift:4},
+ {n:11,name:"Por puntos",icon:"🔢",tone:"gold",note:"Organiza el día con un sistema de puntos",shift:0},
+ {n:12,name:"Mantenimiento",icon:"⚖️",tone:"green",note:"Para mantener peso y hábitos estables",shift:2},
+ {n:13,name:"Hipercalórica",icon:"🥜",tone:"teal",note:"Más energía con comidas completas",shift:3},
+ {n:14,name:"Ayuno intermitente",icon:"🕒",tone:"rose",note:"Ventanas de comida · no apta para todo el mundo",shift:4},
  {n:25,name:"Dieta nº 25",icon:"🍽️",tone:"rose",note:"Una semana completa para combinar",shift:5}
 ];
 
