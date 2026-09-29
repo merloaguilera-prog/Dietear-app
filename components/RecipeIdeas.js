@@ -2,10 +2,11 @@
 import {useState} from "react";
 import {recipes} from "../lib/recipes";
 
-export default function RecipeIdeas({onChoose}){
+export default function RecipeIdeas({onChoose,maxMinutes=null,mealType="all"}){
   const [openId,setOpenId]=useState(null);
+  const visible=recipes.filter(recipe=>(!maxMinutes||recipe.minutes<=maxMinutes)&&(mealType==="all"||recipe.mealTypes?.includes(mealType)));
   return <div className="recipeIdeaList">
-    {recipes.map(recipe=><article className="recipeIdea" key={recipe.id}>
+    {visible.map(recipe=><article className="recipeIdea" key={recipe.id}>
       <div className="recipeIdeaHead">
         <span aria-hidden="true">{recipe.emoji}</span>
         <div><h3>{recipe.name}</h3><p>{recipe.minutes} min · {recipe.ingredients.length} ingredientes</p></div>
