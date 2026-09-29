@@ -845,3 +845,13 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
 .shoppingHero{border:1.8px solid #86b78e!important;border-radius:28px!important;background:linear-gradient(125deg,#f3fff0,#fff8dc 58%,#f7efff)!important;box-shadow:0 10px 26px rgba(40,89,50,.11)!important}
 .shoppingMiniCards article{border-width:1.6px!important;box-shadow:0 5px 14px rgba(45,88,50,.06)!important}
 @media(max-width:700px){.insideVisualHero{grid-template-columns:1fr 90px;min-height:145px;padding:16px;border-radius:22px}.insideVisualHero h2{font-size:20px!important}.insideVisualHero p{font-size:12px!important}.insideVisualArt{grid-template-columns:repeat(2,39px);gap:5px}.insideVisualArt span{width:39px;height:39px;border-radius:13px;font-size:21px}}
+
+/* Bienestar visual · alegre, luminoso y coherente con DIETEAR */
+.loggerVisualHead{display:grid!important;grid-template-columns:82px 1fr;gap:15px;align-items:center;margin-bottom:14px;padding:13px 15px;border:1.5px solid #a1c7a2;border-radius:21px;background:linear-gradient(120deg,#f5fff2,#fff9e8 62%,#f4efff)}
+.loggerVisualHead>div:last-child{display:flex;flex-direction:column;gap:4px}.loggerVisualHead b{font-size:18px;color:#173f27}.loggerVisualHead small{color:#52675a;line-height:1.4}
+.loggerArt{width:70px;height:70px;display:grid!important;place-items:center;border:1.5px solid #9bbf9d;border-radius:22px;background:#fff;font-size:37px;box-shadow:0 6px 15px rgba(43,87,50,.09)}
+.wellbeingLogger,.activityLogger,.measureLogger{border:1.7px solid #93ba97!important;border-radius:25px!important;background:linear-gradient(145deg,#fff,#f8fcf5)!important;box-shadow:0 8px 22px rgba(43,87,50,.08)!important;padding:18px!important}
+.recipeScene{position:relative!important;background:linear-gradient(145deg,#fff,#eff9e9)!important;border:1.6px solid #91b994!important;border-radius:25px!important;padding:12px!important;box-shadow:0 8px 20px rgba(43,87,50,.1)!important}
+.recipeScene b{position:absolute;right:5px;bottom:3px;padding:4px 7px;border-radius:999px;background:#39794b;color:#fff;font-size:10px}
+.quickRecipeFilters button.active,.activityMinutes button.selected{background:#39794b!important;color:#fff!important;border-color:#2d663d!important}.quickRecipeFilters button.active *,.activityMinutes button.selected *{color:#fff!important}
+@media(max-width:700px){.loggerVisualHead{grid-template-columns:60px 1fr;padding:10px}.loggerArt{width:52px;height:52px;border-radius:17px;font-size:29px}}
