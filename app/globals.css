@@ -447,7 +447,7 @@ button.primary *,button.darkGreen *,button.ctaPrimary *,button.primaryAction *,
 
 
 /* Progreso: CTAs y filtro activo verde oscuro siempre con blanco */
-.metricForm button:not(:disabled),.metricForm button:not(:disabled *,
+.metricForm button:not(:disabled),.metricForm button:not(:disabled) *,
 .chartTitle button.active,.chartTitle button.active *{
   color:#fff!important;
 }
