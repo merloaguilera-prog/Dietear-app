@@ -918,3 +918,15 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
 .approvedScreen-01{background-position:0% 0%}.approvedScreen-02{background-position:25% 0%}.approvedScreen-03{background-position:50% 0%}.approvedScreen-04{background-position:75% 0%}.approvedScreen-05{background-position:100% 0%}
 .approvedScreen-07{background-position:0% 100%}.approvedScreen-08{background-position:25% 100%}.approvedScreen-09{background-position:50% 100%}.approvedScreen-10{background-position:75% 100%}.approvedScreen-11{background-position:100% 100%}
 @media(max-width:700px){.approvedScreen,.approvedScreenCompact{width:100%;max-width:none;margin:0 auto 14px}}
+
+
+/* Inicio DIETEAR · accesos principales funcionales */
+.homeAccess{margin:0 auto 24px;padding:20px;max-width:1024px;background:linear-gradient(145deg,#f6fff2,#fff 48%,#fff5f8);border:1.5px solid #86b68e;border-radius:26px;box-shadow:0 14px 34px rgba(28,91,49,.10)}
+.homeAccessHead small{font-weight:900;letter-spacing:.08em;color:#2f7d45}.homeAccessHead h2{margin:5px 0 16px;color:#173f27}
+.homeAccessGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.homeAccessCard{position:relative;min-height:132px;padding:16px;text-align:left;border:1.5px solid #a5c8a9;border-radius:20px;background:rgba(255,255,255,.94);box-shadow:0 7px 18px rgba(38,91,52,.08);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:4px;overflow:hidden}
+.homeAccessCard:hover,.homeAccessCard:focus-visible{transform:translateY(-2px);border-color:#4d995d;box-shadow:0 11px 24px rgba(38,91,52,.14)}
+.homeAccessCard b{font-size:1rem;color:#173f27}.homeAccessCard small{color:#617065;line-height:1.25}.homeAccessCard i{position:absolute;right:13px;bottom:13px;font-style:normal;font-weight:900;color:#2e8147}
+.homeAccessNumber{position:absolute;top:12px;left:13px;display:grid;place-items:center;width:35px;height:35px;border-radius:12px;background:#e8f7e7;color:#2d7741;font-size:.76rem;font-weight:900}
+.homeAccessCard-1 .homeAccessNumber,.homeAccessCard-3 .homeAccessNumber{background:#fff0f5;color:#a54568}.homeAccessCard-4 .homeAccessNumber,.homeAccessCard-6 .homeAccessNumber{background:#fff7df;color:#8a6a18}
+@media(max-width:760px){.homeAccess{margin:0 12px 20px;padding:15px;border-radius:22px}.homeAccessGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.homeAccessCard{min-height:118px;padding:13px}.homeAccessCard b{font-size:.94rem}.homeAccessCard small{font-size:.74rem}}
