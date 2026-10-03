@@ -906,3 +906,8 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
 .caviarScreenCompact{width:100%;max-width:430px;aspect-ratio:307/512;margin:0 auto 18px;border-radius:0;box-shadow:none}
 .dietearHomeCover{width:100%;max-width:1024px;height:auto;display:block;object-fit:contain;margin:0 auto;border-radius:0;box-shadow:none}
 @media(max-width:700px){.page{padding-left:0;padding-right:0}.caviarScreen,.caviarScreenCompact,.dietearHomeCover{width:100%;max-width:none;margin-left:0;margin-right:0;border-radius:0}}
+
+/* Interior approved DIETEAR screens: direct image rendering, no sprite */
+.dietearFullScreen{display:block;width:100%;max-width:430px;height:auto;object-fit:contain;margin:0 auto 18px;border:0;border-radius:0;box-shadow:none;background:#fff}
+.dietearFullScreenCompact{width:100%;max-width:430px;margin:0 auto 18px}
+@media(max-width:700px){.dietearFullScreen,.dietearFullScreenCompact{width:100%;max-width:none;margin:0 auto 14px;border-radius:0}}
