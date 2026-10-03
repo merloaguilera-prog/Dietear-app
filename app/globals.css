@@ -911,3 +911,10 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
 .dietearFullScreen{display:block;width:100%;max-width:430px;height:auto;object-fit:contain;margin:0 auto 18px;border:0;border-radius:0;box-shadow:none;background:#fff}
 .dietearFullScreenCompact{width:100%;max-width:430px;margin:0 auto 18px}
 @media(max-width:700px){.dietearFullScreen,.dietearFullScreenCompact{width:100%;max-width:none;margin:0 auto 14px;border-radius:0}}
+
+/* Exact approved 03-Oct DIETEAR artwork */
+.approvedScreen{display:block;width:100%;max-width:430px;aspect-ratio:307/512;margin:0 auto 18px;border:0;border-radius:0;box-shadow:none;background-image:url('/dietear-visuals/dietear-approved-2026-10-03.png');background-repeat:no-repeat;background-size:500% 200%}
+.approvedScreenCompact{width:100%;max-width:430px;margin:0 auto 18px}
+.approvedScreen-01{background-position:0% 0%}.approvedScreen-02{background-position:25% 0%}.approvedScreen-03{background-position:50% 0%}.approvedScreen-04{background-position:75% 0%}.approvedScreen-05{background-position:100% 0%}
+.approvedScreen-07{background-position:0% 100%}.approvedScreen-08{background-position:25% 100%}.approvedScreen-09{background-position:50% 100%}.approvedScreen-10{background-position:75% 100%}.approvedScreen-11{background-position:100% 100%}
+@media(max-width:700px){.approvedScreen,.approvedScreenCompact{width:100%;max-width:none;margin:0 auto 14px}}
