@@ -1,17 +1,27 @@
-import Image from "next/image";
+import { useId } from "react";
 
 const collage = "/dietear-visuals/seleccion-pantallas.png";
 const assets = {
-  inicio: ["/dietear-visuals/seleccion-portada.png", 1024, [470, 190, 545, 815]],
+  "pantalla-01": [collage, 1536, [0, 0, 285, 536]],
+  "pantalla-02": [collage, 1536, [286, 0, 297, 536]],
+  "pantalla-03": [collage, 1536, [584, 0, 302, 536]],
+  "pantalla-04": [collage, 1536, [887, 0, 304, 536]],
+  "pantalla-05": [collage, 1536, [1192, 0, 344, 536]],
+  "pantalla-07": [collage, 1536, [0, 538, 305, 474]],
+  "pantalla-08": [collage, 1536, [307, 538, 307, 474]],
+  "pantalla-09": [collage, 1536, [615, 538, 306, 474]],
+  "pantalla-10": [collage, 1536, [922, 538, 306, 474]],
+  "pantalla-11": [collage, 1536, [1229, 538, 307, 474]],
+  inicio: ["/dietear-visuals/inicio-completo.png", 1228, [0, 0, 1228, 1281], 1281],
   alimentacion: [collage, 1536, [301, 93, 270, 124]],
   dietas: [collage, 1536, [610, 90, 111, 64]],
-  plan: [collage, 1536, [985, 181, 105, 45]],
-  recetas: [collage, 1536, [1205, 161, 73, 52]],
+  plan: [collage, 1536, [996, 180, 119, 49]],
+  recetas: [collage, 1536, [1205, 165, 112, 62]],
   compra: [collage, 1536, [301, 93, 270, 124]],
   nevera: [collage, 1536, [17, 617, 270, 163]],
   ejercicio: [collage, 1536, [312, 616, 266, 129]],
-  progreso: [collage, 1536, [628, 861, 45, 60]],
-  salud: [collage, 1536, [1034, 785, 105, 72]],
+  progreso: [collage, 1536, [638, 855, 61, 64]],
+  salud: [collage, 1536, [965, 608, 103, 65]],
   conoce: [collage, 1536, [1207, 617, 300, 148]],
   crear: ["/dietear-visuals/seleccion-crear-dieta.png", 1024, [27, 109, 965, 255]],
   Equilibrada: [collage, 1536, [610, 90, 111, 64]],
@@ -22,12 +32,12 @@ const assets = {
   "Sin lactosa": [collage, 1536, [738, 293, 111, 62]],
   Vegana: [collage, 1536, [610, 390, 111, 57]],
   Diabética: [collage, 1536, [738, 390, 111, 57]],
-  Corazón: [collage, 1536, [924, 611, 99, 64]],
-  Riñones: [collage, 1536, [1034, 611, 105, 64]],
-  Pulmones: [collage, 1536, [924, 700, 99, 70]],
-  Hígado: [collage, 1536, [1034, 700, 105, 70]],
-  "Sistema digestivo": [collage, 1536, [924, 786, 99, 72]],
-  Piel: [collage, 1536, [1034, 786, 105, 72]],
+  Corazón: [collage, 1536, [965, 608, 103, 65]],
+  Riñones: [collage, 1536, [1080, 608, 115, 65]],
+  Pulmones: [collage, 1536, [965, 701, 103, 62]],
+  Hígado: [collage, 1536, [1080, 701, 115, 62]],
+  "Sistema digestivo": [collage, 1536, [965, 787, 103, 63]],
+  Piel: [collage, 1536, [1080, 787, 115, 63]],
 };
 
 export const featureArtwork = {
@@ -40,14 +50,20 @@ export const featureArtwork = {
   "Crear semana": "dietas", "Modificar plan": "plan", "Generar compra": "compra",
 };
 
-// Display a region of the selected original, keeping raster assets unchanged.
-// Painted controls are excluded; all controls in the app remain real HTML.
+// SVG viewports keep the selected region intact at every container size.
+// The source raster stays unchanged; real app controls live outside the artwork.
 export default function SelectedArtwork({ name, className = "", decorative = true }) {
+  const clipId = useId();
   const asset = assets[name];
   if (!asset) return null;
-  const [src, sourceWidth, [x, y, width, height]] = asset;
-  return <span className={"selectedArtwork " + className} style={{ aspectRatio: `${width}/${height}` }} aria-hidden={decorative || undefined}>
-    <Image src={src} alt={decorative ? "" : name} width={sourceWidth} height={src === collage ? 1024 : 1536} unoptimized
-      style={{ width: `${sourceWidth / width * 100}%`, left: `${-x / width * 100}%`, top: `${-y / height * 100}%` }} />
+  const [src, sourceWidth, [x, y, width, height], sourceHeight = src === collage ? 1024 : 1536] = asset;
+  return <span className={"selectedArtwork " + className} data-artwork={name}
+    style={{ "--art-width": `${width * 2}px`, "--art-ratio": `${width} / ${height}` }}
+    aria-hidden={decorative || undefined}>
+    <svg viewBox={`${x} ${y} ${width} ${height}`} preserveAspectRatio="xMidYMid meet"
+      role={decorative ? undefined : "img"} aria-label={decorative ? undefined : name}>
+      <defs><clipPath id={clipId}><rect x={x} y={y} width={width} height={height}/></clipPath></defs>
+      <image href={src} width={sourceWidth} height={sourceHeight} clipPath={`url(#${clipId})`} />
+    </svg>
   </span>;
 }

@@ -931,24 +931,33 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
 .homeAccessCard-1 .homeAccessNumber,.homeAccessCard-3 .homeAccessNumber{background:#fff0f5;color:#a54568}.homeAccessCard-4 .homeAccessNumber,.homeAccessCard-6 .homeAccessNumber{background:#fff7df;color:#8a6a18}
 @media(max-width:760px){.homeAccess{margin:0 12px 20px;padding:15px;border-radius:22px}.homeAccessGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.homeAccessCard{min-height:118px;padding:13px}.homeAccessCard b{font-size:.94rem}.homeAccessCard small{font-size:.74rem}}
 /* Selected DIETEAR art with real, accessible controls. */
-.selectedArtwork{position:relative;display:block;overflow:hidden;border-radius:18px;background:#f0f8ec;isolation:isolate}
-.selectedArtwork img{position:absolute;display:block;max-width:none!important;height:auto!important;margin:0!important;pointer-events:none}
+.selectedArtwork{position:relative;display:block;overflow:hidden;border-radius:16px;background:#f0f8ec;isolation:isolate;width:100%;aspect-ratio:var(--art-ratio);min-width:0}
+.selectedArtwork svg{display:block;width:100%;height:100%;max-width:var(--art-width);margin:auto;overflow:hidden}
 .brandIcon{border-radius:12px;object-fit:cover}
-.selectedWelcome{display:grid;grid-template-columns:1fr minmax(160px,38%);gap:22px;align-items:center;padding:24px;margin:0 0 24px;border-radius:28px;background:linear-gradient(125deg,#f4fbeb,#e5f6ef);border:1px solid #8aba82;overflow:hidden}
-.selectedWelcome h1{color:#164d39;font-size:clamp(2rem,5vw,3.6rem);margin:12px 0}
-.selectedWelcome p{color:#172b24;line-height:1.6;max-width:440px}
+.selectedWelcome{display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px;margin:0 0 24px;border-radius:28px;background:linear-gradient(125deg,#f4fbeb,#e5f6ef);border:1px solid #8aba82;text-align:center}
+.selectedWelcome h1{color:#164d39;font-size:clamp(2rem,5vw,3.6rem);margin:0}
+.selectedWelcome p{color:#172b24;line-height:1.6;max-width:540px;margin:0}
 .selectedWelcome small{color:#2c6a38;font-weight:700}
 .selectedWelcome button,.shoppingEntry button,.healthAreaDetail button{padding:12px 18px;background:#237638;color:#fff!important;border:0;border-radius:16px;font-weight:700;cursor:pointer;min-height:44px}
-.selectedWelcome .selectedArtwork{width:100%;max-height:420px}
-.homeAccessCard .accessArtwork,.featureCard .featureArtwork{width:100%;max-width:220px;margin-bottom:12px;border-radius:14px}
-.homeAccessCard .accessArtwork{max-width:170px}
-.homeAccessCard .accessArtwork[style*="45/60"],.homeAccessCard .accessArtwork[style*="545/815"]{width:75px}
-.sectionArtwork{width:min(100%,500px);margin:16px auto 24px}
-.sectionArtwork[style*="45/60"]{width:80px}
-.moduleArtwork{width:min(100%,540px);margin:12px auto 24px}
-.moduleArtwork[style*="45/60"]{width:80px}
-.featureArtwork[style*="965/255"]{min-height:70px}
-.dietChoiceArtwork{width:100%;margin:0 0 9px;border-radius:12px}
+.selectedWelcome .selectedArtwork{width:min(100%,440px);max-height:none;background:transparent}
+.homeAccessCard{justify-content:flex-start;gap:6px}
+.homeAccessCard .accessArtwork{width:100%;height:120px;aspect-ratio:auto;flex:none;margin:0 0 8px;border-radius:14px}
+.homeAccessCard .accessArtwork svg{max-height:120px}
+.featureGrid .featureCard{display:grid!important;grid-template-columns:44px minmax(0,1fr)!important;grid-template-rows:auto auto 1fr;align-content:start;align-items:center;column-gap:10px;row-gap:8px;min-width:0}
+.featureGrid .featureCard>.featureArtwork{grid-column:1/-1;grid-row:1;width:100%!important;height:112px!important;aspect-ratio:auto;display:block!important;border:0!important;background:#f0f8ec!important;border-radius:14px;margin:0 0 6px!important}
+.featureGrid .featureCard>span:not(.selectedArtwork){grid-column:1;grid-row:2;width:40px!important;height:40px!important;margin:0!important}
+.featureGrid .featureCard>b{grid-column:2;grid-row:2;min-width:0;margin:0;overflow-wrap:anywhere}
+.featureGrid .featureCard>p{grid-column:1/-1!important;grid-row:3;padding-right:32px;line-height:1.45;min-width:0}
+.featureGrid .featureCard:not(:has(.featureArtwork)){grid-template-rows:auto 1fr}
+.featureGrid .featureCard:not(:has(.featureArtwork))>span,.featureGrid .featureCard:not(:has(.featureArtwork))>b{grid-row:1}
+.featureGrid .featureCard:not(:has(.featureArtwork))>p{grid-row:2}
+.sectionArtwork,.moduleArtwork{width:min(100%,var(--art-width),320px);max-height:200px;aspect-ratio:auto;height:160px;margin:16px auto 24px;background:transparent}
+.sectionArtwork[data-artwork="progreso"],.moduleArtwork[data-artwork="progreso"]{width:100px;height:110px}
+.sectionArtwork[data-artwork="inicio"],.moduleArtwork[data-artwork="inicio"]{height:200px}
+.dietChoiceArtwork{width:100%;height:90px;aspect-ratio:auto;margin:0 0 9px;border-radius:12px}
+.healthAreaGrid .selectedArtwork{height:100px;aspect-ratio:auto}
+.sectionPhotoHero>.selectedArtwork{height:230px;aspect-ratio:auto;background:#eef5df}
+.sectionPhotoHero>.selectedArtwork svg{max-width:540px}
 .shoppingEntry{display:flex;align-items:flex-end;flex-wrap:wrap;gap:10px;padding:16px 0}
 .shoppingEntry label{flex:1;min-width:200px;display:grid;gap:6px;color:#162a20}
 .shoppingEntry input{width:100%;box-sizing:border-box;min-height:46px;border:1px solid #88ad7b;border-radius:12px;padding:10px}
@@ -965,7 +974,7 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
 .healthAreaDetail{display:grid;gap:10px;padding:14px;border-radius:16px;background:#fff}
 .healthAreaDetail textarea{width:100%;min-height:100px;box-sizing:border-box}
 .selectedWelcome button:focus-visible,.shoppingFilters button:focus-visible,.healthAreaGrid button:focus-visible{outline:3px solid #ef50ae;outline-offset:3px}
-@media(max-width:600px){.selectedWelcome{gap:12px;padding:16px;grid-template-columns:1fr 42%}.selectedWelcome h1{font-size:2rem}.selectedWelcome p{font-size:.92rem}.selectedWelcome small{font-size:.66rem}.healthAreaGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.page .selectedWelcome{margin:10px 12px 20px}.homeAccessCard .accessArtwork{max-width:none}.featureCard .featureArtwork{max-width:180px}}
+@media(max-width:600px){.selectedWelcome{gap:12px;padding:16px}.selectedWelcome h1{font-size:2rem}.selectedWelcome p{font-size:.92rem}.selectedWelcome small{font-size:.66rem}.healthAreaGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.page .selectedWelcome{margin:10px 12px 20px}.homeAccessCard .accessArtwork{height:100px}.featureGrid .featureCard>.featureArtwork{height:90px!important}.featureGrid .featureCard{grid-template-columns:32px minmax(0,1fr)!important;column-gap:7px}.featureGrid .featureCard>span:not(.selectedArtwork){width:32px!important;height:32px!important}.selectedWelcome .selectedArtwork{width:min(100%,360px)}}
 .productScanner{padding:18px;background:#f7fff1;border:1px solid #91b77a;border-radius:20px;margin:14px 0}
 .scannerActions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .productScanner button,.photoCode{padding:12px 16px;min-height:44px;border:0;border-radius:12px;background:#237638;color:#fff!important;font-weight:700;cursor:pointer}
@@ -979,3 +988,54 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
 .productResult{padding:16px;border-radius:16px;background:white;margin-top:14px}
 .productResult button{margin:8px 8px 0 0}
 .productScanner button:disabled{opacity:.5;cursor:default}
+
+/* Compact layout for the selected designs and diet preferences. */
+.selectedScreen{width:190px;max-width:100%;height:310px;aspect-ratio:auto;background:transparent;margin:14px auto 22px;border-radius:22px}
+.selectedScreen svg{max-width:100%;max-height:100%}
+.createDietVisual,.dietGallery{grid-template-columns:minmax(0,1fr)!important;align-items:start}
+.createDietVisual>*{min-width:0}
+.createDietHero{padding:18px;min-height:0;align-items:center}
+.createDietHero h3{font-size:23px}
+.createDietStep{margin:0;justify-content:space-between;flex-wrap:wrap}
+.createDietChoices{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:8px}
+.createDietChoices button{min-height:145px;padding:10px 8px;justify-content:flex-start;gap:6px;border-radius:18px}
+.createDietChoices .dietChoiceArtwork{height:65px;margin:0}
+.createDietChoices .dietVisualIcon{font-size:25px;line-height:1.2}
+.createDietChoices button>b{font-size:14px;line-height:1.25}
+.createDietChoices button>small{font-size:11px}
+.createDietChoices button:has(.dietChoiceArtwork) .dietVisualIcon{display:none}
+.createDietChoices button:not(:has(.dietChoiceArtwork)){justify-content:center}
+.createDietForm{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.createDietForm label{padding:14px;border:1px solid #dbead8;border-radius:18px;background:#f8fcf6}
+.createDietForm label>small{font-weight:400;line-height:1.4}
+.createDietVisual .createDietSave{width:100%;margin-top:0}
+.moduleArtwork[data-artwork="crear"]{width:min(100%,760px);height:auto;aspect-ratio:var(--art-ratio);max-height:none}
+.moduleArtwork[data-artwork="crear"] svg{max-width:100%}
+.chosenDesigns{margin:0 0 24px;padding:16px;border:1px solid #bed8b8;background:#f9fff4;border-radius:20px}
+.chosenDesigns summary{cursor:pointer;color:#215535;font-weight:700;padding:8px}
+.chosenDesignGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:16px}
+.chosenDesignGrid button{display:flex;flex-direction:column;gap:8px;align-items:center;padding:12px;min-width:0;border:1px solid #a9c5a4;border-radius:18px;background:white;color:#214b32}
+.chosenDesignGrid .selectedArtwork{height:225px;aspect-ratio:auto;background:transparent}
+.chosenDesignGrid b{font-size:14px}.chosenDesignGrid button>span:not(.selectedArtwork){font-size:12px}
+@media(max-width:1000px){.createDietChoices{grid-template-columns:repeat(4,minmax(0,1fr))}.chosenDesignGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.createDietChoices{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.createDietChoices button{min-height:120px;padding:9px 6px}.createDietChoices button>b{font-size:12px}.createDietChoices .dietChoiceArtwork{height:55px}.createDietForm{grid-template-columns:1fr}.createDietHero{flex-direction:column;text-align:center;gap:10px}.createDietHero h3{font-size:20px}.chosenDesignGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.chosenDesignGrid .selectedArtwork{height:220px}.selectedScreen{width:175px;height:280px}.selectedWelcome .selectedArtwork{width:min(100%,360px)}}
+
+.homeAccessCard{min-height:170px;justify-content:flex-start;padding:14px;gap:5px}
+.homeAccessCard .accessArtwork{height:76px;margin:0 0 6px}
+.homeAccessCard .accessArtwork svg{max-height:76px;max-width:180px}
+.homeAccessNumber{position:absolute;top:11px;left:11px;width:28px;height:28px;font-size:11px;z-index:2}
+.homeAccessCard small{font-size:12px;padding-right:12px}.homeAccessCard b{font-size:15px}
+@media(max-width:760px){.homeAccessCard{min-height:154px;padding:12px}.homeAccessCard .accessArtwork{height:65px}.homeAccessCard .accessArtwork svg{max-height:65px}.homeAccessCard b{font-size:14px}.homeAccessCard small{font-size:11px}}
+
+.hero>div{min-width:0;max-width:100%}.ask{min-width:0;max-width:100%;display:flex;gap:5px}.ask input{min-width:0;width:0;flex:1}.ask button{flex:0 0 40px;width:40px;min-width:0;padding:0}
+
+.moreDietStyles{justify-self:center;padding:10px 18px;border:1px solid #93b98b;border-radius:999px;background:#fff;color:#245f37;cursor:pointer;min-height:42px}
+@media(min-width:1001px){.createDietChoices{grid-template-columns:repeat(4,minmax(0,1fr))}.createDietChoices button{min-height:126px}}
+@media(min-width:900px){
+ .selectedWelcome{display:grid;grid-template-columns:minmax(280px,400px) minmax(280px,1fr);column-gap:34px;row-gap:14px;padding:24px 34px;justify-content:center}
+ .selectedWelcome>small,.selectedWelcome>h1{grid-column:1/-1}
+ .selectedWelcome>.selectedArtwork{grid-column:1;grid-row:3/5;width:100%;max-width:400px;justify-self:center}
+ .selectedWelcome>p{position:relative;grid-column:2;grid-row:3;align-self:end;justify-self:center;padding:28px;border-radius:26px;background:rgba(255,255,255,.88);border:1px solid #bdd8b7;box-shadow:0 6px 20px #3064420b;font-size:20px;line-height:1.6;max-width:460px}
+ .selectedWelcome>p::before{content:"";position:absolute;left:-11px;bottom:25px;width:20px;height:20px;background:#fff;transform:rotate(45deg);border-left:1px solid #bdd8b7;border-bottom:1px solid #bdd8b7}
+ .selectedWelcome>button{grid-column:2;grid-row:4;align-self:start;justify-self:center;font-size:18px;padding:15px 24px;border-radius:22px}
+}
