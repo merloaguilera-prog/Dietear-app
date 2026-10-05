@@ -5,6 +5,53 @@
   --glow: #a0e647;
   background: linear-gradient(135deg, #f7ffeb, #fffde5 45%, #f4fff3);
 }
+
+/* Large, luminous photographs keep every diet and personal card recognisable. */
+.immersiveApp .dietVisualGrid .dietPhoto { display:block; position:relative; width:100%; height:150px; padding:0; margin:0 0 8px; border-radius:16px; overflow:hidden; background:#fffef5; }
+.immersiveApp .dietPhoto img { display:block; width:100%; height:100%; object-fit:cover; }
+.immersiveApp .dietPhoto.excludedFood img { object-fit:contain; }
+.immersiveApp .dietPhoto .dietProhibition { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:105px; height:105px; stroke:#ed2448; stroke-width:6; filter:drop-shadow(0 1px 2px #fff); }
+.immersiveApp .dietVisualGrid button { padding:10px!important; gap:5px; }
+.immersiveApp .dietVisualGrid button.selected { border:3px solid var(--accent)!important; background:linear-gradient(145deg,#fff,var(--tint),var(--glow))!important; }
+.immersiveApp .createDietStep { margin:12px 0!important; }
+.immersiveApp .createDietStep>b>span { background:linear-gradient(145deg,#fff18a,#ffbd32)!important; border:1px solid #e49b00; box-shadow:0 3px 8px #ecc54840; }
+.immersiveApp .createDietForm { padding:14px!important; background:linear-gradient(135deg,#fff9d9,#f4edff 50%,#eaffdf)!important; border:2px solid #cf8df7; gap:14px!important; }
+.immersiveApp .createDietForm label { display:grid; grid-template-columns:82px minmax(0,1fr); grid-template-rows:auto auto; align-content:start; gap:9px 12px; background:linear-gradient(145deg,#fff,var(--tint))!important; border:2px solid var(--glow)!important; padding:13px!important; font-size:14px!important; box-shadow:0 5px 15px #46552612; }
+.immersiveApp .createDietForm label:nth-child(1){--tint:#fff0f7;--glow:#ff89b9;}
+.immersiveApp .createDietForm label:nth-child(2){--tint:#edffdb;--glow:#9ce342;}
+.immersiveApp .createDietForm label:nth-child(3){--tint:#fff4d3;--glow:#ffc236;}
+.immersiveApp .createDietForm label:nth-child(4){--tint:#eff7ff;--glow:#75c8ff;}
+.immersiveApp .createDietForm label .formArtwork { grid-column:1;grid-row:1/3;width:82px;height:82px;object-fit:cover;border-radius:15px; }
+.immersiveApp .createDietForm label :is(input,select,small) { grid-column:2; width:100%; min-width:0; }
+.immersiveApp .createDietForm label>small { grid-column:1/-1; }
+.immersiveApp .createDietSave { margin-top:14px; padding:14px 22px!important; border:2px solid #71c42d!important; background:linear-gradient(130deg,#f9ffe8,#caff96)!important; box-shadow:0 5px 16px #97ca5b38!important; }
+.immersiveApp .photoCompare { gap:16px; }
+.immersiveApp .photoCompare article { padding:12px; gap:9px; border:2px solid #89d657; background:linear-gradient(145deg,#fff,#ecffda); }
+.immersiveApp .photoCompare article:last-child { border-color:#d499ff; background:linear-gradient(145deg,#fff,#f4e8ff); }
+.immersiveApp .photoCompare .formArtwork { display:block; width:100%; height:240px; object-fit:cover; border-radius:15px; }
+.immersiveApp .photoCompare article b { font-size:20px; }
+.immersiveApp .photoPlaceholderNote { color:#536251; font-size:12px; margin:0; }
+.immersiveApp .evolutionPhotoStudio { background:linear-gradient(145deg,#fffcdf,#f9edff 55%,#eaffdf); border:2px solid #dcabfb; }
+.immersiveApp .metricStudio { background:linear-gradient(145deg,#fffde5,#f3edff 50%,#e8ffe5); border:2px solid #aace54; }
+.immersiveApp .metricCards { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.immersiveApp .metricCards article:has(.formArtwork) { padding:12px; gap:10px; }
+.immersiveApp .metricCards .formArtwork { width:100%; height:135px; object-fit:cover; border-radius:13px; }
+.immersiveApp .metricCards b { font-weight:700; color:#172215; }
+.immersiveApp .metricForm label { padding:12px; border-radius:15px; background:#fffdf8; border:1px solid #dac7f5; }
+.immersiveApp > nav button > span .lineSymbol { width:29px;height:29px; }
+@media(max-width:760px){
+ .immersiveApp .metricCards { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .immersiveApp .metricCards b { font-size:19px; }
+ .immersiveApp .metricCards .formArtwork { height:110px; }
+ .immersiveApp .photoCompare { gap:7px; }
+ .immersiveApp .photoCompare article { padding:8px; }
+ .immersiveApp .photoCompare .formArtwork { height:130px; }
+ .immersiveApp .photoCompare article b { font-size:17px; }
+ .immersiveApp .dietVisualGrid .dietPhoto { height:125px; }
+ .immersiveApp .createDietForm { grid-template-columns:1fr; }
+ .immersiveApp .createDietForm label { grid-template-columns:70px minmax(0,1fr); font-size:13px!important; }
+ .immersiveApp .createDietForm label .formArtwork { width:70px;height:76px; }
+}
 .immersiveApp::before { filter: blur(8px); opacity: .09; }
 .immersiveApp > header { background: #fffffaf5; border-bottom-color: #bbdf69; }
 .immersiveApp > header .brand b {
@@ -157,3 +204,121 @@
 
 .immersiveApp.immersiveApp > nav button > span .lineSymbol * { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; stroke: var(--accent) !important; }
 .immersiveApp > header .avatar .lineSymbol { width: 22px; height: 22px; display: block; margin: auto; color: #e9187f; }
+
+/* Give the artwork almost half of every feature card, across all four sections. */
+.immersiveApp.immersiveApp .featureGrid .featureCard,
+.immersiveApp.immersiveApp .featureGrid .featureCard:has(.featurePhoto) {
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr) !important;
+  grid-template-rows: auto auto !important;
+  align-content: center;
+  align-items: center;
+  gap: 5px 12px !important;
+  min-height: 138px !important;
+  padding: 10px !important;
+  text-align: left !important;
+}
+.immersiveApp.immersiveApp .featureGrid .featureCard > .featureArtwork,
+.immersiveApp.immersiveApp .featureGrid .featureCard > .featurePhoto,
+.immersiveApp.immersiveApp .featureGrid .featureCard > span:not(.selectedArtwork) {
+  grid-column: 1 !important;
+  grid-row: 1 / 3 !important;
+  width: 100% !important;
+  height: 116px !important;
+  margin: 0 !important;
+  min-height: 0 !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  aspect-ratio: auto !important;
+  overflow: hidden;
+}
+.immersiveApp.immersiveApp .featureGrid .featureCard > .featurePhoto {
+  object-fit: cover !important;
+  box-shadow: 0 4px 12px #2f45271a;
+}
+.immersiveApp.immersiveApp .featureGrid .featureCard > .selectedArtwork {
+  background: radial-gradient(circle at 25% 15%, #fff 10%, var(--tint) 50%, var(--glow)) !important;
+  padding: 8px !important;
+}
+.immersiveApp.immersiveApp .featureGrid .featureCard > .selectedArtwork svg { width: 100%; height: 100%; }
+.immersiveApp.immersiveApp .featureGrid .featureCard > span:not(.selectedArtwork) {
+  display: grid !important;
+  place-items: center;
+  font-size: 58px !important;
+  line-height: 1;
+  background: radial-gradient(circle at 30% 15%, #fff 5%, var(--tint) 45%, var(--glow)) !important;
+  box-shadow: inset 0 1px 0 #fff, 0 4px 12px #354f2515;
+}
+.immersiveApp.immersiveApp .featureGrid .featureCard:has(.featureArtwork) > span:not(.selectedArtwork) { display: none !important; }
+.immersiveApp.immersiveApp .featureGrid .featureCard > b {
+  grid-column: 2 !important; grid-row: 1 !important;
+  align-self: end; font-size: 15px !important; line-height: 1.3;
+}
+.immersiveApp.immersiveApp .featureGrid .featureCard > p {
+  grid-column: 2 !important; grid-row: 2 !important;
+  align-self: start; font-size: 12px !important; line-height: 1.4; padding: 0 !important;
+}
+@media(max-width:650px) {
+  .immersiveApp.immersiveApp .featureGrid .featureCard,
+  .immersiveApp.immersiveApp .featureGrid .featureCard:has(.featurePhoto) {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 112px auto auto !important;
+    gap: 7px !important;
+    min-height: 182px !important;
+    padding: 9px !important;
+    text-align: center !important;
+    align-content: start;
+  }
+  .immersiveApp.immersiveApp .featureGrid .featureCard > .featureArtwork,
+  .immersiveApp.immersiveApp .featureGrid .featureCard > .featurePhoto,
+  .immersiveApp.immersiveApp .featureGrid .featureCard > span:not(.selectedArtwork) {
+    grid-column: 1 !important; grid-row: 1 !important;
+    height: 112px !important; border-radius: 13px !important;
+  }
+  .immersiveApp.immersiveApp .featureGrid .featureCard > span:not(.selectedArtwork) { font-size: 62px !important; }
+  .immersiveApp.immersiveApp .featureGrid .featureCard > b { grid-column: 1 !important; grid-row: 2 !important; align-self: center; font-size: 13px !important; }
+.immersiveApp.immersiveApp .featureGrid .featureCard > p { grid-column: 1 !important; grid-row: 3 !important; font-size: 10px !important; }
+}
+
+/* Strong coloured frames and different rhythms for each main screen. */
+.immersiveApp.immersiveApp .featureGrid .featureCard,
+.immersiveApp.immersiveApp .featureGrid .featureCard:has(.featurePhoto) { border:3px solid var(--glow)!important; background:linear-gradient(135deg,#fffef7 0%,var(--tint) 50%,var(--glow) 125%)!important; box-shadow:0 5px 15px #4351281a,inset 0 1px 0 #fff!important; }
+.immersiveApp.immersiveApp .featureGrid .featureCard>b { font-weight:750!important; }
+.immersiveApp.immersiveApp button { border-width:3px!important; border-style:solid!important; border-color:var(--glow,#97d958)!important; box-shadow:0 4px 12px #46532c16,inset 0 1px 0 #ffffffcf!important; }
+.immersiveApp.immersiveApp :is(.featureCard,.homeBubble,.dietVisualGrid button,.branchActions button,.healthAreaGrid button,.designedActivityChoices button) { border-width:3px!important; background:linear-gradient(135deg,#fffef7 0%,var(--tint) 48%,var(--glow) 150%)!important; }
+.immersiveApp.immersiveApp :is(.featureCard,.homeBubble,.dietVisualGrid button):hover { border-color:var(--accent)!important; }
+.immersiveApp.immersiveApp :is(.goal,.planDay,.recipeIdea,.dietPick,.fridgeIdeaGrid article,.dashboardCards article,.metricCards article,.bridgeStats article,.shoppingRow,.designedMeal,.photoCompare article,.createDietForm label,.sourceRule,.evolutionPhotoStudio,.metricStudio,.profileStudio,.connectedModule,.realModule,.people,.appsGrid article,.premiumCard) { border-width:3px!important; border-style:solid!important; border-color:var(--glow,#9ed45a)!important; }
+.immersiveApp.immersiveApp > nav button { border-width:2px!important; }
+.immersiveApp.immersiveApp > nav button.active { border-width:3px!important; border-color:var(--accent)!important; }
+.immersiveApp.immersiveApp :is(button,input,select,textarea):focus-visible { outline:3px solid var(--accent,#359d37);outline-offset:3px; }
+.immersiveApp .moduleBanner .squareModulePhoto { object-fit:contain; object-position:center; background:linear-gradient(145deg,#f1ffe0,#fff0f7); }
+@media(min-width:1000px){
+ .immersiveApp .designStage-alimentacion,.immersiveApp .designStage-progreso { grid-template-columns:1fr; }
+ .immersiveApp .designStage-alimentacion .nutritionScene { display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center; }
+ .immersiveApp .designStage-alimentacion .nutritionScene>.sceneHeadline { grid-column:2;grid-row:1;padding:36px; }
+ .immersiveApp .designStage-alimentacion .nutritionScene>.scenePhoto { grid-column:1;grid-row:1;height:350px;object-fit:cover; }
+ .immersiveApp .createDietChoices { grid-template-columns:repeat(4,minmax(0,1fr))!important; }
+ .immersiveApp.immersive-alimentacion .featureGrid { grid-template-columns:repeat(3,minmax(0,1fr))!important; }
+ .immersiveApp.immersive-progreso .featureGrid { grid-template-columns:repeat(3,minmax(0,1fr))!important; }
+ .immersiveApp.immersive-plan .featureGrid { grid-template-columns:repeat(2,minmax(0,1fr))!important; }
+ .immersiveApp.immersive-perfil .designStage { grid-template-columns:340px minmax(0,1fr); }
+ .immersiveApp.immersive-perfil .designStage>.screenActions { grid-column:1;grid-row:1; }
+ .immersiveApp.immersive-perfil .designStage>.designedHero { grid-column:2;grid-row:1;position:sticky;top:105px; }
+ .immersiveApp.immersive-perfil .featureGrid { grid-template-columns:1fr!important; max-width:none; margin-left:0; }
+ .immersiveApp.immersive-perfil .featureCard { min-height:125px!important; }
+ .immersiveApp.immersive-perfil .featureCard > .featurePhoto { height:105px!important; }
+}
+@media(max-width:650px){
+ .immersiveApp.immersive-perfil .featureGrid { grid-template-columns:1fr!important; }
+ .immersiveApp.immersiveApp.immersive-perfil .featureGrid .featureCard { grid-template-columns:110px minmax(0,1fr)!important;grid-template-rows:auto auto!important;min-height:128px!important;text-align:left!important;gap:6px 12px!important; }
+ .immersiveApp.immersiveApp.immersive-perfil .featureGrid .featureCard>.featurePhoto { grid-column:1!important;grid-row:1/3!important; height:108px!important; }
+ .immersiveApp.immersiveApp.immersive-perfil .featureGrid .featureCard>b { grid-column:2!important;grid-row:1!important;align-self:end; }
+ .immersiveApp.immersiveApp.immersive-perfil .featureGrid .featureCard>p { grid-column:2!important;grid-row:2!important;align-self:start; }
+}
+
+.immersiveApp.immersiveApp :is(.connectedApps,.premiumZone,.proZone) { border:3px solid #cf9aff; border-radius:26px; padding:20px; background:linear-gradient(145deg,#fffbdc,#fff0fa 50%,#eaffe8); }
+.immersiveApp.immersiveApp :is(.premiumCards article,.proAccess article) { border:3px solid var(--glow,#9edc4c); border-radius:22px; background:linear-gradient(145deg,#fff,var(--tint,#edffdf)); }
+.immersiveApp :is(.premiumCards,.appsGrid) .formArtwork { width:100%;height:170px;object-fit:cover;border-radius:15px; }
+.immersiveApp .appsGrid article { grid-template-columns:1fr; }
+.immersiveApp .appsGrid article>.formArtwork { grid-column:1/-1; }
+.immersiveApp .appsGrid article>span { display:none; }
+@media(max-width:650px){.immersiveApp.immersiveApp :is(.connectedApps,.premiumZone,.proZone){padding:12px}.immersiveApp :is(.premiumCards,.appsGrid) .formArtwork {height:140px}}

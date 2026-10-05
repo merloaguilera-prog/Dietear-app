@@ -105,15 +105,58 @@ const banners = {
   "Crear mi dieta":["Crea tu propia dieta","Tú eliges, DIETEAR te acompaña.",null]
 };
 export function DesignedModuleBanner({ section }) {
-  const data=banners[section];if(!data)return null;
-  return <section className={"moduleBanner moduleBanner-"+(section==="Crear mi dieta"?"creator":"photo")}><div className="sceneHeadline"><small>DIETEAR · {section.toLocaleUpperCase("es")}</small><h1>{data[0]}</h1><p>{data[1]}</p></div>{data[2]?<Image className="scenePhoto" src={root+data[2]} alt="" width={1672} height={941} sizes="(max-width:760px) 100vw, 75vw" unoptimized/>:<SelectedArtwork name="crear" className="creatorBannerArt"/>}</section>;
+  const data=banners[section] || (featurePhotos[section] ? [section,"Tu espacio para cuidarte, a tu manera.",featurePhotos[section]] : null);if(!data)return null;
+  return <section className={"moduleBanner moduleBanner-"+(section==="Crear mi dieta"?"creator":"photo")}><div className="sceneHeadline"><small>DIETEAR · {section.toLocaleUpperCase("es")}</small><h1>{data[0]}</h1><p>{data[1]}</p></div>{data[2]?<Image className={"scenePhoto "+(data[2].startsWith("visual-")?"squareModulePhoto":"")} src={root+data[2]} alt="" width={1254} height={data[2].startsWith("visual-")?1254:706} sizes="(max-width:760px) 100vw, 45vw"/>:<SelectedArtwork name="crear" className="creatorBannerArt"/>}</section>;
 }
 
 export function DesignedActivityChoices({ onChoose, onProfile, onAsk }) {
   return <div className="designedActivityChoices">{[["👟","Caminatas","Caminar"],["🏋️","Fuerza","Fuerza"],["🧘","Yoga y movilidad","Yoga / movilidad"],["🏠","En casa","Fuerza"]].map(([icon,label,kind])=><button key={label} onClick={()=>onChoose(kind)}><span>{icon}</span><b>{label}</b></button>)}<button onClick={onProfile}><span>👥</span><b>Según mi edad</b></button><button onClick={onAsk}><span>📋</span><b>Mi rutina</b></button></div>;
 }
 
+const featurePhotos = {
+  "Crear mi dieta": "hd-inicio.png",
+  "¿Qué como hoy?": "hd-chickpea.png",
+  "Menú semanal": "hd-complete.png",
+  "Todo Dietas": "hd-tropical.png",
+  "Recetas rápidas": "hd-alimentacion.png",
+  "Mi Nevera": "hd-nevera.png",
+  "Mi Compra": "hd-budget.png",
+  "Comer bien con presupuesto": "hd-budget.png",
+  "Analizar alimento": "hd-escaner.png",
+  "¿Es bueno para mí?": "hd-fit.png",
+  "Crear semana": "hd-chickpea.png",
+  "Modificar plan": "hd-complete.png",
+  "Generar compra": "hd-budget.png",
+  "Pasos y actividad": "hd-ejercicio.png",
+  "Mi Camino": "inicio-completo.png",
+  "Salud y necesidades": "hd-fit.png",
+  "Gustos y alimentos": "hd-tropical.png",
+  "Personas": "visual-family.png", "Mi familia": "visual-family.png",
+  "Día comodín": "visual-celebrate.png", "Fiestas y días especiales": "visual-celebrate.png",
+  "Copiar semana": "visual-agenda.png", "Trabajo y horarios": "visual-agenda.png",
+  "Viajes y vacaciones": "inicio-completo.png", "Peso y medidas": "visual-weight.png",
+  "Mis gráficas": "visual-graphs.png", "Fotos de evolución": "visual-camera.png",
+  "Mis logros": "visual-trophy.png", "Cómo puedo mejorar": "visual-growth.png",
+  "Hidratación": "visual-water.png", "Sueño y descanso": "visual-rest.png",
+  "Mi ficha": "hd-inicio.png", "Mis objetivos": "visual-growth.png", "Mis motivaciones": "inicio-completo.png",
+  "Privacidad y permisos": "visual-privacy.png", "Apps y dispositivos": "visual-devices.png",
+  "Premium": "visual-premium.png", "Acceso profesional": "visual-professional.png",
+};
+export function hasDesignedFeaturePhoto(name) { return Boolean(featurePhotos[name]); }
 export function DesignedFeatureArtwork({ name }) {
- const file = {"Comer bien con presupuesto":"hd-budget.png","¿Es bueno para mí?":"hd-fit.png","¿Qué como hoy?":"hd-chickpea.png","Menú semanal":"hd-complete.png","Todo Dietas":"hd-tropical.png"}[name];
- return file ? <Image className="featureArtwork featurePhoto" src={root+file} alt="" width={1672} height={941} unoptimized/> : null;
+  const file = featurePhotos[name];
+  return file ? <Image className="featureArtwork featurePhoto" src={root+file} alt="" width={file==="inicio-completo.png"?1228:1672} height={file.startsWith("visual-")?1672:file==="inicio-completo.png"?1281:941} sizes="(max-width:650px) 45vw, 20vw"/> : null;
 }
+
+const dietPhotos={
+  "Equilibrada":"hd-complete.png", "Mediterránea":"hd-complete.png", "Vegana":"hd-chickpea.png",
+  "Vegetariana":"visual-vegetarian.png", "Sin gluten":"visual-gluten.png", "Sin lactosa":"visual-milk.png",
+  "Hiposódica":"visual-low-salt.png", "Musulmana / Halal":"visual-mosque-real.jpg",
+  "Ayuno intermitente":"visual-agenda.png", "Ganar músculo":"hd-ejercicio.png", "Ganancia muscular":"hd-ejercicio.png",
+  "Rica en fibra":"hd-chickpea.png", "Sin azúcar añadido":"hd-tropical.png", "Sin alimento X":"hd-fit.png"
+};
+export function DesignedDietArtwork({name}){
+  const file=dietPhotos[name]||"hd-complete.png",excluded=name==="Sin lactosa"||name==="Sin gluten";
+  return <span className={"dietChoiceArtwork dietPhoto "+(excluded?"excludedFood":"")} aria-hidden="true"><Image src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="(max-width:650px) 45vw, 25vw"/>{excluded&&<svg className="dietProhibition" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="39"/><path d="M23 23 77 77"/></svg>}</span>;
+}
+export function DesignedFormArtwork({file}) {return <Image className="formArtwork" src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="90px"/>;}
