@@ -1039,3 +1039,27 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
  .selectedWelcome>p::before{content:"";position:absolute;left:-11px;bottom:25px;width:20px;height:20px;background:#fff;transform:rotate(45deg);border-left:1px solid #bdd8b7;border-bottom:1px solid #bdd8b7}
  .selectedWelcome>button{grid-column:2;grid-row:4;align-self:start;justify-self:center;font-size:18px;padding:15px 24px;border-radius:22px}
 }
+
+/* 2026-10-05 · repaso visual global de acciones */
+button:not(:disabled),[role="button"]:not([aria-disabled="true"]){cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease,background .16s ease}
+button:not(:disabled):active,[role="button"]:not([aria-disabled="true"]):active{transform:translateY(1px) scale(.985)}
+.featureCard{border:2px solid rgba(45,103,70,.24)!important;box-shadow:0 8px 22px rgba(38,86,57,.10)!important;overflow:hidden}
+.featureCard:hover,.featureCard:focus-visible{border-color:#39865a!important;box-shadow:0 11px 27px rgba(38,86,57,.18)!important;transform:translateY(-2px)}
+.featureGrid-alimentacion .featureCard:nth-child(3n+1){background:linear-gradient(145deg,#fff,#effaf1)}
+.featureGrid-alimentacion .featureCard:nth-child(3n+2){background:linear-gradient(145deg,#fff,#fff6df)}
+.featureGrid-alimentacion .featureCard:nth-child(3n){background:linear-gradient(145deg,#fff,#eaf8f7)}
+.featureGrid-plan .featureCard:nth-child(3n+1){background:linear-gradient(145deg,#fff,#eef8ef)}
+.featureGrid-plan .featureCard:nth-child(3n+2){background:linear-gradient(145deg,#fff,#f4effb)}
+.featureGrid-plan .featureCard:nth-child(3n){background:linear-gradient(145deg,#fff,#fff3e5)}
+.featureGrid-progreso .featureCard:nth-child(3n+1){background:linear-gradient(145deg,#fff,#eaf7f1)}
+.featureGrid-progreso .featureCard:nth-child(3n+2){background:linear-gradient(145deg,#fff,#eef5ff)}
+.featureGrid-progreso .featureCard:nth-child(3n){background:linear-gradient(145deg,#fff,#fff2e7)}
+.featureGrid-perfil .featureCard:nth-child(3n+1){background:linear-gradient(145deg,#fff,#f0f8ee)}
+.featureGrid-perfil .featureCard:nth-child(3n+2){background:linear-gradient(145deg,#fff,#fff4e5)}
+.featureGrid-perfil .featureCard:nth-child(3n){background:linear-gradient(145deg,#fff,#f2effb)}
+.branchActions button,.primaryAction,.planActions button,.quickRecipeFoot button,.shoppingActions button,.moreDietStyles,.createDietSave{border-width:2px!important;min-height:48px;font-weight:800;box-shadow:0 6px 16px rgba(41,89,59,.11)}
+.branchActions button:hover,.primaryAction:hover,.planActions button:hover,.quickRecipeFoot button:hover,.shoppingActions button:hover,.moreDietStyles:hover{box-shadow:0 9px 21px rgba(41,89,59,.18);transform:translateY(-1px)}
+.connectedModule,.realModule,.dietBuilder,.shoppingStudio{border:2px solid rgba(55,108,72,.20);box-shadow:0 12px 32px rgba(39,82,55,.09)}
+button:focus-visible,[role="button"]:focus-visible{outline:3px solid #2f8054;outline-offset:3px}
+button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
+@media(max-width:620px){.featureCard{min-height:112px}.branchActions button,.primaryAction,.planActions button{min-height:50px}.featureGrid{gap:11px}}
