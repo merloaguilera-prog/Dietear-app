@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function DietearAI({ profile, fridge, planner, onPlan, incomingQuestion }) {
+export default function DietearAI({ profile, fridge, planner, history=[], careRecords=[], onPlan, incomingQuestion }) {
   const [q, setQ] = useState("");
   const [answer, setAnswer] = useState("");
   const [sources, setSources] = useState([]);
@@ -25,7 +25,7 @@ export default function DietearAI({ profile, fridge, planner, onPlan, incomingQu
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           query: (searchMode === "investigar" ? "Investiga con varias fuentes y compáralas. " : "") + query,
-          context: { profile, fridge: fridge.map(item => item.name), week: planner }
+          context: { profile, fridge: fridge.map(item => item.name), week: planner, history: history.slice(0,60), careRecords: careRecords.slice(0,20) }
         })
       });
       const data = await response.json();
