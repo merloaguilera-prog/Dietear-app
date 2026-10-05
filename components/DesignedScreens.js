@@ -3,6 +3,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import SelectedArtwork from "./SelectedArtwork";
 import { datesForWeek, MEAL_FIELDS, WEEK_DAYS } from "../lib/week-plan";
+import {matchesMeal,normalizeMealText} from "../lib/meal-options";
 import { recipes } from "../lib/recipes";
 
 const root = "/dietear-visuals/";
@@ -57,10 +58,13 @@ const plain = label => label.replace(/^[^A-Za-zÁÉÍÓÚáéíóúÑñ]+/, "");
 export function DesignedWeek({ planner, setPlanner, weekKey, changeWeek, setShopping, onShopping, onCreate, profile, setProfile, isRestricted, flash }) {
   const [day,setDay] = useState(0), [editing,setEditing] = useState(null), [recipeSearch,setRecipeSearch] = useState("");
   const dialog = useRef(null);
+  const [showAllMeals,setShowAllMeals]=useState(false),[mealError,setMealError]=useState("");
   useEffect(()=>{setDay((new Date().getDay()+6)%7)},[]);
   useEffect(()=>{if(editing&&dialog.current&&!dialog.current.open)dialog.current.showModal()},[editing]);
   const dates=datesForWeek(weekKey), selected=planner[day];
   const update=(field,value)=>{setPlanner(old=>old.map((item,index)=>index===day?{...item,[field]:value}:item));setShopping([])};
+  const choose=(name,ingredients=[])=>{if([name,...ingredients.map(x=>x[0])].some(isRestricted)){setMealError("Esta comida contiene un alimento que has excluido.");return}update(editing,name);setEditing(null);flash("Comida guardada en el día elegido")};
+  const available=recipes.filter(r=>showAllMeals||r.mealTypes.includes(editing));
   return <section className="designedWeek" aria-label="Mi plan semanal">
     <div className="sceneHeadline"><small>DIETEAR · MI PLAN SEMANAL</small><h1>Tu semana, a tu manera</h1><p>Organiza tus comidas. Personaliza, cambia y adapta a tu rutina.</p></div>
     <div className="designedWeekNav"><button aria-label="Semana anterior" onClick={()=>changeWeek(-1)}>‹</button><b>{dates[0].toLocaleDateString("es-ES",{day:"numeric",month:"short"})} – {dates[6].toLocaleDateString("es-ES",{day:"numeric",month:"short",year:"numeric"})}</b><button aria-label="Semana siguiente" onClick={()=>changeWeek(1)}>›</button></div>
@@ -68,10 +72,10 @@ export function DesignedWeek({ planner, setPlanner, weekKey, changeWeek, setShop
     <div className="designedMealRows plannerGrid">{MEAL_FIELDS.map(([field,label],index)=><article className="designedMeal" key={field}>
       <div className="mealCopy"><label htmlFor={"designed-meal-"+field}>{plain(label)}</label><input id={"designed-meal-"+field} aria-label={plain(label)+" del día elegido"} value={selected?.[field]||""} placeholder="Añadir comida…" onChange={event=>update(field,event.target.value)}/><input className="mealTime" type="time" aria-label={"Hora de "+plain(label)} value={profile.mealTimes?.[field]||mealTimes[index]} onChange={event=>setProfile(old=>({...old,mealTimes:{...old.mealTimes,[field]:event.target.value}}))}/></div>
       <SelectedArtwork className="mealIllustration" name={mealArt[index]}/>
-      <button className="addMealBubble" aria-label={"Elegir receta para "+plain(label)} onClick={()=>{setRecipeSearch("");setEditing(field)}}>+</button>
+      <button className="addMealBubble" aria-label={"Elegir receta para "+plain(label)} onClick={()=>{setRecipeSearch("");setShowAllMeals(false);setMealError("");setEditing(field)}}>+</button>
     </article>)}</div>
     <div className="designedPlanFoot"><div className="planPeople"><span>Personas</span><button aria-label="Una persona menos" onClick={()=>update("people",Math.max(1,(selected?.people||1)-1))}>−</button><b>{selected?.people||1}</b><button aria-label="Una persona más" onClick={()=>update("people",(selected?.people||1)+1)}>+</button></div><button onClick={onShopping}>🛒 Ver mi lista de la compra →</button><button onClick={onCreate}>✨ Crear mi semana</button></div>
-    {editing&&<dialog className="mealChooser" ref={dialog} onCancel={()=>setEditing(null)}><div className="mealChooserHead"><h2>Elige para {plain(MEAL_FIELDS.find(([field])=>field===editing)[1]).toLowerCase()}</h2><button aria-label="Cerrar recetas" onClick={()=>setEditing(null)}>×</button></div><label>Buscar receta<input autoFocus value={recipeSearch} onChange={event=>setRecipeSearch(event.target.value)} placeholder="Nombre o ingrediente…"/></label><div className="mealChooserList">{recipes.filter(recipe=>(recipe.name+" "+recipe.ingredients.map(x=>x[0]).join(" ")).toLocaleLowerCase("es").includes(recipeSearch.toLocaleLowerCase("es"))).map(recipe=><button key={recipe.id} onClick={()=>{if(isRestricted(recipe.name)){flash("Esta receta coincide con un alimento que has excluido.");return}update(editing,recipe.name);setEditing(null);flash("Comida guardada en el día elegido")}}><span>{recipe.emoji}</span><b>{recipe.name}</b><small>{recipe.minutes} min</small><i>＋</i></button>)}</div></dialog>}
+    {editing&&<dialog className="mealChooser" ref={dialog} onCancel={()=>setEditing(null)}><div className="mealChooserHead"><h2>Elige para {plain(MEAL_FIELDS.find(([field])=>field===editing)[1]).toLowerCase()}</h2><button aria-label="Cerrar recetas" onClick={()=>setEditing(null)}>×</button></div><form onSubmit={e=>{e.preventDefault();const name=recipeSearch.trim();if(!name)return;const exact=recipes.find(r=>normalizeMealText(r.name)===normalizeMealText(name));choose(exact?.name||name,exact?.ingredients)}}><label>Buscar receta o escribir mi comida<input aria-label="Buscar receta o escribir mi comida" autoFocus value={recipeSearch} onChange={e=>{setRecipeSearch(e.target.value);setMealError("")}} placeholder="Ej.: pan con aceite…"/></label><button disabled={!recipeSearch.trim()}>Añadir lo que he escrito →</button><p>Pulsa Intro para guardar lo escrito o elige una receta de la lista.</p></form><div className="mealChooserFilters"><button aria-pressed={!showAllMeals} onClick={()=>setShowAllMeals(false)}>Para esta comida</button><button aria-pressed={showAllMeals} onClick={()=>setShowAllMeals(true)}>Todas las opciones</button></div>{mealError&&<p role="alert">{mealError}</p>}<div className="mealChooserList">{available.filter(r=>matchesMeal(r,recipeSearch)).map(r=><button key={r.id} onClick={()=>choose(r.name,r.ingredients)}><span><AppSymbol name="Alimentación"/></span><b>{r.name}</b><small>{r.minutes} min · {r.ingredients.slice(0,3).map(x=>x[0]).join(", ")}</small><i>＋</i></button>)}{!available.some(r=>matchesMeal(r,recipeSearch))&&<p>No hay coincidencias. Puedes añadir tu propia comida con el botón de arriba.</p>}</div></dialog>}
   </section>;
 }
 

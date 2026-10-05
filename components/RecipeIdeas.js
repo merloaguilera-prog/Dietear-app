@@ -1,34 +1,15 @@
 "use client";
 import {useEffect,useState} from "react";
 import {recipes} from "../lib/recipes";
-import SelectedArtwork from "./SelectedArtwork";
-
+import {matchesMeal} from "../lib/meal-options";
+import {MEAL_FIELDS} from "../lib/week-plan";
+import RecipePhoto from "./RecipePhoto";
+const categories=[["all","Todo el libro"],["breakfast","Desayunos"],["lunch","Comidas"],["dinner","Cenas"],["snack","Meriendas y tentempiés"]];
 export default function RecipeIdeas({onChoose,maxMinutes=null,mealType="all"}){
-  const [openId,setOpenId]=useState(null);
-  const [query,setQuery]=useState(""),[favorites,setFavorites]=useState([]),[onlyFavorites,setOnlyFavorites]=useState(false);
-  useEffect(()=>{try{const stored=JSON.parse(localStorage.getItem("dietear-recipe-favorites")||"[]");if(Array.isArray(stored))setFavorites(stored)}catch{}},[]);
-  function toggleFavorite(id){const next=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];setFavorites(next);try{localStorage.setItem("dietear-recipe-favorites",JSON.stringify(next))}catch{}}
-  const visible=recipes.filter(recipe=>(!maxMinutes||recipe.minutes<=maxMinutes)&&(mealType==="all"||recipe.mealTypes?.includes(mealType))&&(!onlyFavorites||favorites.includes(recipe.id))&&(recipe.name+" "+recipe.ingredients.map(x=>x[0]).join(" ")).toLocaleLowerCase("es").includes(query.toLocaleLowerCase("es")));
-  return <div className="recipeIdeaList">
-    <div className="recipeSearch"><label>Buscar receta o ingrediente<input value={query} onChange={e=>setQuery(e.target.value)} placeholder="¿Qué te apetece?"/></label><button aria-pressed={onlyFavorites} onClick={()=>setOnlyFavorites(!onlyFavorites)}>{onlyFavorites?"Todas las recetas":"♡ Mis favoritas"}</button></div>
-    {!visible.length&&<p>{onlyFavorites?"Guarda tus recetas tocando el corazón.":"No hay recetas que coincidan con esta búsqueda."}</p>}
-    {visible.map((recipe,index)=><article className="recipeIdea" key={recipe.id}>
-      <div className="recipeIdeaHead">
-        <SelectedArtwork className="recipeThumb" name={["recetas","plan-almuerzo","plan-desayuno","plan-cena"][index%4]}/>
-        <div><h3>{recipe.name}</h3><p>{recipe.minutes} min · {recipe.ingredients.length} ingredientes</p></div>
-        <button className="recipeFavorite" aria-label={(favorites.includes(recipe.id)?"Quitar de favoritas: ":"Guardar favorita: ")+recipe.name} aria-pressed={favorites.includes(recipe.id)} onClick={()=>toggleFavorite(recipe.id)}>{favorites.includes(recipe.id)?"♥":"♡"}</button>
-      </div>
-      <div className="recipeIdeaActions">
-        <button type="button" aria-expanded={openId===recipe.id} aria-controls={"recipe-"+recipe.id} onClick={()=>setOpenId(openId===recipe.id?null:recipe.id)}>{openId===recipe.id?"Ocultar preparación":"Ver cómo se hace"}</button>
-        <button type="button" onClick={()=>onChoose(recipe.name)}>Añadir al plan de hoy →</button>
-      </div>
-      {openId===recipe.id&&<div className="recipeIdeaDetail" id={"recipe-"+recipe.id}>
-        <h4>Ingredientes por persona</h4>
-        <ul>{recipe.ingredients.map(([name,qty,unit])=><li key={name}>{name}: {qty} {unit}</li>)}</ul>
-        <h4>Preparación</h4>
-        <ol>{recipe.steps.map((step,index)=><li key={index}>{step}</li>)}</ol>
-        <p>Comprueba tus alergias, restricciones y las etiquetas de los productos antes de prepararla.</p>
-      </div>}
-    </article>)}
-  </div>;
+ const [openId,setOpenId]=useState(null),[query,setQuery]=useState(""),[favorites,setFavorites]=useState([]),[onlyFavorites,setOnlyFavorites]=useState(false),[category,setCategory]=useState("all"),[time,setTime]=useState("all"),[portions,setPortions]=useState({}),[slots,setSlots]=useState({});
+ useEffect(()=>{try{const stored=JSON.parse(localStorage.getItem("dietear-recipe-favorites")||"[]");if(Array.isArray(stored))setFavorites(stored)}catch{}},[]);
+ useEffect(()=>{setCategory("all")},[mealType]);
+ function toggleFavorite(id){const next=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];setFavorites(next);try{localStorage.setItem("dietear-recipe-favorites",JSON.stringify(next))}catch{}}
+ const visible=recipes.filter(r=>(!maxMinutes||r.minutes<=maxMinutes)&&(time==="all"||r.minutes<=Number(time))&&(mealType==="all"||r.mealTypes.includes(mealType))&&(category==="all"||(category==="snack"?r.mealTypes.some(t=>["midmorning1","snack1","snack2"].includes(t)):r.mealTypes.includes(category)))&&(!onlyFavorites||favorites.includes(r.id))&&matchesMeal(r,query));
+ return <div className="recipeBook"><header className="recipeBookHead"><small>DIETEAR · EL PLACER DE COMER BIEN</small><h3>64 recetas para tu día a día</h3><p>Un libro lleno de ideas fáciles, variadas y rápidas. Encuentra tu próximo plato y llévalo a tu plan.</p></header><div className="recipeCategories">{categories.map(([key,label])=><button key={key} aria-pressed={category===key} onClick={()=>setCategory(key)}>{label}</button>)}</div><div className="recipeSearch"><label>Buscar receta o ingrediente<input aria-label="Buscar receta o ingrediente" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Garbanzos, mango, tostadas…"/></label><label>Tiempo disponible<select aria-label="Tiempo disponible" value={time} onChange={e=>setTime(e.target.value)}><option value="all">Todos los tiempos</option><option value="15">Hasta 15 minutos</option><option value="30">Hasta 30 minutos</option></select></label><button aria-pressed={onlyFavorites} onClick={()=>setOnlyFavorites(!onlyFavorites)}>{onlyFavorites?"Todas las recetas":"♡ Mis favoritas"}</button></div><p className="recipeCount">{visible.length} recetas · Fotografías ilustrativas</p>{!visible.length&&<p>No hay coincidencias. Prueba otro ingrediente o cambia los filtros.</p>}<div className="recipeBookGrid">{visible.map(r=>{const people=portions[r.id]||1,slot=slots[r.id]||r.mealTypes[0];return <article className="recipeIdea" key={r.id}><div className="recipeImageWrap"><RecipePhoto recipe={r}/><span className="recipeTime">{r.minutes} min</span><button className="recipeFavorite" aria-label={(favorites.includes(r.id)?"Quitar de favoritas: ":"Guardar favorita: ")+r.name} aria-pressed={favorites.includes(r.id)} onClick={()=>toggleFavorite(r.id)}>{favorites.includes(r.id)?"♥":"♡"}</button></div><div className="recipeCardBody"><h3>{r.name}</h3><p>{r.ingredients.length} ingredientes · Preparación sencilla</p><label>Añadir a<select aria-label={"Destino de "+r.name} value={slot} onChange={e=>setSlots({...slots,[r.id]:e.target.value})}>{MEAL_FIELDS.map(([key,label])=><option key={key} value={key}>{label.replace(/^[^A-Za-zÁÉÍÓÚáéíóúÑñ]+/, "")}</option>)}</select></label><div className="recipeIdeaActions"><button aria-expanded={openId===r.id} onClick={()=>setOpenId(openId===r.id?null:r.id)}>{openId===r.id?"Ocultar preparación":"Ver cómo se hace"}</button><button onClick={()=>onChoose(r.name,slot,portions[r.id]?people:undefined)}>Añadir al plan de hoy →</button></div>{openId===r.id&&<div className="recipeIdeaDetail"><label>Personas<input type="number" min="1" step="1" aria-label={"Personas para "+r.name} value={people} onChange={e=>setPortions({...portions,[r.id]:Math.max(1,Math.floor(Number(e.target.value)||1))})}/></label><h4>Ingredientes para {people} persona(s)</h4><ul>{r.ingredients.map(([name,qty,unit])=><li key={name}>{name}: {new Intl.NumberFormat("es-ES",{maximumFractionDigits:1}).format(qty*people)} {unit}</li>)}</ul><h4>Preparación paso a paso</h4><ol>{r.steps.map((step,index)=><li key={index}>{step}</li>)}</ol><small>Cantidades culinarias orientativas. Adapta según tus necesidades y revisa alergias y etiquetas.</small></div>}</div></article>})}</div></div>
 }

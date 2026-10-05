@@ -1,0 +1,2132 @@
+[
+  {
+    "id": "receta-5",
+    "name": "Pan con aceite de oliva",
+    "minutes": 3,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Tuesta el pan si te apetece.",
+      "Añade el aceite de oliva al servir."
+    ]
+  },
+  {
+    "id": "receta-6",
+    "name": "Tostada integral con tomate y aceite",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Tomate",
+        80.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y ralla el tomate.",
+      "Tuesta el pan y reparte el tomate y el aceite."
+    ]
+  },
+  {
+    "id": "receta-7",
+    "name": "Yogur natural con avena y fruta",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Yogur natural",
+        125.0,
+        "g"
+      ],
+      [
+        "Avena",
+        30.0,
+        "g"
+      ],
+      [
+        "Fruta de temporada",
+        100.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y trocea la fruta.",
+      "Mezcla el yogur con la avena y añade la fruta."
+    ]
+  },
+  {
+    "id": "receta-8",
+    "name": "Porridge de avena con leche y plátano",
+    "minutes": 8,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Avena",
+        40.0,
+        "g"
+      ],
+      [
+        "Leche",
+        200.0,
+        "ml"
+      ],
+      [
+        "Plátano",
+        100.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Calienta la leche con la avena a fuego suave durante 5 minutos, removiendo.",
+      "Añade el plátano en rodajas y deja templar."
+    ]
+  },
+  {
+    "id": "receta-9",
+    "name": "Tostada integral con huevo",
+    "minutes": 10,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Huevo",
+        1.0,
+        "ud"
+      ],
+      [
+        "Aceite de oliva",
+        5.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cocina el huevo en una sartén con el aceite hasta que esté completamente cuajado.",
+      "Tuesta el pan y coloca el huevo encima."
+    ]
+  },
+  {
+    "id": "receta-10",
+    "name": "Tostada de aguacate y tomate",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Aguacate",
+        60.0,
+        "g"
+      ],
+      [
+        "Tomate",
+        80.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y corta el tomate y retira la piel del aguacate.",
+      "Tuesta el pan y reparte ambos ingredientes."
+    ]
+  },
+  {
+    "id": "receta-11",
+    "name": "Fruta con queso fresco y pan",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Fruta de temporada",
+        150.0,
+        "g"
+      ],
+      [
+        "Queso fresco",
+        60.0,
+        "g"
+      ],
+      [
+        "Pan integral",
+        40.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y corta la fruta.",
+      "Sirve con el queso fresco y el pan."
+    ]
+  },
+  {
+    "id": "receta-12",
+    "name": "Tostada con crema de cacahuete y plátano",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Crema de cacahuete sin azúcar",
+        15.0,
+        "g"
+      ],
+      [
+        "Plátano",
+        80.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Tuesta el pan.",
+      "Unta la crema de cacahuete y añade el plátano en rodajas."
+    ]
+  },
+  {
+    "id": "receta-13",
+    "name": "Una pieza de fruta",
+    "minutes": 2,
+    "mealTypes": [
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Fruta de temporada",
+        150.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava la fruta y pela si procede.",
+      "Sirve entera o cortada."
+    ]
+  },
+  {
+    "id": "receta-14",
+    "name": "Yogur natural",
+    "minutes": 1,
+    "mealTypes": [
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Yogur natural",
+        125.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Comprueba la etiqueta y conserva refrigerado.",
+      "Sirve el yogur natural sin añadir azúcar."
+    ]
+  },
+  {
+    "id": "receta-15",
+    "name": "Fruta y nueces",
+    "minutes": 3,
+    "mealTypes": [
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Fruta de temporada",
+        150.0,
+        "g"
+      ],
+      [
+        "Nueces sin sal",
+        20.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y prepara la fruta.",
+      "Acompaña con las nueces."
+    ]
+  },
+  {
+    "id": "receta-16",
+    "name": "Bocadillo integral de pavo y tomate",
+    "minutes": 5,
+    "mealTypes": [
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Pavo cocido",
+        50.0,
+        "g"
+      ],
+      [
+        "Tomate",
+        60.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y corta el tomate.",
+      "Abre el pan y rellena con el pavo y el tomate."
+    ]
+  },
+  {
+    "id": "receta-17",
+    "name": "Hummus con pepino y zanahoria",
+    "minutes": 5,
+    "mealTypes": [
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Hummus",
+        60.0,
+        "g"
+      ],
+      [
+        "Pepino",
+        100.0,
+        "g"
+      ],
+      [
+        "Zanahoria",
+        100.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava las verduras y pela la zanahoria.",
+      "Corta en bastones y sirve con el hummus."
+    ]
+  },
+  {
+    "id": "receta-18",
+    "name": "Queso fresco con fruta",
+    "minutes": 3,
+    "mealTypes": [
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Queso fresco",
+        60.0,
+        "g"
+      ],
+      [
+        "Fruta de temporada",
+        150.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y trocea la fruta.",
+      "Añade el queso fresco cortado en dados."
+    ]
+  },
+  {
+    "id": "receta-19",
+    "name": "Yogur griego natural con frutos rojos",
+    "minutes": 3,
+    "mealTypes": [
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Yogur griego natural",
+        125.0,
+        "g"
+      ],
+      [
+        "Frutos rojos",
+        100.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava los frutos rojos.",
+      "Sirve sobre el yogur griego natural."
+    ]
+  },
+  {
+    "id": "receta-20",
+    "name": "Tortilla de verduras con ensalada",
+    "minutes": 15,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Huevo",
+        2.0,
+        "ud"
+      ],
+      [
+        "Calabacín",
+        100.0,
+        "g"
+      ],
+      [
+        "Pimiento",
+        60.0,
+        "g"
+      ],
+      [
+        "Lechuga",
+        80.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta las verduras.",
+      "Saltea el calabacín y el pimiento con el aceite durante 6 minutos.",
+      "Bate los huevos, añade las verduras y cuaja la tortilla por completo.",
+      "Sirve con la lechuga lavada."
+    ]
+  },
+  {
+    "id": "receta-21",
+    "name": "Lentejas con verduras",
+    "minutes": 20,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Lentejas cocidas",
+        180.0,
+        "g"
+      ],
+      [
+        "Zanahoria",
+        80.0,
+        "g"
+      ],
+      [
+        "Cebolla",
+        40.0,
+        "g"
+      ],
+      [
+        "Tomate triturado",
+        80.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Pica la cebolla y la zanahoria y rehoga con aceite.",
+      "Añade el tomate y un poco de agua y cocina 10 minutos.",
+      "Incorpora las lentejas escurridas y calienta 5 minutos."
+    ]
+  },
+  {
+    "id": "receta-22",
+    "name": "Pasta integral con verduras",
+    "minutes": 20,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Pasta integral",
+        70.0,
+        "g"
+      ],
+      [
+        "Calabacín",
+        100.0,
+        "g"
+      ],
+      [
+        "Pimiento",
+        80.0,
+        "g"
+      ],
+      [
+        "Tomate triturado",
+        80.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cuece la pasta siguiendo el envase.",
+      "Saltea las verduras cortadas con el aceite.",
+      "Añade el tomate, cocina 5 minutos y mezcla con la pasta escurrida."
+    ]
+  },
+  {
+    "id": "receta-23",
+    "name": "Crema de calabacín y patata",
+    "minutes": 25,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Calabacín",
+        200.0,
+        "g"
+      ],
+      [
+        "Patata",
+        120.0,
+        "g"
+      ],
+      [
+        "Cebolla",
+        40.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava, pela si procede y corta las verduras.",
+      "Cubre apenas con agua y cuece 18 minutos o hasta que estén tiernas.",
+      "Tritura y añade el aceite al servir."
+    ]
+  },
+  {
+    "id": "receta-24",
+    "name": "Ensalada tropical con frutas",
+    "minutes": 10,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Lechuga",
+        80.0,
+        "g"
+      ],
+      [
+        "Mango",
+        80.0,
+        "g"
+      ],
+      [
+        "Piña",
+        80.0,
+        "g"
+      ],
+      [
+        "Aguacate",
+        50.0,
+        "g"
+      ],
+      [
+        "Garbanzos cocidos",
+        100.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava la lechuga, pela las frutas y corta en dados.",
+      "Aclara y escurre los garbanzos.",
+      "Mezcla con el aguacate y aliña con aceite."
+    ]
+  },
+  {
+    "id": "receta-25",
+    "name": "Ensalada variada con huevo y garbanzos",
+    "minutes": 15,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Lechuga",
+        80.0,
+        "g"
+      ],
+      [
+        "Tomate",
+        100.0,
+        "g"
+      ],
+      [
+        "Pepino",
+        80.0,
+        "g"
+      ],
+      [
+        "Huevo",
+        1.0,
+        "ud"
+      ],
+      [
+        "Garbanzos cocidos",
+        120.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cuece el huevo en agua durante 10–12 minutos y enfría.",
+      "Lava y corta las verduras y escurre los garbanzos.",
+      "Mezcla y añade el huevo pelado y el aceite."
+    ]
+  },
+  {
+    "id": "receta-26",
+    "name": "Garbanzos salteados con espinacas",
+    "minutes": 12,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Garbanzos cocidos",
+        180.0,
+        "g"
+      ],
+      [
+        "Espinacas",
+        150.0,
+        "g"
+      ],
+      [
+        "Ajo",
+        1.0,
+        "ud"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Aclara y escurre los garbanzos.",
+      "Dora ligeramente el ajo picado con el aceite.",
+      "Añade las espinacas lavadas y cocina hasta que reduzcan",
+      " incorpora los garbanzos y calienta 5 minutos."
+    ]
+  },
+  {
+    "id": "receta-27",
+    "name": "Ensalada de alubias y pimientos",
+    "minutes": 10,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Alubias cocidas",
+        180.0,
+        "g"
+      ],
+      [
+        "Pimiento",
+        100.0,
+        "g"
+      ],
+      [
+        "Tomate",
+        100.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Aclara y escurre las alubias.",
+      "Lava y corta el pimiento y el tomate.",
+      "Mezcla y aliña con aceite."
+    ]
+  },
+  {
+    "id": "receta-28",
+    "name": "Ensalada de lentejas y pepino",
+    "minutes": 10,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Lentejas cocidas",
+        180.0,
+        "g"
+      ],
+      [
+        "Pepino",
+        100.0,
+        "g"
+      ],
+      [
+        "Tomate",
+        80.0,
+        "g"
+      ],
+      [
+        "Limón",
+        0.5,
+        "ud"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Aclara y escurre las lentejas.",
+      "Lava y corta el pepino y el tomate.",
+      "Mezcla y aliña con aceite y zumo de limón."
+    ]
+  },
+  {
+    "id": "receta-29",
+    "name": "Garbanzos con calabacín y tomate",
+    "minutes": 18,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Garbanzos cocidos",
+        180.0,
+        "g"
+      ],
+      [
+        "Calabacín",
+        150.0,
+        "g"
+      ],
+      [
+        "Tomate triturado",
+        100.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta el calabacín.",
+      "Saltea con el aceite durante 7 minutos.",
+      "Añade el tomate y los garbanzos escurridos y cocina 8 minutos."
+    ]
+  },
+  {
+    "id": "receta-30",
+    "name": "Cuscús con verduras y garbanzos",
+    "minutes": 15,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Cuscús",
+        60.0,
+        "g"
+      ],
+      [
+        "Garbanzos cocidos",
+        100.0,
+        "g"
+      ],
+      [
+        "Zanahoria",
+        80.0,
+        "g"
+      ],
+      [
+        "Calabacín",
+        100.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Hidrata el cuscús con agua caliente según su envase.",
+      "Lava y saltea las verduras cortadas con el aceite.",
+      "Añade los garbanzos escurridos y mezcla con el cuscús."
+    ]
+  },
+  {
+    "id": "receta-31",
+    "name": "Quinoa con verduras y huevo",
+    "minutes": 20,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Quinoa",
+        60.0,
+        "g"
+      ],
+      [
+        "Pimiento",
+        80.0,
+        "g"
+      ],
+      [
+        "Calabacín",
+        100.0,
+        "g"
+      ],
+      [
+        "Huevo",
+        1.0,
+        "ud"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava la quinoa y cuece según el envase.",
+      "Cuece el huevo durante 10–12 minutos y saltea las verduras.",
+      "Mezcla la quinoa con las verduras y sirve con el huevo pelado."
+    ]
+  },
+  {
+    "id": "receta-32",
+    "name": "Pasta integral con atún y tomate",
+    "minutes": 15,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Pasta integral",
+        70.0,
+        "g"
+      ],
+      [
+        "Atún al natural escurrido",
+        80.0,
+        "g"
+      ],
+      [
+        "Tomate triturado",
+        120.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cuece la pasta según el envase.",
+      "Calienta el tomate con el aceite durante 5 minutos.",
+      "Añade el atún y mezcla con la pasta escurrida."
+    ]
+  },
+  {
+    "id": "receta-33",
+    "name": "Pasta con brócoli y ajo",
+    "minutes": 18,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Pasta integral",
+        70.0,
+        "g"
+      ],
+      [
+        "Brócoli",
+        180.0,
+        "g"
+      ],
+      [
+        "Ajo",
+        1.0,
+        "ud"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cuece la pasta según el envase.",
+      "Cuece el brócoli lavado en ramilletes hasta que esté tierno.",
+      "Saltea el ajo con aceite, añade el brócoli y mezcla con la pasta."
+    ]
+  },
+  {
+    "id": "receta-34",
+    "name": "Arroz con guisantes y zanahoria",
+    "minutes": 20,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Arroz",
+        65.0,
+        "g"
+      ],
+      [
+        "Guisantes",
+        100.0,
+        "g"
+      ],
+      [
+        "Zanahoria",
+        100.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cuece el arroz según el envase.",
+      "Cuece los guisantes y la zanahoria cortada hasta que estén tiernos.",
+      "Escurre y saltea todo junto con el aceite."
+    ]
+  },
+  {
+    "id": "receta-35",
+    "name": "Arroz integral con garbanzos y pimiento",
+    "minutes": 12,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Arroz integral precocido",
+        125.0,
+        "g"
+      ],
+      [
+        "Garbanzos cocidos",
+        120.0,
+        "g"
+      ],
+      [
+        "Pimiento",
+        100.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta el pimiento y saltea con el aceite.",
+      "Añade los garbanzos escurridos.",
+      "Incorpora el arroz y calienta siguiendo las instrucciones del envase."
+    ]
+  },
+  {
+    "id": "receta-36",
+    "name": "Patata cocida con huevo y judías verdes",
+    "minutes": 25,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Patata",
+        180.0,
+        "g"
+      ],
+      [
+        "Huevo",
+        1.0,
+        "ud"
+      ],
+      [
+        "Judías verdes",
+        180.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta la patata y las judías.",
+      "Cuece en agua hasta que estén tiernas, unos 18–20 minutos.",
+      "Cuece el huevo aparte 10–12 minutos, pela y sirve con las verduras y el aceite."
+    ]
+  },
+  {
+    "id": "receta-37",
+    "name": "Boniato al microondas con pavo",
+    "minutes": 15,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Boniato",
+        200.0,
+        "g"
+      ],
+      [
+        "Pavo fresco",
+        150.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava el boniato, pincha la piel y cocina en recipiente apto de microondas 7–10 minutos, girándolo a mitad.",
+      "Comprueba que esté tierno",
+      " cocina el pavo con el aceite hasta que esté completamente hecho.",
+      "Abre el boniato y sirve con el pavo."
+    ]
+  },
+  {
+    "id": "receta-38",
+    "name": "Pavo con champiñones y arroz",
+    "minutes": 25,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Pavo fresco",
+        150.0,
+        "g"
+      ],
+      [
+        "Champiñones",
+        150.0,
+        "g"
+      ],
+      [
+        "Arroz",
+        60.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cuece el arroz según el envase.",
+      "Limpia y lamina los champiñones y saltea con el aceite.",
+      "Añade el pavo en tiras y cocina por completo",
+      " sirve con arroz."
+    ]
+  },
+  {
+    "id": "receta-39",
+    "name": "Pollo al limón con calabacín",
+    "minutes": 20,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Pollo",
+        150.0,
+        "g"
+      ],
+      [
+        "Calabacín",
+        200.0,
+        "g"
+      ],
+      [
+        "Limón",
+        0.5,
+        "ud"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta el calabacín.",
+      "Saltea el pollo en tiras con el aceite hasta que esté completamente cocinado.",
+      "Añade el calabacín y cocina hasta que esté tierno",
+      " termina con zumo de limón."
+    ]
+  },
+  {
+    "id": "receta-40",
+    "name": "Salteado de pollo con pimientos",
+    "minutes": 20,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Pollo",
+        150.0,
+        "g"
+      ],
+      [
+        "Pimiento rojo",
+        100.0,
+        "g"
+      ],
+      [
+        "Pimiento verde",
+        100.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta los pimientos.",
+      "Saltea el pollo cortado con el aceite.",
+      "Añade los pimientos y cocina hasta que estén tiernos y el pollo completamente hecho."
+    ]
+  },
+  {
+    "id": "receta-41",
+    "name": "Wrap integral de pollo y verduras",
+    "minutes": 15,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Tortilla integral de trigo",
+        1.0,
+        "ud"
+      ],
+      [
+        "Pollo",
+        120.0,
+        "g"
+      ],
+      [
+        "Lechuga",
+        50.0,
+        "g"
+      ],
+      [
+        "Tomate",
+        80.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        5.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cocina por completo el pollo con el aceite.",
+      "Lava y corta la lechuga y el tomate.",
+      "Calienta la tortilla según el envase y rellena con el pollo y las verduras."
+    ]
+  },
+  {
+    "id": "receta-42",
+    "name": "Wrap de hummus y verduras",
+    "minutes": 10,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Tortilla integral de trigo",
+        1.0,
+        "ud"
+      ],
+      [
+        "Hummus",
+        70.0,
+        "g"
+      ],
+      [
+        "Zanahoria",
+        80.0,
+        "g"
+      ],
+      [
+        "Pepino",
+        80.0,
+        "g"
+      ],
+      [
+        "Lechuga",
+        40.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava las verduras y pela la zanahoria.",
+      "Corta en tiras finas.",
+      "Unta la tortilla con hummus, añade las verduras y enrolla."
+    ]
+  },
+  {
+    "id": "receta-43",
+    "name": "Salmón con brócoli y patata",
+    "minutes": 25,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Salmón",
+        150.0,
+        "g"
+      ],
+      [
+        "Brócoli",
+        180.0,
+        "g"
+      ],
+      [
+        "Patata",
+        150.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta la patata y el brócoli.",
+      "Cuece hasta que estén tiernos.",
+      "Cocina el salmón en sartén con el aceite hasta que esté completamente hecho y sirve junto a las verduras."
+    ]
+  },
+  {
+    "id": "receta-44",
+    "name": "Merluza con tomate y guisantes",
+    "minutes": 20,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Merluza",
+        150.0,
+        "g"
+      ],
+      [
+        "Tomate triturado",
+        150.0,
+        "g"
+      ],
+      [
+        "Guisantes",
+        100.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Calienta el tomate con el aceite y los guisantes durante 8 minutos.",
+      "Añade la merluza, tapa y cocina 8–10 minutos.",
+      "Comprueba que el pescado esté completamente hecho antes de servir."
+    ]
+  },
+  {
+    "id": "receta-45",
+    "name": "Bacalao fresco con pisto rápido",
+    "minutes": 25,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Bacalao fresco",
+        150.0,
+        "g"
+      ],
+      [
+        "Calabacín",
+        100.0,
+        "g"
+      ],
+      [
+        "Pimiento",
+        80.0,
+        "g"
+      ],
+      [
+        "Tomate triturado",
+        120.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta las verduras pequeñas.",
+      "Saltea con el aceite, añade el tomate y cocina 10 minutos.",
+      "Añade el bacalao fresco y cocina tapado hasta que esté completamente hecho."
+    ]
+  },
+  {
+    "id": "receta-46",
+    "name": "Ensalada de atún y patata",
+    "minutes": 25,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Atún al natural escurrido",
+        80.0,
+        "g"
+      ],
+      [
+        "Patata",
+        180.0,
+        "g"
+      ],
+      [
+        "Tomate",
+        100.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava, pela y cuece la patata en dados hasta que esté tierna.",
+      "Deja templar y lava y corta el tomate.",
+      "Mezcla con el atún escurrido y el aceite."
+    ]
+  },
+  {
+    "id": "receta-47",
+    "name": "Tostada de sardinas y tomate",
+    "minutes": 5,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Sardinas en conserva escurridas",
+        80.0,
+        "g"
+      ],
+      [
+        "Tomate",
+        80.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y corta el tomate.",
+      "Tuesta el pan y añade el tomate.",
+      "Coloca las sardinas escurridas encima."
+    ]
+  },
+  {
+    "id": "receta-48",
+    "name": "Revuelto de champiñones y espinacas",
+    "minutes": 15,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Huevo",
+        2.0,
+        "ud"
+      ],
+      [
+        "Champiñones",
+        120.0,
+        "g"
+      ],
+      [
+        "Espinacas",
+        100.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Limpia y corta los champiñones y lava las espinacas.",
+      "Saltea con el aceite hasta que estén tiernos.",
+      "Añade los huevos batidos y remueve hasta que estén completamente cuajados."
+    ]
+  },
+  {
+    "id": "receta-49",
+    "name": "Tortilla de calabacín y cebolla",
+    "minutes": 20,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Huevo",
+        2.0,
+        "ud"
+      ],
+      [
+        "Calabacín",
+        150.0,
+        "g"
+      ],
+      [
+        "Cebolla",
+        50.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta el calabacín y la cebolla.",
+      "Cocina con aceite hasta que estén tiernos.",
+      "Mezcla con el huevo batido y cuaja por completo la tortilla por ambos lados."
+    ]
+  },
+  {
+    "id": "receta-50",
+    "name": "Huevos cuajados con tomate",
+    "minutes": 18,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Huevo",
+        2.0,
+        "ud"
+      ],
+      [
+        "Tomate triturado",
+        200.0,
+        "g"
+      ],
+      [
+        "Cebolla",
+        40.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Pica y rehoga la cebolla con aceite.",
+      "Añade el tomate y cocina 8 minutos.",
+      "Haz dos huecos, añade los huevos, tapa y cocina hasta que claras y yemas estén cuajadas."
+    ]
+  },
+  {
+    "id": "receta-51",
+    "name": "Tofu salteado con verduras",
+    "minutes": 20,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Tofu firme",
+        150.0,
+        "g"
+      ],
+      [
+        "Brócoli",
+        100.0,
+        "g"
+      ],
+      [
+        "Pimiento",
+        100.0,
+        "g"
+      ],
+      [
+        "Zanahoria",
+        80.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Escurre y corta el tofu en dados.",
+      "Lava y corta las verduras y saltea con aceite.",
+      "Añade el tofu y cocina según su envase, hasta que esté caliente y las verduras tiernas."
+    ]
+  },
+  {
+    "id": "receta-52",
+    "name": "Tofu con tomate y albahaca",
+    "minutes": 15,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Tofu firme",
+        150.0,
+        "g"
+      ],
+      [
+        "Tomate",
+        200.0,
+        "g"
+      ],
+      [
+        "Albahaca",
+        5.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Escurre el tofu y lava y corta el tomate.",
+      "Saltea el tofu con aceite, añade el tomate y cocina 8 minutos.",
+      "Añade la albahaca lavada al servir."
+    ]
+  },
+  {
+    "id": "receta-53",
+    "name": "Crema de zanahoria y lentejas",
+    "minutes": 25,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Zanahoria",
+        200.0,
+        "g"
+      ],
+      [
+        "Lentejas cocidas",
+        150.0,
+        "g"
+      ],
+      [
+        "Cebolla",
+        40.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Pela y corta la zanahoria y la cebolla.",
+      "Cuece cubiertas apenas con agua hasta que estén tiernas.",
+      "Añade las lentejas escurridas, calienta y tritura con el aceite."
+    ]
+  },
+  {
+    "id": "receta-54",
+    "name": "Sopa de verduras con garbanzos",
+    "minutes": 25,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Garbanzos cocidos",
+        150.0,
+        "g"
+      ],
+      [
+        "Zanahoria",
+        80.0,
+        "g"
+      ],
+      [
+        "Calabacín",
+        100.0,
+        "g"
+      ],
+      [
+        "Puerro",
+        60.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta las verduras.",
+      "Rehoga con el aceite y añade agua hasta cubrir.",
+      "Cuece 15 minutos, incorpora los garbanzos y calienta 5 minutos más."
+    ]
+  },
+  {
+    "id": "receta-55",
+    "name": "Gazpacho sencillo con tostada",
+    "minutes": 10,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Tomate",
+        250.0,
+        "g"
+      ],
+      [
+        "Pepino",
+        80.0,
+        "g"
+      ],
+      [
+        "Pimiento",
+        40.0,
+        "g"
+      ],
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ],
+      [
+        "Vinagre",
+        5.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y trocea las verduras.",
+      "Tritura con aceite, vinagre y agua al gusto.",
+      "Enfría y acompaña de pan tostado."
+    ]
+  },
+  {
+    "id": "receta-56",
+    "name": "Ensalada de quinoa, mango y pepino",
+    "minutes": 20,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Quinoa",
+        60.0,
+        "g"
+      ],
+      [
+        "Mango",
+        100.0,
+        "g"
+      ],
+      [
+        "Pepino",
+        100.0,
+        "g"
+      ],
+      [
+        "Limón",
+        0.5,
+        "ud"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y cuece la quinoa según el envase y deja templar.",
+      "Pela el mango y lava y corta el pepino.",
+      "Mezcla y aliña con limón y aceite."
+    ]
+  },
+  {
+    "id": "receta-57",
+    "name": "Ensalada de remolacha y queso fresco",
+    "minutes": 10,
+    "mealTypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Remolacha cocida",
+        150.0,
+        "g"
+      ],
+      [
+        "Queso fresco",
+        80.0,
+        "g"
+      ],
+      [
+        "Lechuga",
+        80.0,
+        "g"
+      ],
+      [
+        "Nueces sin sal",
+        15.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava la lechuga y corta la remolacha y el queso.",
+      "Mezcla en un cuenco.",
+      "Añade las nueces y el aceite."
+    ]
+  },
+  {
+    "id": "receta-58",
+    "name": "Avena con yogur, manzana y canela",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Avena",
+        35.0,
+        "g"
+      ],
+      [
+        "Yogur natural",
+        125.0,
+        "g"
+      ],
+      [
+        "Manzana",
+        100.0,
+        "g"
+      ],
+      [
+        "Canela",
+        1.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y corta la manzana.",
+      "Mezcla yogur y avena.",
+      "Añade la manzana y la canela y deja reposar 5 minutos si prefieres la avena blanda."
+    ]
+  },
+  {
+    "id": "receta-59",
+    "name": "Tostada de ricota y fresas",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Ricota",
+        60.0,
+        "g"
+      ],
+      [
+        "Fresas",
+        100.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava las fresas y corta en láminas.",
+      "Tuesta el pan y unta la ricota.",
+      "Coloca las fresas encima."
+    ]
+  },
+  {
+    "id": "receta-60",
+    "name": "Yogur con mango y avena",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Yogur natural",
+        125.0,
+        "g"
+      ],
+      [
+        "Mango",
+        100.0,
+        "g"
+      ],
+      [
+        "Avena",
+        30.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Pela y corta el mango.",
+      "Mezcla el yogur con la avena.",
+      "Añade el mango en dados."
+    ]
+  },
+  {
+    "id": "receta-61",
+    "name": "Tostada de hummus y pepino",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Hummus",
+        50.0,
+        "g"
+      ],
+      [
+        "Pepino",
+        80.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y corta el pepino en rodajas.",
+      "Tuesta el pan y unta el hummus.",
+      "Coloca el pepino encima."
+    ]
+  },
+  {
+    "id": "receta-62",
+    "name": "Mandarina con almendras",
+    "minutes": 3,
+    "mealTypes": [
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Mandarina",
+        150.0,
+        "g"
+      ],
+      [
+        "Almendras sin sal",
+        20.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Pela las mandarinas.",
+      "Sirve con las almendras."
+    ]
+  },
+  {
+    "id": "receta-63",
+    "name": "Batido de plátano con leche y avena",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Plátano",
+        100.0,
+        "g"
+      ],
+      [
+        "Leche",
+        200.0,
+        "ml"
+      ],
+      [
+        "Avena",
+        30.0,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Pela y corta el plátano.",
+      "Tritura con leche y avena hasta obtener una textura homogénea.",
+      "Sirve recién preparado."
+    ]
+  },
+  {
+    "id": "receta-64",
+    "name": "Sándwich integral de huevo y tomate",
+    "minutes": 12,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60.0,
+        "g"
+      ],
+      [
+        "Huevo",
+        1.0,
+        "ud"
+      ],
+      [
+        "Tomate",
+        80.0,
+        "g"
+      ],
+      [
+        "Lechuga",
+        30.0,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        5.0,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cocina el huevo con el aceite hasta que esté completamente cuajado.",
+      "Lava y corta las verduras.",
+      "Rellena el pan con el huevo y las verduras."
+    ]
+  }
+]

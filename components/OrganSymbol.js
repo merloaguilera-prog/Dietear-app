@@ -1,0 +1,21 @@
+const paths={
+'Cerebro y sistema nervioso':'M16 6C10 0 5 5 6 10C0 12 2 21 6 21C4 28 14 32 16 26M16 6C22 0 27 5 26 10C32 12 30 21 26 21C28 28 18 32 16 26M16 6V26M8 10l5 3-3 5M24 10l-5 3 3 5',
+'Ojos':'M2 16Q16 0 30 16Q16 32 2 16ZM21 16a5 5 0 1 1-10 0a5 5 0 0 1 10 0',
+'Oídos':'M10 23C10 31 18 31 19 23L24 17C29 5 15-2 9 7M14 10C17 5 24 9 20 15L16 19',
+'Boca y dientes':'M7 4C10 2 14 6 16 6C18 6 22 2 25 4C31 11 24 29 21 29L19 18Q16 14 13 18L11 29C8 29 1 11 7 4Z',
+'Tiroides':'M15 13C8 3 2 7 5 20C7 30 13 28 16 21C19 28 25 30 27 20C30 7 24 3 17 13M14 4h4v11h-4Z',
+'Estómago':'M17 3v9C28 5 32 15 27 24C21 32 7 31 7 22C7 15 14 19 14 11V3',
+'Intestino delgado':'M8 4H24Q30 4 30 10V23Q30 29 24 29H8Q2 29 2 23V10Q2 4 8 4ZM8 10h14q5 0 0 4H11q-5 0 0 4h11q5 0 0 4H8',
+'Colon e intestino grueso':'M9 28V11h14v10h-5v8M9 28H3V10Q3 3 10 3H23Q30 3 30 10V23Q30 28 23 28H18',
+'Páncreas':'M3 20Q6 10 17 10L28 7Q33 12 27 18L13 23Q7 26 3 20ZM8 17l16-4',
+'Vesícula biliar':'M16 3v7C25 16 25 29 16 29C7 29 7 16 16 10M16 3h8',
+'Bazo':'M21 4C5 2 0 23 9 28C23 34 32 9 21 4ZM13 24Q10 13 21 9',
+'Vejiga':'M9 3v8M23 3v8M7 11Q16 6 25 11C30 26 22 28 19 28V31H13V28C10 28 2 26 7 11Z',
+'Sistema reproductor':'M23 13a8 8 0 1 1-16 0a8 8 0 0 1 16 0M15 21v10M10 27h10M21 7l8-5M24 2h5v5',
+'Huesos':'M10 3C3-2 0 6 5 10L21 26C25 34 34 26 29 22C33 15 24 13 22 19L12 9C17 4 12-1 10 3Z',
+'Articulaciones':'M6 3l4 9 8 3 3-8M10 12l-2 7 10 4 4-8M8 19l-5 11M18 23l3 7',
+'Músculos':'M9 3l5 3-3 7 6 4Q23 9 29 17C34 29 17 31 5 26L4 16l3-4 3 3 3-5',
+'Cabello y uñas':'M3 28Q5 2 10 5Q16 2 18 12M9 28Q13 7 16 11M20 27V15Q20 11 25 11Q30 11 30 15v12ZM22 15h6',
+'Sangre y circulación':'M16 2Q3 17 5 23C8 33 24 33 27 23Q29 17 16 2ZM10 22Q10 27 15 27'
+};
+export default function OrganSymbol({name}){return <svg viewBox="0 0 32 32" fill="#ffd5de" stroke="#7c2756" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]||paths['Sangre y circulación']}/></svg>}
