@@ -1,0 +1,159 @@
+/* Bright accents from the selected DIETEAR screens; pale surfaces keep text legible. */
+.immersiveApp {
+  --accent: #12a634;
+  --tint: #edffda;
+  --glow: #a0e647;
+  background: linear-gradient(135deg, #f7ffeb, #fffde5 45%, #f4fff3);
+}
+.immersiveApp::before { filter: blur(8px); opacity: .09; }
+.immersiveApp > header { background: #fffffaf5; border-bottom-color: #bbdf69; }
+.immersiveApp > header .brand b {
+  background: linear-gradient(100deg, #079d35 5%, #09b42d 33%, #12aada 52%, #f50c89 73%, #296bef 96%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #089c35;
+}
+
+/* The same palette is shared by cards and their real controls. */
+.immersiveApp :is(button, .goal, .planDay, .recipeIdea, .dietPick, .fridgeIdeaGrid article, .dashboardCards article, .metricCards article, .bridgeStats article, .shoppingRow, .designedMeal):nth-child(6n + 1) { --accent: #11a333; --tint: #eeffdd; --glow: #a5e751; }
+.immersiveApp :is(button, .goal, .planDay, .recipeIdea, .dietPick, .fridgeIdeaGrid article, .dashboardCards article, .metricCards article, .bridgeStats article, .shoppingRow, .designedMeal):nth-child(6n + 2) { --accent: #a733dc; --tint: #faedff; --glow: #e0a0f6; }
+.immersiveApp :is(button, .goal, .planDay, .recipeIdea, .dietPick, .fridgeIdeaGrid article, .dashboardCards article, .metricCards article, .bridgeStats article, .shoppingRow, .designedMeal):nth-child(6n + 3) { --accent: #eea000; --tint: #fff7d8; --glow: #ffdc57; }
+.immersiveApp :is(button, .goal, .planDay, .recipeIdea, .dietPick, .fridgeIdeaGrid article, .dashboardCards article, .metricCards article, .bridgeStats article, .shoppingRow, .designedMeal):nth-child(6n + 4) { --accent: #0c9fcb; --tint: #e6faff; --glow: #7fe0f7; }
+.immersiveApp :is(button, .goal, .planDay, .recipeIdea, .dietPick, .fridgeIdeaGrid article, .dashboardCards article, .metricCards article, .bridgeStats article, .shoppingRow, .designedMeal):nth-child(6n + 5) { --accent: #f02287; --tint: #fff0f7; --glow: #ffa3cf; }
+.immersiveApp :is(button, .goal, .planDay, .recipeIdea, .dietPick, .fridgeIdeaGrid article, .dashboardCards article, .metricCards article, .bridgeStats article, .shoppingRow, .designedMeal):nth-child(6n) { --accent: #3396e8; --tint: #edf5ff; --glow: #a1d2ff; }
+
+.immersiveApp.immersiveApp button {
+  color: #10170f !important;
+  -webkit-text-fill-color: #10170f !important;
+  background: linear-gradient(150deg, #fff 25%, var(--tint)) !important;
+  border: 1.5px solid var(--glow) !important;
+  box-shadow: 0 4px 12px #31521e10, inset 0 1px 0 #fff;
+  transition: box-shadow .16s ease, transform .16s ease, border-color .16s ease;
+}
+.immersiveApp.immersiveApp button:hover {
+  border-color: var(--accent) !important;
+  box-shadow: 0 6px 18px #27491720, inset 0 1px 0 #fff;
+}
+.immersiveApp.immersiveApp button:focus-visible {
+  outline: 3px solid var(--accent) !important;
+  outline-offset: 3px;
+}
+.immersiveApp.immersiveApp button:is([aria-pressed="true"], .selected, .active) {
+  background: linear-gradient(145deg, #fff, var(--tint) 45%, var(--glow)) !important;
+  border: 2px solid var(--accent) !important;
+  box-shadow: 0 4px 12px #27491715, inset 0 1px 0 #fff;
+}
+.immersiveApp.immersiveApp :is(.primaryAction, .sceneWelcome button, .fridgeAdd button, .designedPlanFoot > button, .scannerActions button) {
+  --accent: #0b9e31; --tint: #e8ffd1; --glow: #84df38;
+  background: linear-gradient(150deg, #faffee, #dfffbb) !important;
+  border-color: #54c438 !important;
+  box-shadow: 0 4px 14px #43bd2b22, inset 0 2px 0 #fff;
+}
+
+/* Home: eight individually coloured, glossy symbols on light rounded bubbles. */
+.immersiveApp .homeButtons { background: linear-gradient(140deg, #ffffe7, #edffd9 48%, #f5fff1); }
+.immersiveApp .homeBubble-0 { --accent: #0aaa32 !important; --tint: #eeffdc !important; --glow: #a1df55 !important; }
+.immersiveApp .homeBubble-1 { --accent: #9717e4 !important; --tint: #f7eaff !important; --glow: #d19af4 !important; }
+.immersiveApp .homeBubble-2 { --accent: #e79700 !important; --tint: #fff6d8 !important; --glow: #ffcc43 !important; }
+.immersiveApp .homeBubble-3 { --accent: #09aa36 !important; --tint: #edffde !important; --glow: #a1e148 !important; }
+.immersiveApp .homeBubble-4 { --accent: #ef0a82 !important; --tint: #ffedf5 !important; --glow: #ff9dce !important; }
+.immersiveApp .homeBubble-5 { --accent: #e79800 !important; --tint: #fff8dc !important; --glow: #ffda56 !important; }
+.immersiveApp .homeBubble-6 { --accent: #ed165e !important; --tint: #fff0f4 !important; --glow: #ff9fb9 !important; }
+.immersiveApp .homeBubble-7 { --accent: #34b918 !important; --tint: #f4ffda !important; --glow: #afe63d !important; }
+.immersiveApp .homeBubble .bubbleSymbol {
+  background: radial-gradient(circle at 30% 20%, #fff 10%, var(--tint) 55%, var(--glow)) !important;
+  border: 1px solid #fff;
+  box-shadow: 0 3px 6px #3d582617, inset 0 1px 0 #fff;
+}
+.immersiveApp .bubbleSymbol .illustratedSymbol { filter: drop-shadow(0 2px 1px #3f34592b); }
+.immersiveApp .sceneWelcome { border-color: #ed80bb; background: linear-gradient(135deg, #fff, #fff5fa); box-shadow: 0 5px 20px #ea268719; }
+.immersiveApp .homeMotto { background: #fffff7; border: 1px solid #f0d760; border-radius: 16px; padding: 10px; }
+
+/* Main headers use the green / fuchsia ribbons of the reference screens. */
+.immersiveApp .sceneHeadline { background: linear-gradient(125deg, #faffec, #fffff5); }
+.immersiveApp .sceneHeadline small {
+  display: inline-block; padding: 6px 13px; border-radius: 0 0 13px 13px;
+  background: linear-gradient(130deg, #1bcc42, #079c32);
+  color: #fff; -webkit-text-fill-color: #fff;
+  box-shadow: 0 3px 8px #4cad2624;
+}
+.immersiveApp :is(.homeScene, .designedProgress, .moduleBanner) .sceneHeadline small {
+  background: linear-gradient(130deg, #ff369a, #eb0879);
+  box-shadow: 0 3px 8px #e3197e24;
+}
+.immersiveApp .screenActions { border-color: #c7dc67; background: linear-gradient(145deg, #fffef0, #f3ffdf); }
+.immersiveApp.immersiveApp .featureGrid .featureCard {
+  background: linear-gradient(150deg, #fff 30%, var(--tint)) !important;
+  border: 1.5px solid var(--glow) !important;
+  box-shadow: 0 4px 12px #31521e0f, inset 0 1px 0 #fff !important;
+}
+.immersiveApp.immersiveApp .featureGrid .featureCard:hover { border-color: var(--accent) !important; }
+.immersiveApp :is(.goal, .planDay, .recipeIdea, .dietPick, .fridgeIdeaGrid article, .dashboardCards article, .metricCards article, .bridgeStats article, .shoppingRow, .designedMeal) {
+  border-color: var(--glow) !important;
+  background: linear-gradient(145deg, #fff 40%, var(--tint)) !important;
+  box-shadow: 0 3px 12px #3b542b0c;
+}
+.immersiveApp .designedMeal .addMealBubble { color: #10170f !important; background: linear-gradient(150deg, #faffee, #cbffa6) !important; border-color: #6bc738 !important; }
+.immersiveApp .designedMetricGrid .designedMetric { border-color: var(--metric-color) !important; }
+.immersiveApp .progressEncouragement { background: linear-gradient(135deg, #fffddc, #fff4a7); border-color: #efd037; }
+.immersiveApp .dietPickVisual { background: linear-gradient(150deg, #fff, var(--tint) 55%, var(--glow)); }
+.immersiveApp .healthAreaGrid button { background: linear-gradient(150deg, #fff 55%, var(--tint)) !important; }
+.immersiveApp .designedActivityChoices button > span {
+  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 15px;
+  background: radial-gradient(circle at 30% 15%, #fff, var(--tint) 55%, var(--glow));
+  box-shadow: 0 2px 6px #3a473616;
+}
+.immersiveApp .recipeFavorite { --accent: #ed1479 !important; --tint: #fff0f6 !important; --glow: #ff9ccb !important; }
+.immersiveApp .photoCode { background: linear-gradient(150deg, #fff, #ebf6ff); border-color: #78b8f4; }
+.immersiveApp.immersiveApp .shoppingRow > button:first-child { background: transparent !important; border: 0 !important; box-shadow: none; }
+
+/* Fixed footer: coloured icons, light buttons and an unmistakable active tab. */
+.immersiveApp > nav {
+  background: #fffffff7;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, #27d438, #b951ed, #ffbd15, #33beea, #fc388b) 1;
+  box-shadow: 0 -5px 22px #b0d66d24 !important;
+}
+.immersiveApp.immersiveApp > nav > button:nth-of-type(2) { --accent: #089d32; --tint: #edffdf; --glow: #9bdf4d; }
+.immersiveApp.immersiveApp > nav > button:nth-of-type(3) { --accent: #9632db; --tint: #f6ecff; --glow: #d5a6f6; }
+.immersiveApp.immersiveApp > nav > button:nth-of-type(4) { --accent: #d69400; --tint: #fff7de; --glow: #f6d34f; }
+.immersiveApp.immersiveApp > nav > button:nth-of-type(5) { --accent: #168fcf; --tint: #e9faff; --glow: #8bdbf5; }
+.immersiveApp.immersiveApp > nav > button:nth-of-type(6) { --accent: #ec197b; --tint: #fff0f7; --glow: #ffa3d0; }
+.immersiveApp.immersiveApp > nav button {
+  width: 100% !important; max-width: 160px; min-width: 0;
+  background: linear-gradient(150deg, #fff, var(--tint)) !important;
+  border: 1px solid var(--glow) !important;
+  box-shadow: none !important;
+}
+.immersiveApp.immersiveApp > nav button.active {
+  background: linear-gradient(150deg, #fff, var(--tint) 45%, var(--glow)) !important;
+  border: 2px solid var(--accent) !important;
+  box-shadow: 0 2px 8px #2f463112 !important;
+  transform: none;
+}
+.immersiveApp.immersiveApp > nav button::before { display: none; }
+.immersiveApp.immersiveApp > nav button > span,
+.immersiveApp.immersiveApp > nav button > span .lineSymbol {
+  color: var(--accent) !important;
+  -webkit-text-fill-color: var(--accent) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.immersiveApp > nav button b { color: #10170f !important; -webkit-text-fill-color: #10170f !important; }
+@media (prefers-reduced-motion: reduce) {
+  .immersiveApp.immersiveApp button { transition: none; }
+}
+
+.immersiveApp .natureActions { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 18px 24px; padding: 20px; background: linear-gradient(135deg, #fffff3, #ecffde) !important; border-color: #90ce48 !important; }
+.immersiveApp .natureActions .naturePhoto { grid-column: 1; grid-row: 1/5; width: 100%; height: auto; border-radius: 22px; display: block; }
+.immersiveApp .natureActions > :not(.naturePhoto) { grid-column: 2; }
+.immersiveApp .natureActions .natureButtons { align-self: start; }
+.immersiveApp .natureActions::after { display: none; }
+@media(max-width:760px) {
+ .immersiveApp .natureActions { display: flex; flex-direction: column; margin: 14px 12px; padding: 12px; gap: 14px; }
+ .immersiveApp .natureActions .naturePhoto { border-radius: 17px; }
+}
+
+.immersiveApp.immersiveApp > nav button > span .lineSymbol * { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; stroke: var(--accent) !important; }
+.immersiveApp > header .avatar .lineSymbol { width: 22px; height: 22px; display: block; margin: auto; color: #e9187f; }

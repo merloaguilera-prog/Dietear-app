@@ -1,13 +1,17 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import SelectedArtwork from "./SelectedArtwork";
 import { datesForWeek, MEAL_FIELDS, WEEK_DAYS } from "../lib/week-plan";
 import { recipes } from "../lib/recipes";
 
 const root = "/dietear-visuals/";
-export function AppSymbol({ name }) {
+export function AppSymbol({ name, illustrated = false }) {
+  const id=useId();
+  const colors={"Alimentación":["#8ef43f","#09a936"],"Ejercicio":["#ec90ff","#9017ee"],"Mi Plan":["#ffe75a","#ff8d00"],"Mi Progreso":["#6cff89","#05aa40"],"Mi Compra":["#ff78bf","#eb006d"],"Mi Nevera":["#ffe34a","#ef9d00"],"Salud":["#ff72aa","#ed0b55"],"Objetivos":["#b0f72c","#11ae3f"]}[name]||["#7fdcff","#1475e7"];
   const shapes = {
+    "Perfil": <><circle cx="16" cy="9" r="6"/><path d="M5 29v-4a11 11 0 0 1 22 0v4H5Z"/></>,
+    "Inicio": <><path d="m3 14 13-11 13 11M7 12v17h18V12M13 29V18h6v11"/></>,
     "Alimentación": <><path d="M4 13h24c-1 10-6 14-12 14S5 23 4 13Z"/><path d="M10 13c-6-7-3-11 3-5M18 13c-2-8 2-13 6-8M15 13V4"/></>,
     "Ejercicio": <><circle cx="20" cy="5" r="3"/><path d="m16 11 5 3 5-2M17 10l-5 9 6 3-3 8M12 19l-7 8M15 12l-6 1-4 5"/></>,
     "Mi Plan": <><rect x="4" y="7" width="24" height="22" rx="4"/><path d="M4 14h24M10 3v8M22 3v8M11 20h2M19 20h2M11 25h2M19 25h2"/></>,
@@ -17,7 +21,11 @@ export function AppSymbol({ name }) {
     "Salud": <path d="M16 28 4 16C-4 4 10-3 16 8 22-3 36 4 28 16L16 28Z"/>,
     "Objetivos": <><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="7"/><path d="m16 16 12-12M24 4h4v4"/></>
   };
-  return <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{shapes[name] || shapes["Salud"]}</svg>;
+  return <svg className={illustrated?"illustratedSymbol":"lineSymbol"} viewBox="0 0 32 32" fill={illustrated?`url(#${id})`:"none"} stroke={illustrated?colors[1]:"currentColor"} strokeWidth={illustrated?1.5:2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {illustrated&&<defs><linearGradient id={id} x1="0" y1="0" x2="1" y2="1"><stop stopColor={colors[0]}/><stop offset=".45" stopColor={colors[1]}/><stop offset="1" stopColor={colors[0]}/></linearGradient></defs>}
+    {shapes[name] || shapes["Salud"]}
+    {illustrated&&<path d="M8 6C12 3 16 3 19 5" fill="none" stroke="#fff" strokeOpacity=".6" strokeWidth="2"/>}
+  </svg>;
 }
 
 export function DesignedHome({ profile, links, onOpen }) {
@@ -28,7 +36,7 @@ export function DesignedHome({ profile, links, onOpen }) {
       <div className="sceneWelcome"><h2>Hola{profile.name ? ", "+profile.name.split(" ")[0] : ""} ♡</h2><p>Pequeños cambios, grandes resultados. Tu bienestar empieza hoy.</p><button onClick={()=>onOpen("alimentacion","Crear mi dieta")}>Comenzar ahora →</button></div>
     </div>
     <div className="homeButtons" aria-label="Accesos principales de DIETEAR">
-      {links.map((item,i)=><button className={"homeBubble homeBubble-"+i} key={item[0]} onClick={()=>onOpen(item[2],item[3])}><span className="bubbleSymbol"><AppSymbol name={item[0]}/></span><b>{item[0]}</b><small>{item[1]}</small></button>)}
+      {links.map((item,i)=><button className={"homeBubble homeBubble-"+i} key={item[0]} onClick={()=>onOpen(item[2],item[3])}><span className="bubbleSymbol"><AppSymbol name={item[0]} illustrated/></span><b>{item[0]}</b><small>{item[1]}</small></button>)}
       <p className="homeMotto">🌿 Una vida más sana está en tus manos.</p>
     </div>
   </section>;
