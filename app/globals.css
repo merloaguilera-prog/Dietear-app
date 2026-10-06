@@ -1089,3 +1089,34 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
  .featureGrid-alimentacion .featureCard:nth-child(4n+1),.featureGrid-progreso .featureCard:nth-child(3n){grid-column:span 2}
  .featureGrid-alimentacion .featureCard:nth-child(4n+1)>.featureArtwork,.featureGrid-progreso .featureCard:nth-child(3n)>.featureArtwork{height:125px!important}
 }
+
+/* 2026-10-06 · ajuste móvil validado con capturas reales: Salud y áreas */
+@media(max-width:600px){
+  .healthAreas{margin:10px 0 18px;padding:10px;border-radius:18px}
+  .organIntro{padding:12px 14px!important;border-width:2px!important;border-radius:18px!important}
+  .organIntro h3{font-size:1.45rem!important;line-height:1.12;margin:4px 0 8px}
+  .organIntro p{font-size:.92rem!important;line-height:1.3;margin:0}
+  .organGroups{display:grid;gap:12px}
+  .organGroup{padding:10px!important;border-width:2px!important;border-radius:20px!important}
+  .organGroup h4{font-size:1.35rem!important;line-height:1.15;margin:2px 2px 10px!important}
+  .healthAreaGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:8px 0}
+  .organCard{border-width:2px!important;border-radius:18px!important;overflow:hidden;box-shadow:0 5px 10px rgba(39,82,55,.08)!important}
+  .healthAreaGrid .organCard>button{padding:8px 7px 7px!important;border:0!important;border-radius:0!important;min-height:0!important}
+  .healthAreaGrid .selectedArtwork,.healthAreaGrid .organSymbol{width:100%!important;height:82px!important;min-height:82px!important;margin:0 auto 7px!important;border-radius:14px!important;overflow:hidden}
+  .healthAreaGrid .selectedArtwork img{width:100%!important;height:100%!important;object-fit:cover!important}
+  .healthAreaGrid .organSymbol svg{width:74px!important;height:74px!important;max-height:74px!important}
+  .healthAreaGrid b{font-size:.96rem!important;line-height:1.12;margin:5px 0 4px!important}
+  .healthAreaGrid small{font-size:.76rem!important;line-height:1.15}
+  .organCheck{display:flex!important;align-items:center!important;gap:7px!important;min-height:42px!important;padding:6px 8px!important;font-size:.76rem!important;line-height:1.1}
+  .organCheck input{width:22px!important;height:22px!important;min-width:22px!important;margin:0!important}
+  .organCheck span{font-size:.76rem!important}
+}
+@media(max-width:430px){
+  .healthAreas{padding:8px}
+  .organGroup{padding:8px!important}
+  .healthAreaGrid{gap:7px}
+  .healthAreaGrid .selectedArtwork,.healthAreaGrid .organSymbol{height:72px!important;min-height:72px!important}
+  .healthAreaGrid .organSymbol svg{width:64px!important;height:64px!important}
+  .healthAreaGrid b{font-size:.9rem!important}
+  .organCheck{padding:5px 6px!important}
+}
