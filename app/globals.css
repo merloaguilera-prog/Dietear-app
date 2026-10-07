@@ -1132,3 +1132,7 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
  .designedMeal .mealPhoto{width:92px;height:68px;border-radius:15px}
  .progressEncouragement .progressEncouragementPhoto{width:42%;height:112px;border-radius:18px}
 }
+/* 2026-10-07 · inicio: accesos visuales con fotografía, no iconos grandes */
+.homeBubble .homeBubblePhoto{width:100%;height:112px;object-fit:cover;border-radius:20px;display:block;margin:0 0 9px;box-shadow:0 6px 14px rgba(39,82,55,.10)}
+.homeBubble{overflow:hidden}
+@media(max-width:600px){.homeBubble .homeBubblePhoto{height:88px;border-radius:16px;margin-bottom:7px}}
