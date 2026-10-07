@@ -114,7 +114,13 @@ export function DesignedModuleBanner({ section }) {
 }
 
 export function DesignedActivityChoices({ onChoose, onProfile, onAsk }) {
-  return <div className="designedActivityChoices">{[["👟","Caminatas","Caminar"],["🏋️","Fuerza","Fuerza"],["🧘","Yoga y movilidad","Yoga / movilidad"],["🏠","En casa","Fuerza"]].map(([icon,label,kind])=><button key={label} onClick={()=>onChoose(kind)}><span>{icon}</span><b>{label}</b></button>)}<button onClick={onProfile}><span>👥</span><b>Según mi edad</b></button><button onClick={onAsk}><span>📋</span><b>Mi rutina</b></button></div>;
+  const choices=[
+    ["Caminatas","Caminar","hd-ejercicio.png"],
+    ["Fuerza","Fuerza","hd-fit.png"],
+    ["Yoga y movilidad","Yoga / movilidad","inicio-completo.png"],
+    ["En casa","Fuerza","hd-inicio.png"]
+  ];
+  return <div className="designedActivityChoices">{choices.map(([label,kind,file])=><button key={label} onClick={()=>onChoose(kind)}><Image className="activityChoicePhoto" src={root+file} alt="" width={720} height={420} sizes="(max-width:650px) 30vw, 180px"/><b>{label}</b></button>)}<button onClick={onProfile}><Image className="activityChoicePhoto" src={root+"visual-family.png"} alt="" width={720} height={420} sizes="(max-width:650px) 30vw, 180px"/><b>Según mi edad</b></button><button onClick={onAsk}><Image className="activityChoicePhoto" src={root+"hd-ejercicio.png"} alt="" width={720} height={420} sizes="(max-width:650px) 30vw, 180px"/><b>Mi rutina</b></button></div>;
 }
 
 const featurePhotos = {
