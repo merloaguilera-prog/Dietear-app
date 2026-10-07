@@ -37,7 +37,7 @@ export function DesignedHome({ profile, links, onOpen }) {
       <div className="sceneWelcome"><h2>Hola{profile.name ? ", "+profile.name.split(" ")[0] : ""} ♡</h2><p>Pequeños cambios, grandes resultados. Tu bienestar empieza hoy.</p><button onClick={()=>onOpen("alimentacion","Crear mi dieta")}>Comenzar ahora →</button></div>
     </div>
     <div className="homeButtons" aria-label="Accesos principales de DIETEAR">
-      {links.map((item,i)=><button className={"homeBubble homeBubble-"+i} key={item[0]} onClick={()=>onOpen(item[2],item[3])}><span className="bubbleSymbol"><AppSymbol name={item[0]} illustrated/></span><b>{item[0]}</b><small>{item[1]}</small></button>)}
+      {links.map((item,i)=>{const homePhotos={"Alimentación":"hd-alimentacion.png","Ejercicio":"hd-ejercicio.png","Mi Plan":"hd-complete.png","Mi Progreso":"inicio-completo.png","Mi Compra":"hd-budget.png","Mi Nevera":"hd-nevera.png","Salud":"hd-fit.png","Objetivos":"hd-inicio.png"};return <button className={"homeBubble homeBubble-"+i} key={item[0]} onClick={()=>onOpen(item[2],item[3])}><Image className="homeBubblePhoto" src={root+homePhotos[item[0]]} alt="" width={480} height={300} sizes="(max-width:650px) 42vw, 220px"/><b>{item[0]}</b><small>{item[1]}</small></button>})}
       <p className="homeMotto">🌿 Una vida más sana está en tus manos.</p>
     </div>
   </section>;
