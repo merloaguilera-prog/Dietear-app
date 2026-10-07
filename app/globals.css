@@ -1136,3 +1136,6 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
 .homeBubble .homeBubblePhoto{width:100%;height:112px;object-fit:cover;border-radius:20px;display:block;margin:0 0 9px;box-shadow:0 6px 14px rgba(39,82,55,.10)}
 .homeBubble{overflow:hidden}
 @media(max-width:600px){.homeBubble .homeBubblePhoto{height:88px;border-radius:16px;margin-bottom:7px}}
+/* 2026-10-07 · selector de recetas: fotografía de comida en lugar de símbolo */
+.mealChooserList .mealChooserPhoto{width:82px;height:64px;object-fit:cover;border-radius:14px;flex:0 0 auto;box-shadow:0 4px 10px rgba(39,82,55,.10)}
+@media(max-width:600px){.mealChooserList .mealChooserPhoto{width:72px;height:58px;border-radius:12px}}
