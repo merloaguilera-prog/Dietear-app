@@ -1176,3 +1176,6 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
 /* 2026-10-07 · Mi Compra: ayudas con fotografía */
 .shoppingMiniCards .shoppingMiniPhoto{width:64px;height:54px;object-fit:cover;border-radius:13px;grid-row:1/3;filter:brightness(1.1) saturate(1.05);box-shadow:0 4px 10px rgba(39,82,55,.08)}
 @media(max-width:600px){.shoppingMiniCards .shoppingMiniPhoto{width:58px;height:50px;border-radius:11px}}
+/* 2026-10-07 · cabeceras secundarias sin emojis protagonistas */
+.sectionMiniPhoto{width:58px;height:48px;object-fit:cover;border-radius:13px;flex:0 0 auto;filter:brightness(1.1) saturate(1.05);box-shadow:0 4px 10px rgba(39,82,55,.08)}
+@media(max-width:600px){.sectionMiniPhoto{width:52px;height:44px;border-radius:11px}}
