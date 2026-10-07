@@ -1179,3 +1179,5 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
 /* 2026-10-07 · cabeceras secundarias sin emojis protagonistas */
 .sectionMiniPhoto{width:58px;height:48px;object-fit:cover;border-radius:13px;flex:0 0 auto;filter:brightness(1.1) saturate(1.05);box-shadow:0 4px 10px rgba(39,82,55,.08)}
 @media(max-width:600px){.sectionMiniPhoto{width:52px;height:44px;border-radius:11px}}
+/* 2026-10-07 · últimos iconos protagonistas */
+.inlineMiniPhoto{width:42px;height:38px;object-fit:cover;border-radius:10px;flex:0 0 auto;filter:brightness(1.1) saturate(1.04)}
