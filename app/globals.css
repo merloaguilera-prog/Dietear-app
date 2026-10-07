@@ -1159,3 +1159,6 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
 .dietPick.gold{background:#fffdf8!important;border-color:#f0c86c!important}.dietPick.teal{background:#f8ffff!important;border-color:#7bd8d0!important}.dietPick.rose{background:#fff9fb!important;border-color:#ff9eb4!important}
 .dietPickVisual{background:linear-gradient(135deg,#fff,#f7fff5)!important}
 .dietPickVisual .dietChoiceArtwork{height:94px;margin:0;flex:1}
+/* 2026-10-07 · Cuida de ti: miniaturas visuales en lugar de emojis */
+.careGrid .careCardPhoto{width:72px;height:58px;object-fit:cover;border-radius:14px;box-shadow:0 4px 10px rgba(39,82,55,.10);flex:0 0 auto}
+@media(max-width:600px){.careGrid .careCardPhoto{width:62px;height:52px;border-radius:12px}}
