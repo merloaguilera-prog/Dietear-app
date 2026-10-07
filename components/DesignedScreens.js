@@ -171,9 +171,9 @@ export function DesignedFeatureArtwork({ name }) {
 
 const dietPhotos={
   "Equilibrada":"hd-complete.png", "Mediterránea":"hd-complete.png", "Vegana":"hd-chickpea.png",
-  "Vegetariana":"visual-vegetarian.png", "Sin gluten":"visual-gluten.png", "Sin lactosa":"visual-milk.png",
-  "Hiposódica":"visual-low-salt.png", "Musulmana / Halal":"visual-mosque-real.jpg",
-  "Ayuno intermitente":"visual-agenda.png", "Ganar músculo":"hd-ejercicio.png", "Ganancia muscular":"hd-ejercicio.png",
+  "Vegetariana":"hd-chickpea.png", "Sin gluten":"visual-gluten.png", "Sin lactosa":"visual-milk.png",
+  "Hiposódica":"hd-complete.png", "Musulmana / Halal":"visual-mosque-real.jpg",
+  "Ayuno intermitente":"hd-complete.png", "Ganar músculo":"hd-ejercicio.png", "Ganancia muscular":"hd-ejercicio.png",
   "Rica en fibra":"hd-chickpea.png", "Sin azúcar añadido":"hd-tropical.png", "Sin alimento X":"hd-fit.png"
 };
 export function DesignedDietArtwork({name}){
