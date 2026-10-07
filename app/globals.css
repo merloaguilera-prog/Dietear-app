@@ -1165,3 +1165,6 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
 /* 2026-10-07 · Tendencias: imagen visual clara en lugar de emoji */
 .trendCards .trendCardPhoto{width:72px;height:58px;object-fit:cover;border-radius:14px;box-shadow:0 4px 10px rgba(39,82,55,.09);flex:0 0 auto;filter:brightness(1.08) saturate(1.05)}
 @media(max-width:600px){.trendCards .trendCardPhoto{width:62px;height:52px;border-radius:12px}}
+/* 2026-10-07 · bienestar diario: acciones con imagen clara */
+.natureButtons .natureActionPhoto{width:70px;height:56px;object-fit:cover;border-radius:14px;box-shadow:0 4px 10px rgba(39,82,55,.09);filter:brightness(1.1) saturate(1.05)}
+@media(max-width:600px){.natureButtons .natureActionPhoto{width:60px;height:50px;border-radius:12px}}
