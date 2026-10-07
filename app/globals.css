@@ -1188,3 +1188,32 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
 .featureGrid-alimentacion .featureCard>b{grid-column:1!important;grid-row:2!important;font-size:16px!important;line-height:1.2!important}
 .featureGrid-alimentacion .featureCard>p{grid-column:1!important;grid-row:3!important;padding:0!important;font-size:13px!important;line-height:1.35!important}
 @media(max-width:600px){.featureGrid-alimentacion{gap:10px!important}.featureGrid-alimentacion .featureCard,.featureGrid-alimentacion .featureCard:nth-child(4n+1){min-height:205px!important;padding:10px!important;grid-template-rows:102px auto 1fr!important}.featureGrid-alimentacion .featureCard>.featureArtwork,.featureGrid-alimentacion .featureCard:nth-child(4n+1)>.featureArtwork{height:102px!important;border-radius:14px!important}.featureGrid-alimentacion .featureCard>b{font-size:15px!important}.featureGrid-alimentacion .featureCard>p{font-size:12px!important}}
+
+/* 2026-10-07 · cierre responsive: evita desbordes y mejora tacto en móvil */
+html,body{max-width:100%;overflow-x:hidden}
+img,svg{max-width:100%}
+button,input,select,textarea{max-width:100%}
+@media(max-width:600px){
+  .page,.designPage{width:100%;max-width:100%;overflow-x:clip}
+  .connectedModule,.realModule,.dietBuilder,.shoppingStudio,.planner,.progressReal,.profileStudio{max-width:100%;min-width:0}
+  .featureGrid,.homeAccessGrid,.dietVisualGrid,.createDietForm,.profileForm{min-width:0}
+  .featureCard,.homeAccessCard,.dietVisualGrid button{min-width:0}
+  .planActions,.branchActions{max-width:100%;flex-wrap:wrap}
+  .planActions button,.branchActions button{min-height:48px}
+  input,select,textarea{width:100%;min-width:0;font-size:16px}
+  .moduleTop{flex-wrap:wrap}
+  .moduleTop button{min-height:44px}
+  .toast{max-width:calc(100vw - 24px);text-align:center}
+  nav{max-width:100vw;overflow:hidden}
+}
+@media(max-width:430px){
+  .featureGrid,.homeAccessGrid,.dietVisualGrid.createDietChoices{grid-template-columns:1fr!important}
+  .featureGrid-alimentacion .featureCard,.featureGrid-alimentacion .featureCard:nth-child(4n+1),.featureGrid-progreso .featureCard:nth-child(3n){grid-column:auto!important}
+  .featureCard{min-height:0!important}
+  .featureGrid .featureCard>.featureArtwork{height:120px!important}
+  .dietVisualGrid button{min-height:0}
+  .shoppingHero,.createDietHero,.quickRecipesHero{flex-direction:column}
+  .shoppingHero .shoppingHeroPhoto,.createDietHero .insideHeroPhoto,.insideVisualHero .insideHeroPhoto{width:100%;height:150px}
+  .weekNavigator{gap:5px;flex-wrap:wrap}
+  .weekNavigator b{min-width:0;flex:1 1 150px}
+}
