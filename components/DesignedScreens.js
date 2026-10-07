@@ -166,7 +166,7 @@ const featurePhotos = {
 export function hasDesignedFeaturePhoto(name) { return Boolean(featurePhotos[name]); }
 export function DesignedFeatureArtwork({ name }) {
   const file = featurePhotos[name];
-  return file ? <Image className="featureArtwork featurePhoto" src={root+file} alt="" width={file==="inicio-completo.png"?1228:1672} height={file.startsWith("visual-")?1672:file==="inicio-completo.png"?1281:941} sizes="(max-width:650px) 45vw, 20vw"/> : null;
+  return file ? <Image className={"featureArtwork featurePhoto "+(name==="Hidratación"?"featureArtworkCompact":"")} src={root+file} alt="" width={file==="inicio-completo.png"?1228:1672} height={file.startsWith("visual-")?1672:file==="inicio-completo.png"?1281:941} sizes="(max-width:650px) 45vw, 20vw"/> : null;
 }
 
 const dietPhotos={
