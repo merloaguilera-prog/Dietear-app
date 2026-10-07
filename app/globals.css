@@ -1217,3 +1217,20 @@ button,input,select,textarea{max-width:100%}
   .weekNavigator{gap:5px;flex-wrap:wrap}
   .weekNavigator b{min-width:0;flex:1 1 150px}
 }
+
+/* 2026-10-07 · estabilización visual móvil: una sola geometría para fotos de tarjetas */
+.featureArtwork{display:block!important;position:relative!important;overflow:hidden!important;background:#eef5ed!important}
+.featureArtwork>img,.featureArtwork img,.featurePhoto{display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center!important}
+@media(max-width:600px){
+  .featureGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .featureGrid .featureCard,.featureGrid .featureCard:nth-child(n){grid-column:span 1!important;transform:none!important;min-height:198px!important;padding:9px!important;grid-template-columns:1fr!important;grid-template-rows:104px auto 1fr!important;row-gap:7px!important;border-radius:18px!important}
+  .featureGrid .featureCard>.featureArtwork,.featureGrid .featureCard:nth-child(n)>.featureArtwork{grid-column:1!important;grid-row:1!important;width:100%!important;height:104px!important;min-height:104px!important;margin:0!important;border-radius:14px!important}
+  .featureGrid .featureCard>b{grid-column:1!important;grid-row:2!important;font-size:15px!important;line-height:1.18!important;margin:0!important}
+  .featureGrid .featureCard>p{grid-column:1!important;grid-row:3!important;font-size:12px!important;line-height:1.3!important;margin:0!important;padding:0!important}
+}
+@media(max-width:430px){
+  .featureGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .featureGrid .featureCard,.featureGrid .featureCard:nth-child(n){grid-column:span 1!important;min-height:190px!important;grid-template-rows:98px auto 1fr!important}
+  .featureGrid .featureCard>.featureArtwork,.featureGrid .featureCard:nth-child(n)>.featureArtwork{height:98px!important;min-height:98px!important}
+}
+@media(max-width:350px){.featureGrid{grid-template-columns:1fr!important}}
