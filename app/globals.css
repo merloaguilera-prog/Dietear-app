@@ -1142,3 +1142,20 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
 /* 2026-10-07 · héroes interiores fotográficos */
 .createDietHero .insideHeroPhoto,.insideVisualHero .insideHeroPhoto,.shoppingHero .shoppingHeroPhoto{width:min(44%,300px);height:170px;object-fit:cover;border-radius:24px;box-shadow:0 8px 20px rgba(39,82,55,.13);flex:0 0 auto}
 @media(max-width:600px){.createDietHero .insideHeroPhoto,.insideVisualHero .insideHeroPhoto,.shoppingHero .shoppingHeroPhoto{width:42%;height:118px;border-radius:18px}}
+/* 2026-10-07 · dietas más luminosas: foto clara, fondo crema y bordes vivos */
+.dietVisualGrid button{background:linear-gradient(150deg,#fff,#fbfff8)!important;box-shadow:0 5px 14px rgba(42,91,53,.07)}
+.dietVisualGrid button:nth-child(4n+1){border-color:#63d98a!important;background:linear-gradient(150deg,#fff,#f2fff5)!important}
+.dietVisualGrid button:nth-child(4n+2){border-color:#7dc7ff!important;background:linear-gradient(150deg,#fff,#f4fbff)!important}
+.dietVisualGrid button:nth-child(4n+3){border-color:#ffb060!important;background:linear-gradient(150deg,#fff,#fff8f1)!important}
+.dietVisualGrid button:nth-child(4n){border-color:#c5a0ff!important;background:linear-gradient(150deg,#fff,#faf6ff)!important}
+.dietChoiceArtwork{background:#fff!important;box-shadow:none!important}
+.dietChoiceArtwork img{filter:brightness(1.12) saturate(1.08);object-fit:cover}
+.dietVisualGrid button>b{color:#17345f!important}
+.dietVisualGrid button>small{color:#425873!important}
+.dietVisualGrid button.selected{background:#f0fff3!important;border-color:#28a956!important;box-shadow:0 0 0 4px rgba(40,169,86,.12)!important}
+.dietVisualGrid button.selected b{color:#145f32!important;-webkit-text-fill-color:#145f32!important}
+.dietVisualGrid button.selected small{color:#315b45!important;-webkit-text-fill-color:#315b45!important}
+.dietPick{background:#fff!important;border-color:#b8dfc0!important}
+.dietPick.gold{background:#fffdf8!important;border-color:#f0c86c!important}.dietPick.teal{background:#f8ffff!important;border-color:#7bd8d0!important}.dietPick.rose{background:#fff9fb!important;border-color:#ff9eb4!important}
+.dietPickVisual{background:linear-gradient(135deg,#fff,#f7fff5)!important}
+.dietPickVisual .dietChoiceArtwork{height:94px;margin:0;flex:1}
