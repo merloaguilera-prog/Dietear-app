@@ -1120,3 +1120,8 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
   .healthAreaGrid b{font-size:.9rem!important}
   .organCheck{padding:5px 6px!important}
 }
+/* 2026-10-07 · actividad: sustituir emojis por imágenes protagonistas */
+.designedActivityChoices .activityChoicePhoto{width:100%;height:92px;object-fit:cover;border-radius:18px;display:block;margin:0 0 8px}
+.designedActivityChoices button{overflow:hidden;padding:8px!important}
+.designedActivityChoices button b{display:block;line-height:1.15}
+@media(max-width:600px){.designedActivityChoices .activityChoicePhoto{height:76px}.designedActivityChoices button{min-height:122px!important}}
