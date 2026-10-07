@@ -1139,3 +1139,6 @@ button:disabled{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
 /* 2026-10-07 · selector de recetas: fotografía de comida en lugar de símbolo */
 .mealChooserList .mealChooserPhoto{width:82px;height:64px;object-fit:cover;border-radius:14px;flex:0 0 auto;box-shadow:0 4px 10px rgba(39,82,55,.10)}
 @media(max-width:600px){.mealChooserList .mealChooserPhoto{width:72px;height:58px;border-radius:12px}}
+/* 2026-10-07 · héroes interiores fotográficos */
+.createDietHero .insideHeroPhoto,.insideVisualHero .insideHeroPhoto,.shoppingHero .shoppingHeroPhoto{width:min(44%,300px);height:170px;object-fit:cover;border-radius:24px;box-shadow:0 8px 20px rgba(39,82,55,.13);flex:0 0 auto}
+@media(max-width:600px){.createDietHero .insideHeroPhoto,.insideVisualHero .insideHeroPhoto,.shoppingHero .shoppingHeroPhoto{width:42%;height:118px;border-radius:18px}}
