@@ -137,11 +137,10 @@ const featurePhotos = {
   "Crear semana": "hd-chickpea.png",
   "Modificar plan": "hd-complete.png",
   "Personas": "visual-family.png",
-  "Día comodín": "visual-celebrate.png",
   "Copiar semana": "visual-agenda.png",
   "Generar compra": "hd-budget.png",
   "Fiestas y días especiales": "visual-celebrate.png",
-  "Trabajo y horarios": "visual-agenda.png",
+  "Trabajo y horarios": "work-schedule.webp",
   "Viajes y vacaciones": "inicio-completo.png",
   "Peso y medidas": "visual-weight.png",
   "Pasos y actividad": "hd-ejercicio.png",
@@ -163,7 +162,7 @@ const featurePhotos = {
   "Premium": "visual-premium.png",
   "Acceso profesional": "visual-professional.png",
 };
-const featureRecipePhotos = {"Comer bien con presupuesto": {name:"Lentejas con verduras",imageSheet:1,imageCell:4},"Recetas rápidas": {name:"Huevos con tomate",imageSheet:3,imageCell:1}};
+const featureRecipePhotos = {"Día comodín": {name:"Pasta integral con verduras",imageSheet:1,imageCell:5},"Comer bien con presupuesto": {name:"Lentejas con verduras",imageSheet:1,imageCell:4},"Recetas rápidas": {name:"Huevos con tomate",imageSheet:3,imageCell:1}};
 export function hasDesignedFeaturePhoto(name) { return Boolean(featurePhotos[name] || featureRecipePhotos[name]); }
 export function DesignedFeatureArtwork({ name }) {
   if(featureRecipePhotos[name]) return <div className="featureArtwork featurePhoto"><RecipePhoto recipe={featureRecipePhotos[name]}/></div>;
