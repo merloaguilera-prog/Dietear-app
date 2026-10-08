@@ -63,3 +63,4 @@
 .materialBtn:nth-child(4n+1){background:#fff0f8;border:2px solid #f65cab}.materialBtn:nth-child(4n+2){background:#eafaff;border:2px solid #00a3eb}.materialBtn:nth-child(4n+3){background:#eaffee;border:2px solid #0abe48}.materialBtn:nth-child(4n){background:#fff5df;border:2px solid #ff9400}
 .detail{border:3px solid #f65cab;background:linear-gradient(150deg,#fff,#fff0f8,#eafaff)}
 @media(max-width:550px){.cards{grid-template-columns:1fr}.card{padding:6px;border-radius:22px}.cardArt{border-radius:18px}.heroPhoto{max-height:none}.hero>small,.hero>h2,.hero>p{margin-left:16px;margin-right:16px}}
+.heroPhoto{max-height:none;object-fit:contain}

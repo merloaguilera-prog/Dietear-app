@@ -4,7 +4,9 @@ import Image from "next/image";
 import SelectedArtwork from "./SelectedArtwork";
 import { datesForWeek, MEAL_FIELDS, WEEK_DAYS } from "../lib/week-plan";
 import {matchesMeal,normalizeMealText} from "../lib/meal-options";
-import { recipes } from "../lib/recipes";
+import { recipes, recipeByName } from "../lib/recipes";
+import RecipePhoto from "./RecipePhoto";
+import { dietArtwork } from "../lib/diet-artwork";
 
 const root = "/dietear-visuals/";
 export function AppSymbol({ name, illustrated = false }) {
@@ -75,7 +77,7 @@ export function DesignedWeek({ planner, setPlanner, weekKey, changeWeek, setShop
       <button className="addMealBubble" aria-label={"Elegir receta para "+plain(label)} onClick={()=>{setRecipeSearch("");setShowAllMeals(false);setMealError("");setEditing(field)}}>+</button>
     </article>)}</div>
     <div className="designedPlanFoot"><div className="planPeople"><span>Personas</span><button aria-label="Una persona menos" onClick={()=>update("people",Math.max(1,(selected?.people||1)-1))}>−</button><b>{selected?.people||1}</b><button aria-label="Una persona más" onClick={()=>update("people",(selected?.people||1)+1)}>+</button></div><button onClick={onShopping}>🛒 Ver mi lista de la compra →</button><button onClick={onCreate}>✨ Crear mi semana</button></div>
-    {editing&&<dialog className="mealChooser" ref={dialog} onCancel={()=>setEditing(null)}><div className="mealChooserHead"><h2>Elige para {plain(MEAL_FIELDS.find(([field])=>field===editing)[1]).toLowerCase()}</h2><button aria-label="Cerrar recetas" onClick={()=>setEditing(null)}>×</button></div><form onSubmit={e=>{e.preventDefault();const name=recipeSearch.trim();if(!name)return;const exact=recipes.find(r=>normalizeMealText(r.name)===normalizeMealText(name));choose(exact?.name||name,exact?.ingredients)}}><label>Buscar receta o escribir mi comida<input aria-label="Buscar receta o escribir mi comida" autoFocus value={recipeSearch} onChange={e=>{setRecipeSearch(e.target.value);setMealError("")}} placeholder="Ej.: pan con aceite…"/></label><button disabled={!recipeSearch.trim()}>Añadir lo que he escrito →</button><p>Pulsa Intro para guardar lo escrito o elige una receta de la lista.</p></form><div className="mealChooserFilters"><button aria-pressed={!showAllMeals} onClick={()=>setShowAllMeals(false)}>Para esta comida</button><button aria-pressed={showAllMeals} onClick={()=>setShowAllMeals(true)}>Todas las opciones</button></div>{mealError&&<p role="alert">{mealError}</p>}<div className="mealChooserList">{available.filter(r=>matchesMeal(r,recipeSearch)).map((r,index)=><button key={r.id} onClick={()=>choose(r.name,r.ingredients)}><Image className="mealChooserPhoto" src={root+["hd-alimentacion.png","hd-chickpea.png","hd-complete.png","hd-tropical.png"][index%4]} alt="" width={320} height={220} sizes="88px"/><b>{r.name}</b><small>{r.minutes} min · {r.ingredients.slice(0,3).map(x=>x[0]).join(", ")}</small><i>＋</i></button>)}{!available.some(r=>matchesMeal(r,recipeSearch))&&<p>No hay coincidencias. Puedes añadir tu propia comida con el botón de arriba.</p>}</div></dialog>}
+    {editing&&<dialog className="mealChooser" ref={dialog} onCancel={()=>setEditing(null)}><div className="mealChooserHead"><h2>Elige para {plain(MEAL_FIELDS.find(([field])=>field===editing)[1]).toLowerCase()}</h2><button aria-label="Cerrar recetas" onClick={()=>setEditing(null)}>×</button></div><form onSubmit={e=>{e.preventDefault();const name=recipeSearch.trim();if(!name)return;const exact=recipes.find(r=>normalizeMealText(r.name)===normalizeMealText(name));choose(exact?.name||name,exact?.ingredients)}}><label>Buscar receta o escribir mi comida<input aria-label="Buscar receta o escribir mi comida" autoFocus value={recipeSearch} onChange={e=>{setRecipeSearch(e.target.value);setMealError("")}} placeholder="Ej.: pan con aceite…"/></label><button disabled={!recipeSearch.trim()}>Añadir lo que he escrito →</button><p>Pulsa Intro para guardar lo escrito o elige una receta de la lista.</p></form><div className="mealChooserFilters"><button aria-pressed={!showAllMeals} onClick={()=>setShowAllMeals(false)}>Para esta comida</button><button aria-pressed={showAllMeals} onClick={()=>setShowAllMeals(true)}>Todas las opciones</button></div>{mealError&&<p role="alert">{mealError}</p>}<div className="mealChooserList">{available.filter(r=>matchesMeal(r,recipeSearch)).map((r,index)=><button key={r.id} onClick={()=>choose(r.name,r.ingredients)}><span className="mealChooserPhoto"><RecipePhoto recipe={r}/></span><b>{r.name}</b><small>{r.minutes} min · {r.ingredients.slice(0,3).map(x=>x[0]).join(", ")}</small><i>＋</i></button>)}{!available.some(r=>matchesMeal(r,recipeSearch))&&<p>No hay coincidencias. Puedes añadir tu propia comida con el botón de arriba.</p>}</div></dialog>}
   </section>;
 }
 
@@ -169,15 +171,12 @@ export function DesignedFeatureArtwork({ name }) {
   return file ? <Image className={"featureArtwork featurePhoto "+(name==="Hidratación"?"featureArtworkCompact":"")} src={root+file} alt="" width={file==="inicio-completo.png"?1228:1672} height={file.startsWith("visual-")?1672:file==="inicio-completo.png"?1281:941} sizes="(max-width:650px) 45vw, 20vw"/> : null;
 }
 
-const dietPhotos={
-  "Equilibrada":"hd-complete.png", "Mediterránea":"hd-complete.png", "Vegana":"hd-chickpea.png",
-  "Vegetariana":"hd-chickpea.png", "Sin gluten":"visual-gluten.png", "Sin lactosa":"visual-milk.png",
-  "Hiposódica":"hd-complete.png", "Musulmana / Halal":"visual-mosque-real.jpg",
-  "Ayuno intermitente":"hd-complete.png", "Ganar músculo":"hd-ejercicio.png", "Ganancia muscular":"hd-ejercicio.png",
-  "Rica en fibra":"hd-chickpea.png", "Sin azúcar añadido":"hd-tropical.png", "Sin alimento X":"hd-fit.png"
-};
 export function DesignedDietArtwork({name}){
-  const file=dietPhotos[name]||"hd-complete.png",excluded=name==="Sin lactosa"||name==="Sin gluten";
-  return <span className={"dietChoiceArtwork dietPhoto "+(excluded?"excludedFood":"")} aria-hidden="true"><Image src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="(max-width:650px) 45vw, 25vw"/>{excluded&&<svg className="dietProhibition" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="39"/><path d="M23 23 77 77"/></svg>}</span>;
+  const artwork=dietArtwork[name],excluded=name==="Sin lactosa"||name==="Sin gluten";
+  if(!artwork)return null;
+  return <span className={"dietChoiceArtwork dietPhoto "+(excluded?"excludedFood":"")} data-diet-artwork={name}>
+    {typeof artwork==="string"?<Image src={root+artwork} alt={name} width={1254} height={1254} sizes="(max-width:650px) 45vw, 25vw"/>:<RecipePhoto recipe={{name,imageSheet:artwork[0],imageCell:artwork[1]}}/>}
+    {excluded&&<svg className="dietProhibition" viewBox="0 0 100 100" fill="none" aria-hidden="true"><circle cx="50" cy="50" r="39"/><path d="M23 23 77 77"/></svg>}
+  </span>;
 }
 export function DesignedFormArtwork({file}) {return <Image className="formArtwork" src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="90px"/>;}
