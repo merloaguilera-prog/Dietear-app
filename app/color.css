@@ -464,3 +464,17 @@
   .immersiveApp .moduleBanner > .scenePhoto{max-height:300px;}
   .immersiveApp .moduleBanner > .squareModulePhoto{width:min(100%,300px);}
 }
+
+.immersiveApp .appsHead > .formArtwork {
+  display:block;
+  flex:0 0 96px;
+  width:96px;
+  height:96px;
+  max-width:96px;
+  object-fit:contain;
+  border-radius:16px;
+}
+.immersiveApp .appsHead > div{min-width:0;flex:1;}
+@media(max-width:650px){
+  .immersiveApp .appsHead > .formArtwork{flex-basis:72px;width:72px;height:72px;max-width:72px;}
+}
