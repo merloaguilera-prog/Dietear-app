@@ -1,1 +1,1 @@
-export const stepsA=[["tai",[["Abrir los brazos","4 veces"]]]];
+export const stepsA=[["tai",[["Abrir los brazos","Abre los brazos despacio y vuelve a bajarlos.","4 veces","Hazlo sentada."],["Cambiar el peso","Cambia ligeramente el peso entre los pies.","4 veces","Con apoyo."]]]];
