@@ -46,3 +46,20 @@
 @media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.cardArt{height:130px}}
 @media(max-width:550px){.studio{gap:15px}.hero{padding:18px}.controls{grid-template-columns:1fr}.cards{gap:9px}.card{border-radius:18px;padding:6px}.cardArt{height:112px}.card b{font-size:14px}.card small{font-size:11px}.materialGrid{grid-template-columns:repeat(3,minmax(0,1fr))}.poseBox svg{height:145px}.detail{padding:12px}.detailHeader h3{font-size:22px}}
 @media(max-width:340px){.cards{grid-template-columns:1fr}.materialGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.poseGrid{grid-template-columns:1fr}}
+
+/* Original approved artwork and vivid category frames. */
+.hero{border:3px solid #f65cab;background:linear-gradient(115deg,#fff0f8,#f1fded,#eafaff);padding:0 0 22px}
+.heroPhoto{display:block;width:100%;height:auto;max-height:300px;object-fit:contain;background:#fff0f8}
+.hero>small,.hero>h2,.hero>p{display:block;margin-left:22px;margin-right:22px}
+.hero>small{margin-top:20px}
+.card{border:3px solid var(--card-accent,#00b76b);background:var(--card-tone,#eafff3);padding:5px;box-shadow:0 8px 20px #60305020}
+.cardArt{height:auto!important;background:transparent;border-radius:16px}
+.cardArt img{display:block;width:100%;height:auto;object-fit:contain}
+.card b{color:#183254;font-size:17px}.card small{color:#344863}.card em{color:#183254;background:#fff;border:2px solid var(--card-accent,#00b76b);padding:10px;border-radius:14px;text-align:center}
+.card[aria-pressed="true"]{border-color:var(--card-accent,#00b76b);box-shadow:0 0 0 4px #17345f25}
+.routineArtwork{overflow:hidden;border:3px solid #f65cab;border-radius:22px;background:#fff0f8;max-width:680px;width:100%;margin:auto}
+.routineArtwork img{width:100%;height:auto;object-fit:contain}
+.routineArtwork small{display:block;padding:10px 14px;color:#344863;line-height:1.4}
+.materialBtn:nth-child(4n+1){background:#fff0f8;border:2px solid #f65cab}.materialBtn:nth-child(4n+2){background:#eafaff;border:2px solid #00a3eb}.materialBtn:nth-child(4n+3){background:#eaffee;border:2px solid #0abe48}.materialBtn:nth-child(4n){background:#fff5df;border:2px solid #ff9400}
+.detail{border:3px solid #f65cab;background:linear-gradient(150deg,#fff,#fff0f8,#eafaff)}
+@media(max-width:550px){.cards{grid-template-columns:1fr}.card{padding:6px;border-radius:22px}.cardArt{border-radius:18px}.heroPhoto{max-height:none}.hero>small,.hero>h2,.hero>p{margin-left:16px;margin-right:16px}}
