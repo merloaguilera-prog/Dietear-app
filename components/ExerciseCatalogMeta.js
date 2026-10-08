@@ -1,1 +1,1 @@
-export const cards = [1];
+export const cards = ["Tai Chi"];
