@@ -130,10 +130,8 @@ const featurePhotos = {
   "¿Qué como hoy?": "hd-chickpea.png",
   "Menú semanal": "hd-complete.png",
   "Todo Dietas": "hd-tropical.png",
-  "Recetas rápidas": "hd-alimentacion.png",
   "Mi Nevera": "hd-nevera.png",
   "Mi Compra": "hd-budget.png",
-  "Comer bien con presupuesto": "hd-budget.png",
   "Analizar alimento": "hd-escaner.png",
   "¿Es bueno para mí?": "hd-fit.png",
   "Crear semana": "hd-chickpea.png",
@@ -165,8 +163,10 @@ const featurePhotos = {
   "Premium": "visual-premium.png",
   "Acceso profesional": "visual-professional.png",
 };
-export function hasDesignedFeaturePhoto(name) { return Boolean(featurePhotos[name]); }
+const featureRecipePhotos = {"Comer bien con presupuesto": {name:"Lentejas con verduras",imageSheet:1,imageCell:4},"Recetas rápidas": {name:"Huevos con tomate",imageSheet:3,imageCell:1}};
+export function hasDesignedFeaturePhoto(name) { return Boolean(featurePhotos[name] || featureRecipePhotos[name]); }
 export function DesignedFeatureArtwork({ name }) {
+  if(featureRecipePhotos[name]) return <span className="featureArtwork featurePhoto"><RecipePhoto recipe={featureRecipePhotos[name]}/></span>;
   const file = featurePhotos[name];
   return file ? <Image className={"featureArtwork featurePhoto "+(name==="Hidratación"?"featureArtworkCompact":"")} src={root+file} alt="" width={file==="inicio-completo.png"?1228:1672} height={file.startsWith("visual-")?1672:file==="inicio-completo.png"?1281:941} sizes="(max-width:650px) 45vw, 20vw"/> : null;
 }
