@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
-import SelectedArtwork from "./SelectedArtwork";
+import HealthArtwork from "./HealthArtwork";
 
 const groups = [
   { name: "Cabeza y sentidos", areas: [["Cerebro y sistema nervioso", "🧠"], ["Ojos", "👁️"], ["Oídos", "👂"], ["Boca y dientes", "🦷"]] },
@@ -8,14 +8,6 @@ const groups = [
   { name: "Abdomen y pelvis", areas: [["Hígado", "🟤"], ["Estómago", "🍽️"], ["Intestino delgado", "🌀"], ["Colon e intestino grueso", "🌀"], ["Sistema digestivo", "🥗"], ["Páncreas", "💛"], ["Vesícula biliar", "💚"], ["Bazo", "🟣"], ["Riñones", "🫘"], ["Vejiga", "💧"], ["Sistema reproductor", "🌸"]] },
   { name: "Movimiento, piel y circulación", areas: [["Huesos", "🦴"], ["Articulaciones", "🦵"], ["Músculos", "💪"], ["Piel", "✋"], ["Cabello y uñas", "✨"], ["Sangre y circulación", "🩸"]] }
 ];
-const healthArtwork = {
-  "Cerebro y sistema nervioso":"Cerebro","Ojos":"Ojos","Oídos":"Oídos","Boca y dientes":"Boca y dientes",
-  "Corazón":"Corazón","Pulmones":"Pulmones","Tiroides":"Tiroides","Hígado":"Hígado","Estómago":"Estómago",
-  "Intestino delgado":"Sistema digestivo","Colon e intestino grueso":"Sistema digestivo","Sistema digestivo":"Sistema digestivo",
-  "Páncreas":"Páncreas","Vesícula biliar":"Vesícula biliar","Bazo":"Bazo","Riñones":"Riñones","Vejiga":"Vejiga",
-  "Sistema reproductor":"Sistema reproductor","Huesos":"Huesos","Articulaciones":"Articulaciones","Músculos":"Músculos",
-  "Piel":"Piel","Cabello y uñas":"Cabello y uñas","Sangre y circulación":"Sangre y circulación"
-};
 const normalize = value => value.toLocaleLowerCase("es").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 export default function HealthAreas({ profile, setProfile, onAsk }) {
@@ -51,14 +43,14 @@ export default function HealthAreas({ profile, setProfile, onAsk }) {
     <div className="organGroups">{visibleGroups.map((group, groupIndex) => <section className={"organGroup organGroup-" + groupIndex} key={group.name} aria-label={group.name}>
       <h4>{group.name}</h4><div className="healthAreaGrid">{group.areas.map(([area, icon]) => <article className={"organCard" + (tracked.includes(area) ? " isTracked" : "")} key={area}>
         <button type="button" aria-label={"Abrir " + area} aria-pressed={selected === area} onClick={() => openArea(area)}>
-          <SelectedArtwork name={healthArtwork[area] || area} /><b>{area}</b><small>Abrir seguimiento →</small>
+          <HealthArtwork name={area} /><b>{area}</b><small>Abrir seguimiento →</small>
         </button>
         <label className="organCheck"><input type="checkbox" checked={tracked.includes(area)} onChange={() => toggleTracked(area)} aria-label={"Marcar " + area + " para seguimiento"} /><span>{tracked.includes(area) ? "Marcado" : "Marcar para seguir"}</span></label>
       </article>)}</div>
     </section>)}</div>
     {!visibleGroups.length && <p>No aparece esa área. Puedes anotarla en tus necesidades de salud.</p>}
     {selected && <div className="healthAreaDetail" ref={detailRef}>
-      <small>SEGUIMIENTO DE UN ÁREA</small><h3>{selected}</h3>
+      <small>SEGUIMIENTO DE UN ÁREA</small><h3>{selected}</h3><HealthArtwork name={selected} detail />
       <div className="organDetailForm">
         <label>Fecha del seguimiento<input type="date" value={date} onChange={event => updateDetails("date", event.target.value)} /></label>
         <label>Qué quiero controlar / cambios observados<input value={details.changes || ""} onChange={event => updateDetails("changes", event.target.value)} placeholder="Escribe lo que quieras registrar" /></label>

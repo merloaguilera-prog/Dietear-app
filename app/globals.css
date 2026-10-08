@@ -1263,3 +1263,9 @@ button,input,select,textarea{max-width:100%}
 .dietChoiceArtwork .recipePhoto{display:block;width:100%;height:100%;border-radius:inherit;min-height:100px}
 .mealChooserPhoto>.recipePhoto{display:block;width:100%;height:100%;border-radius:inherit}
 .featureArtwork>.recipePhoto{display:block;width:100%;height:100%;border-radius:inherit}
+
+/* Imágenes completas y proporcionadas de todas las áreas de salud. */
+.healthAreaGrid .healthOrganPhoto{display:block;width:100%;height:140px;object-fit:contain;object-position:center;margin:0 auto 10px;border-radius:16px;background:#fffdf6}
+.healthAreaGrid .organCard>button{display:flex;flex-direction:column;align-items:center;width:100%}
+.healthOrganDetailPhoto{display:block;width:min(100%,360px);height:260px;object-fit:contain;margin:12px auto;border-radius:20px;background:#fffdf6}
+@media(max-width:600px){.healthAreaGrid .healthOrganPhoto{height:128px;margin-bottom:8px}.healthOrganDetailPhoto{height:220px}}
