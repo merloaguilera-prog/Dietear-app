@@ -19,11 +19,11 @@ const poses=[
 [[70,109],[143,108],[134,145],[154,155]],
 [[77,100],[137,99],[93,155],[126,155]]
 ];
-export default function ExerciseIllustration({item,phase=0}){
+export default function ExerciseIllustration({item,phase=0,step=0}){
  const [id,name,subtitle,materials,tone,accent]=item;
  const idx=Math.max(0,["tai","yoga","chair","wall","bands","strength","step","bed","floor","stretch","warmup","mobility","balance","walk","neck","back","legs","cool"].indexOf(id));
  const [left,right,footL,footR]=poses[idx];
- const offset=phase?9:0;
+ const offset=(phase?9:0)+(step?8:0);
  const seat=["chair","back","legs","neck","cool"].includes(id);
  const bed=id==="bed";
  const x=seat?99:107;
