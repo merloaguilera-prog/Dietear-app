@@ -7,6 +7,6 @@ export default function ExercisePage(){
    <Link href="/" style={{color:"#28623d",fontWeight:800,textDecoration:"none",border:"1px solid #9dcba5",borderRadius:14,padding:"11px 15px"}}>← Volver a DIETEAR</Link>
    <b style={{color:"#367a49",fontSize:20}}>🌿 DIETEAR</b>
   </header>
-  <ExerciseStudio onProfile={()=>{window.location.href="/";}} onPrepareLog={()=>{window.location.href="/";}}/>
+  <ExerciseStudio onProfile={()=>{window.location.href="/";}} onPrepareLog={()=>alert("Registra los minutos reales en Mi Progreso > Pasos y actividad.")}/>
  </main>;
 }
