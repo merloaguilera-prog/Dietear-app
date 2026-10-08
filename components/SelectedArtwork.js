@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-const collage = "/dietear-visuals/seleccion-pantallas.png";
+const collage = "/dietear-visuals/seleccion-pantallas-fast.webp";
 const assets = {
   "pantalla-01": [collage, 1536, [0, 0, 285, 536]],
   "pantalla-02": [collage, 1536, [286, 0, 297, 536]],
@@ -12,7 +12,7 @@ const assets = {
   "pantalla-09": [collage, 1536, [615, 538, 306, 474]],
   "pantalla-10": [collage, 1536, [922, 538, 306, 474]],
   "pantalla-11": [collage, 1536, [1229, 538, 307, 474]],
-  inicio: ["/dietear-visuals/inicio-completo.png", 1228, [0, 0, 1228, 1281], 1281],
+  inicio: ["/dietear-visuals/inicio-completo-fast.webp", 1228, [0, 0, 1228, 1281], 1281],
   alimentacion: [collage, 1536, [301, 93, 270, 124]],
   dietas: [collage, 1536, [610, 90, 111, 64]],
   "plan-desayuno": [collage, 1536, [996, 180, 119, 45]],
@@ -28,7 +28,7 @@ const assets = {
   progreso: [collage, 1536, [638, 855, 61, 64]],
   salud: [collage, 1536, [965, 608, 103, 65]],
   conoce: [collage, 1536, [1207, 617, 300, 148]],
-  crear: ["/dietear-visuals/seleccion-crear-dieta.png", 1024, [27, 109, 965, 255]],
+  crear: ["/dietear-visuals/seleccion-crear-dieta-fast.webp", 1024, [27, 109, 965, 255]],
   Equilibrada: [collage, 1536, [610, 90, 111, 64]],
   Mediterránea: [collage, 1536, [738, 90, 111, 64]],
   Hipocalórica: [collage, 1536, [610, 193, 111, 61]],
