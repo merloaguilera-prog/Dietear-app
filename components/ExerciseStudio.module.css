@@ -66,6 +66,7 @@
 .heroPhoto{max-height:none;object-fit:contain}
 
 .collageGallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:14px;align-items:start}
+.homeGuide{display:grid;gap:14px}.homeGuidePhoto{display:block;width:100%;height:auto;object-fit:contain;border-radius:16px}
 .collageFigure{margin:0;min-width:0;overflow:hidden;border:3px solid #f65cab;border-radius:20px;background:#fff}
 .collageFigure:nth-child(2){border-color:#00a3eb;background:#eafaff}
 .collagePhoto{display:block;width:100%;height:auto;object-fit:contain}

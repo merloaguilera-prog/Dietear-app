@@ -2,6 +2,7 @@
 import {useState} from "react";
 import {cards} from "./ExerciseCatalogMeta";
 import ExerciseArtwork from "./ExerciseArtwork";
+import HomeExerciseGuide from "./HomeExerciseGuide";
 import s from "./ExerciseStudio.module.css";
 const labels=[
 ["Abrir los brazos","Cambiar el peso"],["Respirar","Brazos al cielo"],["Marcha sentada","Extender rodilla"],
@@ -46,6 +47,7 @@ export default function ExerciseStudio({profile={},onProfile,onPrepareLog}){
  <h3 className={s.sectionTitle}>🧘 Calentamiento y estiramientos</h3><p className={s.sectionText}>Movilidad, estiramientos y vuelta a la calma para empezar o terminar.</p>
  <div className={s.cards}>{cards.filter(x=>["stretch","warmup","mobility","neck","back","legs","cool"].includes(x[0])).filter(filter).map(x=><Tile key={x[0]} item={x} active={selected===x[0]} open={()=>open(x)}/>)}</div>
  {!cards.some(filter)&&<div className={s.note}>No hay rutinas con estos filtros. Selecciona «Todos» y «Cualquiera» para verlas.</div>}
+ <HomeExerciseGuide key={material+posture} material={material} posture={posture} energy={energy} minutes={minutes} onPrepareLog={onPrepareLog}/>
  <div className={s.materials}><h3>🪑 Materiales que tienes en casa</h3><p>Selecciona uno para filtrar. No necesitas comprar material.</p><div className={s.materialGrid}><button type="button" className={s.materialBtn} aria-pressed={material==="Todos"} onClick={()=>{setMaterial("Todos");setSelected(null)}}><span>✨</span>Todos</button>{materials.map(([name,icon])=><button type="button" className={s.materialBtn} key={name} aria-pressed={material===name} onClick={()=>{setMaterial(name);setSelected(null)}}><span aria-hidden="true">{icon}</span>{name}</button>)}</div></div>
  {chosen&&<section id="exercise-studio-detail" className={s.detail} aria-label={"Rutina de "+chosen[1]}>
  <div className={s.detailHeader}><div><small>MI RUTINA · HASTA {minutes} MINUTOS</small><h3>{chosen[1]}</h3><p>{chosen[2]}. Descansa cuando lo necesites y termina antes si lo prefieres.</p></div><button type="button" className={s.navBtn} onClick={()=>setSelected(null)}>✕ Cerrar</button></div>
