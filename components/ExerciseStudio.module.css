@@ -64,3 +64,10 @@
 .detail{border:3px solid #f65cab;background:linear-gradient(150deg,#fff,#fff0f8,#eafaff)}
 @media(max-width:550px){.cards{grid-template-columns:1fr}.card{padding:6px;border-radius:22px}.cardArt{border-radius:18px}.heroPhoto{max-height:none}.hero>small,.hero>h2,.hero>p{margin-left:16px;margin-right:16px}}
 .heroPhoto{max-height:none;object-fit:contain}
+
+.collageGallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:14px;align-items:start}
+.collageFigure{margin:0;min-width:0;overflow:hidden;border:3px solid #f65cab;border-radius:20px;background:#fff}
+.collageFigure:nth-child(2){border-color:#00a3eb;background:#eafaff}
+.collagePhoto{display:block;width:100%;height:auto;object-fit:contain}
+.collageFigure figcaption{padding:10px 12px;text-align:center;color:#183254;font-size:14px;font-weight:800}
+@media(max-width:760px){.collageGallery{grid-template-columns:1fr;padding:10px;gap:12px}.collageFigure{border-radius:16px}}
