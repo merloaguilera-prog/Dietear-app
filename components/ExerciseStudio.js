@@ -14,9 +14,10 @@ const labels=[
 ];
 const materials=[["Sin material","🌿"],["Silla","🪑"],["Pared","🧱"],["Botellas o latas","🧴"],["Palo de escoba","🧹"],["Bandas","〰️"],["Pesas","🏋️"],["Cama","🛏️"],["Escalón","🪜"],["Esterilla","🧘"]];
 const stretchIds=["stretch","warmup","mobility","neck","back","legs","cool"];
-const displayCards=[...cards.filter(x=>!stretchIds.includes(x[0])),...cards.filter(x=>stretchIds.includes(x[0]))];
+const uniqueIds=["tai","yoga","step","balance","walk","warmup","cool"];
+const displayCards=uniqueIds.map(id=>cards.find(x=>x[0]===id));
 const exerciseNumber=item=>displayCards.indexOf(item)+1;
-function Tile({item,active,open}){return <button type="button" className={s.card} style={{"--card-tone":item[4],"--card-accent":item[5]}} aria-pressed={active} onClick={open}><span className={s.cardArt}><span className={s.exerciseNumber}>Ejercicio {exerciseNumber(item)}</span><ExerciseArtwork item={item}/></span><b>{exerciseNumber(item)}. {item[1]}</b><small>{item[2]}</small><em>Ver rutina →</em></button>}
+function Tile({item,active,open}){return <button type="button" className={s.card} style={{"--card-tone":item[4],"--card-accent":item[5]}} aria-pressed={active} onClick={open}><span className={s.cardArt}><span className={s.exerciseNumber}>Ejercicio {exerciseNumber(item)}</span><ExerciseArtwork item={item} photo/></span><b>{exerciseNumber(item)}. {item[1]}</b><small>{item[2]}</small><em>Ver rutina →</em></button>}
 export default function ExerciseStudio({profile={},onProfile,onPrepareLog}){
  const [energy,setEnergy]=useState("Normal"),[posture,setPosture]=useState("Cualquiera");
  const [material,setMaterial]=useState("Todos"),[minutes,setMinutes]=useState(10);
@@ -45,12 +46,12 @@ export default function ExerciseStudio({profile={},onProfile,onPrepareLog}){
  <div className={s.control}><b>⏱️ Tiempo disponible</b><div className={s.pills}>{[5,10,15,20,30].map(x=><button type="button" key={x} className={s.pill} aria-pressed={minutes===x} onClick={()=>setMinutes(x)}>{x} min</button>)}</div></div>
  <div className={s.control}><b>🧩 Adaptado a ti</b><p className={s.sectionText}>{Number(profile.age)>=65?"Puedes empezar con apoyos y movimientos sencillos. La edad no define por sí sola tu capacidad.":"Empieza con movimientos cómodos y reduce el esfuerzo cuando lo necesites."}</p><button type="button" className={s.navBtn} onClick={onProfile}>Revisar mi perfil →</button></div>
  </div>
- <h3 className={s.sectionTitle}>🌈 Estilos de ejercicio</h3><p className={s.sectionText}>Elige tu actividad con las imágenes y los colores que elegimos para DIETEAR.</p>
- <div className={s.cards}>{cards.filter(x=>!["stretch","warmup","mobility","neck","back","legs","cool"].includes(x[0])).filter(filter).map(x=><Tile key={x[0]} item={x} active={selected===x[0]} open={()=>open(x)}/>)}</div>
+ <h3 className={s.sectionTitle}>🌈 Movimiento y equilibrio</h3><p className={s.sectionText}>22 tarjetas en total, sin repetir estilos entre los dos grupos. Numeradas en el orden de la página.</p>
+ <div className={s.cards}>{displayCards.filter(x=>!stretchIds.includes(x[0])).filter(filter).map(x=><Tile key={x[0]} item={x} active={selected===x[0]} open={()=>open(x)}/>)}</div>
  <h3 className={s.sectionTitle}>🧘 Calentamiento y estiramientos</h3><p className={s.sectionText}>Movilidad, estiramientos y vuelta a la calma para empezar o terminar.</p>
- <div className={s.cards}>{cards.filter(x=>["stretch","warmup","mobility","neck","back","legs","cool"].includes(x[0])).filter(filter).map(x=><Tile key={x[0]} item={x} active={selected===x[0]} open={()=>open(x)}/>)}</div>
+ <div className={s.cards}>{displayCards.filter(x=>stretchIds.includes(x[0])).filter(filter).map(x=><Tile key={x[0]} item={x} active={selected===x[0]} open={()=>open(x)}/>)}</div>
  {!cards.some(filter)&&<div className={s.note}>No hay rutinas con estos filtros. Selecciona «Todos» y «Cualquiera» para verlas.</div>}
- <HomeExerciseGuide key={material+posture} material={material} posture={posture} energy={energy} minutes={minutes} onPrepareLog={onPrepareLog}/>
+ <HomeExerciseGuide key={material+posture} numberOffset={displayCards.length} material={material} posture={posture} energy={energy} minutes={minutes} onPrepareLog={onPrepareLog}/>
  <div className={s.materials}><h3>🪑 Materiales que tienes en casa</h3><p>Selecciona uno para filtrar. No necesitas comprar material.</p><div className={s.materialGrid}><button type="button" className={s.materialBtn} aria-pressed={material==="Todos"} onClick={()=>{setMaterial("Todos");setSelected(null)}}><span>✨</span>Todos</button>{materials.map(([name,icon])=><button type="button" className={s.materialBtn} key={name} aria-pressed={material===name} onClick={()=>{setMaterial(name);setSelected(null)}}><span aria-hidden="true">{icon}</span>{name}</button>)}</div></div>
  {chosen&&<section id="exercise-studio-detail" className={s.detail} aria-label={"Rutina de "+chosen[1]}>
  <div className={s.detailHeader}><div><small>MI RUTINA · HASTA {minutes} MINUTOS</small><h3>{exerciseNumber(chosen)}. {chosen[1]}</h3><p>{chosen[2]}. Descansa cuando lo necesites y termina antes si lo prefieres.</p></div><button type="button" className={s.navBtn} onClick={()=>setSelected(null)}>✕ Cerrar</button></div>
