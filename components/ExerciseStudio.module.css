@@ -72,3 +72,5 @@
 .collagePhoto{display:block;width:100%;height:auto;object-fit:contain}
 .collageFigure figcaption{padding:10px 12px;text-align:center;color:#183254;font-size:14px;font-weight:800}
 @media(max-width:760px){.collageGallery{grid-template-columns:1fr;padding:10px;gap:12px}.collageFigure{border-radius:16px}}
+
+.exerciseNumber{display:block;background:var(--card-accent,#287d49);color:#fff;padding:8px 12px;font-size:17px;font-weight:900;text-align:left;line-height:1.3}
