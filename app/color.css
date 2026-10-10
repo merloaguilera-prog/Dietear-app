@@ -444,3 +444,37 @@
 .foodAnalysis{color:#152019;line-height:1.65;font-weight:500;min-width:0}.foodAnalysis h3,.foodAnalysis h4{color:#101711!important}.foodAnalysis form{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;padding:18px;background:#fff4d3;border:3px solid #cba64c;border-radius:22px}.foodAnalysis form label{display:grid;gap:6px;flex:1;min-width:140px}.foodAnalysis input{padding:12px;background:#fff;border:2px solid #8bad83;border-radius:12px;color:#152019;font:inherit;width:100%;box-sizing:border-box}.foodAnalysis button{padding:12px;background:#e2f9d8;border:3px solid #71a88b;border-radius:15px;color:#152019;font-weight:700}.foodAnalysisResult>header{background:#e4fbdc!important;padding:22px!important;border:3px solid #8fbb8b!important;border-radius:22px;margin:20px 0!important}.foodAnalysisResult>header h3{font-size:27px!important}.foodAnalysisResult>section{border:3px solid #afbe85;border-radius:22px;padding:20px;background:#fffcf0;margin:16px 0}.foodAnalysisResult>section:nth-child(3n){background:#f0f6ff;border-color:#9ab9d5}.foodAnalysisResult>section:nth-child(3n+1){background:#fff0f5;border-color:#d4a0b9}.nutritionTable{overflow-x:auto}.nutritionTable table{border-collapse:collapse;width:100%;min-width:450px;font-size:14px}.nutritionTable td,.nutritionTable th{padding:11px 9px;text-align:left;border-bottom:1px solid #9cba96;color:#152019}.nutritionTable thead{background:#e2efda}.nutritionTable th{font-weight:700}.foodAnalysis a{color:#164e36;text-decoration:underline;overflow-wrap:anywhere}.foodAnalysis details summary{cursor:pointer;font-weight:700;padding:12px 0}.foodDietGrid,.foodUseGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.foodDietGrid article,.foodUseGrid article{background:#f5ffe5;border:3px solid #94b984;border-radius:18px;padding:15px}.foodDietGrid article:nth-child(even),.foodUseGrid article:nth-child(even){background:#ffefda;border-color:#d4ad72}.foodAnalysis li{margin-bottom:9px}.foodAnalysis [role=alert]{background:#ffebe7;padding:12px;border:2px solid #c5786c;border-radius:12px}
 @media(max-width:1050px){.recipeBookGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.immersiveApp>nav{grid-template-columns:38px repeat(5,minmax(0,1fr)) 38px!important;gap:3px!important;padding:5px 4px!important;height:78px!important;box-sizing:border-box}.immersiveApp>nav button{min-width:0!important;padding:4px 1px!important}.immersiveApp>nav button b{font-size:9px!important}.immersiveApp>nav .historyNav{border-width:2px!important;border-radius:12px!important}.historyNav svg{width:20px;height:20px}.recipeBookGrid{grid-template-columns:1fr}.recipeBookHead{padding:19px!important}.recipeBookHead h3{font-size:25px!important}.recipeCategories{gap:7px}.recipeCategories button{padding:9px 10px;font-size:13px}.recipeSearch{display:grid;grid-template-columns:1fr;min-width:0}.recipeSearch label{min-width:0}.recipeCardBody{padding:17px}.mealChooser{padding:18px!important;max-width:95vw!important;box-sizing:border-box}.mealChooserList{max-height:42dvh!important}.foodAnalysis form{display:grid;grid-template-columns:1fr}.foodDietGrid,.foodUseGrid{grid-template-columns:1fr}.foodAnalysisResult>section{padding:15px}.foodAnalysisResult>header{padding:17px!important}}
+
+/* Keep module photographs proportional and compact on every screen. */
+.immersiveApp .moduleBanner > .scenePhoto {
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:360px;
+  object-fit:contain;
+  object-position:center;
+}
+.immersiveApp .moduleBanner > .squareModulePhoto {
+  width:min(100%,360px);
+  height:auto;
+  aspect-ratio:1;
+  margin:0 auto 16px;
+}
+@media(max-width:760px){
+  .immersiveApp .moduleBanner > .scenePhoto{max-height:300px;}
+  .immersiveApp .moduleBanner > .squareModulePhoto{width:min(100%,300px);}
+}
+
+.immersiveApp .appsHead > .formArtwork {
+  display:block;
+  flex:0 0 96px;
+  width:96px;
+  height:96px;
+  max-width:96px;
+  object-fit:contain;
+  border-radius:16px;
+}
+.immersiveApp .appsHead > div{min-width:0;flex:1;}
+@media(max-width:650px){
+  .immersiveApp .appsHead > .formArtwork{flex-basis:72px;width:72px;height:72px;max-width:72px;}
+}

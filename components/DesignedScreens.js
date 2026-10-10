@@ -4,7 +4,9 @@ import Image from "next/image";
 import SelectedArtwork from "./SelectedArtwork";
 import { datesForWeek, MEAL_FIELDS, WEEK_DAYS } from "../lib/week-plan";
 import {matchesMeal,normalizeMealText} from "../lib/meal-options";
-import { recipes } from "../lib/recipes";
+import { recipes, recipeByName } from "../lib/recipes";
+import RecipePhoto from "./RecipePhoto";
+import { dietArtwork } from "../lib/diet-artwork";
 
 const root = "/dietear-visuals/";
 export function AppSymbol({ name, illustrated = false }) {
@@ -33,11 +35,11 @@ export function DesignedHome({ profile, links, onOpen }) {
   return <section className="designedHome" aria-label="Inicio DIETEAR">
     <div className="homeScene">
       <div className="sceneHeadline"><small>MENOS PLATOS Y MÁS ZAPATOS</small><h1>Cuida de ti ♡</h1></div>
-      <Image className="scenePhoto" src={root+"hd-inicio.png"} alt="La chica y su perrita entre plantas y flores" width={1672} height={941} sizes="(max-width: 760px) 100vw, 60vw" unoptimized priority/>
+      <Image className="scenePhoto" src={root+"hd-inicio-fast.webp"} alt="La chica y su perrita entre plantas y flores" width={1672} height={941} sizes="(max-width: 760px) 100vw, 60vw" unoptimized priority/>
       <div className="sceneWelcome"><h2>Hola{profile.name ? ", "+profile.name.split(" ")[0] : ""} ♡</h2><p>Pequeños cambios, grandes resultados. Tu bienestar empieza hoy.</p><button onClick={()=>onOpen("alimentacion","Crear mi dieta")}>Comenzar ahora →</button></div>
     </div>
     <div className="homeButtons" aria-label="Accesos principales de DIETEAR">
-      {links.map((item,i)=><button className={"homeBubble homeBubble-"+i} key={item[0]} onClick={()=>onOpen(item[2],item[3])}><span className="bubbleSymbol"><AppSymbol name={item[0]} illustrated/></span><b>{item[0]}</b><small>{item[1]}</small></button>)}
+      {links.map((item,i)=>{const homePhotos={"Alimentación":"hd-alimentacion-fast.webp","Ejercicio":"hd-ejercicio-fast.webp","Mi Plan":"hd-complete-fast.webp","Mi Progreso":"inicio-completo-fast.webp","Mi Compra":"hd-budget-fast.webp","Mi Nevera":"hd-nevera-fast.webp","Salud":"hd-fit-fast.webp","Objetivos":"hd-inicio-fast.webp"};return <button className={"homeBubble homeBubble-"+i} key={item[0]} onClick={()=>onOpen(item[2],item[3])}><Image className="homeBubblePhoto" src={root+homePhotos[item[0]]} alt="" width={480} height={300} sizes="(max-width:650px) 42vw, 220px"/><b>{item[0]}</b><small>{item[1]}</small></button>})}
       <p className="homeMotto">🌿 Una vida más sana está en tus manos.</p>
     </div>
   </section>;
@@ -47,7 +49,7 @@ export function DesignedHeader({ tab, profile }) {
   const food = tab === "alimentacion";
   return <section className={"designedHero "+(food?"nutritionScene":"profileScene")}>
     <div className="sceneHeadline"><small>DIETEAR · {food?"ALIMENTACIÓN":"PARA MÍ"}</small><h1>{food?"Tu base para sentirte bien":"DIETEAR empieza contigo"}</h1><p>{food?"Descubre, aprende y disfruta de una alimentación saludable.":"Tu vida, tus gustos y tu salud tienen su lugar aquí."}</p></div>
-    <Image className="scenePhoto" src={root+(food?"hd-alimentacion.png":"seleccion-icono.png")} alt={food?"Alimentos frescos y una ensalada completa":"Identidad de DIETEAR"} width={food?1672:1254} height={food?941:1254} sizes="(max-width:760px) 100vw, 65vw" unoptimized priority/>
+    <Image className="scenePhoto" src={root+(food?"hd-alimentacion-fast.webp":"seleccion-icono-fast.webp")} alt={food?"Alimentos frescos y una ensalada completa":"Identidad de DIETEAR"} width={food?1672:1254} height={food?941:1254} sizes="(max-width:760px) 100vw, 65vw" unoptimized priority/>
     {!food&&<p className="profileGreeting">{profile.name?"Hola, "+profile.name:"Tu espacio personal"} ♡</p>}
   </section>;
 }
@@ -71,11 +73,11 @@ export function DesignedWeek({ planner, setPlanner, weekKey, changeWeek, setShop
     <div className="designedDays" aria-label="Día del plan">{dates.map((date,index)=><button key={WEEK_DAYS[index]} aria-pressed={day===index} onClick={()=>setDay(index)}><b>{WEEK_DAYS[index].slice(0,3)}</b><span>{date.getDate()}</span></button>)}</div>
     <div className="designedMealRows plannerGrid">{MEAL_FIELDS.map(([field,label],index)=><article className="designedMeal" key={field}>
       <div className="mealCopy"><label htmlFor={"designed-meal-"+field}>{plain(label)}</label><input id={"designed-meal-"+field} aria-label={plain(label)+" del día elegido"} value={selected?.[field]||""} placeholder="Añadir comida…" onChange={event=>update(field,event.target.value)}/><input className="mealTime" type="time" aria-label={"Hora de "+plain(label)} value={profile.mealTimes?.[field]||mealTimes[index]} onChange={event=>setProfile(old=>({...old,mealTimes:{...old.mealTimes,[field]:event.target.value}}))}/></div>
-      <SelectedArtwork className="mealIllustration" name={mealArt[index]}/>
+      <Image className="mealIllustration mealPhoto" src={root+["hd-inicio-fast.webp","hd-tropical-fast.webp","hd-chickpea-fast.webp","hd-alimentacion-fast.webp","hd-complete-fast.webp","hd-fit-fast.webp"][index]} alt="" width={420} height={260} sizes="110px"/>
       <button className="addMealBubble" aria-label={"Elegir receta para "+plain(label)} onClick={()=>{setRecipeSearch("");setShowAllMeals(false);setMealError("");setEditing(field)}}>+</button>
     </article>)}</div>
     <div className="designedPlanFoot"><div className="planPeople"><span>Personas</span><button aria-label="Una persona menos" onClick={()=>update("people",Math.max(1,(selected?.people||1)-1))}>−</button><b>{selected?.people||1}</b><button aria-label="Una persona más" onClick={()=>update("people",(selected?.people||1)+1)}>+</button></div><button onClick={onShopping}>🛒 Ver mi lista de la compra →</button><button onClick={onCreate}>✨ Crear mi semana</button></div>
-    {editing&&<dialog className="mealChooser" ref={dialog} onCancel={()=>setEditing(null)}><div className="mealChooserHead"><h2>Elige para {plain(MEAL_FIELDS.find(([field])=>field===editing)[1]).toLowerCase()}</h2><button aria-label="Cerrar recetas" onClick={()=>setEditing(null)}>×</button></div><form onSubmit={e=>{e.preventDefault();const name=recipeSearch.trim();if(!name)return;const exact=recipes.find(r=>normalizeMealText(r.name)===normalizeMealText(name));choose(exact?.name||name,exact?.ingredients)}}><label>Buscar receta o escribir mi comida<input aria-label="Buscar receta o escribir mi comida" autoFocus value={recipeSearch} onChange={e=>{setRecipeSearch(e.target.value);setMealError("")}} placeholder="Ej.: pan con aceite…"/></label><button disabled={!recipeSearch.trim()}>Añadir lo que he escrito →</button><p>Pulsa Intro para guardar lo escrito o elige una receta de la lista.</p></form><div className="mealChooserFilters"><button aria-pressed={!showAllMeals} onClick={()=>setShowAllMeals(false)}>Para esta comida</button><button aria-pressed={showAllMeals} onClick={()=>setShowAllMeals(true)}>Todas las opciones</button></div>{mealError&&<p role="alert">{mealError}</p>}<div className="mealChooserList">{available.filter(r=>matchesMeal(r,recipeSearch)).map(r=><button key={r.id} onClick={()=>choose(r.name,r.ingredients)}><span><AppSymbol name="Alimentación"/></span><b>{r.name}</b><small>{r.minutes} min · {r.ingredients.slice(0,3).map(x=>x[0]).join(", ")}</small><i>＋</i></button>)}{!available.some(r=>matchesMeal(r,recipeSearch))&&<p>No hay coincidencias. Puedes añadir tu propia comida con el botón de arriba.</p>}</div></dialog>}
+    {editing&&<dialog className="mealChooser" ref={dialog} onCancel={()=>setEditing(null)}><div className="mealChooserHead"><h2>Elige para {plain(MEAL_FIELDS.find(([field])=>field===editing)[1]).toLowerCase()}</h2><button aria-label="Cerrar recetas" onClick={()=>setEditing(null)}>×</button></div><form onSubmit={e=>{e.preventDefault();const name=recipeSearch.trim();if(!name)return;const exact=recipes.find(r=>normalizeMealText(r.name)===normalizeMealText(name));choose(exact?.name||name,exact?.ingredients)}}><label>Buscar receta o escribir mi comida<input aria-label="Buscar receta o escribir mi comida" autoFocus value={recipeSearch} onChange={e=>{setRecipeSearch(e.target.value);setMealError("")}} placeholder="Ej.: pan con aceite…"/></label><button disabled={!recipeSearch.trim()}>Añadir lo que he escrito →</button><p>Pulsa Intro para guardar lo escrito o elige una receta de la lista.</p></form><div className="mealChooserFilters"><button aria-pressed={!showAllMeals} onClick={()=>setShowAllMeals(false)}>Para esta comida</button><button aria-pressed={showAllMeals} onClick={()=>setShowAllMeals(true)}>Todas las opciones</button></div>{mealError&&<p role="alert">{mealError}</p>}<div className="mealChooserList">{available.filter(r=>matchesMeal(r,recipeSearch)).map((r,index)=><button key={r.id} onClick={()=>choose(r.name,r.ingredients)}><span className="mealChooserPhoto"><RecipePhoto recipe={r}/></span><b>{r.name}</b><small>{r.minutes} min · {r.ingredients.slice(0,3).map(x=>x[0]).join(", ")}</small><i>＋</i></button>)}{!available.some(r=>matchesMeal(r,recipeSearch))&&<p>No hay coincidencias. Puedes añadir tu propia comida con el botón de arriba.</p>}</div></dialog>}
   </section>;
 }
 
@@ -93,19 +95,19 @@ export function DesignedProgress({ history, onOpen }) {
   const weights=types(["peso"]), calories=types(["calorias"]), movement=types(["actividad","paseo"]), water=types(["agua"]);
   const total=items=>items.reduce((sum,item)=>sum+(Number(item.value)||0),0);
   const cards=[{title:"Peso",value:weights.length?Number(weights.at(-1).value)+" kg":"Sin registros",records:weights,color:"#31a74a",section:"Peso y medidas"},{title:"Calorías",value:calories.length?Math.round(total(calories))+" kcal":"Sin registros",records:calories,color:"#db64ad",bars:true,section:"Mis gráficas"},{title:"Movimiento",value:movement.length?Math.round(total(movement))+" min":"Sin registros",records:movement,color:"#4faad7",bars:true,section:"Pasos y actividad"},{title:"Hidratación",value:water.length?total(water).toFixed(1)+" L":"Sin registros",records:water,color:"#51c9da",bars:true,section:"Hidratación"}];
-  return <section className="designedProgress"><div className="sceneHeadline"><small>DIETEAR · MI PROGRESO</small><h1>Cada pequeño paso cuenta</h1><p>Visualiza tus avances y mantén la motivación.</p></div><div className="progressPeriods">{[[7,"Semana"],[31,"Mes"],[366,"Año"]].map(([value,label])=><button aria-pressed={period===value} key={value} onClick={()=>setPeriod(value)}>{label}</button>)}</div><div className="designedMetricGrid">{cards.map(card=><button className="designedMetric" style={{"--metric-color":card.color}} key={card.title} onClick={()=>onOpen("progreso",card.section)}><span>{card.title}</span><b>{card.value}</b><Sparkline records={card.records} bars={card.bars} color={card.color}/></button>)}</div><div className="progressEncouragement"><SelectedArtwork name="progreso"/><div><h2>¡Vas sumando!</h2><p>{entries.length?entries.length+" registros en este periodo. Tu constancia da resultados.":"Tu camino empieza con un paso. Registra algo que hayas hecho hoy."}</p><button onClick={()=>onOpen("progreso","Peso y medidas")}>＋ Registrar un avance</button></div></div></section>;
+  return <section className="designedProgress"><div className="sceneHeadline"><small>DIETEAR · MI PROGRESO</small><h1>Cada pequeño paso cuenta</h1><p>Visualiza tus avances y mantén la motivación.</p></div><div className="progressPeriods">{[[7,"Semana"],[31,"Mes"],[366,"Año"]].map(([value,label])=><button aria-pressed={period===value} key={value} onClick={()=>setPeriod(value)}>{label}</button>)}</div><div className="designedMetricGrid">{cards.map(card=><button className="designedMetric" style={{"--metric-color":card.color}} key={card.title} onClick={()=>onOpen("progreso",card.section)}><span>{card.title}</span><b>{card.value}</b><Sparkline records={card.records} bars={card.bars} color={card.color}/></button>)}</div><div className="progressEncouragement"><Image className="progressEncouragementPhoto" src={root+"inicio-completo-fast.webp"} alt="" width={640} height={420} sizes="(max-width:650px) 42vw, 260px"/><div><h2>¡Vas sumando!</h2><p>{entries.length?entries.length+" registros en este periodo. Tu constancia da resultados.":"Tu camino empieza con un paso. Registra algo que hayas hecho hoy."}</p><button onClick={()=>onOpen("progreso","Peso y medidas")}>＋ Registrar un avance</button></div></div></section>;
 }
 
 const banners = {
-  "Comer bien con presupuesto":["Cuida tu salud y tu bolsillo","Aprovecha lo que tienes y compra solo lo que necesitas.","hd-budget.png"],
-  "¿Es bueno para mí?":["Elige lo que encaja contigo","Tus gustos, necesidades y restricciones orientan tus elecciones.","hd-fit.png"],
-  "Mi Nevera":["Tu cocina empieza aquí","Añade tus alimentos y descubre recetas con lo que tienes.","hd-nevera.png"],
-  "Mi Compra":["Tu compra, más sencilla","Tu plan y tu nevera se unen en una lista.","hd-alimentacion.png"],
-  "Pasos y actividad":["Muévete a tu ritmo","En cualquier lugar, cada movimiento suma.","hd-ejercicio.png"],
-  "Recetas rápidas":["Ideas deliciosas para cada día","Recetas fáciles, rápidas y a tu manera.","hd-alimentacion.png"],
-  "¿Qué como hoy?":["Hoy cocinamos algo bueno","Elige una receta y llévala a tu plan.","hd-chickpea.png"],
-  "Todo Dietas":["Elige tu estilo de alimentación","Personaliza según tus necesidades.","hd-tropical.png"],
-  "Analizar alimento":["Conoce lo que comes","Escanea o busca un producto y descubre su etiqueta.","hd-escaner.png"],
+  "Comer bien con presupuesto":["Cuida tu salud y tu bolsillo","Aprovecha lo que tienes y compra solo lo que necesitas.","hd-budget-fast.webp"],
+  "¿Es bueno para mí?":["Elige lo que encaja contigo","Tus gustos, necesidades y restricciones orientan tus elecciones.","hd-fit-fast.webp"],
+  "Mi Nevera":["Tu cocina empieza aquí","Añade tus alimentos y descubre recetas con lo que tienes.","hd-nevera-fast.webp"],
+  "Mi Compra":["Tu compra, más sencilla","Tu plan y tu nevera se unen en una lista.","hd-alimentacion-fast.webp"],
+  "Pasos y actividad":["Muévete a tu ritmo","En cualquier lugar, cada movimiento suma.","hd-ejercicio-fast.webp"],
+  "Recetas rápidas":["Ideas deliciosas para cada día","Recetas fáciles, rápidas y a tu manera.","hd-alimentacion-fast.webp"],
+  "¿Qué como hoy?":["Hoy cocinamos algo bueno","Elige una receta y llévala a tu plan.","hd-chickpea-fast.webp"],
+  "Todo Dietas":["Elige tu estilo de alimentación","Personaliza según tus necesidades.","hd-tropical-fast.webp"],
+  "Analizar alimento":["Conoce lo que comes","Escanea o busca un producto y descubre su etiqueta.","hd-escaner-fast.webp"],
   "Crear mi dieta":["Crea tu propia dieta","Tú eliges, DIETEAR te acompaña.",null]
 };
 export function DesignedModuleBanner({ section }) {
@@ -114,53 +116,66 @@ export function DesignedModuleBanner({ section }) {
 }
 
 export function DesignedActivityChoices({ onChoose, onProfile, onAsk }) {
-  return <div className="designedActivityChoices">{[["👟","Caminatas","Caminar"],["🏋️","Fuerza","Fuerza"],["🧘","Yoga y movilidad","Yoga / movilidad"],["🏠","En casa","Fuerza"]].map(([icon,label,kind])=><button key={label} onClick={()=>onChoose(kind)}><span>{icon}</span><b>{label}</b></button>)}<button onClick={onProfile}><span>👥</span><b>Según mi edad</b></button><button onClick={onAsk}><span>📋</span><b>Mi rutina</b></button></div>;
+  const choices=[
+    ["Caminatas","Caminar","hd-ejercicio-fast.webp"],
+    ["Fuerza","Fuerza","hd-fit-fast.webp"],
+    ["Yoga y movilidad","Yoga / movilidad","inicio-completo-fast.webp"],
+    ["En casa","Fuerza","hd-inicio-fast.webp"]
+  ];
+  return <div className="designedActivityChoices">{choices.map(([label,kind,file])=><button key={label} onClick={()=>onChoose(kind)}><Image className="activityChoicePhoto" src={root+file} alt="" width={720} height={420} sizes="(max-width:650px) 30vw, 180px"/><b>{label}</b></button>)}<button onClick={onProfile}><Image className="activityChoicePhoto" src={root+"visual-family-fast.webp"} alt="" width={720} height={420} sizes="(max-width:650px) 30vw, 180px"/><b>Según mi edad</b></button><button onClick={onAsk}><Image className="activityChoicePhoto" src={root+"inicio-completo-fast.webp"} alt="" width={720} height={420} sizes="(max-width:650px) 30vw, 180px"/><b>Mi rutina</b></button></div>;
 }
 
 const featurePhotos = {
-  "Crear mi dieta": "hd-inicio.png",
-  "¿Qué como hoy?": "hd-chickpea.png",
-  "Menú semanal": "hd-complete.png",
-  "Todo Dietas": "hd-tropical.png",
-  "Recetas rápidas": "hd-alimentacion.png",
-  "Mi Nevera": "hd-nevera.png",
-  "Mi Compra": "hd-budget.png",
-  "Comer bien con presupuesto": "hd-budget.png",
-  "Analizar alimento": "hd-escaner.png",
-  "¿Es bueno para mí?": "hd-fit.png",
-  "Crear semana": "hd-chickpea.png",
-  "Modificar plan": "hd-complete.png",
-  "Generar compra": "hd-budget.png",
-  "Pasos y actividad": "hd-ejercicio.png",
-  "Mi Camino": "inicio-completo.png",
-  "Salud y necesidades": "hd-fit.png",
-  "Gustos y alimentos": "hd-tropical.png",
-  "Personas": "visual-family.png", "Mi familia": "visual-family.png",
-  "Día comodín": "visual-celebrate.png", "Fiestas y días especiales": "visual-celebrate.png",
-  "Copiar semana": "visual-agenda.png", "Trabajo y horarios": "visual-agenda.png",
-  "Viajes y vacaciones": "inicio-completo.png", "Peso y medidas": "visual-weight.png",
-  "Mis gráficas": "visual-graphs.png", "Fotos de evolución": "visual-camera.png",
-  "Mis logros": "visual-trophy.png", "Cómo puedo mejorar": "visual-growth.png",
-  "Hidratación": "visual-water.png", "Sueño y descanso": "visual-rest.png",
-  "Mi ficha": "hd-inicio.png", "Mis objetivos": "visual-growth.png", "Mis motivaciones": "inicio-completo.png",
-  "Privacidad y permisos": "visual-privacy.png", "Apps y dispositivos": "visual-devices.png",
-  "Premium": "visual-premium.png", "Acceso profesional": "visual-professional.png",
+  "Crear mi dieta": "hd-inicio-fast.webp",
+  "¿Qué como hoy?": "hd-chickpea-fast.webp",
+  "Menú semanal": "hd-complete-fast.webp",
+  "Todo Dietas": "hd-tropical-fast.webp",
+  "Mi Nevera": "hd-nevera-fast.webp",
+  "Mi Compra": "hd-budget-fast.webp",
+  "Analizar alimento": "hd-escaner-fast.webp",
+  "¿Es bueno para mí?": "hd-fit-fast.webp",
+  "Crear semana": "hd-chickpea-fast.webp",
+  "Modificar plan": "hd-complete-fast.webp",
+  "Personas": "visual-family-fast.webp",
+  "Copiar semana": "visual-agenda-fast.webp",
+  "Generar compra": "hd-budget-fast.webp",
+  "Fiestas y días especiales": "visual-celebrate-fast.webp",
+  "Trabajo y horarios": "work-schedule.webp",
+  "Viajes y vacaciones": "inicio-completo-fast.webp",
+  "Peso y medidas": "visual-weight-fast.webp",
+  "Pasos y actividad": "hd-ejercicio-fast.webp",
+  "Mis gráficas": "visual-graphs-fast.webp",
+  "Fotos de evolución": "visual-camera-fast.webp",
+  "Mis logros": "visual-trophy-fast.webp",
+  "Cómo puedo mejorar": "visual-growth-fast.webp",
+  "Hidratación": "visual-water-fast.webp",
+  "Sueño y descanso": "visual-rest-fast.webp",
+  "Mi Camino": "inicio-completo-fast.webp",
+  "Mi ficha": "hd-inicio-fast.webp",
+  "Mis objetivos": "visual-growth-fast.webp",
+  "Mis motivaciones": "inicio-completo-fast.webp",
+  "Salud y necesidades": "hd-fit-fast.webp",
+  "Mi familia": "visual-family-fast.webp",
+  "Gustos y alimentos": "hd-tropical-fast.webp",
+  "Privacidad y permisos": "visual-privacy-fast.webp",
+  "Apps y dispositivos": "visual-devices-fast.webp",
+  "Premium": "visual-premium-fast.webp",
+  "Acceso profesional": "visual-professional-fast.webp",
 };
-export function hasDesignedFeaturePhoto(name) { return Boolean(featurePhotos[name]); }
+const featureRecipePhotos = {"Día comodín": {name:"Pasta integral con verduras",imageSheet:1,imageCell:5},"Comer bien con presupuesto": {name:"Lentejas con verduras",imageSheet:1,imageCell:4},"Recetas rápidas": {name:"Huevos con tomate",imageSheet:3,imageCell:1}};
+export function hasDesignedFeaturePhoto(name) { return Boolean(featurePhotos[name] || featureRecipePhotos[name]); }
 export function DesignedFeatureArtwork({ name }) {
+  if(featureRecipePhotos[name]) return <div className="featureArtwork featurePhoto"><RecipePhoto recipe={featureRecipePhotos[name]}/></div>;
   const file = featurePhotos[name];
-  return file ? <Image className="featureArtwork featurePhoto" src={root+file} alt="" width={file==="inicio-completo.png"?1228:1672} height={file.startsWith("visual-")?1672:file==="inicio-completo.png"?1281:941} sizes="(max-width:650px) 45vw, 20vw"/> : null;
+  return file ? <Image className={"featureArtwork featurePhoto "+(name==="Hidratación"?"featureArtworkCompact":"")} src={root+file} alt="" width={file==="inicio-completo-fast.webp"?1228:1672} height={file.startsWith("visual-")?1672:file==="inicio-completo-fast.webp"?1281:941} sizes="(max-width:650px) 45vw, 20vw"/> : null;
 }
 
-const dietPhotos={
-  "Equilibrada":"hd-complete.png", "Mediterránea":"hd-complete.png", "Vegana":"hd-chickpea.png",
-  "Vegetariana":"visual-vegetarian.png", "Sin gluten":"visual-gluten.png", "Sin lactosa":"visual-milk.png",
-  "Hiposódica":"visual-low-salt.png", "Musulmana / Halal":"visual-mosque-real.jpg",
-  "Ayuno intermitente":"visual-agenda.png", "Ganar músculo":"hd-ejercicio.png", "Ganancia muscular":"hd-ejercicio.png",
-  "Rica en fibra":"hd-chickpea.png", "Sin azúcar añadido":"hd-tropical.png", "Sin alimento X":"hd-fit.png"
-};
 export function DesignedDietArtwork({name}){
-  const file=dietPhotos[name]||"hd-complete.png",excluded=name==="Sin lactosa"||name==="Sin gluten";
-  return <span className={"dietChoiceArtwork dietPhoto "+(excluded?"excludedFood":"")} aria-hidden="true"><Image src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="(max-width:650px) 45vw, 25vw"/>{excluded&&<svg className="dietProhibition" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="39"/><path d="M23 23 77 77"/></svg>}</span>;
+  const artwork=dietArtwork[name],excluded=name==="Sin lactosa"||name==="Sin gluten";
+  if(!artwork)return null;
+  return <span className={"dietChoiceArtwork dietPhoto "+(excluded?"excludedFood":"")} data-diet-artwork={name}>
+    {typeof artwork==="string"?<Image src={root+artwork} alt={name} width={1254} height={1254} sizes="(max-width:650px) 45vw, 25vw"/>:<RecipePhoto recipe={{name,imageSheet:artwork[0],imageCell:artwork[1]}}/>}
+    {excluded&&<svg className="dietProhibition" viewBox="0 0 100 100" fill="none" aria-hidden="true"><circle cx="50" cy="50" r="39"/><path d="M23 23 77 77"/></svg>}
+  </span>;
 }
 export function DesignedFormArtwork({file}) {return <Image className="formArtwork" src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="90px"/>;}
