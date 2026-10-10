@@ -13,7 +13,7 @@ const labels=[
 ["Crecer sentada","Redondear espalda"],["Extender rodilla","Punta y talón"],["Respirar","Soltar las manos"]
 ];
 const materials=[["Sin material","🌿"],["Silla","🪑"],["Pared","🧱"],["Botellas o latas","🧴"],["Palo de escoba","🧹"],["Bandas","〰️"],["Pesas","🏋️"],["Cama","🛏️"],["Escalón","🪜"],["Esterilla","🧘"]];
-function Tile({item,active,open}){return <button type="button" className={s.card} style={{"--card-tone":item[4],"--card-accent":item[5]}} aria-pressed={active} onClick={open}><span className={s.cardArt}><ExerciseArtwork item={item}/></span><b>{item[1]}</b><small>{item[2]}</small><em>Ver rutina →</em></button>}
+function Tile({item,active,open}){return <button type="button" className={s.card} style={{"--card-tone":item[4],"--card-accent":item[5]}} aria-pressed={active} onClick={open}><span className={s.cardArt}><ExerciseArtwork item={item}/></span><b>{cards.indexOf(item)+1}. {item[1]}</b><small>{item[2]}</small><em>Ver rutina →</em></button>}
 export default function ExerciseStudio({profile={},onProfile,onPrepareLog}){
  const [energy,setEnergy]=useState("Normal"),[posture,setPosture]=useState("Cualquiera");
  const [material,setMaterial]=useState("Todos"),[minutes,setMinutes]=useState(10);
@@ -50,7 +50,7 @@ export default function ExerciseStudio({profile={},onProfile,onPrepareLog}){
  <HomeExerciseGuide key={material+posture} material={material} posture={posture} energy={energy} minutes={minutes} onPrepareLog={onPrepareLog}/>
  <div className={s.materials}><h3>🪑 Materiales que tienes en casa</h3><p>Selecciona uno para filtrar. No necesitas comprar material.</p><div className={s.materialGrid}><button type="button" className={s.materialBtn} aria-pressed={material==="Todos"} onClick={()=>{setMaterial("Todos");setSelected(null)}}><span>✨</span>Todos</button>{materials.map(([name,icon])=><button type="button" className={s.materialBtn} key={name} aria-pressed={material===name} onClick={()=>{setMaterial(name);setSelected(null)}}><span aria-hidden="true">{icon}</span>{name}</button>)}</div></div>
  {chosen&&<section id="exercise-studio-detail" className={s.detail} aria-label={"Rutina de "+chosen[1]}>
- <div className={s.detailHeader}><div><small>MI RUTINA · HASTA {minutes} MINUTOS</small><h3>{chosen[1]}</h3><p>{chosen[2]}. Descansa cuando lo necesites y termina antes si lo prefieres.</p></div><button type="button" className={s.navBtn} onClick={()=>setSelected(null)}>✕ Cerrar</button></div>
+ <div className={s.detailHeader}><div><small>MI RUTINA · HASTA {minutes} MINUTOS</small><h3>{idx+1}. {chosen[1]}</h3><p>{chosen[2]}. Descansa cuando lo necesites y termina antes si lo prefieres.</p></div><button type="button" className={s.navBtn} onClick={()=>setSelected(null)}>✕ Cerrar</button></div>
  <div className={s.progress}><span style={{width:(done.length*50)+"%"}}/></div>
  {finished?<div className={s.done}><b>💚 ¡Has terminado!</b><p>Has marcado {done.length} de 2 movimientos. Registra solo el tiempo realmente realizado.</p><div className={s.actions}><button type="button" className={s.navBtn} onClick={()=>open(chosen)}>Repetir</button><button type="button" className={s.primary} onClick={()=>onPrepareLog?.(["yoga","stretch","mobility"].includes(chosen[0])?"Yoga / movilidad":["strength","bands"].includes(chosen[0])?"Fuerza":"Otro",minutes)}>Preparar registro →</button></div></div>:<>
  <div className={s.stepHead}><b>{labels[idx][step]}</b><small>Movimiento {step+1} de 2</small></div>
