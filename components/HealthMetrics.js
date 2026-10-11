@@ -52,10 +52,10 @@ export default function HealthMetrics({profile,setProfile,history,register}){
     <MeasurementCalendar history={history} selectedDate={m.date} onDate={date=>setM(old=>({...old,date}))}/>
     {!complete&&<p className="helper">Para estimar energía necesitamos sexo para el cálculo fisiológico, edad, peso, altura y actividad. Pasos, trabajo y ejercicio semanal permiten afinar el mantenimiento.</p>}
     <div className="metricCards">
-      <article><DesignedFormArtwork file="visual-weight.png"/><small>IMC ORIENTATIVO</small><b>{calc.bmi??"—"}</b><span>Dato descriptivo, no diagnóstico</span></article>
-      <article><DesignedFormArtwork file="hd-ejercicio.png"/><small>🔥 METABOLISMO BASAL</small><b>{calc.bmr?calc.bmr+" kcal/día":"—"}</b><span>Energía estimada en reposo</span></article>
-      <article><DesignedFormArtwork file="visual-water.png"/><small>⚡ MANTENIMIENTO TEÓRICO ESTIMADO</small><b>{calc.kcal?"≈ "+calc.kcal+" kcal/día":"—"}</b><span>No es gasto medido ni una recomendación de ingesta. Se estima con tus datos y actividad registrada.</span></article>
-      <article><DesignedFormArtwork file="hd-complete.png"/><small>PROTEÍNA ORIENTATIVA</small><b>{calc.protein?calc.protein[0]+"–"+calc.protein[1]+" g":"—"}</b><span>Rango general, no prescripción</span></article>
+      <article><DesignedFormArtwork file="visual-weight-fast.webp"/><small>IMC ORIENTATIVO</small><b>{calc.bmi??"—"}</b><span>Dato descriptivo, no diagnóstico</span></article>
+      <article><DesignedFormArtwork file="hd-ejercicio-fast.webp"/><small>🔥 METABOLISMO BASAL</small><b>{calc.bmr?calc.bmr+" kcal/día":"—"}</b><span>Energía estimada en reposo</span></article>
+      <article><DesignedFormArtwork file="visual-water-fast.webp"/><small>⚡ MANTENIMIENTO TEÓRICO ESTIMADO</small><b>{calc.kcal?"≈ "+calc.kcal+" kcal/día":"—"}</b><span>No es gasto medido ni una recomendación de ingesta. Se estima con tus datos y actividad registrada.</span></article>
+      <article><DesignedFormArtwork file="hd-complete-fast.webp"/><small>PROTEÍNA ORIENTATIVA</small><b>{calc.protein?calc.protein[0]+"–"+calc.protein[1]+" g":"—"}</b><span>Rango general, no prescripción</span></article>
     </div>
     <div className="needsPanel">
       <button type="button" onClick={()=>setShowNeeds(x=>!x)}>🧮 {showNeeds?"Ocultar necesidades":"Calcular mis necesidades nutricionales"}</button>

@@ -1,0 +1,20 @@
+export const cards=[
+["tai","Tai Chi","Movimientos lentos","Sin material","#fff0f8","#f32198"],
+["yoga","Yoga suave","Respiración y calma","Esterilla,Silla,Sin material","#eafaff","#00a3eb"],
+["chair","Ejercicios en silla","Movimiento sentado","Silla","#eaffee","#0abe48"],
+["wall","Ejercicios con pared","Con apoyo firme","Pared","#fff5df","#ff9400"],
+["bands","Bandas elásticas","Resistencia ligera","Bandas","#f5eaff","#a62fff"],
+["strength","Fuerza en casa","Botellas y pesas","Botellas o latas,Pesas,Sin material","#e8f9ff","#00a9e9"],
+["step","Escalón","Coordinación con apoyo","Escalón,Pared","#eaf3ff","#498dee"],
+["bed","Desde la cama","Movilidad suave","Cama","#fff0fb","#f128ba"],
+["floor","Suelo y core","Movimiento en esterilla","Esterilla","#eafff3","#00b76b"],
+["stretch","Estiramientos","Sin forzar","Sin material,Silla,Esterilla","#fff0f5","#fa3c89"],
+["warmup","Calentamiento","Empieza despacio","Sin material,Silla","#f6edff","#af36ef"],
+["mobility","Movilidad suave","Articulaciones cómodas","Sin material,Silla,Palo de escoba","#e7fffd","#00b8ad"],
+["balance","Equilibrio con apoyo","Estabilidad","Silla,Pared","#f5eeff","#9741e5"],
+["walk","Caminatas","Paseos cómodos","Sin material","#e6f7ee","#4a9c78"],
+["neck","Cuello y hombros","Movimientos suaves","Silla,Sin material","#fff5df","#eda522"],
+["back","Espalda suave","Movilidad tranquila","Silla,Esterilla","#eff5ff","#628ce4"],
+["legs","Caderas y piernas","Flexibilidad estable","Silla,Pared","#eefbff","#21a9db"],
+["cool","Vuelta a la calma","Respira y descansa","Sin material,Silla,Cama","#fff9de","#ebbd00"]
+];

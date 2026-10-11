@@ -1,6 +1,6 @@
 /* The chosen artwork is the visual language of the interface, not a picture of a phone. */
 .immersiveApp{position:relative;isolation:isolate;min-height:100dvh;color:#10170f;background:linear-gradient(135deg,#e8f4cf,#fafde9 42%,#e7f3d7)}
-.immersiveApp::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:url('/dietear-visuals/hd-alimentacion.png') center/cover;filter:blur(12px);opacity:.13}
+.immersiveApp::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:url('/dietear-visuals/background-fast.webp') center/cover;filter:blur(12px);opacity:.13}
 .immersiveApp>header{height:72px;min-height:72px;padding:10px max(24px,calc((100vw - 1320px)/2));border-bottom:1px solid #a9c38b;background:rgba(253,255,244,.95);backdrop-filter:blur(16px);box-shadow:0 2px 18px #42672712}
 .immersiveApp>header .brand{gap:10px}.immersiveApp>header .brand b{font-size:25px;letter-spacing:.08em}.immersiveApp>header .brand small{font-size:10px}
 .immersiveApp .page{max-width:1320px;margin:0 auto;padding:24px 24px 100px;min-height:calc(100dvh - 72px);background:transparent}
