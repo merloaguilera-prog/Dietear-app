@@ -1,4 +1,5 @@
 "use client";
+import {chartSeries} from "../lib/progress-data";
 import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import SelectedArtwork from "./SelectedArtwork";
@@ -92,7 +93,7 @@ export function DesignedProgress({ history, onOpen }) {
   const cutoff=Date.now()-period*86400000;
   const entries=history.filter(item=>new Date(item.date).getTime()>=cutoff).sort((a,b)=>new Date(a.date)-new Date(b.date));
   const types=type=>entries.filter(item=>type.includes(item.type));
-  const weights=types(["peso"]), calories=types(["calorias"]), movement=types(["actividad","paseo"]), water=types(["agua"]);
+  const weights=types(["peso"]), calories=chartSeries(entries,"calorias"), movement=chartSeries(entries.map(item=>item.type==="paseo"?{...item,type:"actividad"}:item),"actividad"), water=chartSeries(entries,"agua");
   const total=items=>items.reduce((sum,item)=>sum+(Number(item.value)||0),0);
   const cards=[{title:"Peso",value:weights.length?Number(weights.at(-1).value)+" kg":"Sin registros",records:weights,color:"#31a74a",section:"Peso y medidas"},{title:"Calorías",value:calories.length?Math.round(total(calories))+" kcal":"Sin registros",records:calories,color:"#db64ad",bars:true,section:"Mis gráficas"},{title:"Movimiento",value:movement.length?Math.round(total(movement))+" min":"Sin registros",records:movement,color:"#4faad7",bars:true,section:"Pasos y actividad"},{title:"Hidratación",value:water.length?total(water).toFixed(1)+" L":"Sin registros",records:water,color:"#51c9da",bars:true,section:"Hidratación"}];
   return <section className="designedProgress"><div className="sceneHeadline"><small>DIETEAR · MI PROGRESO</small><h1>Cada pequeño paso cuenta</h1><p>Visualiza tus avances y mantén la motivación.</p></div><div className="progressPeriods">{[[7,"Semana"],[31,"Mes"],[366,"Año"]].map(([value,label])=><button aria-pressed={period===value} key={value} onClick={()=>setPeriod(value)}>{label}</button>)}</div><div className="designedMetricGrid">{cards.map(card=><button className="designedMetric" style={{"--metric-color":card.color}} key={card.title} onClick={()=>onOpen("progreso",card.section)}><span>{card.title}</span><b>{card.value}</b><Sparkline records={card.records} bars={card.bars} color={card.color}/></button>)}</div><div className="progressEncouragement"><Image className="progressEncouragementPhoto" src={root+"inicio-completo-fast.webp"} alt="" width={640} height={420} sizes="(max-width:650px) 42vw, 260px"/><div><h2>¡Vas sumando!</h2><p>{entries.length?entries.length+" registros en este periodo. Tu constancia da resultados.":"Tu camino empieza con un paso. Registra algo que hayas hecho hoy."}</p><button onClick={()=>onOpen("progreso","Peso y medidas")}>＋ Registrar un avance</button></div></div></section>;
