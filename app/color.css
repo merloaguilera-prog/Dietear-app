@@ -480,3 +480,5 @@
 }
 
 .bluetoothConnection{padding:20px;border:3px solid #6cabbd;border-radius:22px;background:#eefaff;margin:20px 0;color:#152019}.bluetoothConnection label{display:grid;gap:8px;margin:14px 0;font-weight:600}.bluetoothConnection input:not([type=checkbox]),.bluetoothConnection select{width:100%;max-width:500px;font:inherit;padding:12px;border:2px solid #8fb6a5;border-radius:12px;background:#fff}.bluetoothConnection .bluetoothConsent{display:flex;align-items:flex-start;gap:10px}.bluetoothConsent input{flex-shrink:0;width:22px;height:22px}.bluetoothConnection button{padding:12px}.bluetoothConnection [role=alert]{padding:12px;background:#fff1dd;border-radius:12px}.bluetoothConnection button:disabled{opacity:.55;cursor:default}
+
+.connectedApps[hidden]{display:none!important}

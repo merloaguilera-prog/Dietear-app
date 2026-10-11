@@ -89,6 +89,6 @@ export default function BluetoothConnection({onRecord, onCharts}) {
     <p role="status" aria-live="polite">{last ? `${last.deviceName}: ${last.value} ${BLUETOOTH_METRICS[last.type].unit} · ${new Date(last.date).toLocaleString('es-ES')} · guardado en tus gráficas.` : status === 'connected' ? 'Esperando una medición del dispositivo…' : ''}</p>
     {notice && <p role="alert">{notice}</p>}
     <button type="button" onClick={onCharts}>Ver mis gráficas →</button>
-    <p><small>La recepción funciona mientras esta pantalla y la conexión están abiertas. Pasos, sueño y dispositivos con protocolos propios necesitan su integración específica; todavía no se importan desde sus apps.</small></p>
+    <p><small>La recepción funciona mientras DIETEAR y la conexión estén abiertas en esta pestaña, aunque cambies de sección. Pasos, sueño y dispositivos con protocolos propios necesitan su integración específica; todavía no se importan desde sus apps.</small></p>
   </section>;
 }

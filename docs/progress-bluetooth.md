@@ -7,7 +7,7 @@ Los registros manuales y las lecturas Bluetooth directas alimentan `history` y s
 - Bluetooth admite servicios estándar Weight Scale (181D/2A9D) y Heart Rate (180D/2A37). Las notificaciones se incorporan sin pulsar Guardar. Las lecturas de pulso actualizan un punto por minuto y dispositivo; no son medias ni un registro clínico continuo.
 - Las básculas con varios usuarios requieren elegir el identificador que corresponde a la persona. Las lecturas de otros usuarios no se importan.
 - Se conservan fecha, origen y nombre del dispositivo. Peso en libras se convierte a kg. Se rechazan lecturas incompletas, fallidas o con fechas inválidas; las retransmisiones no duplican el historial.
-- Conectar requiere acción y permiso del usuario en un navegador compatible. Cerrar la pantalla o desconectar detiene la recepción. Las lecturas recibidas permanecen guardadas.
+- Conectar requiere acción y permiso del usuario en un navegador compatible. Cambiar de sección conserva la conexión; cerrar DIETEAR, salir de su página o desconectar detiene la recepción. Las lecturas recibidas permanecen guardadas.
 - Apple Salud, Health Connect y las apps de fabricantes siguen pendientes. No se atribuye compatibilidad a ningún modelo comercial ni se importan pasos/sueño desde un sensor de peso/pulso.
 
 Validación: `TZ=Europe/Madrid node --test tests/progress-bluetooth.test.mjs` prueba bytes BLE → registro → persistencia/recarga → gráfica, conversión de unidades, fechas, separación por usuario, deduplicación y totales diarios. Compilación Next.js. No se ha conectado hardware real: faltan permisos/emparejamiento y lecturas en móvil para confirmar la integración física.
