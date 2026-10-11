@@ -36,7 +36,7 @@ export default function DietearAI({ profile, fridge, planner, history=[], careRe
           query,
           mode: searchMode,
           useContext,
-          context: useContext ? { profile: Object.fromEntries(Object.entries(profile || {}).filter(([key]) => ["age", "sex", "height", "weight", "goal", "activity", "allergies", "intolerances", "conditions", "medication", "likes", "dislikes", "healthArea", "healthAreaNotes"].includes(key))), fridge: (fridge || []).map(item => item.name), week: planner, history: history.slice(0,60), careRecords: careRecords.slice(0,20) } : {}
+          context: useContext ? { profile: Object.fromEntries(Object.entries(profile || {}).filter(([key]) => ["age", "sex", "height", "weight", "goal", "goals", "goalTargets", "activity", "allergies", "intolerances", "conditions", "medication", "likes", "dislikes", "healthArea", "healthAreaNotes"].includes(key))), fridge: (fridge || []).map(item => item.name), week: planner, history: history.slice(0,60), careRecords: careRecords.slice(0,20) } : {}
         })
       });
       const data = await response.json();

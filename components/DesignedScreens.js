@@ -153,7 +153,7 @@ const featurePhotos = {
   "Sueño y descanso": "visual-rest-fast.webp",
   "Mi Camino": "inicio-completo-fast.webp",
   "Mi ficha": "hd-inicio-fast.webp",
-  "Mis objetivos": "visual-growth-fast.webp",
+  "Mis objetivos": "visual-graphs-fast.webp",
   "Mis motivaciones": "inicio-completo-fast.webp",
   "Salud y necesidades": "hd-fit-fast.webp",
   "Mi familia": "visual-family-fast.webp",
