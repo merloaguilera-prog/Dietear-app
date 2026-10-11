@@ -1,0 +1,28 @@
+"use client";
+import {useEffect,useState} from "react";
+const stages=[
+ {name:"Bebés (0–12 meses)",icon:"👶",tips:["La leche materna o fórmula sigue siendo la base; introducir alimentos complementarios alrededor de los 6 meses según desarrollo y orientación sanitaria.","Evitar miel antes de los 12 meses, alimentos con riesgo de atragantamiento y sal o azúcar añadidos.","Consultar al equipo pediátrico ante alergias, dificultades para comer o dudas sobre texturas."]},
+ {name:"Primera infancia (1–5 años)",icon:"🧒",tips:["Ofrecer comidas regulares, variedad y agua como bebida habitual.","Adaptar tamaño y textura para evitar atragantamientos; no presionar para terminar el plato.","Combinar alimentos ricos en hierro, fruta, verdura, legumbres y cereales."]},
+ {name:"Niños y niñas (6–12 años)",icon:"🎒",tips:["Desayunos y meriendas variados sin convertir la comida en premio o castigo.","Incluir calcio, hierro, fibra y suficiente energía para crecer y jugar.","Respetar hambre y saciedad; evitar dietas de adelgazamiento y conteo de puntos."]},
+ {name:"Adolescentes (13–17 años)",icon:"🧑",tips:["Asegurar energía suficiente para crecimiento, estudio y deporte.","Prestar atención a hierro, calcio, vitamina D y proteínas con alimentos variados.","Evitar restricciones y mensajes centrados en peso o aspecto físico."]},
+ {name:"Personas adultas",icon:"👩‍🍳",tips:["Ajustar cantidades a actividad, apetito y objetivos sin dejar de priorizar variedad.","Combinar verduras, legumbres, frutas, proteínas, cereales integrales y grasas saludables.","Adaptar la planificación a horarios, preferencias y circunstancias de salud."]},
+ {name:"Embarazo y lactancia",icon:"🤱",tips:["Seguir recomendaciones específicas de seguridad alimentaria, ácido fólico, yodo y otros nutrientes según profesionales.","Evitar alcohol y revisar alimentos de riesgo durante el embarazo.","No iniciar dietas restrictivas ni por puntos sin supervisión clínica."]},
+ {name:"Menopausia y madurez",icon:"🌷",tips:["Cuidar proteínas, calcio, vitamina D y actividad física adaptada.","Priorizar fibra, hidratación y alimentación cardioprotectora.","Consultar si hay cambios importantes de apetito, salud ósea o medicación."]},
+ {name:"Personas mayores",icon:"👵",tips:["Distribuir proteínas a lo largo del día y mantener hidratación regular.","Adaptar texturas si hay problemas para masticar o tragar, con valoración sanitaria.","Vigilar pérdida involuntaria de peso, falta de apetito y posibles interacciones con medicación."]}
+];
+export default function FamilyNutrition(){
+ const [stage,setStage]=useState(0),[members,setMembers]=useState([]),[name,setName]=useState(""),[age,setAge]=useState(""),[need,setNeed]=useState(""),[ready,setReady]=useState(false);
+ useEffect(()=>{try{const a=JSON.parse(localStorage.getItem("dietear-family-nutrition-v1")||"[]");if(Array.isArray(a))setMembers(a.filter(x=>x&&typeof x.name==="string").slice(0,30));}catch{}setReady(true);},[]);
+ useEffect(()=>{if(ready)localStorage.setItem("dietear-family-nutrition-v1",JSON.stringify(members));},[members,ready]);
+ const add=()=>{if(!name.trim()||age===""||!Number.isInteger(Number(age))||Number(age)<0||Number(age)>120)return;setMembers(m=>[...m,{id:Date.now()+"-"+Math.random(),name:name.trim(),age:Number(age),need:need.trim()}]);setName("");setAge("");setNeed("");};
+ return <section style={{marginTop:20,padding:16,border:"2px solid #57ae89",borderRadius:18,background:"#f2fff7",color:"#1c4533"}}>
+  <h3>🥗 Alimentación para cada etapa de la familia</h3><p>Consejos para bebés, infancia, adolescencia, personas adultas y mayores. Las necesidades dependen de cada persona, no solo de su sexo o edad.</p>
+  <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>{stages.map((s,i)=><button type="button" key={s.name} onClick={()=>setStage(i)} aria-pressed={stage===i} style={{border:stage===i?"2px solid #17814d":"1px solid #b9d6c8",borderRadius:12,padding:"8px 12px",background:stage===i?"#d1f6df":"white"}}>{s.icon} {s.name}</button>)}</div>
+  <div style={{background:"white",borderRadius:14,padding:14,marginTop:12}}><h4>{stages[stage].icon} {stages[stage].name}</h4><ul>{stages[stage].tips.map(t=><li key={t}>{t}</li>)}</ul></div>
+  <h4>👨‍👩‍👧 Fichas familiares (opcionales)</h4><p>Guarda nombres o apodos, edad y necesidades alimentarias para organizarte. No se generan dietas médicas automáticas.</p>
+  <div style={{display:"flex",flexWrap:"wrap",gap:8}}><input aria-label="Nombre o apodo" placeholder="Nombre o apodo" value={name} onChange={e=>setName(e.target.value)}/><input aria-label="Edad" type="number" min="0" max="120" placeholder="Edad" value={age} onChange={e=>setAge(e.target.value)} style={{width:85}}/><input aria-label="Preferencias o necesidades" placeholder="Preferencias o necesidades" value={need} onChange={e=>setNeed(e.target.value)}/><button type="button" onClick={add}>Añadir familiar</button></div>
+  {members.length>0&&<ul>{members.map(m=><li key={m.id}><strong>{m.name}</strong> · {m.age} años {m.need?"· "+m.need:""} <button type="button" onClick={()=>setMembers(a=>a.filter(x=>x.id!==m.id))}>Eliminar</button></li>)}</ul>}
+  <p><strong>🍲 Un menú, diferentes raciones:</strong> prepara una base común (por ejemplo, verduras, arroz y una fuente de proteína) y adapta cantidades, textura, ingredientes y seguridad alimentaria según cada persona.</p>
+  <small>Las fichas se guardan solo en este navegador. Si existen alergias, problemas de deglución, embarazo o enfermedades que requieren dieta terapéutica, consulta con profesionales. No se aplica la dieta por puntos a menores.</small>
+ </section>;
+}
