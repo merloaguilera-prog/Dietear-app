@@ -30,7 +30,7 @@ export default function FoodAnalysis({profile,history,careRecords,onAsk,onPlan})
   function remember(value){
     const next=[value,...recents.filter(item=>item.toLowerCase()!==value.toLowerCase())].slice(0,5);
     setRecents(next);
-    localStorage.setItem(RECENT_KEY,JSON.stringify(next));
+    try{localStorage.setItem(RECENT_KEY,JSON.stringify(next));}catch{/* El análisis sigue funcionando si el almacenamiento está bloqueado. */}
   }
 
   function dictate(){
@@ -56,8 +56,12 @@ export default function FoodAnalysis({profile,history,careRecords,onAsk,onPlan})
     active.onerror=event=>{
       if(event.error!=="aborted")setError("No he podido entender el dictado. Inténtalo otra vez o escríbelo.");
     };
-    active.onend=()=>setListening(false);
-    active.start();
+    active.onend=()=>{setListening(false);recognition.current=null;};
+    try{active.start();}catch{
+      recognition.current=null;
+      setListening(false);
+      setError("No se pudo iniciar el micrófono. Revisa el permiso del navegador e inténtalo otra vez.");
+    }
   }
 
   async function analyze(event){
