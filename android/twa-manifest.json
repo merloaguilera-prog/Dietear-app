@@ -1,0 +1,23 @@
+{
+  "packageId": "com.dietear.app",
+  "host": "dietear.app",
+  "name": "DIETEAR",
+  "launcherName": "DIETEAR",
+  "display": "standalone",
+  "themeColor": "#147A4F",
+  "themeColorDark": "#0B4F37",
+  "navigationColor": "#F7FBF5",
+  "navigationColorDark": "#082F24",
+  "backgroundColor": "#F7FBF5",
+  "enableNotifications": true,
+  "startUrl": "/?source=android",
+  "iconUrl": "https://dietear.app/icons/icon-512.png",
+  "maskableIconUrl": "https://dietear.app/icons/icon-maskable-512.png",
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "minSdkVersion": 23,
+  "orientation": "portrait-primary",
+  "generatorApp": "DIETEAR",
+  "webManifestUrl": "https://dietear.app/manifest.webmanifest",
+  "fallbackType": "customtabs"
+}
