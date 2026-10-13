@@ -40,7 +40,7 @@ export default function FamilyPlanner({profile,setProfile,setPlanner,setShopping
     const portions=Math.max(.5,Number(total.toFixed(2)));
     const cleaned=members.map((member,index)=>({...member,name:member.name.trim()||"Persona "+(index+1)}));
     setProfile(current=>({...current,people:cleaned.length,familyMembers:cleaned,familyPortions:portions}));
-    setPlanner(plan=>plan.map(day=>({...day,people:portions})));
+    setPlanner(plan=>plan.map(day=>({...day,people:cleaned.length,portionFactor:portions})));
     setShopping([]);
     flash("🍽️ Porciones familiares aplicadas a toda la semana; vuelve a generar la compra");
   }
