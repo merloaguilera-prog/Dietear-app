@@ -23,7 +23,7 @@ const safeNumber=value=>{
 
 export default function SmartShopping({shopping,setShopping,fridge,profile,setProfile,flash}){
   const budget=safeNumber(profile.shoppingBudget);
-  const total=useMemo(()=>shopping.reduce((sum,item)=>sum+safeNumber(item.estimatedPrice)*Math.max(1,safeNumber(item.qty)||1),0),[shopping]);
+  const total=useMemo(()=>shopping.reduce((sum,item)=>sum+safeNumber(item.estimatedPrice),0),[shopping]);
   const pending=shopping.filter(item=>!item.done);
   const inFridge=pending.filter(item=>item.inFridge||fridge.some(food=>norm(item.name||item.text).includes(norm(food.name))||norm(food.name).includes(norm(item.name||item.text))));
   const duplicates=useMemo(()=>{
@@ -78,7 +78,7 @@ export default function SmartShopping({shopping,setShopping,fridge,profile,setPr
           const [aisle,icon]=aisleFor(item.name||item.text);
           return <label key={index} style={{display:"grid",gridTemplateColumns:"minmax(120px,1fr) auto minmax(80px,110px)",gap:8,alignItems:"center"}}>
             <span><b>{icon} {item.text||item.name}</b><small style={{display:"block"}}>{aisle} · {item.qty||1} {item.unit||"ud"}</small></span>
-            <span>€/unidad</span>
+            <span>Coste total</span>
             <input aria-label={"Precio estimado de "+(item.text||item.name)} inputMode="decimal" value={item.estimatedPrice||""} onChange={event=>setPrice(index,event.target.value)} placeholder="0,00"/>
           </label>;
         })}
