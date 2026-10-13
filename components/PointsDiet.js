@@ -20,7 +20,7 @@ const monday=(date)=>{const d=new Date(date+"T12:00:00");d.setDate(d.getDate()-(
 export default function PointsDiet(){
  const [daily,setDaily]=useState(30),[entries,setEntries]=useState([]),[food,setFood]=useState("0"),[qty,setQty]=useState(1),[ready,setReady]=useState(false);
  useEffect(()=>{try{const saved=JSON.parse(localStorage.getItem("dietear-points-v1")||"{}");if(Number.isInteger(saved.daily)&&saved.daily>=10&&saved.daily<=80)setDaily(saved.daily);if(Array.isArray(saved.entries))setEntries(saved.entries.filter(e=>e&&typeof e.date==="string"&&Number.isFinite(e.points)));}catch{}setReady(true);},[]);
- useEffect(()=>{if(ready)localStorage.setItem("dietear-points-v1",JSON.stringify({daily,entries}));},[ready,daily,entries]);
+ useEffect(()=>{if(ready){localStorage.setItem("dietear-points-v1",JSON.stringify({daily,entries}));window.dispatchEvent(new Event("dietear:daily-updated"));}},[ready,daily,entries]);
  const date=today(),week=monday(date);
  const weekEntries=entries.filter(e=>e.date>=week&&e.date<=date);
  const spentToday=entries.filter(e=>e.date===date).reduce((s,e)=>s+e.points,0);
