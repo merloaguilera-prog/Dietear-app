@@ -99,12 +99,14 @@ export default function Page(){const[dietStylesExpanded,setDietStylesExpanded]=u
 useEffect(()=>{const current={tab,section,care,careTool,trendsOpen};setScreenHistory(old=>JSON.stringify(old.entries[old.index])===JSON.stringify(current)?old:{entries:[...old.entries.slice(0,old.index+1),current],index:old.index+1})},[tab,section,care,careTool,trendsOpen]);
 const moveScreen=direction=>{const index=screenHistory.index+direction,target=screenHistory.entries[index];if(target){setScreenHistory(old=>({...old,index}));setTab(target.tab);setSection(target.section);setCare(target.care);setCareTool(target.careTool);setTrendsOpen(target.trendsOpen);if(target.section)scrollToOpened(target.section);else setTimeout(()=>window.scrollTo({top:0,behavior:"smooth"}),40);return}if(direction>0){const next=nav[nav.findIndex(item=>item[0]===tab)+1];if(next){setTab(next[0]);setSection("");setCare(false);setCareTool("");setTrendsOpen(false);window.scrollTo({top:0,behavior:"smooth"})}}};
 const flash=t=>{setMsg(t);setTimeout(()=>setMsg(""),1800)};const submitQuestion=text=>{const question=text.trim();if(!question)return;setIncomingQuestion({id:Date.now()+Math.random(),text:question});setQuickChat(q=>[...q,{id:Date.now(),text:question}]);setHomeAsk("");setCareAsk("");setCare(false);setTab("hoy");setSection("");window.setTimeout(()=>document.querySelector("#dietear-assistant")?.scrollIntoView({behavior:"smooth",block:"start"}),80)};const mealFields=MEAL_FIELDS;
+const normalizeRestriction=value=>String(value||"").toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"");
 const restrictionTerms=()=>{
- const values=[dietPrefs.allergens,dietPrefs.intolerances,dietPrefs.avoid,profile.allergens,profile.intolerances,profile.avoid].filter(Boolean).join(",");
- return values.toLowerCase().replace(/\\n/g,",").split(",").flatMap(value=>value.split(";")).map(value=>value.trim()).filter(value=>value.length>2)
+ const familyValues=(Array.isArray(profile.familyMembers)?profile.familyMembers:[]).flatMap(member=>[member.allergens,member.avoid]);
+ const values=[dietPrefs.allergens,dietPrefs.intolerances,dietPrefs.avoid,profile.allergens,profile.intolerances,profile.avoid,...familyValues].filter(Boolean).join(",");
+ return [...new Set(normalizeRestriction(values).replace(/\\n/g,",").split(",").flatMap(value=>value.split(";")).map(value=>value.trim()).filter(value=>value.length>2))]
 };
 const mealHasRestriction=meal=>{
- const text=String(meal||"").toLowerCase();
+ const text=normalizeRestriction(meal);
  return restrictionTerms().some(term=>text.includes(term))
 };
 const easyMealAlternatives=(field,current="")=>{
