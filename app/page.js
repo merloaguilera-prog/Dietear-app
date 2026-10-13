@@ -99,16 +99,16 @@ export default function Page(){const[dietStylesExpanded,setDietStylesExpanded]=u
 useEffect(()=>{const current={tab,section,care,careTool,trendsOpen};setScreenHistory(old=>JSON.stringify(old.entries[old.index])===JSON.stringify(current)?old:{entries:[...old.entries.slice(0,old.index+1),current],index:old.index+1})},[tab,section,care,careTool,trendsOpen]);
 const moveScreen=direction=>{const index=screenHistory.index+direction,target=screenHistory.entries[index];if(target){setScreenHistory(old=>({...old,index}));setTab(target.tab);setSection(target.section);setCare(target.care);setCareTool(target.careTool);setTrendsOpen(target.trendsOpen);if(target.section)scrollToOpened(target.section);else setTimeout(()=>window.scrollTo({top:0,behavior:"smooth"}),40);return}if(direction>0){const next=nav[nav.findIndex(item=>item[0]===tab)+1];if(next){setTab(next[0]);setSection("");setCare(false);setCareTool("");setTrendsOpen(false);window.scrollTo({top:0,behavior:"smooth"})}}};
 const flash=t=>{setMsg(t);setTimeout(()=>setMsg(""),1800)};const submitQuestion=text=>{const question=text.trim();if(!question)return;setIncomingQuestion({id:Date.now()+Math.random(),text:question});setQuickChat(q=>[...q,{id:Date.now(),text:question}]);setHomeAsk("");setCareAsk("");setCare(false);setTab("hoy");setSection("");window.setTimeout(()=>document.querySelector("#dietear-assistant")?.scrollIntoView({behavior:"smooth",block:"start"}),80)};const mealFields=MEAL_FIELDS;
-const normalizeRestriction=value=>String(value||"").toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"");
+const normalizeRestriction=value=>String(value||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 const restrictionTerms=()=>{
  const familyValues=(Array.isArray(profile.familyMembers)?profile.familyMembers:[]).flatMap(member=>[member.allergens,member.avoid]);
  const values=[dietPrefs.allergens,dietPrefs.intolerances,dietPrefs.avoid,profile.allergens,profile.intolerances,profile.avoid,...familyValues].filter(Boolean).join(",");
- return [...new Set(normalizeRestriction(values).replace(/\\n/g,",").split(",").flatMap(value=>value.split(";")).map(value=>value.trim()).filter(value=>value.length>2))]
+ return [...new Set(normalizeRestriction(values).replace(/\n/g,",").split(",").flatMap(value=>value.split(";")).map(value=>value.trim()).filter(value=>value.length>2))]
 };
 const mealHasRestriction=meal=>{
  const text=normalizeRestriction(meal);
  return restrictionTerms().some(term=>{
-  const escaped=term.split("").map(char=>".*+?^$()[]{}|\\\\".includes(char)?"\\\\"+char:char).join("").replace(/\\s+/g,"\\\\s+");
+  const escaped=term.split("").map(char=>".*+?^$()[]{}|\\\\".includes(char)?"\\\\"+char:char).join("").replace(/\s+/g,"\\s+");
   return new RegExp("(^|[^a-z0-9])"+escaped+"(?:s|es)?([^a-z0-9]|$)","i").test(text)
  })
 };
@@ -123,13 +123,217 @@ const easyMealAlternatives=(field,current="")=>{
  };
  return (pool[field]||[]).filter(item=>item!==current).slice(0,3)
 };
-const safeMeal=(field,meal)=>{
- if(!mealHasRestriction(meal))return meal;
- const alternatives=easyMealAlternatives(field,meal).filter(item=>!mealHasRestriction(item));
- return alternatives[0]||"⚠️ Pendiente de elegir una alternativa compatible con tus restricciones"
-};const changeWeek=offset=>{const next=moveToWeek({weekKey,planner,shopping,archive:weekArchive,people:profile.people},shiftWeek(weekKey,offset));setWeekArchive(next.archive);setPlanner(next.planner);setShopping(next.shopping);setWeekKey(next.weekKey);setSection("")};const chooseMeal=(meal,slot="lunch",people)=>{const recipe=recipeByName(meal);if([meal,...(recipe?.ingredients||[]).map(x=>x[0])].some(mealHasRestriction)){flash("🛡️ Esa propuesta coincide con una alergia o alimento excluido. No la he añadido.");return}setShopping([]);const target=weekKeyFor(),idx=(new Date().getDay()+6)%7;if(weekKey===target){setPlanner(p=>p.map((d,i)=>i===idx?{...d,[slot]:meal,...(people?{people}: {})}:d))}else{const saved=weekArchive[target];const todayPlan=normalizeWeek(saved?.planner,profile.people);setWeekArchive(old=>({...old,[weekKey]:{planner,shopping}}));setPlanner(todayPlan.map((d,i)=>i===idx?{...d,[slot]:meal,...(people?{people}: {})}:d));setShopping(saved?.shopping||[]);setWeekKey(target)}setTab("plan");setSection("");flash("🍽️ "+meal+" añadido a tu plan de hoy")};const makeShopping=()=>{const raw=shoppingFromPlan(planner,mealFields,fridge),terms=restrictionTerms();const safe=raw.filter(item=>!terms.some(term=>String(item?.name||item||"").toLowerCase().includes(term)));setShopping(safe);flash(terms.length?"🛒 Compra calculada y revisada con tus exclusiones":"🛒 Compra calculada por ingredientes y personas")};const applyDietWeek=diet=>{const shift=diet.shift||0,special=SPECIAL_DIET_WEEKS[diet.n],terms=restrictionTerms();setPlanner(old=>old.map((day,i)=>{const proposed=special?.[i]||WEEK_MENU_PRESETS[(i+shift)%WEEK_MENU_PRESETS.length];const guarded=Object.fromEntries(MEAL_FIELDS.map(([field])=>[field,safeMeal(field,proposed[field])]));return {...day,...proposed,...guarded,people:Math.max(1,Number(day.people)||Number(profile.people)||1)}}));setShopping([]);setSection("");flash(terms.length?"🛡️ Dieta aplicada revisando tus alergias y exclusiones. Comprueba siempre etiquetas y trazas.":"💚 Dieta nº "+diet.n+" aplicada. Ahora puedes cambiar y combinar sus comidas.")};const createSuggestedWeek=()=>applyDietWeek(DIET_CATALOG[Math.floor(Math.random()*DIET_CATALOG.length)]);const copyMealTo=(fromDay,field,toDay)=>{const value=planner[fromDay]?.[field];if(!value)return;if(mealHasRestriction(value)){flash("🛡️ No se copia: coincide con una alergia o exclusión.");return}setPlanner(p=>p.map((d,i)=>i===toDay?{...d,[field]:value}:d));setShopping([]);setMealMove(null);flash("💚 Comida copiada a "+WEEK_DAYS[toDay])};const swapMealWith=(fromDay,field,toDay)=>{const a=planner[fromDay]?.[field]||"",b=planner[toDay]?.[field]||"";if(mealHasRestriction(a)||mealHasRestriction(b)){flash("🛡️ Intercambio bloqueado por tus alergias o exclusiones.");return}setPlanner(p=>{const next=p.map(d=>({...d}));const hold=next[toDay]?.[field]||"";next[toDay][field]=next[fromDay][field]||"";next[fromDay][field]=hold;return next});setShopping([]);setMealMove(null);flash("↔️ Comidas intercambiadas")};
-const replaceMeal=(day,field,value)=>{if(mealHasRestriction(value)){flash("🛡️ Cambio bloqueado: coincide con una alergia o alimento excluido.");return}setPlanner(p=>p.map((d,i)=>i===day?{...d,[field]:value}:d));setShopping([]);setMealMove(null);flash("💚 Cambiado. El resto de tu día sigue igual.")};const clearToday=()=>{if(weekKey!==weekKeyFor()){flash("🌿 Abre la semana actual para reorganizar hoy.");return}const idx=(new Date().getDay()+6)%7;setPlanner(p=>p.map((d,i)=>i===idx?{...d,...Object.fromEntries(mealFields.map(([key])=>[key,""]))}:d));setShopping([]);flash("🔄 Hoy queda libre sin tocar el resto de la semana")};
-const copyTomorrow=()=>{if(weekKey!==weekKeyFor()){flash("🌿 Abre la semana actual para copiar hoy.");return}const idx=(new Date().getDay()+6)%7;const source=planner[idx];const guarded=Object.fromEntries(mealFields.map(([key])=>[key,safeMeal(key,source?.[key]||"")]));if(idx===6){const next=moveToWeek({weekKey,planner,shopping,archive:weekArchive,people:profile.people},shiftWeek(weekKey,1));setWeekArchive(next.archive);setPlanner(next.planner.map((day,i)=>i===0?{...day,...guarded,people:source.people}:day));setShopping([]);setWeekKey(next.weekKey);flash("📋 Domingo copiado al lunes con restricciones revisadas");return}setPlanner(p=>p.map((d,i)=>i===idx+1?{...d,...guarded,people:source.people}:d));setShopping([]);flash("📋 Plan de hoy copiado a mañana con restricciones revisadas")};
+const safeMeal = (field, meal) => {
+  if (!mealHasRestriction(meal)) return meal;
+  const alternatives = easyMealAlternatives(field, meal).filter(
+    (item) => !mealHasRestriction(item),
+  );
+  return (
+    alternatives[0] ||
+    "⚠️ Pendiente de elegir una alternativa compatible con tus restricciones"
+  );
+};
+const changeWeek = (offset) => {
+  const next = moveToWeek(
+    {
+      weekKey,
+      planner,
+      shopping,
+      archive: weekArchive,
+      people: profile.people,
+    },
+    shiftWeek(weekKey, offset),
+  );
+  setWeekArchive(next.archive);
+  setPlanner(next.planner);
+  setShopping(next.shopping);
+  setWeekKey(next.weekKey);
+  setSection("");
+};
+const chooseMeal = (meal, slot = "lunch", people) => {
+  const recipe = recipeByName(meal);
+  if (
+    [meal, ...(recipe?.ingredients || []).map((x) => x[0])].some(
+      mealHasRestriction,
+    )
+  ) {
+    flash(
+      "🛡️ Esa propuesta coincide con una alergia o alimento excluido. No la he añadido.",
+    );
+    return;
+  }
+  setShopping([]);
+  const target = weekKeyFor(),
+    idx = (new Date().getDay() + 6) % 7,
+    servings = people ? { people, portionFactor: people } : {};
+  if (weekKey === target) {
+    setPlanner((p) =>
+      p.map((d, i) =>
+        i === idx ? { ...d, [slot]: meal, ...servings } : d,
+      ),
+    );
+  } else {
+    const saved = weekArchive[target];
+    const todayPlan = normalizeWeek(saved?.planner, profile.people);
+    setWeekArchive((old) => ({ ...old, [weekKey]: { planner, shopping } }));
+    setPlanner(
+      todayPlan.map((d, i) =>
+        i === idx ? { ...d, [slot]: meal, ...servings } : d,
+      ),
+    );
+    setShopping(saved?.shopping || []);
+    setWeekKey(target);
+  }
+  setTab("plan");
+  setSection("");
+  flash("🍽️ " + meal + " añadido a tu plan de hoy");
+};
+const makeShopping = () => {
+  const raw = shoppingFromPlan(planner, mealFields, fridge);
+  const safe = raw.filter((item) => !mealHasRestriction(item?.name || item));
+  setShopping(safe);
+  flash(
+    restrictionTerms().length
+      ? "🛒 Compra calculada y revisada con tus exclusiones"
+      : "🛒 Compra calculada por ingredientes y personas",
+  );
+};
+const applyDietWeek = (diet) => {
+  const shift = diet.shift || 0,
+    special = SPECIAL_DIET_WEEKS[diet.n],
+    terms = restrictionTerms();
+  setPlanner((old) =>
+    old.map((day, i) => {
+      const proposed =
+        special?.[i] ||
+        WEEK_MENU_PRESETS[(i + shift) % WEEK_MENU_PRESETS.length];
+      const guarded = Object.fromEntries(
+        MEAL_FIELDS.map(([field]) => [field, safeMeal(field, proposed[field])]),
+      );
+      return {
+        ...day,
+        ...proposed,
+        ...guarded,
+        people: Math.max(1, Number(day.people) || Number(profile.people) || 1),
+      };
+    }),
+  );
+  setShopping([]);
+  setSection("");
+  flash(
+    terms.length
+      ? "🛡️ Dieta aplicada revisando tus alergias y exclusiones. Comprueba siempre etiquetas y trazas."
+      : "💚 Dieta nº " +
+          diet.n +
+          " aplicada. Ahora puedes cambiar y combinar sus comidas.",
+  );
+};
+const createSuggestedWeek = () =>
+  applyDietWeek(DIET_CATALOG[Math.floor(Math.random() * DIET_CATALOG.length)]);
+const copyMealTo = (fromDay, field, toDay) => {
+  const value = planner[fromDay]?.[field];
+  if (!value) return;
+  if (mealHasRestriction(value)) {
+    flash("🛡️ No se copia: coincide con una alergia o exclusión.");
+    return;
+  }
+  setPlanner((p) =>
+    p.map((d, i) => (i === toDay ? { ...d, [field]: value } : d)),
+  );
+  setShopping([]);
+  setMealMove(null);
+  flash("💚 Comida copiada a " + WEEK_DAYS[toDay]);
+};
+const swapMealWith = (fromDay, field, toDay) => {
+  const a = planner[fromDay]?.[field] || "",
+    b = planner[toDay]?.[field] || "";
+  if (mealHasRestriction(a) || mealHasRestriction(b)) {
+    flash("🛡️ Intercambio bloqueado por tus alergias o exclusiones.");
+    return;
+  }
+  setPlanner((p) => {
+    const next = p.map((d) => ({ ...d }));
+    const hold = next[toDay]?.[field] || "";
+    next[toDay][field] = next[fromDay][field] || "";
+    next[fromDay][field] = hold;
+    return next;
+  });
+  setShopping([]);
+  setMealMove(null);
+  flash("↔️ Comidas intercambiadas");
+};
+const replaceMeal = (day, field, value) => {
+  if (mealHasRestriction(value)) {
+    flash("🛡️ Cambio bloqueado: coincide con una alergia o alimento excluido.");
+    return;
+  }
+  setPlanner((p) =>
+    p.map((d, i) => (i === day ? { ...d, [field]: value } : d)),
+  );
+  setShopping([]);
+  setMealMove(null);
+  flash("💚 Cambiado. El resto de tu día sigue igual.");
+};
+const clearToday = () => {
+  if (weekKey !== weekKeyFor()) {
+    flash("🌿 Abre la semana actual para reorganizar hoy.");
+    return;
+  }
+  const idx = (new Date().getDay() + 6) % 7;
+  setPlanner((p) =>
+    p.map((d, i) =>
+      i === idx
+        ? { ...d, ...Object.fromEntries(mealFields.map(([key]) => [key, ""])) }
+        : d,
+    ),
+  );
+  setShopping([]);
+  flash("🔄 Hoy queda libre sin tocar el resto de la semana");
+};
+const copyTomorrow = () => {
+  if (weekKey !== weekKeyFor()) {
+    flash("🌿 Abre la semana actual para copiar hoy.");
+    return;
+  }
+  const idx = (new Date().getDay() + 6) % 7;
+  const source = planner[idx];
+  const guarded = Object.fromEntries(
+    mealFields.map(([key]) => [key, safeMeal(key, source?.[key] || "")]),
+  ),
+    servings = {
+      people: source.people,
+      portionFactor: source.portionFactor || source.people,
+    };
+  if (idx === 6) {
+    const next = moveToWeek(
+      {
+        weekKey,
+        planner,
+        shopping,
+        archive: weekArchive,
+        people: profile.people,
+      },
+      shiftWeek(weekKey, 1),
+    );
+    setWeekArchive(next.archive);
+    setPlanner(
+      next.planner.map((day, i) =>
+          i === 0 ? { ...day, ...guarded, ...servings } : day,
+      ),
+    );
+    setShopping([]);
+    setWeekKey(next.weekKey);
+    flash("📋 Domingo copiado al lunes con restricciones revisadas");
+    return;
+  }
+  setPlanner((p) =>
+    p.map((d, i) =>
+      i === idx + 1 ? { ...d, ...guarded, ...servings } : d,
+    ),
+  );
+  setShopping([]);
+  flash("📋 Plan de hoy copiado a mañana con restricciones revisadas");
+};
 const addFridge=name=>{const v=String(name||"").trim();if(!v)return;if(mealHasRestriction(v)){flash("🛡️ Ese alimento coincide con una restricción guardada. No lo añado a Mi Nevera.");return}if(fridge.some(x=>x.name.toLowerCase()===v.toLowerCase())){flash("🧊 Ese alimento ya está en tu nevera");return}setFridge(a=>[...a,{name:v,done:false}]);setShopping([]);flash("🧊 "+v+" añadido a Mi Nevera")};const adjustGoal=(i,direction)=>{const amounts=[.25,500,5,1],types=["agua","pasos","actividad","fruta"],amount=amounts[i],current=Number(goals[i]?.[2]||0),next=Math.max(0,+(current+amount*direction).toFixed(2)),actual=+(next-current).toFixed(2);if(!actual)return;setGoals(a=>a.map((g,k)=>k===i?[g[0],g[1],next,g[3],g[4]]:g));register(types[i],actual,start[i][1]+" "+(actual>0?"+":"−")+Math.abs(actual)+(start[i][4]?" "+start[i][4]:""))};const add=i=>adjustGoal(i,1);const subtract=i=>adjustGoal(i,-1);const register=(type,value,label,date)=>{setHistory(h=>[{id:Date.now()+Math.random(),date:(date&&date!==todayKey()?new Date(date+"T12:00:00"):new Date()).toISOString(),type,value,label},...h]);flash("🌿 "+label+" · registrado en tu camino")};const scrollToOpened=(targetSection="")=>window.setTimeout(()=>{const nodes=[...document.querySelectorAll("[data-open-section],.connectedModule,.realModule")];const exact=targetSection?nodes.find(el=>el.dataset?.openSection===targetSection):null;(exact||nodes[nodes.length-1])?.scrollIntoView({behavior:"smooth",block:"start"})},140);const goBackFromModule=()=>{setSection("");window.setTimeout(()=>document.querySelector(".featureGrid")?.scrollIntoView({behavior:"smooth",block:"start"}),80)};const openFeature=(targetTab,targetSection="")=>{setTab(targetTab);setSection(targetSection);setCare(false);if(targetSection)scrollToOpened(targetSection);else window.scrollTo({top:0,behavior:"smooth"})};const natureAction=name=>{setMotivation(name);if(name==="Voy a por agua"){openFeature("progreso","Hidratación");flash("💧 Registra el agua cuando hayas bebido.")}else if(name==="Empiezo con 10 minutos"||name==="Me apetece caminar"){setActivityKind("Caminar");setActivityMinutes(name==="Empiezo con 10 minutos"?"10":"15");openFeature("progreso","Pasos y actividad");flash("👟 Cuando termines, guarda los minutos realizados.")}else if(name==="Dame un pequeño reto"){flash("🌱 Tu reto: cinco minutos de movimiento. Regístralos cuando los completes.")}else if(name==="Hoy me cuesta"){flash("🤝 Hoy basta con algo pequeño. No tienes que compensar nada.")}else flash("💚 Empieza por algo sencillo. TODO SUMA")};
 const startHomeVoice=()=>{const SR=typeof window!=="undefined"&&(window.SpeechRecognition||window.webkitSpeechRecognition);if(!SR){flash("🎙️ El dictado no está disponible en este navegador. Puedes escribir tu consulta.");return}const rec=new SR();rec.lang="es-ES";rec.interimResults=false;rec.maxAlternatives=1;rec.onresult=e=>{const text=e.results?.[0]?.[0]?.transcript||"";if(text){setHomeAsk(text);flash("🎙️ Dictado preparado. Revisa el texto y envíalo cuando quieras.")}};rec.onerror=()=>flash("🎙️ No he podido usar el micrófono. Revisa el permiso del navegador.");rec.start()};
 const homeAccess=[["Alimentación","Tu alimentación y dietas","alimentacion",""],["Ejercicio","Actividad y movimiento","progreso","Pasos y actividad"],["Mi Plan","Tu semana organizada","plan",""],["Mi Progreso","Evolución y gráficas","progreso",""],["Mi Compra","Lista inteligente","alimentacion","Mi Compra"],["Mi Nevera","Aprovecha lo que tienes","alimentacion","Mi Nevera"],["Salud","Necesidades y seguimiento","perfil","Salud y necesidades"],["Objetivos","Tus metas personales","perfil","Mis objetivos"]];
