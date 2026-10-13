@@ -62,7 +62,7 @@ export function DesignedWeek({ planner, setPlanner, weekKey, changeWeek, setShop
   useEffect(()=>{setDay((new Date().getDay()+6)%7)},[]);
   useEffect(()=>{if(editing&&dialog.current&&!dialog.current.open)dialog.current.showModal()},[editing]);
   const dates=datesForWeek(weekKey), selected=planner[day];
-  const update=(field,value)=>{setPlanner(old=>old.map((item,index)=>index===day?{...item,[field]:value}:item));setShopping([])};
+  const update=(field,value)=>{setPlanner(old=>old.map((item,index)=>index===day?{...item,[field]:value,...(field==="people"?{portionFactor:value}:{})}:item));setShopping([])};
   const choose=(name,ingredients=[])=>{if([name,...ingredients.map(x=>x[0])].some(isRestricted)){setMealError("Esta comida contiene un alimento que has excluido.");return}update(editing,name);setEditing(null);flash("Comida guardada en el día elegido")};
   const available=recipes.filter(r=>showAllMeals||r.mealTypes.includes(editing));
   return <section className="designedWeek" aria-label="Mi plan semanal">
