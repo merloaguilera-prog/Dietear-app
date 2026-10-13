@@ -108,7 +108,7 @@ const restrictionTerms=()=>{
 const mealHasRestriction=meal=>{
  const text=normalizeRestriction(meal);
  return restrictionTerms().some(term=>{
-  const escaped=term.replace(/[.*+?^$\\{\\}()|[\\]\\\\]/g,"\\\\$&").replace(/\\s+/g,"\\\\s+");
+  const escaped=term.split("").map(char=>".*+?^$()[]{}|\\\\".includes(char)?"\\\\"+char:char).join("").replace(/\\s+/g,"\\\\s+");
   return new RegExp("(^|[^a-z0-9])"+escaped+"(?:s|es)?([^a-z0-9]|$)","i").test(text)
  })
 };
