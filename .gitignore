@@ -1,5 +1,10 @@
 .next
 node_modules
 .env*
+*.jks
+*.keystore
+android/native/local.properties
+android/native/.gradle/
+android/native/**/build/
 .vercel
 .DS_Store
