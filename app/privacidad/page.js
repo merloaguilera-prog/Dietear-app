@@ -21,7 +21,7 @@ export default function PrivacyPage() {
 
       <section style={section}>
         <h2>2. Datos que puedes introducir</h2>
-        <p>De forma voluntaria puedes registrar datos de perfil, objetivos, alimentación, actividad, peso y medidas, hábitos, alergias, preferencias, medicación o información de salud. También puedes escribir consultas y, cuando eliges usar la cámara, aportar imágenes para analizar alimentos o productos.</p>
+        <p>De forma voluntaria puedes registrar datos de perfil, objetivos, alimentación, actividad, peso y medidas, hábitos, alergias, preferencias, medicación o información de salud. También puedes escribir consultas y usar la cámara para leer el código de barras de un producto.</p>
       </section>
 
       <section style={section}>
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
         <h2>4. Funciones que usan servicios externos</h2>
         <ul>
           <li><strong>DIETEAR IA:</strong> la consulta y el contexto que decidas incluir se envían al proveedor de inteligencia artificial configurado para generar la respuesta.</li>
-          <li><strong>Análisis de alimentos:</strong> el texto o la imagen que aportes puede enviarse al proveedor de IA para realizar el análisis solicitado.</li>
+          <li><strong>Análisis de alimentos:</strong> el texto que escribas y el contexto que autorices pueden enviarse al proveedor de IA para realizar el análisis solicitado.</li>
           <li><strong>Consulta de productos:</strong> un código de barras puede consultarse en servicios públicos de información alimentaria para localizar la ficha del producto.</li>
           <li><strong>Alojamiento:</strong> la aplicación se sirve mediante infraestructura web que puede tratar datos técnicos necesarios, como registros de seguridad, dirección IP aproximada y tipo de navegador.</li>
         </ul>
@@ -41,8 +41,8 @@ export default function PrivacyPage() {
       </section>
 
       <section style={section}>
-        <h2>5. Cámara, voz y permisos</h2>
-        <p>La cámara y el micrófono solo se solicitan cuando activas una función que los necesita. Puedes denegar o retirar estos permisos desde los ajustes del dispositivo o navegador. DIETEAR debe seguir permitiendo el uso de las funciones que no dependan de esos permisos.</p>
+        <h2>5. Cámara y permisos</h2>
+        <p>La cámara solo se solicita cuando activas el escáner de códigos. La lectura se realiza en el dispositivo y DIETEAR envía el código detectado, no la imagen de la cámara, al servicio de información alimentaria. Puedes denegar o retirar el permiso desde los ajustes del dispositivo o navegador y escribir el código manualmente.</p>
       </section>
 
       <section style={section}>

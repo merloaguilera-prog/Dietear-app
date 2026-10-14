@@ -1,6 +1,6 @@
 # DIETEAR 🌱
 
-TODO SUMA.
+Todo suma.
 
 Aplicación de alimentación, planificación, actividad y progreso adaptada a la vida real.
 
