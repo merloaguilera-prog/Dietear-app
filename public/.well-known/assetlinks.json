@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.dietear.app",
+      "sha256_cert_fingerprints": [
+        "8A:60:21:94:04:B8:00:FD:B9:E1:76:82:9F:0D:E3:CB:D1:63:17:ED:22:14:3B:46:67:61:EC:8C:C4:FA:91:13"
+      ]
+    }
+  }
+]
