@@ -15,7 +15,7 @@
   "maskableIconUrl": "https://dietear.app/icons/icon-maskable-512.png",
   "appVersionName": "1.0.0",
   "appVersionCode": 1,
-  "minSdkVersion": 23,
+  "minSdkVersion": 24,
   "targetSdkVersion": 36,
   "orientation": "portrait-primary",
   "generatorApp": "DIETEAR",
