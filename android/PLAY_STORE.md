@@ -26,3 +26,9 @@ Nunca se deben subir al repositorio la clave de firma, sus contraseñas ni las c
 - Aviso claro: DIETEAR orienta sobre bienestar y no sustituye atención médica.
 - Capturas reales de teléfono y recursos gráficos de la ficha.
 - Prueba cerrada exigida por el tipo de cuenta antes de producción, cuando corresponda.
+
+Preparado en este repositorio:
+
+- Política pública: `/privacidad`.
+- Texto de la ficha: `android/store-listing-es.md`.
+- Borrador verificable de seguridad de datos: `android/data-safety-es.md`.
