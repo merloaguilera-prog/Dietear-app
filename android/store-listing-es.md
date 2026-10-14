@@ -27,7 +27,7 @@ Funciones principales:
 
 DIETEAR ofrece información general de bienestar y nutrición. No diagnostica enfermedades ni sustituye a profesionales sanitarios. Ante síntomas, alergias graves o necesidades clínicas, consulta con el profesional correspondiente.
 
-Menos platos y más zapatos. TODO SUMA.
+Menos platos y más zapatos. Todo suma.
 
 ## Categoría propuesta
 
