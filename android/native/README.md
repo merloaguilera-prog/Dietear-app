@@ -11,6 +11,11 @@ Proyecto TWA nativo preparado para `com.dietear.app`, API 36 y Java 17.
 
 ## Generar el AAB
 
+El flujo `Android build` de GitHub Actions compila automáticamente un APK de
+pruebas y un AAB de release sin firmar con Java 17, Gradle 9.4.1 y Android API
+36. Esto verifica el proyecto sin guardar claves en el repositorio. El AAB sin
+firmar no se puede publicar en Google Play.
+
 1. Instalar Android SDK 36 y Gradle 9.4.1 o abrir el proyecto con Android Studio compatible.
 2. Configurar una clave de carga fuera del repositorio.
 3. Ejecutar `bundleRelease`.

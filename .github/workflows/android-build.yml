@@ -1,0 +1,65 @@
+name: Android build
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "android/native/**"
+      - ".github/workflows/android-build.yml"
+  push:
+    branches: [main]
+    paths:
+      - "android/native/**"
+      - ".github/workflows/android-build.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: android/native
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Configure Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Configure Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android API 36
+        run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Configure Gradle 9.4.1
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          gradle-version: "9.4.1"
+          cache-provider: basic
+
+      - name: Compile debug APK and release bundle
+        run: gradle --no-daemon :app:assembleDebug :app:bundleRelease
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: dietear-debug-apk
+          path: android/native/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload unsigned release bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: dietear-release-aab-unsigned
+          path: android/native/app/build/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
+          retention-days: 14
