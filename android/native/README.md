@@ -26,6 +26,12 @@ firmar no se puede publicar en Google Play.
 5. Publicar esa huella en `https://dietear.app/.well-known/assetlinks.json`.
 6. Instalar una compilación de prueba y verificar que se abre sin barra del navegador.
 
+La huella incluida actualmente en `assetlinks.json` corresponde a la clave de
+subida y permite verificar instalaciones firmadas directamente con ella. Antes
+de distribuir desde Google Play hay que añadir también la huella del certificado
+de **firma de la aplicación** que proporciona Play App Signing; no debe
+confundirse con la clave de subida.
+
 No se debe considerar terminado hasta compilar, firmar e instalar el paquete en un dispositivo Android real.
 
 ## Secretos del repositorio
