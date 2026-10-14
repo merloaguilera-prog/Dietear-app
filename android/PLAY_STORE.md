@@ -4,15 +4,16 @@ Base Android: Trusted Web Activity sobre `https://dietear.app`.
 
 - Identificador definitivo: `com.dietear.app`
 - Versión inicial: `1.0.0` (`versionCode` 1)
+- Android objetivo: API 36, exigido para nuevas aplicaciones desde el 31 de agosto de 2026.
 - Dominio de producción: `dietear.app`
 - Manifiesto Android/PWA: `android/twa-manifest.json`
 
 ## Generación del paquete
 
-1. Instalar Java 17, Android SDK y Bubblewrap CLI.
-2. Desde `android/`, inicializar el proyecto usando `twa-manifest.json`.
+1. Instalar Java 17 y Android SDK 36.
+2. Abrir `android/native/` con Android Studio o ejecutar su Gradle Wrapper.
 3. Crear una clave de firma de Play y guardarla fuera del repositorio.
-4. Generar el Android App Bundle firmado (`.aab`).
+4. Generar el Android App Bundle firmado (`bundleRelease`).
 5. Publicar primero en la pista de pruebas internas de Google Play.
 6. Añadir la huella SHA-256 de la firma a `public/.well-known/assetlinks.json`.
 
@@ -26,6 +27,8 @@ Nunca se deben subir al repositorio la clave de firma, sus contraseñas ni las c
 - Aviso claro: DIETEAR orienta sobre bienestar y no sustituye atención médica.
 - Capturas reales de teléfono y recursos gráficos de la ficha.
 - Prueba cerrada exigida por el tipo de cuenta antes de producción, cuando corresponda.
+
+Para cuentas personales creadas después del 13 de noviembre de 2023, Google exige actualmente al menos 12 personas inscritas de forma continua durante 14 días antes de solicitar acceso a producción.
 
 Preparado en este repositorio:
 

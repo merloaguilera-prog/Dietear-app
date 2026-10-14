@@ -16,6 +16,7 @@
   "appVersionName": "1.0.0",
   "appVersionCode": 1,
   "minSdkVersion": 23,
+  "targetSdkVersion": 36,
   "orientation": "portrait-primary",
   "generatorApp": "DIETEAR",
   "webManifestUrl": "https://dietear.app/manifest.webmanifest",
