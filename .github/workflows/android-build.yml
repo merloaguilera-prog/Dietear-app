@@ -56,6 +56,27 @@ jobs:
           printf '%s' "$DIETEAR_UPLOAD_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/dietear-upload.jks"
           chmod 600 "$RUNNER_TEMP/dietear-upload.jks"
 
+      - name: Validate upload keystore credentials safely
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+          DIETEAR_UPLOAD_STORE_PASSWORD: ${{ secrets.DIETEAR_UPLOAD_STORE_PASSWORD }}
+          DIETEAR_UPLOAD_KEY_ALIAS: ${{ secrets.DIETEAR_UPLOAD_KEY_ALIAS }}
+        run: |
+          set +x
+          if [ -z "$DIETEAR_UPLOAD_STORE_PASSWORD" ] || [ -z "$DIETEAR_UPLOAD_KEY_ALIAS" ]; then
+            echo "::error::Missing upload signing secrets."
+            exit 1
+          fi
+          if ! keytool -list -keystore "$RUNNER_TEMP/dietear-upload.jks" -storepass "$DIETEAR_UPLOAD_STORE_PASSWORD" >/dev/null 2>&1; then
+            echo "::error::Upload keystore cannot be opened with DIETEAR_UPLOAD_STORE_PASSWORD. Replace the keystore and all three matching credentials together."
+            exit 1
+          fi
+          if ! keytool -list -keystore "$RUNNER_TEMP/dietear-upload.jks" -storepass "$DIETEAR_UPLOAD_STORE_PASSWORD" -alias "$DIETEAR_UPLOAD_KEY_ALIAS" >/dev/null 2>&1; then
+            echo "::error::Upload key alias does not match the keystore."
+            exit 1
+          fi
+          echo "Upload keystore and alias validated (key password is verified during bundle signing)."
+
       - name: Compile debug APK and unsigned release bundle for pull requests
         if: ${{ github.event_name == 'pull_request' }}
         run: gradle --no-daemon :app:assembleDebug :app:bundleRelease
