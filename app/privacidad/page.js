@@ -16,19 +16,20 @@ export default function PrivacyPage() {
 
       <section style={section}>
         <h2>1. Qué es DIETEAR</h2>
-        <p>DIETEAR es una herramienta de bienestar, alimentación, planificación y seguimiento personal. Su información es orientativa y no sustituye el diagnóstico, tratamiento ni seguimiento de profesionales sanitarios.</p>
+        <p>DIETEAR es una herramienta de alimentación, planificación y bienestar cotidiano. Permite registrar peso, medidas, actividad, hidratación y descanso. Esta versión no ofrece controles clínicos, interpretación de analíticas, registro de medicación ni seguimiento de enfermedades. Su información es orientativa y no sustituye el diagnóstico, tratamiento ni seguimiento de profesionales sanitarios.</p>
       </section>
 
       <section style={section}>
         <h2>2. Datos que puedes introducir</h2>
-        <p>De forma voluntaria puedes registrar datos de perfil, objetivos, alimentación, actividad, peso y medidas, hábitos, alergias, preferencias, medicación o información de salud. También puedes escribir consultas y usar la cámara para leer el código de barras de un producto.</p>
+        <p>De forma voluntaria puedes registrar datos de perfil, objetivos, alimentación, actividad, peso y medidas, hábitos, alergias, intolerancias y preferencias. Puedes conservar indicaciones alimentarias de tu profesional como notas locales. No introduzcas analíticas, diagnósticos ni medicación en las notas o consultas de esta versión. También puedes usar la cámara para leer el código de barras de un producto.</p>
       </section>
 
       <section style={section}>
         <h2>3. Dónde se guardan</h2>
         <p>En la versión actual, los registros personales se guardan principalmente en el almacenamiento local del navegador o dispositivo. DIETEAR no afirma disponer todavía de sincronización automática entre dispositivos. Borrar los datos del navegador o desinstalar la aplicación puede eliminar esos registros.</p>
         <p>Los objetivos diarios y su historial se guardan en una clave local independiente; puedes borrarlos desde ese módulo. Los horarios y la percepción de descanso se guardan en tu historial personal y pueden eliminarse individualmente. Las fechas, cantidades y registros de aprovechamiento de alimentos también permanecen en este dispositivo. Estos módulos no transmiten por sí mismos dichos datos a servicios externos ni leen Health Connect.</p>
-        <p>Los registros de descanso y el historial de aprovechamiento no se incorporan automáticamente al contexto de las consultas de IA o del análisis de alimentos. Si tú escribes esos datos expresamente en una consulta, se enviarán como parte del texto solicitado.</p>
+        <p>Los registros de descanso, el historial de aprovechamiento, las notas profesionales y los registros clínicos antiguos no se incorporan automáticamente al contexto de las consultas de IA o del análisis de alimentos. Al enviar una consulta se incluye una selección del perfil alimentario, peso, actividad y, en el asistente, nevera y plan semanal. No se incluye automáticamente el nombre ni los nombres familiares. El texto que escribas expresamente en una consulta puede enviarse al proveedor; evita incluir información clínica.</p>
+        <p>Si utilizaste una versión anterior con controles clínicos, sus registros locales se conservan sin activarse ni añadirse al contexto automático. La actualización no borra las analíticas, medicación o controles anteriores. Algunas versiones anteriores usaban un historial cifrado separado y otras guardaban datos en el perfil; conservarlos no significa que todos estén cifrados. Protege el acceso al dispositivo y evita los dispositivos compartidos.</p>
       </section>
 
       <section style={section}>

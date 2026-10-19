@@ -44,3 +44,7 @@ Se añade un flujo de GitHub Actions para pruebas de datos y compilación web. N
 - Android Developers, tipos de datos y declaración en Play Console: https://developer.android.com/health-and-fitness/health-connect/data-types
 
 Las ideas de personalización se aplican como seguimiento de conductas de bienestar, sin prometer pérdida de peso, prevención de enfermedades ni beneficios del ejercicio intenso para las rutinas suaves aquí descritas.
+
+## Actualización de alcance
+
+La decisión posterior de publicar una versión centrada en bienestar amplía la separación de datos: los registros clínicos antiguos y las notas profesionales tampoco entran en el contexto automático. Véase `version-bienestar-play-2026-10-19.md`. La propuesta deja de mantener activos los controles clínicos anteriores.

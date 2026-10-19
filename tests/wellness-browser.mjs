@@ -4,7 +4,7 @@ import { createRequire } from "node:module";
 import { spawn } from "node:child_process";
 import { setTimeout as pause } from "node:timers/promises";
 const require = createRequire(import.meta.url);
-const { chromium } = require(require.resolve("playwright", { paths: [process.cwd(), process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES].filter(Boolean) }));
+const { chromium } = require(require.resolve("playwright", { paths: [process.cwd(), process.env.DIETEAR_TEST_NODE_MODULES, process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES].filter(Boolean) }));
 const port = 3210;
 const server = spawn(process.execPath, ["node_modules/next/dist/bin/next", "start", "--hostname", "127.0.0.1", "--port", String(port)], { stdio: ["ignore", "pipe", "pipe"] });
 let output = "";
@@ -32,8 +32,9 @@ try {
     if (sessionStorage.getItem("seeded")) return;
     sessionStorage.setItem("seeded", "1");
     localStorage.setItem("dietear-state-v2", JSON.stringify({ version: 2, savedAt: "2026-10-19T06:00:00Z", data: {
-      profile: { name: "Prueba", people: 1 },
-      history: [{ id: "legacy-weight", type: "peso", value: 80, label: "Peso de prueba", date: "2026-10-18T10:00:00Z" }],
+      profile: { name: "Prueba", people: 1, clinicalContext: { Analíticas: { text: "PRIVATE_LEGACY_LAB" } }, healthAreaDetails: { Corazón: { medication: "PRIVATE_LEGACY_MED" } }, healthNotes: "PRIVATE_LEGACY_NOTE", familyMembers: [{name:"PRIVATE_FAMILY",type:"adulto",allergens:"",professionalNotes:"PRIVATE_FAMILY_NOTE"}] },
+      careRecords: [{id:"old-care",type:"Medicación",text:"PRIVATE_CARE_RECORD"}],
+      history: [{ id: "legacy-weight", type: "peso", value: 80, label: "Peso de prueba", date: "2026-10-18T10:00:00Z" }, {id:"legacy-clinical",type:"glucose",value:110,label:"PRIVATE_GLUCOSE",date:"2026-10-18T10:00:00Z"}],
       fridge: [{ name: "Tomate", expiryDate: "2026-10-18", dateType: "use-by", quantity: "300", unit: "g", cost: "1" }, { name: "Garbanzos cocidos", expiryDate: "2026-10-20", dateType: "best-before", quantity: "200", unit: "g", cost: "2.50" }, { name: "Pan", expiryDate: "2026-10-18", dateType: "best-before", quantity: "100", unit: "g" }],
       shopping: [{ text: "Tomate", qty: 300, unit: "g", days: [], done: false }, { text: "Garbanzos cocidos", qty: 400, unit: "g", days: [], done: false }],
     }}));
@@ -126,10 +127,34 @@ try {
   assert.equal(state.pantryLog.length, 1);
   passed.push("Declared food usage → monthly ledger → inventory removal → reload");
 
+  await page.getByRole("button", {name:"Para mí",exact:true}).click();
+  await page.getByRole("button", {name:/^Salud y necesidades/}).click();
+  await page.getByRole("heading", {name:"Tu alimentación y bienestar",exact:true}).waitFor();
+  await page.getByLabel("Indicaciones alimentarias de mi profesional (solo en este dispositivo)", {exact:true}).fill("PRIVATE_NEW_PROFESSIONAL_NOTE");
+  await page.getByLabel("Alergias alimentarias", {exact:true}).fill("sésamo");
+  assert.equal(await page.getByText("PRIVATE_LEGACY_LAB", {exact:true}).count(), 0);
+  assert.equal(await page.getByText("Controles de salud · Mi salud", {exact:true}).count(), 0);
+  await page.reload({waitUntil:"networkidle"});
+  const archived = await rootState();
+  assert.equal(archived.profile.clinicalContext.Analíticas.text,"PRIVATE_LEGACY_LAB");
+  assert.equal(archived.profile.healthAreaDetails.Corazón.medication,"PRIVATE_LEGACY_MED");
+  assert.equal(archived.careRecords[0].text,"PRIVATE_CARE_RECORD");
+  assert.ok(archived.history.some(item=>item.id==="legacy-clinical"));
+  assert.equal(archived.profile.dietaryGuidance,"PRIVATE_NEW_PROFESSIONAL_NOTE");
+  await page.getByRole("button", {name:"Progreso",exact:true}).click();
+  assert.equal(await page.getByText("PRIVATE_GLUCOSE", {exact:true}).count(),0);
+  await home();
+  await page.getByRole("button", {name:/^CUIDA DE TI/}).click();
+  await page.getByRole("heading", {name:"Cuida tus hábitos, a tu ritmo",exact:true}).waitFor();
+  assert.equal(await page.getByRole("button", {name:/^(Medicación|Analíticas|Piel y cabello)/}).count(),0);
+  passed.push("Clinical controls removed; food restrictions and local professional notes persist; archived data survives reload without entering progress");
+
   assert.equal(apiRequests.length, 0, "The wellness modules must not send personal records to an API");
   let consultation;
+  let queryCount=0;
   await page.route("**/api/ai", route => {
     consultation = route.request().postDataJSON();
+    queryCount++;
     return route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({text:"Respuesta simulada de prueba, sin proveedor externo",sources:[]})});
   });
   await page.getByRole("textbox", {name:"Pregunta para DIETEAR",exact:true}).fill("Pregunta de prueba sin datos personales");
@@ -137,6 +162,13 @@ try {
   await page.getByText("Respuesta simulada de prueba, sin proveedor externo",{exact:true}).waitFor();
   assert.ok(consultation.context.history.every(item=>!item.sleepStart&&!item.sleepEnd&&item.type!=="bienestar"));
   assert.equal(consultation.context.profile.pantryLog,undefined);
+  assert.equal(JSON.stringify(consultation).includes("PRIVATE_"),false);
+  assert.equal(consultation.context.careRecords,undefined);
+  await page.getByRole("textbox", {name:"Pregunta para DIETEAR",exact:true}).fill("Interpreta mi analítica de glucosa");
+  const sentBefore=queryCount;
+  await page.getByRole("button", {name:"Preguntar a DIETEAR →",exact:true}).click();
+  await page.getByText(/Esta versión de DIETEAR se centra en alimentación y bienestar/).waitFor();
+  assert.equal(queryCount,sentBefore);
   passed.push("Explicit AI query uses a mocked response and excludes new rest and pantry records");
 
   await page.evaluate(() => { Storage.prototype.setItem = function () { throw new DOMException("Full", "QuotaExceededError"); }; });

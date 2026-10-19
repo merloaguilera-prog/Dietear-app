@@ -1,4 +1,4 @@
-const CACHE_VERSION = "dietear-shell-v1";
+const CACHE_VERSION = "dietear-wellbeing-2026-10-19";
 const APP_SHELL = [
   "/",
   "/offline.html",

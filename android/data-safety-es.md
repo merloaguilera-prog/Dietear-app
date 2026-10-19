@@ -4,14 +4,16 @@ Este documento debe contrastarse con la versión exacta que se suba a Play Conso
 
 ## Datos locales
 
-La versión actual guarda principalmente en el dispositivo datos introducidos por la persona usuaria: perfil, objetivos, alimentación, hábitos, actividad, peso, medidas e información de salud opcional. No hay sincronización automática entre dispositivos declarada como activa.
+La versión de bienestar guarda principalmente en el dispositivo datos introducidos por la persona usuaria: perfil, objetivos, alimentación, hábitos, actividad, peso, medidas, alergias e intolerancias y notas alimentarias del profesional. No ofrece controles clínicos, registro de medicación ni interpretación de analíticas. No hay sincronización automática entre dispositivos declarada como activa.
+
+Los registros clínicos de versiones anteriores permanecen en sus ubicaciones locales originales; no se borran ni se muestran como función activa. Se excluyen del contexto automático de IA tanto en el navegador como en el servidor. Las notas profesionales y los nombres familiares también quedan fuera de ese contexto. El texto escrito expresamente por la persona puede contener datos sensibles; las advertencias y el límite a consultas clínicas no equivalen a un detector infalible.
 
 ## Datos que pueden salir del dispositivo
 
 | Función | Datos | Finalidad | Activación |
 |---|---|---|---|
-| DIETEAR IA | Consulta y contexto autorizado | Responder a la consulta | Solo cuando la persona pulsa enviar |
-| Análisis de alimento | Texto y contexto autorizado | Generar análisis orientativo | Solo cuando se solicita |
+| DIETEAR IA | Consulta, selección del perfil alimentario, peso/actividad, nevera y plan semanal | Responder a la consulta de bienestar | Solo cuando la persona pulsa enviar |
+| Análisis de alimento | Texto, selección del perfil alimentario y peso/actividad | Generar análisis nutricional orientativo | Solo cuando se solicita |
 | Escáner de producto | Código de barras | Consultar la ficha pública del producto | Solo cuando se escanea |
 | Alojamiento web | Datos técnicos y registros de seguridad | Funcionamiento y protección del servicio | Necesario para usar la app conectada |
 

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { wellnessContext, isClinicalRequest, WELLNESS_ONLY_MESSAGE } from "../lib/wellness-context.js";
 
-export default function DietearAI({ profile, fridge, planner, history=[], careRecords=[], onPlan, incomingQuestion }) {
+export default function DietearAI({ profile, fridge, planner, history=[], onPlan, incomingQuestion }) {
   const [q, setQ] = useState("");
   const [answer, setAnswer] = useState("");
   const [sources, setSources] = useState([]);
@@ -14,6 +15,7 @@ export default function DietearAI({ profile, fridge, planner, history=[], careRe
   async function ask(question = q, searchMode = mode) {
     const query = question.trim();
     if (!query || inFlight.current) return;
+    if (isClinicalRequest(query)) { setQ(query); setAnswer(WELLNESS_ONLY_MESSAGE); setSources([]); return; }
     inFlight.current = true;
     setQ(query);
     setLoading(true);
@@ -25,7 +27,7 @@ export default function DietearAI({ profile, fridge, planner, history=[], careRe
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           query: (searchMode === "investigar" ? "Investiga con varias fuentes y compáralas. " : "") + query,
-          context: { profile, fridge: fridge.map(item => item.name), week: planner, history: history.slice(0,60), careRecords: careRecords.slice(0,20) }
+          context: wellnessContext({ profile, fridge: fridge.map(item => item.name), week: planner, history })
         })
       });
       const data = await response.json();
@@ -49,7 +51,7 @@ export default function DietearAI({ profile, fridge, planner, history=[], careRe
   }, [incomingQuestion, loading]);
 
   return <section className="aiForest" id="dietear-assistant">
-    <div className="aiCrown"><div><small>🌳 DIETEAR IA · BOSQUE DE CONOCIMIENTO</small><h2>Pregunta. Busca. Comprueba. Decide.</h2><p>Internet actualizado + tu contexto autorizado, explicado con calma y con fuentes.</p></div><span className="aiPulse">IA</span></div>
+    <div className="aiCrown"><div><small>🌳 DIETEAR IA · ALIMENTACIÓN Y BIENESTAR</small><h2>Pregunta. Busca. Comprueba. Decide.</h2><p>Ideas para tus comidas, compra y hábitos, con fuentes. Al enviar, se incluye tu perfil alimentario, registros de peso y actividad, nevera y plan semanal. El descanso, las notas profesionales y los registros clínicos antiguos permanecen fuera del contexto automático.</p></div><span className="aiPulse">IA</span></div>
     <div className="aiModes"><button className={mode === "buscar" ? "selected" : ""} onClick={() => setMode("buscar")}>⚡ Buscar</button><button className={mode === "investigar" ? "selected" : ""} onClick={() => setMode("investigar")}>🔎 Investigar</button></div>
     <div className="aiComposer"><textarea aria-label="Pregunta para DIETEAR" value={q} onChange={event => setQ(event.target.value)} placeholder="Ej.: Busca una cena sencilla, económica y sin lactosa para cuatro personas…" onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); ask(); } }} /><button disabled={loading || !q.trim()} onClick={() => ask()}>{loading ? "Buscando entre las ramas…" : "Preguntar a DIETEAR →"}</button></div>
     <div className="aiPrompts">{["¿Qué puedo comer hoy?", "Busca opciones económicas", "Compara esta información de nutrición"].map(item => <button key={item} onClick={() => setQ(item)}>{item}</button>)}</div>
