@@ -1,6 +1,7 @@
 import "./globals.css";
 import "./design.css";
 import "./color.css";
+import "./wellness.css";
 import PwaRuntime from "../components/PwaRuntime";
 
 export const metadata = {

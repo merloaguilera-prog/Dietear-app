@@ -1,5 +1,6 @@
 "use client";
-import {useMemo} from "react";
+import {useMemo,useState} from "react";
+import {foodDateStatus,subtractPantry} from "../lib/pantry.js";
 
 const norm=value=>String(value||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
 const AISLES=[
@@ -22,10 +23,13 @@ const safeNumber=value=>{
 };
 
 export default function SmartShopping({shopping,setShopping,fridge,profile,setProfile,flash}){
+  const [beforeDiscount,setBeforeDiscount]=useState(null);
   const budget=safeNumber(profile.shoppingBudget);
   const total=useMemo(()=>shopping.reduce((sum,item)=>sum+safeNumber(item.estimatedPrice),0),[shopping]);
-  const pending=shopping.filter(item=>!item.done);
-  const inFridge=pending.filter(item=>item.inFridge||fridge.some(food=>norm(item.name||item.text).includes(norm(food.name))||norm(food.name).includes(norm(item.name||item.text))));
+  const pending=shopping.filter(item=>!item.done&&!item.coveredByStock);
+  const inFridge=pending.filter(item=>fridge.some(food=>!foodDateStatus(food).blocked&&norm(item.name||item.text)===norm(food.name)));
+  const discounted=subtractPantry(shopping,fridge);
+  const canDiscount=discounted.some((item,index)=>item.qty!==shopping[index]?.qty);
   const duplicates=useMemo(()=>{
     const counts={};
     shopping.forEach(item=>{const key=norm(item.name||item.text);counts[key]=(counts[key]||0)+1;});
@@ -45,8 +49,9 @@ export default function SmartShopping({shopping,setShopping,fridge,profile,setPr
     flash("🛒 Lista ordenada por pasillos");
   }
   function removeFridgeItems(){
-    setShopping(list=>list.filter(item=>!inFridge.includes(item)));
-    flash("🧊 He retirado de la compra los productos que ya aparecen en Mi Nevera");
+    setBeforeDiscount(shopping);
+    setShopping(discounted);
+    flash("🧊 Cantidades descontadas solo con nombre y unidad idénticos. Revisa los precios de los productos ajustados.");
   }
 
   if(!shopping.length)return null;
@@ -68,8 +73,10 @@ export default function SmartShopping({shopping,setShopping,fridge,profile,setPr
 
     <div className="branchActions">
       <button type="button" onClick={order}>🧭 Ordenar por pasillos</button>
-      {inFridge.length>0&&<button type="button" onClick={removeFridgeItems}>🧊 Quitar lo que ya tengo</button>}
+      <button type="button" disabled={!canDiscount} onClick={removeFridgeItems}>🧊 Descontar cantidades conocidas</button>
+      {beforeDiscount&&<button type="button" onClick={()=>{if(!window.confirm("¿Restaurar la lista anterior al descuento? Se perderán los cambios de la lista posteriores a ese descuento."))return;setShopping(beforeDiscount);setBeforeDiscount(null);flash("Lista anterior al descuento restaurada.")}}>Deshacer último descuento</button>}
     </div>
+    <small>Solo se descuentan cantidades registradas con el mismo nombre y unidad; no se adivinan equivalencias ni cantidades. Los lotes con fecha vencida no se descuentan. Los precios afectados se vacían para que los actualices. Un producto cubierto por la nevera no se considera comprado.</small>
 
     <details>
       <summary>Añadir precios estimados</summary>

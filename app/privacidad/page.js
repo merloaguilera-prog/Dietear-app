@@ -11,7 +11,7 @@ export default function PrivacyPage() {
       <a href="/" style={{ color: "#147a4f", fontWeight: 800 }}>← Volver a DIETEAR</a>
       <p style={{ marginTop: 30, color: "#477064", fontWeight: 800 }}>DIETEAR · TODO SUMA</p>
       <h1 style={{ fontSize: "clamp(32px,6vw,52px)", lineHeight: 1.05 }}>Política de privacidad</h1>
-      <p><strong>Última actualización:</strong> 14 de octubre de 2026.</p>
+      <p><strong>Última actualización:</strong> 19 de octubre de 2026.</p>
       <p>Esta política explica de forma clara qué datos utiliza DIETEAR, para qué los utiliza y qué control conserva la persona usuaria.</p>
 
       <section style={section}>
@@ -27,6 +27,7 @@ export default function PrivacyPage() {
       <section style={section}>
         <h2>3. Dónde se guardan</h2>
         <p>En la versión actual, los registros personales se guardan principalmente en el almacenamiento local del navegador o dispositivo. DIETEAR no afirma disponer todavía de sincronización automática entre dispositivos. Borrar los datos del navegador o desinstalar la aplicación puede eliminar esos registros.</p>
+        <p>Los objetivos diarios y su historial se guardan en una clave local independiente; puedes borrarlos desde ese módulo. Los horarios y la percepción de descanso se guardan en tu historial personal y pueden eliminarse individualmente. Las fechas, cantidades y registros de aprovechamiento de alimentos también permanecen en este dispositivo. Estos módulos no transmiten por sí mismos dichos datos a servicios externos ni leen Health Connect.</p>
       </section>
 
       <section style={section}>
