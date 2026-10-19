@@ -117,23 +117,35 @@ try {
   const available = page.locator(".pantryFood").filter({ has: page.getByRole("heading", { name: "Garbanzos cocidos", exact: true }) });
   await available.getByRole("button", { name: "He aprovechado este lote", exact: true }).click();
   state = await rootState();
-  assert.equal(state.profile.pantryLog.length, 1);
-  assert.equal(state.profile.pantryLog[0].kg, 0.2);
-  assert.equal(state.profile.pantryLog[0].cost, 2.5);
+  assert.equal(state.pantryLog.length, 1);
+  assert.equal(state.pantryLog[0].kg, 0.2);
+  assert.equal(state.pantryLog[0].cost, 2.5);
   assert.equal(state.fridge.some(item => item.name === "Garbanzos cocidos"), false);
   await page.reload({ waitUntil: "networkidle" });
   state = await rootState();
-  assert.equal(state.profile.pantryLog.length, 1);
+  assert.equal(state.pantryLog.length, 1);
   passed.push("Declared food usage → monthly ledger → inventory removal → reload");
+
+  assert.equal(apiRequests.length, 0, "The wellness modules must not send personal records to an API");
+  let consultation;
+  await page.route("**/api/ai", route => {
+    consultation = route.request().postDataJSON();
+    return route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({text:"Respuesta simulada de prueba, sin proveedor externo",sources:[]})});
+  });
+  await page.getByRole("textbox", {name:"Pregunta para DIETEAR",exact:true}).fill("Pregunta de prueba sin datos personales");
+  await page.getByRole("button", {name:"Preguntar a DIETEAR →",exact:true}).click();
+  await page.getByText("Respuesta simulada de prueba, sin proveedor externo",{exact:true}).waitFor();
+  assert.ok(consultation.context.history.every(item=>!item.sleepStart&&!item.sleepEnd&&item.type!=="bienestar"));
+  assert.equal(consultation.context.profile.pantryLog,undefined);
+  passed.push("Explicit AI query uses a mocked response and excludes new rest and pantry records");
 
   await page.evaluate(() => { Storage.prototype.setItem = function () { throw new DOMException("Full", "QuotaExceededError"); }; });
   await page.getByRole("button", { name: "+ Moverme a mi ritmo", exact: true }).click();
   // Goal cap may reject before storage; explicitly unselect an existing goal to exercise quota.
   await page.getByRole("button", { name: "✓ Cuidar mi hidratación", exact: true }).click();
   await page.getByText(/No se pudo guardar. Revisa el espacio/).waitFor();
-  assert.equal(apiRequests.length, 0, "The wellness modules must not send personal records to an API");
   assert.deepEqual(errors, []);
-  passed.push("Quota failure is visible, no API transmission and no browser runtime errors");
+  passed.push("Quota failure is visible and no browser runtime errors occur");
   console.log(JSON.stringify({ passed, status: "PASS" }, null, 2));
 } catch (error) {
   console.error(JSON.stringify({ passed, status: "FAIL", error: error.message, server: output }, null, 2));

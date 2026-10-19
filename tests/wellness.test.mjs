@@ -5,6 +5,7 @@ import { normalizeHabits, updateHabitDay, habitWeek } from "../lib/daily-habits.
 import { sleepSession, saveSleepRecord, sleepWeek } from "../lib/sleep.js";
 import { foodDateStatus, ingredientMatches, migratePantry, rankPantryRecipes, subtractPantry, wasteTotals } from "../lib/pantry.js";
 import { loadState, saveState } from "../lib/dietear-store.js";
+import { consultationHistory } from "../lib/wellness-context.js";
 
 process.env.TZ = "Europe/Madrid";
 const today = "2026-10-19";
@@ -150,4 +151,8 @@ test("local storage failures are explicit and corrupted data is not overwritten"
   assert.equal(saveState({ history: [1] }), true);
   assert.deepEqual(JSON.parse(saved).data.history, [1]);
   delete globalThis.localStorage; delete globalThis.window;
+});
+test("new sleep details do not silently enter AI or food-analysis context", () => {
+  const history = [{type:"peso",value:80}, {type:"bienestar",value:8}, {type:"imported",sleepStart:"2026-10-18",sleepEnd:"2026-10-19"}];
+  assert.deepEqual(consultationHistory(history), [{type:"peso",value:80}]);
 });

@@ -11,7 +11,7 @@ Fecha: 19 de octubre de 2026. Cambios aditivos sobre `main`; sin alterar el cat�
 - **Compra**: descuento reversible de cantidades solo con nombre exacto y la misma unidad. No adivina conversiones, cantidades, alimentos equivalentes ni descuentos de platos de texto libre. La cantidad descontada se conserva para impedir reutilizar el mismo stock; un artículo cubierto no se marca como comprado. Los precios de cantidades modificadas deben introducirse de nuevo.
 - **Aprovechamiento**: registro explícito de lotes completos usados o desperdiciados, retirada de inventario y resumen mensual de kg/coste declarados. Los valores no se denominan ahorro verificado ni desperdicio evitado demostrado. No se convierten litros/unidades a kg. Eliminación por registro sin reposición implícita.
 - **Resumen conectado**: actividad y descanso del día, objetivos conductuales reales, compra pendiente y plan de la semana actual (no una semana futura que se estuviera editando).
-- **Persistencia**: se avisa si el almacenamiento falla. Un estado ilegible o de versión desconocida no se sobrescribe automáticamente. Política de privacidad actualizada para estos datos locales.
+- **Persistencia y minimización**: se avisa si el almacenamiento falla. Un estado ilegible o de versión desconocida no se sobrescribe automáticamente. El aprovechamiento se guarda fuera del perfil que se utiliza en consultas; el descanso se filtra del contexto de IA y análisis alimentario. Política de privacidad actualizada para estos datos locales.
 
 Flujo: control de pantalla → validación local → estado React/almacenamiento local → recarga → resumen. Estos módulos no llaman a API, IA ni servicios externos. Continúan siendo datos de bienestar locales; no existe sincronización entre dispositivos, control clínico ni compatibilidad universal de hardware.
 
@@ -21,7 +21,7 @@ Flujo: control de pantalla → validación local → estado React/almacenamiento
 
 `npm run build`: compilación de producción Next.js.
 
-Resultado local: **22/22 pruebas de datos correctas**, compilación correcta y **7 escenarios completos de navegador correctos**. Se comprobó el panel de descanso a 320, 390, 768 y 1440 px. Los escenarios cubren guardado/recarga, ausencia de duplicados, conservación de registros anteriores, lotes bloqueados, descuentos de compra, aprovechamiento y aviso de almacenamiento lleno. No se observaron errores de ejecución ni envíos a API durante esas acciones. No equivale a pruebas con un reloj, un teléfono físico o lectores de pantalla.
+Resultado local: **23/23 pruebas de datos correctas**, compilación correcta y **8 escenarios completos de navegador correctos**. Se comprobó el panel de descanso a 320, 390, 768 y 1440 px. Los escenarios cubren guardado/recarga, ausencia de duplicados, conservación de registros anteriores, lotes bloqueados, descuentos de compra, aprovechamiento y aviso de almacenamiento lleno. No se observaron errores de ejecución ni envíos a API durante las acciones de esos módulos. Un escenario adicional simula una respuesta a una consulta explícita de IA (interceptada, sin llamar a ningún proveedor) y comprueba que el cuerpo no incluya los nuevos datos de descanso/aprovechamiento. No equivale a pruebas con un reloj, un teléfono físico o lectores de pantalla.
 
 `tests/wellness-browser.mjs`: prueba con datos sintéticos del flujo completo en navegador. Requiere Playwright y Chromium instalados; utiliza `DIETEAR_CHROMIUM_EXECUTABLE` opcionalmente. Ejecutar después de compilar. Arranca su propio servidor y no necesita secretos. `DIETEAR_SCREENSHOT_DIR` habilita una captura temporal del panel de descanso.
 
@@ -33,6 +33,7 @@ Se añade un flujo de GitHub Actions para pruebas de datos y compilación web. N
 2. **Apple Health y fabricantes**: integraciones independientes, todavía no disponibles. No equivale a conectar Bluetooth genérico.
 3. **Valoración nutricional automática**: no se inventa una puntuación clínica a partir de menús escritos o marcas de hábitos. Haría falta un registro de consumo estructurado, composición nutricional verificable, porciones y revisión profesional antes de evaluar una semana. Planificar no equivale a consumir.
 4. **Privacidad clínica**: la persistencia local no garantiza cifrado ni control de acceso. Las mejoras no convierten el módulo en historia clínica ni autorización para tratar datos de menores o modificar medicación.
+   Los demás campos de contexto de las consultas de IA conservan su comportamiento anterior; esta propuesta no equivale a una auditoría completa de consentimiento y tratamiento del resto de la aplicación.
 5. Pruebas físicas Android, accesibilidad con tecnologías asistivas y validación profesional de contenidos antes de afirmaciones clínicas o de compatibilidad.
 
 ## Fuentes primarias contrastadas
