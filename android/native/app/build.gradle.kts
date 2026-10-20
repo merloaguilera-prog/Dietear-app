@@ -38,7 +38,9 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            // Diagnostic: disable R8 to verify the obfuscated component launch crash.
+            // Restore minification with verified keep rules after a successful device test.
+            isMinifyEnabled = false
             if (hasReleaseSigning) {
                 signingConfig = signingConfigs.getByName("release")
             }
