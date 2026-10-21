@@ -153,6 +153,7 @@ export function DesignedFeatureArtwork({ name }) {
 }
 
 const dietPhotos={
+  "Por puntos":"points-diet-hero.png", "Por puntos (equilibrada)":"points-diet-hero.png",
   "Equilibrada":"hd-complete.png", "Mediterránea":"hd-complete.png", "Vegana":"hd-chickpea.png",
   "Vegetariana":"visual-vegetarian.png", "Sin gluten":"visual-gluten.png", "Sin lactosa":"visual-milk.png",
   "Hiposódica":"visual-low-salt.png", "Musulmana / Halal":"visual-mosque-real.jpg",
