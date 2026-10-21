@@ -82,7 +82,6 @@ jobs:
         run: gradle --no-daemon :app:assembleDebug :app:bundleRelease
 
       - name: Verify TWA launcher survives R8 in release build
-        if: ${{ github.event_name == 'pull_request' }}
         run: |
           set -eu
           mapping="app/build/outputs/mapping/release/mapping.txt"
