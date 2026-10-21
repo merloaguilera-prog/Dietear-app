@@ -81,6 +81,20 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         run: gradle --no-daemon :app:assembleDebug :app:bundleRelease
 
+      - name: Verify TWA launcher survives R8 in release build
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          set -eu
+          mapping="app/build/outputs/mapping/release/mapping.txt"
+          test -s "$mapping"
+          expected="com.google.androidbrowserhelper.trusted.LauncherActivity"
+          if ! grep -Fqx "$expected -> $expected:" "$mapping"; then
+            echo "::error::TWA LauncherActivity was renamed by R8 or is missing from mapping."
+            grep -F "$expected ->" "$mapping" || true
+            exit 1
+          fi
+          echo "TWA LauncherActivity retains its manifest component name."
+
       - name: Compile signed release bundle
         if: ${{ github.event_name != 'pull_request' }}
         env:
