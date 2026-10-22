@@ -15,12 +15,25 @@ trap cleanup EXIT
 
 test -e /dev/kvm
 sudo chmod 666 /dev/kvm
-printf 'no\n' | avdmanager create avd --force --name dietear-smoke --package 'system-images;android-36;google_apis;x86_64'
+export ANDROID_USER_HOME="$RUNNER_TEMP/dietear-android-user"
+export ANDROID_AVD_HOME="$ANDROID_USER_HOME/avd"
+mkdir -p "$ANDROID_AVD_HOME"
+printf 'no\n' | avdmanager create avd --force --name dietear-smoke --path "$ANDROID_AVD_HOME/dietear-smoke.avd" --package 'system-images;android-36;google_apis;x86_64'
+test -f "$ANDROID_AVD_HOME/dietear-smoke.ini"
+"$ANDROID_HOME/emulator/emulator" -list-avds > "$SMOKE_OUTPUT/avd.txt"
+grep -Fxq dietear-smoke "$SMOKE_OUTPUT/avd.txt"
+adb start-server
 "$ANDROID_HOME/emulator/emulator" -avd dietear-smoke -port 5554 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -memory 2048 -cores 2 > "$SMOKE_OUTPUT/emulator.txt" 2>&1 &
-timeout 180 adb -s emulator-5554 wait-for-device
+emulator_pid=$!
 booted=false
-for attempt in $(seq 1 90); do
-  if [ "$("${adb_command[@]}" shell getprop sys.boot_completed | tr -d '\r')" = 1 ]; then
+boot_deadline=$((SECONDS + 240))
+while [ "$SECONDS" -lt "$boot_deadline" ]; do
+  if ! kill -0 "$emulator_pid" 2>/dev/null; then
+    cat "$SMOKE_OUTPUT/emulator.txt"
+    exit 1
+  fi
+  boot_status="$(timeout 5 "${adb_command[@]}" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r' || true)"
+  if [ "$boot_status" = 1 ]; then
     booted=true
     break
   fi
