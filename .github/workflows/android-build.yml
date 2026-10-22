@@ -7,7 +7,7 @@ on:
       - "android/native/**"
       - ".github/workflows/android-build.yml"
   push:
-    branches: [main]
+    branches: [main, codex/android-startup-shortcuts]
     paths:
       - "android/native/**"
       - ".github/workflows/android-build.yml"
@@ -79,7 +79,7 @@ jobs:
 
       - name: Compile debug APK and unsigned release bundle for pull requests
         if: ${{ github.event_name == 'pull_request' }}
-        run: gradle --no-daemon :app:assembleDebug :app:bundleRelease
+        run: gradle --no-daemon :app:assembleDebug :app:assembleRelease :app:bundleRelease
 
       - name: Compile signed release bundle
         if: ${{ github.event_name != 'pull_request' }}
@@ -92,38 +92,74 @@ jobs:
           test -n "$ORG_GRADLE_PROJECT_DIETEAR_SIGNING_STORE_PASSWORD"
           test -n "$ORG_GRADLE_PROJECT_DIETEAR_SIGNING_KEY_ALIAS"
           test -n "$ORG_GRADLE_PROJECT_DIETEAR_SIGNING_KEY_PASSWORD"
-          gradle --no-daemon :app:assembleDebug :app:bundleRelease
+          gradle --no-daemon :app:assembleDebug :app:assembleRelease :app:bundleRelease
           jarsigner -verify -verbose -certs app/build/outputs/bundle/release/app-release.aab
 
-      - name: Verify crashing manage-data activity is excluded
+      - name: Verify required TWA components in merged manifests
         run: |
-          set -eu
-          for variant in debug release; do
-            case "$variant" in
-              debug) task="processDebugMainManifest" ;;
-              release) task="processReleaseMainManifest" ;;
-            esac
-            manifest="app/build/intermediates/merged_manifest/$variant/$task/AndroidManifest.xml"
-            test -s "$manifest"
-            if grep -Eq "ManageDataLauncherActivity|manageSpaceActivity" "$manifest"; then
-              echo "::error::Crashing manage-data component remains in $variant merged manifest."
-              exit 1
-            fi
-            echo "Problematic manage-data activity absent from $variant merged manifest."
-          done
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          android = '{http://schemas.android.com/apk/res/android}'
+          settings = 'com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity'
+          launcher = 'com.google.androidbrowserhelper.trusted.LauncherActivity'
+          for variant in ('debug', 'release'):
+              task = f'process{variant.title()}MainManifest'
+              path = Path(f'app/build/intermediates/merged_manifest/{variant}/{task}/AndroidManifest.xml')
+              application = ET.parse(path).getroot().find('application')
+              assert application is not None, path
+              activities = {node.get(android + 'name'): node for node in application.findall('activity')}
+              assert launcher in activities and settings in activities, f'Missing TWA activity in {variant}'
+              assert application.get(android + 'manageSpaceActivity') == settings, variant
+              assert activities[settings].get(android + 'exported') == 'false', variant
+              assert any(node.get(android + 'name') == 'android.support.customtabs.trusted.MANAGE_SPACE_URL'
+                         for node in activities[settings].findall('meta-data')), variant
+              print(f'Required TWA activities and settings metadata present in {variant} merged manifest.')
+          PYTHON
 
       - name: Verify TWA launcher survives R8 in release build
         run: |
           set -eu
           mapping="app/build/outputs/mapping/release/mapping.txt"
           test -s "$mapping"
-          expected="com.google.androidbrowserhelper.trusted.LauncherActivity"
-          if ! grep -Fqx "$expected -> $expected:" "$mapping"; then
-            echo "::error::TWA LauncherActivity was renamed by R8 or is missing from mapping."
-            grep -F "$expected ->" "$mapping" || true
-            exit 1
-          fi
-          echo "TWA LauncherActivity retains its manifest component name."
+          for component in LauncherActivity ManageDataLauncherActivity; do
+            expected="com.google.androidbrowserhelper.trusted.$component"
+            if ! grep -Fqx "$expected -> $expected:" "$mapping"; then
+              echo "::error::TWA component $component was renamed by R8 or is missing."
+              exit 1
+            fi
+          done
+          echo "Both TWA launch and site-settings components retain their names."
+
+      - name: Prepare minified release APKs for update regression
+        run: |
+          set -eu
+          baseline_dir="$RUNNER_TEMP/dietear-baseline"
+          mkdir -p "$baseline_dir"
+          git -C "$GITHUB_WORKSPACE" fetch --no-tags --depth=1 origin 1dcf5a935d079291b4049f8baff88c85e8b14264
+          git -C "$GITHUB_WORKSPACE" archive 1dcf5a935d079291b4049f8baff88c85e8b14264 android/native | tar -x -C "$baseline_dir"
+          gradle --no-daemon -p "$baseline_dir/android/native" :app:assembleRelease
+          smoke_apks="$RUNNER_TEMP/dietear-smoke-apks"
+          mkdir -p "$smoke_apks"
+          apksigner="$ANDROID_HOME/build-tools/36.0.0/apksigner"
+          baseline_apk="$baseline_dir/android/native/app/build/outputs/apk/release/app-release-unsigned.apk"
+          fixed_apk="$(find app/build/outputs/apk/release -maxdepth 1 -name '*.apk' -print -quit)"
+          # A public debug key is used only for these two emulator fixtures.
+          # The Play bundle above retains the upload-key signature.
+          test_keystore="$RUNNER_TEMP/dietear-emulator-test.jks"
+          keytool -genkeypair -keystore "$test_keystore" -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 2 -dname "CN=DIETEAR emulator fixture,O=Android test,C=ES" -noprompt
+          "$apksigner" sign --ks "$test_keystore" --ks-key-alias androiddebugkey --ks-pass pass:android --key-pass pass:android --out "$smoke_apks/baseline-1.0.1.apk" "$baseline_apk"
+          "$apksigner" sign --ks "$test_keystore" --ks-key-alias androiddebugkey --ks-pass pass:android --key-pass pass:android --out "$smoke_apks/fixed-1.0.2.apk" "$fixed_apk"
+          "$apksigner" verify "$smoke_apks/baseline-1.0.1.apk"
+          "$apksigner" verify "$smoke_apks/fixed-1.0.2.apk"
+
+      - name: Upload release APK fixtures for emulator only
+        uses: actions/upload-artifact@v4
+        with:
+          name: dietear-release-smoke-apks
+          path: ${{ runner.temp }}/dietear-smoke-apks/*.apk
+          if-no-files-found: error
+          retention-days: 1
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
@@ -139,4 +175,48 @@ jobs:
           name: dietear-release-aab-${{ github.event_name == 'pull_request' && 'unsigned' || 'signed' }}
           path: android/native/app/build/outputs/bundle/release/app-release.aab
           if-no-files-found: error
+          retention-days: 14
+
+  startup-smoke:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout tested source
+        uses: actions/checkout@v6
+
+      - name: Configure Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Configure Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+
+      - name: Download minified release APK fixtures
+        uses: actions/download-artifact@v4
+        with:
+          name: dietear-release-smoke-apks
+          path: ${{ runner.temp }}/smoke-apks
+
+      - name: Install Android 16 emulator
+        run: sdkmanager "emulator" "system-images;android-36;google_apis;x86_64"
+
+      - name: Reproduce the crash, update in place and open DIETEAR
+        env:
+          BASELINE_APK: ${{ runner.temp }}/smoke-apks/baseline-1.0.1.apk
+          FIXED_APK: ${{ runner.temp }}/smoke-apks/fixed-1.0.2.apk
+          SMOKE_OUTPUT: ${{ runner.temp }}/dietear-startup-smoke
+        run: bash android/native/scripts/smoke-update.sh
+
+      - name: Upload emulator evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dietear-android-startup-evidence
+          path: ${{ runner.temp }}/dietear-startup-smoke
+          if-no-files-found: warn
           retention-days: 14

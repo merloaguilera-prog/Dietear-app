@@ -10,12 +10,26 @@ Proyecto TWA nativo preparado para `com.dietear.app`, API 36 y Java 17.
 - La compilación de producción consume la clave exclusivamente mediante secretos de GitHub Actions.
 - La dependencia oficial es Android Browser Helper 2.7.4.
 
+## Actualización 1.0.2 (código 3)
+
+Android Browser Helper 2.7.4 llama a `ManageDataLauncherActivity.addSiteSettingsShortcut` al arrancar y activa/desactiva ese componente mediante PackageManager. La librería no declara esa actividad en su AAR; debe declararla la aplicación. Su ausencia en 1.0.1 provoca `IllegalArgumentException` aunque R8 conserve los nombres.
+
+El manifiesto registra ahora esa actividad, su URL de gestión y `manageSpaceActivity`, siguiendo el ejemplo oficial de Google. Se conserva la firma de subida existente, el identificador y las reglas de R8. La corrección se prepara para **Prueba cerrada → Alpha**, sin producción ni cambios de participantes.
+
+Con la `LauncherActivity` base, eliminar el componente mantiene el fallo: el código de la librería intenta cambiar su estado incluso cuando el navegador no admite los ajustes. `enableSiteSettingsShortcut` queda activado en la configuración de Bubblewrap para mantener las regeneraciones coherentes con el proyecto nativo. CI exige que las dos actividades y los metadatos estén presentes en los manifiestos fusionados de debug y release.
+
+El flujo también se ejecuta en `codex/android-startup-shortcuts` para generar el AAB firmado de esta corrección sin fusionar cambios en producción. Los pull requests siguen sin acceder a secretos de firma. El trabajo del emulador no recibe secretos: usa dos APK de release minificados, vueltos a firmar con una clave temporal de pruebas. El AAB de Play mantiene la clave de subida original.
+
+La prueba de regresión construye la base 1.0.1 del commit `1dcf5a935d079291b4049f8baff88c85e8b14264`, reproduce el fallo, instala 1.0.2 con `adb install -r`, comprueba un marcador de datos privados y exige dos aperturas con contenido DIETEAR visible en Android 16. No equivale a verificar la instalación desde Google Play en el móvil de la usuaria.
+
+Fuentes oficiales: [actividad y requisito de manifiesto](https://github.com/GoogleChrome/android-browser-helper/blob/main/androidbrowserhelper/src/main/java/com/google/androidbrowserhelper/trusted/ManageDataLauncherActivity.java), [manifiesto del ejemplo TWA](https://github.com/GoogleChrome/android-browser-helper/blob/main/demos/twa-basic/src/main/AndroidManifest.xml).
+
 ## Generar el AAB
 
-El flujo `Android build` de GitHub Actions compila automáticamente un APK de
-pruebas y un AAB de release sin firmar con Java 17, Gradle 9.4.1 y Android API
-36. Esto verifica el proyecto sin guardar claves en el repositorio. El AAB sin
-firmar no se puede publicar en Google Play.
+El flujo `Android build` de GitHub Actions compila con Java 17, Gradle 9.4.1 y
+Android API 36. Los pull requests generan un AAB de release sin firmar; los
+eventos de push autorizados generan el AAB firmado usando los secretos del
+repositorio. El AAB sin firmar no se puede publicar en Google Play.
 
 1. Instalar Android SDK 36 y Gradle 9.4.1 o abrir el proyecto con Android Studio compatible.
 2. Configurar una clave de carga fuera del repositorio mediante las propiedades
