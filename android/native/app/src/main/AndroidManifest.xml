@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -9,7 +10,14 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:remove="android:manageSpaceActivity">
+
+        <!-- The browser helper settings activity crashes on affected Android devices.
+             Remove it from the merged manifest rather than exposing a broken settings shortcut. -->
+        <activity
+            android:name="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity"
+            tools:node="remove" />
 
         <activity
             android:name="com.google.androidbrowserhelper.trusted.LauncherActivity"

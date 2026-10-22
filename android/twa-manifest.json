@@ -13,12 +13,13 @@
   "startUrl": "/?source=android",
   "iconUrl": "https://dietear.app/icons/icon-512.png",
   "maskableIconUrl": "https://dietear.app/icons/icon-maskable-512.png",
-  "appVersionName": "1.0.0",
-  "appVersionCode": 1,
+  "appVersionName": "1.0.2",
+  "appVersionCode": 3,
   "minSdkVersion": 24,
   "targetSdkVersion": 36,
   "orientation": "portrait-primary",
   "generatorApp": "DIETEAR",
   "webManifestUrl": "https://dietear.app/manifest.webmanifest",
-  "fallbackType": "customtabs"
+  "fallbackType": "customtabs",
+  "enableSiteSettingsShortcut": false
 }
