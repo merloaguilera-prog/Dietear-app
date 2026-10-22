@@ -4,6 +4,7 @@ Base Android: Trusted Web Activity sobre `https://dietear.app`.
 
 - Identificador definitivo: `com.dietear.app`
 - Versión inicial: `1.0.0` (`versionCode` 1)
+- Corrección de arranque: `1.0.2` (`versionCode` 3), preparada para Prueba cerrada → Alpha.
 - Android objetivo: API 36, exigido para nuevas aplicaciones desde el 31 de agosto de 2026.
 - Dominio de producción: `dietear.app`
 - Manifiesto Android/PWA: `android/twa-manifest.json`
@@ -14,7 +15,7 @@ Base Android: Trusted Web Activity sobre `https://dietear.app`.
 2. Abrir `android/native/` con Android Studio o ejecutar su Gradle Wrapper.
 3. Crear una clave de firma de Play y guardarla fuera del repositorio.
 4. Generar el Android App Bundle firmado (`bundleRelease`).
-5. Publicar primero en la pista de pruebas internas de Google Play.
+5. Para esta actualización, usar exclusivamente Prueba cerrada → Alpha; mantener producción y los participantes actuales.
 6. Añadir la huella SHA-256 de la firma a `public/.well-known/assetlinks.json`.
 
 Nunca se deben subir al repositorio la clave de firma, sus contraseñas ni las credenciales de Play Console.
