@@ -98,9 +98,10 @@ jobs:
       - name: Verify crashing manage-data activity is excluded
         run: |
           set -eu
-          manifest="app/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml"
+          manifest=$(find app/build/intermediates -type f -path "*/debug/*/AndroidManifest.xml" | grep -E "/(merged_manifest|merged_manifests)/" | head -n 1)
+          test -n "$manifest"
           test -s "$manifest"
-          if grep -q "ManageDataLauncherActivity\|manageSpaceActivity" "$manifest"; then
+          if grep -Eq "ManageDataLauncherActivity|manageSpaceActivity" "$manifest"; then
             echo "::error::Crashing manage-data component remains in merged manifest."
             exit 1
           fi
