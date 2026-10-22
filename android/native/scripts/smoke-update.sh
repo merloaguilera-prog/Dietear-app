@@ -19,7 +19,7 @@ sudo chmod 666 /dev/kvm
 export ANDROID_USER_HOME="$RUNNER_TEMP/dietear-android-user"
 export ANDROID_AVD_HOME="$ANDROID_USER_HOME/avd"
 mkdir -p "$ANDROID_AVD_HOME"
-printf 'no\n' | avdmanager create avd --force --name dietear-smoke --path "$ANDROID_AVD_HOME/dietear-smoke.avd" --package 'system-images;android-36;google_apis;x86_64'
+timeout 90 avdmanager create avd --force --name dietear-smoke --path "$ANDROID_AVD_HOME/dietear-smoke.avd" --package 'system-images;android-36;google_apis;x86_64' --device 'pixel_6'
 test -f "$ANDROID_AVD_HOME/dietear-smoke.ini"
 "$ANDROID_HOME/emulator/emulator" -list-avds > "$SMOKE_OUTPUT/avd.txt"
 grep -Fxq dietear-smoke "$SMOKE_OUTPUT/avd.txt"
