@@ -98,13 +98,19 @@ jobs:
       - name: Verify crashing manage-data activity is excluded
         run: |
           set -eu
-          manifest="app/build/intermediates/merged_manifest/debug/processDebugMainManifest/AndroidManifest.xml"
-          test -s "$manifest"
-          if grep -q "ManageDataLauncherActivity\|manageSpaceActivity" "$manifest"; then
-            echo "::error::Crashing manage-data component remains in merged manifest."
-            exit 1
-          fi
-          echo "Problematic manage-data activity absent from merged manifest."
+          for variant in debug release; do
+            case "$variant" in
+              debug) task="processDebugMainManifest" ;;
+              release) task="processReleaseMainManifest" ;;
+            esac
+            manifest="app/build/intermediates/merged_manifest/$variant/$task/AndroidManifest.xml"
+            test -s "$manifest"
+            if grep -Eq "ManageDataLauncherActivity|manageSpaceActivity" "$manifest"; then
+              echo "::error::Crashing manage-data component remains in $variant merged manifest."
+              exit 1
+            fi
+            echo "Problematic manage-data activity absent from $variant merged manifest."
+          done
 
       - name: Verify TWA launcher survives R8 in release build
         run: |
