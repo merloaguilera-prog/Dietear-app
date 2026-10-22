@@ -20,5 +20,6 @@
   "orientation": "portrait-primary",
   "generatorApp": "DIETEAR",
   "webManifestUrl": "https://dietear.app/manifest.webmanifest",
-  "fallbackType": "customtabs"
+  "fallbackType": "customtabs",
+  "enableSiteSettingsShortcut": false
 }
