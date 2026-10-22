@@ -6,6 +6,7 @@ mkdir -p "$SMOKE_OUTPUT"
 app_package=com.dietear.app
 launcher_component="$app_package/com.google.androidbrowserhelper.trusted.LauncherActivity"
 adb_command=(adb -s emulator-5554)
+script_dir="$(dirname "${BASH_SOURCE[0]}")"
 
 cleanup() {
   timeout 10 "${adb_command[@]}" logcat -d > "$SMOKE_OUTPUT/final-logcat.txt" 2>/dev/null || true
@@ -23,7 +24,7 @@ test -f "$ANDROID_AVD_HOME/dietear-smoke.ini"
 "$ANDROID_HOME/emulator/emulator" -list-avds > "$SMOKE_OUTPUT/avd.txt"
 grep -Fxq dietear-smoke "$SMOKE_OUTPUT/avd.txt"
 adb start-server
-"$ANDROID_HOME/emulator/emulator" -avd dietear-smoke -port 5554 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -memory 2048 -cores 2 > "$SMOKE_OUTPUT/emulator.txt" 2>&1 &
+"$ANDROID_HOME/emulator/emulator" -avd dietear-smoke -port 5554 -no-window -no-audio -no-boot-anim -no-snapshot -gpu software -memory 3072 -cores 2 > "$SMOKE_OUTPUT/emulator.txt" 2>&1 &
 emulator_pid=$!
 booted=false
 boot_deadline=$((SECONDS + 240))
@@ -45,8 +46,11 @@ test "$booted" = true
 test "$("${adb_command[@]}" shell id -u | tr -d '\r')" = 0
 "${adb_command[@]}" shell input keyevent KEYCODE_WAKEUP
 "${adb_command[@]}" shell wm dismiss-keyguard
+"${adb_command[@]}" shell settings put global window_animation_scale 0
+"${adb_command[@]}" shell settings put global transition_animation_scale 0
+"${adb_command[@]}" shell settings put global animator_duration_scale 0
 "${adb_command[@]}" shell pm path com.android.chrome
-"${adb_command[@]}" shell 'echo "chrome --no-first-run --disable-fre --no-default-browser-check" > /data/local/tmp/chrome-command-line'
+"${adb_command[@]}" shell 'echo "chrome --no-first-run --disable-fre --no-default-browser-check --disable-features=Translate" > /data/local/tmp/chrome-command-line'
 "${adb_command[@]}" shell am force-stop com.android.chrome
 
 # Reproduce the exact startup failure from 1.0.1, with R8 enabled.
@@ -88,12 +92,23 @@ for launch in 1 2; do
   "${adb_command[@]}" logcat -c
   "${adb_command[@]}" shell am start -W -n "$launcher_component" > "$SMOKE_OUTPUT/fixed-launch-$launch.txt"
   visible=false
-  for attempt in $(seq 1 30); do
-    "${adb_command[@]}" shell uiautomator dump /sdcard/dietear-window.xml >/dev/null 2>&1 || true
+  visual_passes=0
+  page_deadline=$((SECONDS + 150))
+  while [ "$SECONDS" -lt "$page_deadline" ]; do
+    "${adb_command[@]}" shell rm -f /sdcard/dietear-window.xml
+    timeout 15 "${adb_command[@]}" shell uiautomator dump /sdcard/dietear-window.xml >/dev/null 2>&1 || true
     "${adb_command[@]}" shell cat /sdcard/dietear-window.xml > "$SMOKE_OUTPUT/fixed-window-$launch.xml" 2>/dev/null || true
     if grep -Eq 'Cuida de ti|Comenzar ahora|TODO SUMA|Alimentación' "$SMOKE_OUTPUT/fixed-window-$launch.xml"; then
-      visible=true
-      break
+      "${adb_command[@]}" exec-out screencap > "$SMOKE_OUTPUT/fixed-frame-$launch.raw"
+      if python3 "$script_dir/check-frame.py" "$SMOKE_OUTPUT/fixed-frame-$launch.raw" > "$SMOKE_OUTPUT/fixed-frame-$launch.json"; then
+        visual_passes=$((visual_passes + 1))
+        if [ "$visual_passes" -ge 2 ]; then
+          visible=true
+          break
+        fi
+      else
+        visual_passes=0
+      fi
     fi
     sleep 2
   done
@@ -105,5 +120,5 @@ for launch in 1 2; do
   "${adb_command[@]}" exec-out screencap -p > "$SMOKE_OUTPUT/fixed-launch-$launch.png"
   test "$visible" = true
 done
-printf '%s\n' '{"androidApi":36,"baselineVersion":"1.0.1","baselineCrashReproduced":true,"updatedVersion":"1.0.2","privateDataRetained":true,"successfulColdLaunches":2,"dietearPageVisible":true,"apkBuildType":"minified release; emulator test certificate"}' > "$SMOKE_OUTPUT/result.json"
+printf '%s\n' '{"androidApi":36,"baselineVersion":"1.0.1","baselineCrashReproduced":true,"updatedVersion":"1.0.2","privateDataRetained":true,"successfulColdLaunches":2,"dietearPageVisible":true,"visiblePagePixelsVerified":true,"apkBuildType":"minified release; emulator test certificate"}' > "$SMOKE_OUTPUT/result.json"
 echo 'Android 16: baseline crash reproduced; 1.0.2 installs as an update and opens twice.'

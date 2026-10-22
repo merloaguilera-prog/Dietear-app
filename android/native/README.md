@@ -22,6 +22,8 @@ El flujo también se ejecuta en `codex/android-startup-shortcuts` para generar e
 
 La prueba de regresión construye la base 1.0.1 del commit `1dcf5a935d079291b4049f8baff88c85e8b14264`, reproduce el fallo, instala 1.0.2 con `adb install -r`, comprueba un marcador de datos privados y exige dos aperturas con contenido DIETEAR visible en Android 16. No equivale a verificar la instalación desde Google Play en el móvil de la usuaria.
 
+La comprobación visual combina el texto de accesibilidad con píxeles reales de la zona central de la página en dos fotogramas consecutivos. Una superficie blanca no cuenta como apertura correcta. El emulador usa el backend `software` vigente y 3 GB de RAM; se conservan capturas y métricas como evidencia.
+
 Fuentes oficiales: [actividad y requisito de manifiesto](https://github.com/GoogleChrome/android-browser-helper/blob/main/androidbrowserhelper/src/main/java/com/google/androidbrowserhelper/trusted/ManageDataLauncherActivity.java), [manifiesto del ejemplo TWA](https://github.com/GoogleChrome/android-browser-helper/blob/main/demos/twa-basic/src/main/AndroidManifest.xml).
 
 ## Generar el AAB
