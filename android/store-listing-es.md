@@ -25,7 +25,7 @@ Funciones principales:
 - Asistente DIETEAR IA para resolver dudas con explicaciones claras.
 - Diseño accesible para distintas edades y niveles de experiencia.
 
-DIETEAR ofrece información general de bienestar y nutrición. No diagnostica enfermedades ni sustituye a profesionales sanitarios. Ante síntomas, alergias graves o necesidades clínicas, consulta con el profesional correspondiente.
+DIETEAR ofrece información general de bienestar y nutrición. Esta versión no realiza controles clínicos, interpreta analíticas, registra medicación ni gestiona enfermedades. No diagnostica ni sustituye a profesionales sanitarios. Ante síntomas, alergias graves o necesidades clínicas, consulta con el profesional correspondiente.
 
 Menos platos y más zapatos. Todo suma.
 

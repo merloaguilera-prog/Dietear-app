@@ -1,11 +1,12 @@
 "use client";
 import {useEffect,useRef,useState} from "react";
+import {wellnessContext,isClinicalRequest,WELLNESS_ONLY_MESSAGE} from "../lib/wellness-context.js";
 
 const fits={compatible:"Compatible",con_ajustes:"Con ajustes",no_adecuado:"No adecuado",consultar:"Consultar según tu caso"};
 const format=value=>new Intl.NumberFormat("es-ES",{maximumFractionDigits:2}).format(value);
 const RECENT_KEY="dietear-food-analysis-recents";
 
-export default function FoodAnalysis({profile,history,careRecords,onAsk,onPlan}){
+export default function FoodAnalysis({profile,history,onAsk,onPlan}){
   const [query,setQuery]=useState("");
   const [portion,setPortion]=useState("100");
   const [analysis,setAnalysis]=useState(null);
@@ -70,6 +71,7 @@ export default function FoodAnalysis({profile,history,careRecords,onAsk,onPlan})
       setError("Escribe un alimento y una cantidad mayor que cero.");
       return;
     }
+    if(isClinicalRequest(query)){setError(WELLNESS_ONLY_MESSAGE);return;}
     controller.current?.abort();
     const current=new AbortController();
     controller.current=current;
@@ -80,7 +82,7 @@ export default function FoodAnalysis({profile,history,careRecords,onAsk,onPlan})
       const response=await fetch("/api/food-analysis",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({query,context:{profile,history:history.slice(-60),careRecords:careRecords.slice(0,20)}}),
+        body:JSON.stringify({query,context:wellnessContext({profile,history})}),
         signal:current.signal
       });
       const data=await response.json();
@@ -100,7 +102,7 @@ export default function FoodAnalysis({profile,history,careRecords,onAsk,onPlan})
   </table>;
 
   return <div className="foodAnalysis">
-    <p>Consulta composición, usos y cómo encaja en distintos estilos de alimentación. Puedes escribir o dictar el alimento; indica la marca para consultar su etiqueta.</p>
+    <p>Consulta composición, usos y cómo encaja en distintos estilos de alimentación. Puedes escribir o dictar el alimento; indica la marca para consultar su etiqueta. Al solicitarlo se incluye tu perfil alimentario y registros de peso y actividad; las notas profesionales y los registros clínicos antiguos no se añaden automáticamente.</p>
     <form onSubmit={analyze}>
       <label>Alimento y marca (si la conoces)
         <span style={{display:"flex",gap:8,alignItems:"stretch"}}>
@@ -127,7 +129,7 @@ export default function FoodAnalysis({profile,history,careRecords,onAsk,onPlan})
       <section><h4>Ideas para utilizarlo</h4><div className="foodUseGrid">{analysis.uses.map((u,i)=><article key={i}><h4>{u.title}</h4><p>{u.description}</p></article>)}</div><p><b>Alergias y etiquetas: </b>{analysis.allergens}</p></section>
       {analysis.missing_data.length>0&&<section><h4>Para afinar esta ficha</h4><ul>{analysis.missing_data.map((x,i)=><li key={i}>{x}</li>)}</ul></section>}
       <section><h4>Fuentes consultadas</h4><ul>{analysis.sources.map(s=><li key={s.url}><a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a></li>)}</ul></section>
-      <div className="branchActions"><button onClick={()=>onAsk(`Explícame cómo utilizar ${analysis.food} según mi perfil y los registros guardados, incluyendo cantidad, frecuencia, restricciones y qué debo consultar. Ficha de referencia: ${JSON.stringify(analysis)}`)}>Consultar con mis datos →</button><button onClick={onPlan}>Abrir mi plan →</button></div>
+      <div className="branchActions"><button onClick={()=>onAsk(`Dame ideas generales de recetas con ${analysis.food}, respetando mis alergias y preferencias alimentarias.`)}>Consultar ideas de recetas →</button><button onClick={onPlan}>Abrir mi plan →</button></div>
     </article>}
   </div>;
 }

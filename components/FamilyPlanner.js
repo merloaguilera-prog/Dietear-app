@@ -73,9 +73,9 @@ export default function FamilyPlanner({profile,setProfile,setPlanner,setShopping
             <label>Objetivos personales<input value={member.objectives??""} onChange={e=>update(member.id,"objectives",e.target.value)} placeholder="Ej.: comer variado, caminar"/></label>
             <label>Horarios y rutinas<input value={member.routine??""} onChange={e=>update(member.id,"routine",e.target.value)} placeholder="Ej.: turnos, colegio"/></label>
             <label>Necesidades alimentarias<input value={member.nutritionNeeds??""} onChange={e=>update(member.id,"nutritionNeeds",e.target.value)} placeholder="Ej.: textura, preferencias"/></label>
-            <label>Indicaciones profesionales<input value={member.professionalNotes??""} onChange={e=>update(member.id,"professionalNotes",e.target.value)} placeholder="Solo si deseas registrarlas"/></label>
+            <label>Indicaciones alimentarias del profesional (solo locales)<input value={member.professionalNotes??""} onChange={e=>update(member.id,"professionalNotes",e.target.value)} placeholder="Solo pautas de alimentación; sin analíticas ni medicación"/></label>
           </div>
-          <p style={{fontSize:13}}>La ficha se guarda con el perfil de este navegador. Antes de sincronizar datos sensibles entre dispositivos será necesario implementar autenticación, permisos y almacenamiento seguro.</p>
+          <p style={{fontSize:13}}>La ficha se guarda con el perfil de este navegador. Las notas profesionales permanecen locales y no se añaden automáticamente a la IA. No hay sincronización entre dispositivos en esta versión.</p>
         </details>
         <small>Porción orientativa: × {PRESETS[member.type]?.factor||1}. Es una equivalencia aproximada de compra, no una prescripción nutricional individual.</small>
       </article>)}
