@@ -110,9 +110,9 @@ jobs:
               assert application is not None, path
               activities = {node.get(android + 'name'): node for node in application.findall('activity')}
               assert launcher in activities, f'Missing launcher in {variant}'
-              assert settings not in activities, f'Crashing manage-data activity remains in {variant}'
-              assert application.get(android + 'manageSpaceActivity') is None, f'manageSpaceActivity remains in {variant}'
-              print(f'Launcher present; crashing manage-data registration absent in {variant}.')
+              assert settings in activities, f'Required manage-data activity missing in {variant}'
+              assert application.get(android + 'manageSpaceActivity') == settings, f'manageSpaceActivity not registered in {variant}'
+              print(f'Launcher and required manage-data component present in {variant}.')
           PYTHON
 
       - name: Verify TWA launcher survives R8 in release build
