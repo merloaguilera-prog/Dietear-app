@@ -1,47 +1,123 @@
 "use client";
-import {useEffect,useMemo,useState} from "react";
+import { useEffect, useMemo, useState } from "react";
+import Image, { getImageProps } from "next/image";
+import foodData from "../lib/points-foods.json";
+import commonsPhotos from "../lib/points-photos.json";
+import foodIllustrations from "../lib/points-illustrations.json";
+import { recipes } from "../lib/recipes";
+import RecipePhoto from "./RecipePhoto";
+import PointsGuide from "./PointsGuide";
+import PointsFoodGroups from "./PointsFoodGroups";
+import { calculateRecipe, foodEnergy, localDateKey, MEAL_MOMENTS, METHOD_VERSION, normalizeFoodText,
+  POINTS_STORAGE_KEY, pointsFromKcal, readPointsState, recipeForPoints, resolveRecipeIngredients, sumPoints, weekDates } from "../lib/points-diet.mjs";
 
-const foods=[
- ["Manzana (1 mediana)",95],["Plátano (1 mediano)",105],["Yogur natural (125 g)",80],
- ["Huevo (1 unidad)",78],["Pan integral (40 g)",100],["Arroz cocido (150 g)",195],
- ["Pechuga de pollo (150 g)",248],["Aceite de oliva (10 g)",90],
- ["Lentejas cocidas (150 g)",174],["Verduras variadas (200 g)",70],
- ["Leche semidesnatada (200 ml)",100],["Almendras (30 g)",174]
-];
-const meals=[
- {name:"Tostada con huevo y fruta",items:[4,3,0]},
- {name:"Pollo, arroz y verduras",items:[6,5,9]},
- {name:"Yogur con plátano y almendras",items:[2,1,11]},
- {name:"Lentejas con verduras y aceite",items:[8,9,7]}
-];
-const points=kcal=>Math.max(1,Math.round(kcal/50));
-const today=()=>new Date().toLocaleDateString("en-CA");
-const monday=(date)=>{const d=new Date(date+"T12:00:00");d.setDate(d.getDate()-(d.getDay()+6)%7);return d.toLocaleDateString("en-CA");};
-export default function PointsDiet(){
- const [daily,setDaily]=useState(30),[entries,setEntries]=useState([]),[food,setFood]=useState("0"),[qty,setQty]=useState(1),[ready,setReady]=useState(false);
- useEffect(()=>{try{const saved=JSON.parse(localStorage.getItem("dietear-points-v1")||"{}");if(Number.isInteger(saved.daily)&&saved.daily>=10&&saved.daily<=80)setDaily(saved.daily);if(Array.isArray(saved.entries))setEntries(saved.entries.filter(e=>e&&typeof e.date==="string"&&Number.isFinite(e.points)));}catch{}setReady(true);},[]);
- useEffect(()=>{if(ready){localStorage.setItem("dietear-points-v1",JSON.stringify({daily,entries}));window.dispatchEvent(new Event("dietear:daily-updated"));}},[ready,daily,entries]);
- const date=today(),week=monday(date);
- const weekEntries=entries.filter(e=>e.date>=week&&e.date<=date);
- const spentToday=entries.filter(e=>e.date===date).reduce((s,e)=>s+e.points,0);
- const spentWeek=weekEntries.reduce((s,e)=>s+e.points,0);
- const add=(name,p)=>setEntries(e=>[...e,{id:Date.now()+"-"+Math.random(),date,description:name,points:p}]);
- const totalFood=points(foods[Number(food)][1]*qty);
- const [mealType,setMealType]=useState("Desayuno"),[search,setSearch]=useState("");
- const todayEntries=entries.filter(e=>e.date===date);
- const record=(name,p)=>setEntries(e=>[...e,{id:Date.now()+"-"+Math.random(),date,description:name,points:p,meal:mealType}]);
- const card={padding:18,border:"2px solid #b6dfc8",borderRadius:18,background:"#fff",minWidth:0};
- return <section className="pointsDashboard" style={{margin:"18px 0",padding:"clamp(14px,3vw,26px)",border:"2px solid #36a67d",borderRadius:22,background:"#f1fff7",color:"#163d31",width:"100%",minWidth:0}}>
- <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:12,flexWrap:"wrap"}}><div><small>DIETEAR · SEGUIMIENTO</small><h2 style={{fontSize:"clamp(25px,3vw,36px)",margin:"4px 0"}}>🔢 Mi dieta por puntos</h2><p style={{margin:0}}>Consulta tu saldo y registra lo que comes, paso a paso.</p></div><label style={{display:"flex",alignItems:"center",gap:8}}>Presupuesto de ejemplo <input aria-label="Presupuesto diario de puntos" type="number" min="10" max="80" value={daily} onChange={e=>{const n=Number(e.target.value);if(Number.isInteger(n)&&n>=10&&n<=80)setDaily(n)}} style={{width:76}}/></label></div>
- <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,170px),1fr))",gap:12,margin:"20px 0"}}>
- {[["Disponibles hoy",daily-spentToday,"#e4f9dc"],["Consumidos hoy",spentToday,"#fff0c9"],["Presupuesto diario",daily,"#f3e9ff"],["Saldo semanal",daily*7-spentWeek,"#e5f5ff"]].map(([name,n,bg])=><div key={name} style={{...card,background:bg}}><small style={{fontWeight:700}}>{name}</small><div style={{fontSize:32,fontWeight:850,lineHeight:1.3}}>{n} <span style={{fontSize:15}}>pt</span></div></div>)}</div>
- <div style={{height:12,background:"#d4e7dc",borderRadius:20,overflow:"hidden",marginBottom:8}} role="progressbar" aria-label="Puntos consumidos hoy" aria-valuemin={0} aria-valuemax={daily} aria-valuenow={Math.min(daily,spentToday)}><div style={{height:"100%",width:Math.min(100,spentToday/daily*100)+"%",background:"#37a77c",borderRadius:20}}/></div><small>{spentToday} de {daily} puntos del presupuesto de ejemplo registrados hoy.</small>
- <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,320px),1fr))",gap:16,marginTop:22}}>
- <div style={card}><h3 style={{marginTop:0}}>1 · 🍎 Registrar comida</h3><label>Momento del día<select value={mealType} onChange={e=>setMealType(e.target.value)} style={{width:"100%",marginTop:5}}>{["Desayuno","Media mañana","Almuerzo","Merienda","Cena","Otro"].map(m=><option key={m}>{m}</option>)}</select></label><label style={{display:"block",marginTop:12}}>Alimento<select value={food} onChange={e=>setFood(e.target.value)} style={{width:"100%",marginTop:5}}>{foods.map(([name],i)=><option key={name} value={i}>{name} · {points(foods[i][1])} pt</option>)}</select></label><label style={{display:"block",marginTop:12}}>Número de raciones<input type="number" min=".5" max="10" step=".5" value={qty} onChange={e=>setQty(Math.max(.5,Math.min(10,Number(e.target.value)||.5)))} style={{width:100,marginLeft:8}}/></label><button type="button" onClick={()=>record(foods[Number(food)][0]+" × "+qty,totalFood)} style={{display:"block",width:"100%",marginTop:16,padding:12,borderRadius:12,background:"#d3f4d7",fontWeight:750}}>＋ Añadir {totalFood} puntos</button></div>
- <div style={card}><h3 style={{marginTop:0}}>2 · 📅 Mis comidas de hoy</h3>{todayEntries.length===0?<p>Aún no has registrado alimentos hoy.</p>:["Desayuno","Media mañana","Almuerzo","Merienda","Cena","Otro"].map(meal=>{const group=todayEntries.filter(e=>(e.meal||"Otro")===meal);return group.length?<div key={meal} style={{marginBottom:12}}><strong>{meal}</strong><ul style={{paddingLeft:18}}>{group.map(e=><li key={e.id} style={{margin:"6px 0"}}>{e.description} · <b>{e.points} pt</b> <button type="button" onClick={()=>setEntries(a=>a.filter(x=>x.id!==e.id))} aria-label={"Eliminar "+e.description}>✕</button></li>)}</ul></div>:null})}</div>
- </div>
- <div style={{...card,marginTop:16}}><h3 style={{marginTop:0}}>3 · 🍽️ Platos rápidos</h3><div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,210px),1fr))",gap:12}}>{meals.map(m=>{const p=points(m.items.reduce((sum,i)=>sum+foods[i][1],0));return <div key={m.name} style={{background:"#f6fcf8",border:"1px solid #c4e6d2",borderRadius:12,padding:12}}><strong>{m.name}</strong><p style={{fontSize:13}}>{m.items.map(i=>foods[i][0]).join(", ")}</p><button type="button" onClick={()=>record(m.name,p)}>Añadir {p} pt</button></div>})}</div></div>
- <details style={{...card,marginTop:16}}><summary style={{cursor:"pointer",fontWeight:750}}>🔎 Ver lista de alimentos y sus puntos</summary><input type="search" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar alimento" aria-label="Buscar alimentos" style={{width:"100%",margin:"12px 0"}}/><ul>{foods.filter(([name])=>name.toLowerCase().includes(search.toLowerCase())).map(([name,kcal])=><li key={name}>{name} · {points(kcal)} pt</li>)}</ul></details>
- <details style={{marginTop:16}}><summary style={{cursor:"pointer",fontWeight:700}}>ℹ️ Cómo funciona este método</summary><p>Método orientativo propio: 1 punto por cada 50 kcal, redondeado por ración. No equivale a puntos oficiales de ninguna marca. Los 30 puntos iniciales son un ejemplo editable, no una recomendación personalizada. El saldo semanal suma los presupuestos de siete días sin trasladar puntos entre semanas.</p><p>Prioriza variedad, fibra y proteínas suficientes. No te saltes comidas para ahorrar puntos. Los datos se guardan en este navegador.</p></details>
- </section>;
+const foods = foodData.foods;
+const foodPhotos = { ...commonsPhotos, ...foodIllustrations };
+const illustrationSources = {};
+for (const photo of Object.values(foodIllustrations)) {
+  if (!illustrationSources[photo.src]) illustrationSources[photo.src] = getImageProps({
+    src: photo.src, alt: "", width: 600, height: Math.round(600 * photo.height / photo.width),
+  }).props.src;
+}
+const foodById = Object.fromEntries(foods.map(food => [food.id, food]));
+const categories = [...new Set(foods.map(food => food.category))];
+const format = value => value === null ? "—" : new Intl.NumberFormat("es-ES", { maximumFractionDigits: 1 }).format(value);
+const kcalLabel = value => value === null ? "—" : format(Math.round(value));
+const recipeTotals = recipes.map(recipeForPoints).map(recipe => ({ ...recipe, calculation: calculateRecipe(resolveRecipeIngredients(recipe), foodById) }));
+
+function FoodPhoto({ food }) {
+  const photo = foodPhotos[food.id];
+  if (photo?.generated) {
+    const width = photo.width / photo.columns, height = photo.height / photo.rows;
+    return <svg className="pointsFoodPhoto pointsFoodIllustration" viewBox={`${photo.cell % photo.columns * width} ${Math.floor(photo.cell / photo.columns) * height} ${width} ${height}`} preserveAspectRatio="xMidYMid slice" role="img" aria-label={food.name + ": imagen ilustrativa creada para DIETEAR"}><image href={illustrationSources[photo.src]} width={photo.width} height={photo.height} /></svg>;
+  }
+  return photo ? <Image className="pointsFoodPhoto" src={photo.src} alt={food.name + ": imagen ilustrativa"} width={400} height={280} sizes="(max-width:650px) 45vw, (max-width:1000px) 30vw, 240px" /> : <span className="pointsPhotoPending">{food.name}</span>;
+}
+function FoodSource({ food }) {
+  const photo = foodPhotos[food.id];
+  return <details className="pointsSource"><summary>Fuente e imagen</summary><p><a href={"https://fdc.nal.usda.gov/food-details/" + food.fdcId + "/nutrients"} target="_blank" rel="noreferrer">USDA FoodData Central · SR Legacy</a><br />{food.sourceDescription}<br />{format(food.kcalPer100g)} kcal/100 g comestibles. Referencia de abril de 2018; las marcas y recetas pueden variar.</p>{photo?.generated ? <p>Imagen ilustrativa creada para DIETEAR. La puntuación se calcula con los datos del alimento y el peso indicado, no con la imagen.</p> : photo && <p>Foto ilustrativa: <a href={photo.page} target="_blank" rel="noreferrer">{photo.title}</a> · {photo.author} · <a href={photo.licenseUrl} target="_blank" rel="noreferrer">{photo.license}</a>. Recorte de visualización.</p>}</details>;
+}
+
+export default function PointsDiet({ isRestricted = () => false }) {
+  const [view, setView] = useState("today");
+  const [daily, setDaily] = useState(30), [dailyDraft, setDailyDraft] = useState("30");
+  const [entries, setEntries] = useState([]), [ready, setReady] = useState(false), [readError, setReadError] = useState(false);
+  const [storageMessage, setStorageMessage] = useState(""), [message, setMessage] = useState("");
+  const [date, setDate] = useState(localDateKey), [clockDate, setClockDate] = useState(localDateKey);
+  const [meal, setMeal] = useState("Almuerzo");
+  const [search, setSearch] = useState(""), [category, setCategory] = useState("Todas"), [limit, setLimit] = useState(24);
+  const [foodLayout, setFoodLayout] = useState("groups");
+  const [selectedFood, setSelectedFood] = useState("manzana"), [grams, setGrams] = useState("150");
+  const [recipeSearch, setRecipeSearch] = useState(""), [recipeLimit, setRecipeLimit] = useState(12), [recipeMeal, setRecipeMeal] = useState("Todas");
+  const [dishName, setDishName] = useState(""), [ingredients, setIngredients] = useState([]), [servings, setServings] = useState("2");
+  const [labelBasis, setLabelBasis] = useState("g");
+  const [labelKcal, setLabelKcal] = useState(""), [labelGrams, setLabelGrams] = useState("100"), [labelName, setLabelName] = useState("");
+  useEffect(() => {
+    try { const saved = readPointsState(localStorage.getItem(POINTS_STORAGE_KEY)); setDaily(saved.daily); setDailyDraft(String(saved.daily)); setEntries(saved.entries); }
+    catch { setReadError(true); setStorageMessage("No se ha podido leer el registro guardado. Tus datos anteriores no se han sobrescrito; puedes consultar la guía y el catálogo."); }
+    setReady(true);
+  }, []);
+  useEffect(() => {
+    if (!ready || readError) return;
+    try { localStorage.setItem(POINTS_STORAGE_KEY, JSON.stringify({ daily, entries })); window.dispatchEvent(new Event("dietear:daily-updated")); }
+    catch { setStorageMessage("No se han podido guardar los últimos cambios. Puedes verlos durante esta sesión, pero podrían perderse al cerrar."); }
+  }, [ready, readError, daily, entries]);
+  useEffect(() => {
+    const check = () => { const next = localDateKey(); if (next !== clockDate) { setDate(selected => selected === clockDate ? next : selected); setClockDate(next); } };
+    const timer = setInterval(check, 60000); window.addEventListener("focus", check);
+    return () => { clearInterval(timer); window.removeEventListener("focus", check); };
+  }, [clockDate]);
+  useEffect(() => { setLimit(24); }, [search, category]);
+  useEffect(() => { setRecipeLimit(12); }, [recipeSearch, recipeMeal]);
+  const dates = weekDates(date), spent = sumPoints(entries, [date]), weekSpent = sumPoints(entries, dates);
+  const todayEntries = entries.filter(entry => entry.date === date);
+  const shownFoods = useMemo(() => foods.filter(food => (category === "Todas" || food.category === category) && normalizeFoodText(food.name + " " + food.preparation).includes(normalizeFoodText(search))), [search, category]);
+  const shownRecipes = useMemo(() => recipeTotals.filter(recipe => normalizeFoodText(recipe.name + " " + recipe.ingredients.map(row => row[0]).join(" ")).includes(normalizeFoodText(recipeSearch)) && (recipeMeal === "Todas" || recipe.mealTypes.includes(recipeMeal))), [recipeSearch, recipeMeal]);
+  const selected = foodById[selectedFood], selectedKcal = foodEnergy(selected, Number(grams)), blockedFood = isRestricted(selected.name);
+  const dish = calculateRecipe(ingredients, foodById, Number(servings));
+  const blockedDish = ingredients.some(row => isRestricted(foodById[row.foodId]?.name || row.name));
+  const per100 = labelKcal.trim() === "" ? null : Number(labelKcal);
+  const labelEnergy = Number.isFinite(per100) && per100 >= 0 && per100 <= 1000 && Number(labelGrams) > 0 && Number(labelGrams) <= 5000 ? per100 * Number(labelGrams) / 100 : null;
+  const recordDisabled = !ready || readError;
+  const record = (description, points, kcal) => {
+    if (recordDisabled || !description.trim() || !Number.isFinite(points) || points < 0) return;
+    setEntries(old => [...old, { id: crypto.randomUUID(), date, meal, description: description.trim(), points, kcal, method: METHOD_VERSION }]);
+    setMessage(description + " · " + format(points) + " puntos añadidos a " + meal.toLocaleLowerCase("es"));
+  };
+  const chooseFood = food => { setSelectedFood(food.id); setGrams(String(food.grams)); window.setTimeout(() => document.getElementById("points-food-register")?.scrollIntoView({ behavior: "smooth", block: "center" }), 20); };
+  const updateIngredient = (key, patch) => setIngredients(old => old.map(row => row.key === key ? { ...row, ...patch } : row));
+  const openBuilder = recipe => { setDishName(recipe.name); setIngredients(resolveRecipeIngredients(recipe)); setServings("1"); window.setTimeout(() => document.getElementById("points-dish-builder")?.scrollIntoView({ behavior: "smooth", block: "start" }), 20); };
+  return <section className="pointsExperience" aria-label="Mi dieta por puntos">
+    <div className="pointsHero"><div className="pointsHeroCopy"><span className="pointsEyebrow">TU DIETA · A TU MANERA</span><h2>Mi dieta<br />por puntos</h2><p>Aprende, elige y disfruta.<br />Cada ración, con sus puntos claros.</p><div className="pointsHeroPills"><span>{foods.length} alimentos</span><span>{recipes.length} platos para explorar</span><span>Guía paso a paso</span></div></div><Image className="pointsHeroImage" src="/dietear-visuals/points-diet-hero.png" alt="Plato ilustrativo con pollo, arroz, verduras y aceite de oliva" width={1024} height={1024} sizes="(max-width:650px) 100vw, 50vw" priority /></div>
+    <p className="pointsMethodLine"><b>Método DIETEAR:</b> 1 punto = 50 kcal · Raciones orientativas y editables · Los puntos no sustituyen la valoración nutricional.</p>
+    <div className="pointsTabs" role="group" aria-label="Secciones de la dieta por puntos">{[["today", "Mi día"], ["foods", "Alimentos"], ["recipes", "Platos y calculadora"], ["guide", "Cómo hacerla"]].map(([key, label]) => <button key={key} type="button" aria-pressed={view === key} onClick={() => { setView(key); setMessage(""); }}>{label}</button>)}</div>
+    {storageMessage && <p className="pointsNotice" role="alert">{storageMessage}</p>}<p className="pointsLiveMessage" role="status" aria-live="polite">{message}</p>
+    <div className="pointsEntryContext"><label>Día del registro<input aria-label="Día del registro de puntos" type="date" value={date} max={clockDate} onChange={event => { if (event.target.value && event.target.value <= clockDate) setDate(event.target.value); }} /></label><label>Momento del día<select value={meal} onChange={event => setMeal(event.target.value)}>{MEAL_MOMENTS.map(value => <option key={value}>{value}</option>)}</select></label><span>Lo que añadas se guarda en este día y esta comida.</span></div>
+    {view === "today" && <>
+      <div className="pointsSectionHead"><span className="pointsEyebrow">LO QUE LLEVAS HOY</span><h3>Tu día, de un vistazo</h3><p>Los 30 puntos iniciales son un ejemplo editable, no una cantidad calculada para ti.</p></div>
+      <div className="pointsStats">{[["Registrados este día", spent, "Anotados en tus comidas"], ["Referencia diaria", daily, "Ejemplo editable"], [spent > daily ? "Por encima de la referencia" : "Diferencia con la referencia", Math.abs(Math.round((daily - spent) * 10) / 10), "Información, sin compensaciones"], ["Registrados esta semana", weekSpent, "Referencia de 7 días: " + daily * 7 + " pt"]].map(([label, value, note]) => <article key={label}><span>{label}</span><b>{format(value)} <small>pt</small></b><small>{note}</small></article>)}</div>
+      <div className="pointsProgress" role="progressbar" aria-label="Puntos registrados frente a la referencia diaria" aria-valuemin={0} aria-valuemax={daily} aria-valuenow={Math.min(daily, spent)}><div style={{ width: Math.min(100, spent / daily * 100) + "%" }} /></div>
+      <form className="pointsBudget" id="points-budget" onSubmit={event => { event.preventDefault(); const value = Number(dailyDraft); if (Number.isInteger(value) && value >= 1 && value <= 200) { setDaily(value); setMessage("Referencia guardada: " + value + " puntos al día y " + value * 7 + " para siete días."); } }}><div><h4>Mi referencia diaria</h4><p>No existe un máximo único por peso. Introduce la referencia de tu plan acordada con un profesional; el ejemplo no es una prescripción.</p></div><label>Puntos al día<input aria-label="Mi referencia diaria de puntos" type="number" min="1" max="200" step="1" required value={dailyDraft} onChange={event => setDailyDraft(event.target.value)} /></label><button disabled={recordDisabled}>Guardar referencia</button></form>
+      <div className="pointsWeek"><div className="pointsSectionHead"><h4>Mi semana</h4><p>Lunes a domingo · referencia actual: {daily * 7} puntos · sin extras automáticos.</p></div><div>{dates.map(key => { const day = new Date(key + "T12:00:00"); return <button key={key} type="button" aria-pressed={date === key} disabled={key > clockDate} onClick={() => setDate(key)}><small>{day.toLocaleDateString("es-ES", { weekday: "short" })}</small><span>{day.getDate()}</span><b>{format(sumPoints(entries, [key]))} pt</b></button>; })}</div></div>
+      <div className="pointsSectionHead"><h4>Mis comidas del día</h4><div className="pointsActions"><button type="button" onClick={() => setView("foods")}>＋ Elegir alimento</button><button type="button" onClick={() => setView("recipes")}>＋ Elegir o crear plato</button></div></div>
+      {todayEntries.length ? <div className="pointsDiary">{MEAL_MOMENTS.map(moment => { const group = todayEntries.filter(entry => entry.meal === moment); return group.length ? <article key={moment}><h4>{moment}<span>{format(sumPoints(group, [date]))} pt</span></h4>{group.map(entry => <div key={entry.id}><span>{entry.description}</span><b>{format(entry.points)} pt</b><button type="button" aria-label={"Eliminar " + entry.description} onClick={() => setEntries(old => old.filter(item => item.id !== entry.id))}>×</button></div>)}</article> : null; })}</div> : <div className="pointsEmpty"><span aria-hidden="true">🍽️</span><h4>Tu registro empieza con una comida</h4><p>Elige un alimento o un plato, revisa la cantidad y añádelo al momento del día.</p></div>}
+      <button className="pointsGuideLink" type="button" onClick={() => setView("guide")}>¿Es tu primera vez? Descubre cómo hacer esta dieta →</button>
+    </>}
+    {view === "foods" && <>
+      <div className="pointsSectionHead"><span className="pointsEyebrow">MIRA, COMPARA Y ELIGE</span><h3>{foods.length} alimentos con sus puntos</h3><p>Las cantidades son ejemplos de consulta. Comprueba el peso comestible y si el alimento está crudo o cocinado.</p></div>
+      <div className="pointsSearch"><label>Buscar alimento<input type="search" placeholder="Manzana, arroz, pollo, yogur…" value={search} onChange={event => setSearch(event.target.value)} /></label><label>Categoría<select value={category} onChange={event => setCategory(event.target.value)}><option>Todas</option>{categories.map(value => <option key={value}>{value}</option>)}</select></label></div><p className="pointsResultCount">{shownFoods.length} alimentos encontrados</p>
+      <div className="pointsLayoutToggle"><button type="button" aria-pressed={foodLayout==="groups"&&!search&&category==="Todas"} onClick={()=>{setFoodLayout("groups");setCategory("Todas");setSearch("")}}>Guía visual por grupos</button><button type="button" aria-pressed={foodLayout==="cards"||!!search||category!=="Todas"} onClick={()=>setFoodLayout("cards")}>Tarjetas de alimentos</button></div>{foodLayout==="groups"&&!search&&category==="Todas"&&<PointsFoodGroups foods={foods} categories={categories} onFood={chooseFood} onCategory={value=>{setCategory(value);setFoodLayout("cards")}}/>}{(foodLayout==="cards"||!!search||category!=="Todas")&&<div className="pointsFoodGrid">{shownFoods.slice(0, limit).map(food => { const kcal = foodEnergy(food, food.grams), blocked = isRestricted(food.name); return <article key={food.id}><div className="pointsPhotoWrap"><FoodPhoto food={food} /><span className="pointsPhotoScore">{format(pointsFromKcal(kcal))} <small>pt</small></span></div><div className="pointsFoodCopy"><small>{food.category}</small><h4>{food.name}</h4><b>{food.grams} g · ≈ {kcalLabel(kcal)} kcal</b><p>{food.preparation}</p>{blocked && <p className="pointsRestriction">Coincide con una exclusión de tu perfil.</p>}<button type="button" onClick={() => chooseFood(food)}>Ver y ajustar ración →</button><FoodSource food={food} /></div></article>; })}</div>}
+      {!shownFoods.length && <p className="pointsEmpty">No hay coincidencias. Prueba otra palabra o utiliza la etiqueta de tu producto.</p>}{(foodLayout==="cards"||!!search||category!=="Todas") && shownFoods.length > limit && <button className="pointsLoadMore" type="button" onClick={() => setLimit(value => value + 24)}>Ver más alimentos ({Math.min(24, shownFoods.length - limit)}) ↓</button>}
+      <div className="pointsFoodRegister" id="points-food-register"><FoodPhoto food={selected} /><form onSubmit={event => { event.preventDefault(); if (!blockedFood && selectedKcal !== null && Number(grams) <= 5000) record(selected.name + " · " + format(Number(grams)) + " g", pointsFromKcal(selectedKcal), selectedKcal); }}><span className="pointsEyebrow">TU RACIÓN</span><h4>{selected.name}</h4><p>{selected.preparation}</p><label>Cantidad comestible en gramos<input type="number" min="0.1" max="5000" step="0.1" required value={grams} onChange={event => setGrams(event.target.value)} /></label><div className="pointsCalculation"><b>{format(pointsFromKcal(selectedKcal))} pt</b><span>≈ {kcalLabel(selectedKcal)} kcal ÷ 50</span></div>{blockedFood && <p className="pointsRestriction">Coincide con una exclusión de tu perfil. Elige otro alimento compatible.</p>}<button className="pointsPrimary" disabled={recordDisabled || blockedFood || selectedKcal === null || Number(grams) > 5000}>Añadir a {meal.toLocaleLowerCase("es")}</button><FoodSource food={selected} /></form></div>
+      <div className="pointsLabelCalculator"><div><span className="pointsEyebrow">¿NO ESTÁ TU PRODUCTO?</span><h4>Calcula con su etiqueta</h4><p>Utiliza las kcal por 100 g o por 100 ml del envase. Introduce la cantidad que consumes en esa misma unidad.</p></div><form onSubmit={event => { event.preventDefault(); if (labelEnergy !== null && !isRestricted(labelName)) record(labelName + " · " + format(Number(labelGrams)) + " " + labelBasis + " (etiqueta)", pointsFromKcal(labelEnergy), labelEnergy); }}><label>Nombre del producto<input required maxLength={120} value={labelName} onChange={event => setLabelName(event.target.value)} /></label><label>Unidad de la etiqueta<select aria-label="Unidad de la etiqueta" value={labelBasis} onChange={event => setLabelBasis(event.target.value)}><option value="g">Por 100 g</option><option value="ml">Por 100 ml</option></select></label><label>kcal por 100 {labelBasis}<input type="number" min="0" max="1000" step="0.1" required value={labelKcal} onChange={event => setLabelKcal(event.target.value)} /></label><label>{labelBasis === "g" ? "Gramos que comes" : "Mililitros que tomas"}<input type="number" min="0.1" max="5000" step="0.1" required value={labelGrams} onChange={event => setLabelGrams(event.target.value)} /></label><strong>{format(pointsFromKcal(labelEnergy))} pt</strong>{isRestricted(labelName) && <p className="pointsRestriction">Coincide con una exclusión de tu perfil.</p>}<button disabled={recordDisabled || labelEnergy === null || isRestricted(labelName)}>Añadir producto</button></form></div>
+    </>}
+    {view === "recipes" && <>
+      <div className="pointsSectionHead"><span className="pointsEyebrow">DEL INGREDIENTE A TU PLATO</span><h3>Platos que se entienden</h3><p>Explora {recipes.length} recetas, consulta sus ingredientes y ajusta tu propia versión. Las fotografías son ilustrativas y los puntos son estimaciones.</p></div>
+      <div className="pointsSearch"><label>Buscar plato o ingrediente<input type="search" value={recipeSearch} onChange={event => setRecipeSearch(event.target.value)} placeholder="Lentejas, tortilla, ensalada…" /></label><label>Tipo de comida<select value={recipeMeal} onChange={event => setRecipeMeal(event.target.value)}>{[["Todas", "Todas"], ["breakfast", "Desayuno"], ["lunch", "Almuerzo"], ["dinner", "Cena"], ["snack1", "Merienda"]].map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label></div>
+      <div className="pointsRecipeGrid">{shownRecipes.slice(0, recipeLimit).map(recipe => { const total = recipe.calculation, blocked = isRestricted([recipe.name, ...recipe.ingredients.map(row => row[0])].join(" ")); return <article key={recipe.id}><div className="pointsRecipePhoto"><RecipePhoto recipe={recipe} /><span>{recipe.minutes} min</span></div><div className="pointsFoodCopy"><h4>{recipe.name}</h4>{recipe.exampleNote && <p className="pointsRecipeExample">{recipe.exampleNote}</p>}<div className="pointsRecipeScore">{total.complete ? <><b>≈ {format(total.pointsPerServing)} pt</b><small>por ración · {kcalLabel(total.kcal)} kcal</small></> : <b>Referencia por completar</b>}</div><details className="pointsRecipeDetails"><summary>Ver ingredientes y puntuación</summary><ul>{total.rows.map(row => <li key={row.key}><span>{row.name}<small>{row.quantity} {row.unit}{row.conversion ? " · " + row.conversion : ""}</small>{row.food && <small>Referencia: {row.food.name} · {row.food.preparation}</small>}</span><b>{row.points === null ? "Sin referencia" : format(row.points) + " pt"}</b></li>)}</ul><p>{total.complete ? "Cantidades para una ración. Se suma toda la energía antes de redondear." : "Falta una referencia para algún ingrediente. Complétala en la calculadora; no se ha contado como cero."}</p><ol>{recipe.steps.map(step => <li key={step}>{step}</li>)}</ol></details>{blocked && <p className="pointsRestriction">Coincide con una exclusión de tu perfil.</p>}<div className="pointsRecipeActions"><button type="button" disabled={recordDisabled || !total.complete || blocked} onClick={() => record(recipe.name + " · 1 ración", total.pointsPerServing, total.kcalPerServing)}>Añadir 1 ración</button><button type="button" onClick={() => openBuilder(recipe)}>Ajustar ingredientes →</button></div></div></article>; })}</div>
+      {!shownRecipes.length && <p className="pointsEmpty">No hay platos con esa búsqueda. Puedes crear el tuyo debajo.</p>}{shownRecipes.length > recipeLimit && <button className="pointsLoadMore" type="button" onClick={() => setRecipeLimit(value => value + 12)}>Ver más platos ↓</button>}
+      <div className="pointsDishBuilder" id="points-dish-builder"><span className="pointsEyebrow">TU COCINA, TUS CANTIDADES</span><h3>Crea y puntúa tu plato</h3><p>Introduce todos los ingredientes de la receta completa, incluido el aceite. Después indica en cuántas raciones iguales la divides.</p><label>Nombre del plato<input maxLength={120} placeholder="Mi arroz con verduras" value={dishName} onChange={event => setDishName(event.target.value)} /></label><div className="pointsIngredientRows">{ingredients.map(row => <div key={row.key}><label>Ingrediente<select value={row.foodId} onChange={event => updateIngredient(row.key, { foodId: event.target.value, name: foodById[event.target.value]?.name, conversion: "" })}><option value="">Selecciona la referencia de {row.name || "tu ingrediente"}</option>{foods.map(food => <option key={food.id} value={food.id}>{food.name} · {food.preparation}</option>)}</select>{row.conversion && <small>{row.conversion}</small>}</label><label>Gramos comestibles<input type="number" min="0.1" max="10000" step="0.1" value={row.grams ?? ""} onChange={event => updateIngredient(row.key, { grams: event.target.value === "" ? null : Number(event.target.value) })} /></label><button type="button" aria-label={"Quitar " + (row.name || foodById[row.foodId]?.name || "ingrediente")} onClick={() => setIngredients(old => old.filter(item => item.key !== row.key))}>×</button></div>)}</div><button type="button" className="pointsAddIngredient" onClick={() => setIngredients(old => [...old, { key: crypto.randomUUID(), foodId: "tomate", grams: 100 }])}>＋ Añadir ingrediente</button><label className="pointsServings">Número de raciones iguales de la receta<input type="number" min="1" max="50" step="1" value={servings} onChange={event => setServings(event.target.value)} /></label><div className="pointsDishTotals"><div><small>RECETA COMPLETA</small><b>{format(dish.points)} pt</b></div><span>÷ {servings || "—"} raciones =</span><div><small>CADA RACIÓN</small><b>{format(dish.pointsPerServing)} pt</b></div></div>{!dish.complete && ingredients.length > 0 && <p>Completa la referencia y el peso de todos los ingredientes.</p>}{blockedDish && <p className="pointsRestriction">Un ingrediente coincide con una exclusión de tu perfil.</p>}<button type="button" className="pointsPrimary" disabled={recordDisabled || !dish.complete || !dishName.trim() || blockedDish || !Number.isInteger(Number(servings)) || Number(servings) < 1 || Number(servings) > 50 || ingredients.some(row => row.grams > 10000)} onClick={() => record(dishName + " · 1 de " + servings + " raciones", dish.pointsPerServing, dish.kcalPerServing)}>Añadir una ración a {meal.toLocaleLowerCase("es")}</button></div>
+    </>}
+    {view === "guide" && <PointsGuide daily={daily} onConfigure={() => { setView("today"); window.setTimeout(() => document.getElementById("points-budget")?.scrollIntoView({ behavior: "smooth", block: "center" }), 20); }} />}
+  </section>;
 }

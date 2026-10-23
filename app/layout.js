@@ -1,6 +1,7 @@
 import "./globals.css";
 import "./design.css";
 import "./color.css";
+import "./points.css";
 import PwaRuntime from "../components/PwaRuntime";
 
 export const metadata = {

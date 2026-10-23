@@ -1,0 +1,650 @@
+{
+  "melocoton": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 0,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "papaya": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 1,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "higos": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 2,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "coco": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 3,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "puerro": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 4,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "ajo": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 5,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "repollo": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 6,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "pimiento-verde": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 7,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "arroz-blanco-seco": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 8,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "pasta-integral-seca": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 9,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "cuscus-seco": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 10,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "quinoa-seca": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 11,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "trigo-sarraceno": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 12,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "yuca": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 13,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "polenta": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 14,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "huevo": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 15,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "leche-semidesnatada": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 16,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "leche-desnatada": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 17,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "yogur-griego-natural": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 18,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "pollo-pechuga-cruda": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 19,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "mandarina": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 20,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "pera": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 21,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "sandia": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 22,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "melon": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-1.png",
+    "cell": 23,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "pollo-pechuga-asada": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 0,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "pavo-pechuga-cruda": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 1,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "conejo": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 2,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "bacalao-fresco": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 3,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "atun-al-natural": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 4,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "trucha": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 5,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "anchoa-en-aceite": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 6,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "almejas": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 7,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "calamar": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 8,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "castanas": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 9,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "semillas-de-lino": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 10,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "semillas-de-sesamo": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 11,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "oregano": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 12,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "comino": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 13,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "cafe-solo": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 14,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "palomitas": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 15,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "soja-cocida": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 16,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "garbanzos-cocidos": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 17,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "lentejas-cocidas": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 18,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "alubias-blancas-cocidas": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 19,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "alubias-rojas-cocidas": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 20,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "alubias-negras-cocidas": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 21,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "guisantes": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 22,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "albahaca": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-2.png",
+    "cell": 23,
+    "columns": 4,
+    "rows": 6,
+    "width": 1254,
+    "height": 1254
+  },
+  "pasta-cocida": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 0,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "clara-de-huevo": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 1,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "remolacha-cocida": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 2,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "pimiento-rojo": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 3,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "esparragos": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 4,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "pistachos": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 5,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "anacardos": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 6,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "cacahuetes": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 7,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "arandanos": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 8,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "moras": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 9,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "datiles": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 10,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "espinacas": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 11,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "lechuga": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 12,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "pepino": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 13,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "berenjena": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 14,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "coles-de-bruselas": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 15,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "hinojo": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 16,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "judias-verdes": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 17,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "pina": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 18,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "aguacate": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 19,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "limon": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 20,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "lima": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 21,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "albaricoque": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 22,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  },
+  "kiwi": {
+    "generated": true,
+    "src": "/dietear-visuals/points-food-atlas-3.png",
+    "cell": 23,
+    "columns": 4,
+    "rows": 6,
+    "width": 1024,
+    "height": 1536
+  }
+}

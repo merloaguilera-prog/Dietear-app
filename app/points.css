@@ -1,0 +1,179 @@
+.immersiveApp .pointsExperience{--points-ink:#153f31;--points-green:#286b43;--points-line:#d6e4d5;color:var(--points-ink);background:#fcfdf9;border:1px solid #dbe8d8;border-radius:28px;overflow:hidden;padding:clamp(14px,3vw,32px);margin:12px 0 28px;min-width:0}
+.immersiveApp .pointsExperience *{box-sizing:border-box}
+.immersiveApp .pointsExperience :is(h2,h3,h4,h5,p){margin:0}
+.immersiveApp .pointsExperience p{line-height:1.65;font-size:15px}
+.immersiveApp .pointsExperience :is(h3,h4,h5){color:var(--points-ink)}
+.immersiveApp .pointsExperience h3{font-size:clamp(25px,3vw,33px);letter-spacing:-.7px;line-height:1.2}
+.immersiveApp .pointsExperience h4{font-size:20px;line-height:1.35}
+.immersiveApp .pointsExperience h5{font-size:17px;line-height:1.4}
+.immersiveApp .pointsExperience :is(button,input,select){font:inherit;max-width:100%;min-width:0}
+.immersiveApp.immersiveApp .pointsExperience button{min-height:42px;padding:10px 16px;border:1px solid #bad0b3!important;border-radius:13px;background:#f4f9ed!important;color:#143b2a!important;-webkit-text-fill-color:#143b2a!important;font-weight:700;cursor:pointer;line-height:1.35;box-shadow:none;white-space:normal}
+.immersiveApp.immersiveApp .pointsExperience button:hover{background:#e7f6d9!important;border-color:#527e3b!important;transform:none}
+.immersiveApp.immersiveApp .pointsExperience button:disabled{opacity:.48;cursor:not-allowed}
+.immersiveApp .pointsExperience :is(button,input,select,summary):focus-visible{outline:3px solid #246e9d;outline-offset:3px}
+.immersiveApp .pointsExperience label{display:grid;gap:7px;font-size:13px;font-weight:700;min-width:0}
+.immersiveApp .pointsExperience :is(input,select){width:100%;border:1px solid #b7c9b6;border-radius:11px;background:#fff;padding:11px 12px;min-height:44px;color:#163f2d;font-size:15px}
+.immersiveApp .pointsExperience a{color:#215e44;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.immersiveApp .pointsEyebrow{display:block;font-size:11px;font-weight:800;letter-spacing:1.8px;line-height:1.7;margin-bottom:8px;color:#426d45}
+.immersiveApp .pointsHero{display:grid;grid-template-columns:1.05fr 1fr;background:#174d37;border-radius:23px;overflow:hidden;position:relative}
+.immersiveApp .pointsHeroCopy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(22px,4vw,44px);position:relative;z-index:1}
+.immersiveApp.immersiveApp .pointsExperience .pointsHeroCopy :is(h2,p,span){color:#fff!important;-webkit-text-fill-color:#fff!important}
+.immersiveApp .pointsHeroCopy h2{font-family:Georgia,serif;font-size:clamp(36px,5vw,60px);font-weight:500;letter-spacing:-1.4px;line-height:1.03;margin:6px 0 18px}
+.immersiveApp .pointsHeroCopy p{font-size:clamp(15px,1.7vw,18px);line-height:1.55;opacity:.95}
+.immersiveApp .pointsHeroImage{height:100%;min-height:355px;max-height:460px;width:100%;object-fit:cover}
+.immersiveApp .pointsHeroPills{display:flex;flex-wrap:wrap;gap:7px;margin-top:23px}
+.immersiveApp .pointsHeroPills span{border:1px solid #ffffff45;background:#ffffff12;padding:6px 9px;border-radius:8px;font-size:11px;line-height:1.4}
+.immersiveApp .pointsMethodLine{padding:16px 6px;font-size:12px!important;color:#52674d;border-bottom:1px solid #dfe8d9}
+.immersiveApp .pointsTabs{display:grid;grid-template-columns:.8fr .9fr 1.4fr 1.1fr;gap:7px;margin:22px 0 2px;padding:6px;background:#eaf0e4;border-radius:17px}
+.immersiveApp.immersiveApp .pointsExperience .pointsTabs button{border:0!important;background:transparent!important;font-size:14px;padding:12px 8px}
+.immersiveApp.immersiveApp .pointsExperience .pointsTabs button[aria-pressed=true]{background:#d1f2a5!important;box-shadow:0 2px 5px #1f4b1d15}
+.immersiveApp .pointsLiveMessage{font-weight:700;color:#205b37;min-height:12px;padding:5px 0}
+.immersiveApp .pointsLiveMessage:not(:empty){padding:13px 17px;background:#e7f7d6;border-radius:12px;margin:12px 0}
+.immersiveApp .pointsNotice{background:#fff4d8;border:1px solid #e8ce91;border-radius:14px;padding:14px 16px;margin:12px 0!important}
+.immersiveApp .pointsEntryContext{display:grid;grid-template-columns:minmax(160px,1fr) minmax(160px,1fr) 1.2fr;align-items:flex-end;gap:16px;border:1px solid var(--points-line);border-radius:16px;background:#f1f6ec;padding:15px;margin:8px 0 30px}
+.immersiveApp .pointsEntryContext>span{font-size:12px;line-height:1.6;padding-bottom:7px;color:#53684b}
+.immersiveApp .pointsSectionHead{margin:25px 0 18px}
+.immersiveApp .pointsSectionHead p{margin-top:9px!important;color:#52634c}
+.immersiveApp .pointsStats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.immersiveApp .pointsStats article{display:flex;flex-direction:column;padding:20px 17px;gap:10px;border:1px solid #c9dfb7;border-radius:18px;background:#ecf7e3;min-width:0}
+.immersiveApp .pointsStats article:nth-child(2){background:#fff2d2;border-color:#e5d2a7}
+.immersiveApp .pointsStats article:nth-child(3){background:#f7eaf1;border-color:#e1ccda}
+.immersiveApp .pointsStats article:nth-child(4){background:#e7f1f7;border-color:#c4dce8}
+.immersiveApp .pointsStats article>span{font-size:12px;font-weight:700;line-height:1.5;min-height:35px}
+.immersiveApp .pointsStats article>b{font-size:34px;font-weight:800;line-height:1.1;letter-spacing:-1px}
+.immersiveApp .pointsStats article>b small{font-size:14px;letter-spacing:0}
+.immersiveApp .pointsStats article>small{font-size:11px;line-height:1.5;color:#52634c}
+.immersiveApp .pointsProgress{height:9px;overflow:hidden;border-radius:10px;background:#e1e9db;margin:17px 0 25px}
+.immersiveApp .pointsProgress>div{height:100%;border-radius:10px;background:#578b40;transition:width .2s}
+.immersiveApp .pointsBudget{display:grid;grid-template-columns:minmax(0,1fr) 100px auto;align-items:flex-end;gap:17px;border:1px solid #dddcc7;background:#fffdf3;border-radius:18px;padding:20px}
+.immersiveApp .pointsBudget p{font-size:12px;margin-top:8px!important;color:#5d664b}
+.immersiveApp .pointsWeek{margin:30px 0}
+.immersiveApp .pointsWeek>div:last-child{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}
+.immersiveApp.immersiveApp .pointsExperience .pointsWeek button{display:grid;justify-items:center;gap:5px;padding:12px 5px}
+.immersiveApp.immersiveApp .pointsExperience .pointsWeek button[aria-pressed=true]{background:#d9efc5!important;border-color:#6a914f!important}
+.immersiveApp .pointsWeek button small{text-transform:uppercase;font-size:10px;letter-spacing:.5px}
+.immersiveApp .pointsWeek button>span{font-size:20px;font-weight:800}
+.immersiveApp .pointsWeek button>b{font-size:11px}
+.immersiveApp .pointsActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.immersiveApp .pointsDiary{display:grid;gap:13px}
+.immersiveApp .pointsDiary article{border:1px solid var(--points-line);border-radius:16px;background:#fff;overflow:hidden}
+.immersiveApp .pointsDiary h4{display:flex;justify-content:space-between;gap:10px;padding:15px 18px;background:#eef5e7;font-size:16px}
+.immersiveApp .pointsDiary h4>span{font-size:14px}
+.immersiveApp .pointsDiary article>div{display:flex;align-items:center;gap:12px;padding:12px 18px;border-top:1px solid #eef1e9;font-size:14px}
+.immersiveApp .pointsDiary article>div>span{flex:1;overflow-wrap:anywhere}
+.immersiveApp .pointsDiary article>div>b{white-space:nowrap}
+.immersiveApp.immersiveApp .pointsExperience .pointsDiary button{padding:5px;min-width:35px;min-height:35px;border:0!important;background:transparent!important;font-size:23px}
+.immersiveApp .pointsEmpty{padding:32px 20px;border:1px dashed #bed0b4;border-radius:18px;background:#f7f9f2;text-align:center;margin:15px 0}
+.immersiveApp .pointsEmpty>span{font-size:35px;display:block;margin-bottom:12px}
+.immersiveApp .pointsEmpty p{margin:10px auto 0!important;max-width:450px;color:#5a6d50}
+.immersiveApp.immersiveApp .pointsExperience .pointsGuideLink{display:block;width:100%;margin:22px 0 0;padding:17px;background:#e8f5d8!important;text-align:left}
+.immersiveApp .pointsSearch{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin:20px 0}
+.immersiveApp .pointsResultCount{font-size:12px!important;color:#5b7051;margin:12px 0!important}
+.immersiveApp .pointsFoodGrid,.immersiveApp .pointsRecipeGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;align-items:flex-start}
+.immersiveApp .pointsFoodGrid>article,.immersiveApp .pointsRecipeGrid>article{border:1px solid #d3dfc9;border-radius:19px;overflow:hidden;background:#fff;min-width:0;box-shadow:0 5px 14px #354f2110}
+.immersiveApp .pointsPhotoWrap{position:relative;height:175px;background:#f2f3e9;overflow:hidden}
+.immersiveApp .pointsFoodPhoto{width:100%;height:100%;object-fit:cover;display:block}
+.immersiveApp .pointsPhotoScore{position:absolute;right:10px;bottom:10px;background:#f1ffcf;border:2px solid #fff;border-radius:13px;padding:7px 10px;font-size:22px;font-weight:850;color:#16432c;box-shadow:0 3px 8px #1b35221a}
+.immersiveApp .pointsPhotoScore small{font-size:11px}
+.immersiveApp .pointsFoodCopy{padding:15px}
+.immersiveApp .pointsFoodCopy>small{font-size:10px;line-height:1.4;text-transform:uppercase;letter-spacing:.5px;color:#5c7849;display:block;margin-bottom:8px}
+.immersiveApp .pointsFoodCopy>h4{font-size:18px;line-height:1.3;margin-bottom:10px}
+.immersiveApp .pointsFoodCopy>b{font-size:13px}
+.immersiveApp .pointsFoodCopy>p{font-size:12px;line-height:1.55;margin:8px 0 12px!important;min-height:37px;color:#5a6850}
+.immersiveApp.immersiveApp .pointsExperience .pointsFoodCopy>button{font-size:12px;padding:10px 9px;width:100%;margin-top:8px}
+.immersiveApp .pointsSource{border-top:1px solid #e5ebde;margin-top:13px;padding-top:10px;font-size:11px;line-height:1.5}
+.immersiveApp .pointsSource summary{font-size:11px;cursor:pointer;color:#586f4e}
+.immersiveApp .pointsSource p{font-size:11px!important;overflow-wrap:anywhere;margin-top:8px!important}
+.immersiveApp.immersiveApp .pointsExperience .pointsLoadMore{display:block;min-width:200px;margin:25px auto;padding:13px 25px;background:#e4f2d5!important}
+.immersiveApp .pointsFoodRegister{display:grid;grid-template-columns:1fr 1.3fr;overflow:hidden;border:1px solid #cbdcbf;border-radius:21px;background:#eef7e6;margin:30px 0;scroll-margin-top:110px}
+.immersiveApp .pointsFoodRegister>.pointsFoodPhoto{min-height:300px;max-height:440px}
+.immersiveApp .pointsFoodRegister form{padding:25px;display:grid;gap:13px}
+.immersiveApp .pointsFoodRegister form p{font-size:13px}
+.immersiveApp .pointsCalculation{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.immersiveApp .pointsCalculation>b{font-size:33px;letter-spacing:-1px}
+.immersiveApp .pointsCalculation>span{font-size:13px}
+.immersiveApp.immersiveApp .pointsExperience .pointsPrimary{background:#d5f0ad!important;border:2px solid #7fa45b!important;padding:13px 20px}
+.immersiveApp .pointsLabelCalculator,.immersiveApp .pointsDishBuilder{border:1px solid #ddd4b6;background:#fff9e9;border-radius:21px;padding:clamp(17px,3vw,27px);margin:30px 0;scroll-margin-top:110px}
+.immersiveApp .pointsLabelCalculator p,.immersiveApp .pointsDishBuilder>p{font-size:13px;color:#59674b;margin:10px 0 20px!important}
+.immersiveApp .pointsLabelCalculator form{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px;align-items:flex-end}
+.immersiveApp .pointsLabelCalculator form>strong{font-size:28px;align-self:center}
+.immersiveApp .pointsRestriction{background:#fff1dc;border-radius:8px;padding:8px 10px;color:#784a0c!important;font-size:12px!important;line-height:1.6!important}
+.immersiveApp .pointsRecipePhoto{position:relative;aspect-ratio:1.55;overflow:hidden;background:#f3f5e9}
+.immersiveApp .pointsRecipePhoto>.recipePhoto{display:block;width:100%}
+.immersiveApp .pointsRecipePhoto>span:last-child{position:absolute;top:12px;left:12px;background:#fffffff2;border-radius:7px;padding:5px 9px;font-size:11px;font-weight:750}
+.immersiveApp .pointsRecipeScore{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:13px 0}
+.immersiveApp .pointsRecipeScore>b{font-size:23px;line-height:1.25}
+.immersiveApp .pointsRecipeScore>small{font-size:10px;color:#576b4a}
+.immersiveApp .pointsRecipeDetails{padding:12px 0;border-top:1px solid #e4ebdc}
+.immersiveApp .pointsRecipeDetails summary{font-size:12px;font-weight:750;cursor:pointer}
+.immersiveApp .pointsRecipeDetails>ul{list-style:none;padding:0;margin:14px 0}
+.immersiveApp .pointsRecipeDetails>ul>li{display:flex;align-items:flex-start;gap:10px;justify-content:space-between;border-bottom:1px solid #edf1e5;padding:9px 0;font-size:12px}
+.immersiveApp .pointsRecipeDetails li small{display:block;font-size:10px;color:#60734f;margin-top:4px;line-height:1.5}
+.immersiveApp .pointsRecipeDetails li>b{white-space:nowrap;font-size:11px}
+.immersiveApp .pointsRecipeDetails p,.immersiveApp .pointsRecipeDetails ol{font-size:12px;line-height:1.6}
+.immersiveApp .pointsRecipeDetails ol{padding-left:18px}
+.immersiveApp .pointsRecipeDetails ol li{margin-bottom:7px}
+.immersiveApp .pointsRecipeActions{display:grid;gap:8px}
+.immersiveApp.immersiveApp .pointsExperience .pointsRecipeActions button{font-size:12px}
+.immersiveApp .pointsDishBuilder>label{margin-top:14px}
+.immersiveApp .pointsIngredientRows{display:grid;gap:13px;margin:20px 0}
+.immersiveApp .pointsIngredientRows>div{display:grid;grid-template-columns:minmax(0,1fr) 130px 36px;align-items:flex-end;gap:10px;padding:15px;background:#fff;border:1px solid #e2dfc9;border-radius:14px}
+.immersiveApp .pointsIngredientRows label small{font-size:10px;font-weight:400}
+.immersiveApp.immersiveApp .pointsExperience .pointsIngredientRows button{font-size:23px;padding:5px 0;border:0!important;background:transparent!important}
+.immersiveApp .pointsServings{max-width:300px;margin:25px 0 18px!important}
+.immersiveApp .pointsDishTotals{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:22px;border:1px solid #c9d8b9;border-radius:15px;background:#eff7e3;margin:20px 0}
+.immersiveApp .pointsDishTotals>div{display:grid;gap:7px}
+.immersiveApp .pointsDishTotals small{font-size:10px;letter-spacing:1px;font-weight:750}
+.immersiveApp .pointsDishTotals b{font-size:30px;letter-spacing:-.7px}
+.immersiveApp .pointsDishTotals>span{font-size:14px}
+.immersiveApp .pointsGuideIntro{display:grid;grid-template-columns:1.6fr 1fr;border:1px solid #c8d8bc;border-radius:20px;background:#eaf4df;overflow:hidden;margin:25px 0}
+.immersiveApp .pointsGuideIntro>div:first-child{padding:26px}
+.immersiveApp .pointsGuideIntro>div>span,.immersiveApp .pointsWeekExplanation>span{font-size:11px;letter-spacing:1px;font-weight:800;display:block;margin-bottom:10px}
+.immersiveApp .pointsGuideIntro p{margin-top:14px!important;font-size:14px}
+.immersiveApp .pointsFormula{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:13px;background:#d3e9b5;padding:27px;text-align:center}
+.immersiveApp .pointsFormula small{font-size:10px;letter-spacing:1.5px}
+.immersiveApp .pointsFormula b{font-size:19px}
+.immersiveApp .pointsFormula strong{font-family:Georgia,serif;font-size:43px;font-weight:500;letter-spacing:-1px}
+.immersiveApp .pointsFormula span{font-size:12px!important;font-weight:400!important;letter-spacing:0!important}
+.immersiveApp .pointsGuideSteps{display:grid;gap:12px;margin:25px 0}
+.immersiveApp .pointsGuideSteps article{display:flex;gap:18px;border:1px solid var(--points-line);border-radius:17px;background:#fff;padding:20px}
+.immersiveApp .pointsGuideSteps article>span{display:grid;place-items:center;width:40px;height:40px;flex-shrink:0;background:#e3f3ce;border:1px solid #bdd599;border-radius:13px;font-family:Georgia,serif;font-size:26px}
+.immersiveApp .pointsGuideSteps p{font-size:14px;margin-top:8px!important;color:#52614b}
+.immersiveApp .pointsWeekExplanation{background:#fff3ce;border:1px solid #e4d59b;border-radius:20px;padding:25px;margin:27px 0}
+.immersiveApp .pointsWeekExplanation p{margin:12px 0!important;font-size:14px}
+.immersiveApp .pointsRecommendations{margin:35px 0}
+.immersiveApp .pointsRecommendations>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}
+.immersiveApp .pointsRecommendations article{background:#fff;border:1px solid #d7e2ca;border-radius:17px;padding:22px}
+.immersiveApp .pointsRecommendations article>span{font-size:31px;display:block;margin-bottom:13px}
+.immersiveApp .pointsRecommendations article p{font-size:13px;margin-top:10px!important;color:#54664c}
+.immersiveApp .pointsHelpNote{font-size:12px!important;line-height:1.7;color:#5b6a50;margin:20px 0!important}
+.immersiveApp .pointsFaq{background:#f1f6ea;border:1px solid #d3dfc5;border-radius:18px;padding:22px}
+.immersiveApp .pointsFaq h4{margin-bottom:14px}
+.immersiveApp .pointsFaq details{padding:15px 0;border-top:1px solid #d5e1c9}
+.immersiveApp .pointsFaq summary{cursor:pointer;font-size:14px;font-weight:700;line-height:1.5}
+.immersiveApp .pointsFaq p{margin-top:12px!important;font-size:13px;color:#53674b}
+.immersiveApp .pointsDietPick{overflow:hidden;position:relative;padding:0!important}
+.immersiveApp .pointsDietPick img{width:100%;height:145px;object-fit:cover;display:block}
+.immersiveApp .pointsDietPick>small{position:absolute;left:10px;bottom:10px;background:#ffffffeb;padding:4px 8px;border-radius:8px}
+.immersiveApp .pointsLayoutToggle{display:flex;gap:9px;flex-wrap:wrap;margin:17px 0 23px}
+.immersiveApp.immersiveApp .pointsExperience .pointsLayoutToggle button[aria-pressed=true]{background:#d6edb7!important;border-color:#6c924c!important}
+.immersiveApp .pointsFoodGroups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:flex-start}
+.immersiveApp .pointsFoodGroups>article{border:2px solid var(--group-accent);border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 5px 15px #394f2110}
+.immersiveApp .pointsGroupHead{padding:15px 18px;background:var(--group-accent);display:flex;gap:12px;justify-content:space-between;align-items:center}
+.immersiveApp .pointsGroupHead h4{font-size:19px;color:#1c3526}
+.immersiveApp .pointsGroupHead>span{font-size:10px;font-weight:750;white-space:nowrap;background:#ffffff80;border-radius:7px;padding:4px 7px}
+.immersiveApp .pointsGroupIntro{display:flex;align-items:center;gap:15px;padding:12px 16px}
+.immersiveApp .pointsCategoryArt{width:105px;height:100px;display:block;flex-shrink:0;background-size:300% 300%;background-repeat:no-repeat}
+.immersiveApp .pointsGroupIntro p{font-size:11px;line-height:1.6;color:#58674e}
+.immersiveApp .pointsGroupIntro p b{display:block;margin-top:7px;font-size:10px}
+.immersiveApp .pointsFoodGroups ul{list-style:none;margin:0;padding:0 15px}
+.immersiveApp .pointsFoodGroups li{border-top:1px dashed #d8dfcf}
+.immersiveApp.immersiveApp .pointsExperience .pointsFoodGroups li button{display:grid;grid-template-columns:minmax(0,1fr) 45px 55px;gap:8px;align-items:center;text-align:left;width:100%;min-height:41px;border:0!important;border-radius:0;background:transparent!important;padding:10px 3px}
+.immersiveApp .pointsFoodGroups li b{font-size:12px;font-weight:650;line-height:1.4}
+.immersiveApp .pointsFoodGroups li span{font-size:10px;font-weight:400;text-align:right}
+.immersiveApp .pointsFoodGroups li strong{font-size:12px;text-align:right}
+.immersiveApp.immersiveApp .pointsExperience .pointsGroupMore{display:block;width:calc(100% - 30px);margin:15px;border-color:var(--group-accent)!important;background:#f9fbf3!important;font-size:12px}
+@media(max-width:650px){.immersiveApp .pointsFoodGroups{grid-template-columns:1fr;gap:16px}.immersiveApp .pointsGroupHead{padding:14px 16px}.immersiveApp .pointsGroupIntro{padding:10px 15px}.immersiveApp .pointsFoodGroups li b{font-size:13px}.immersiveApp .pointsFoodGroups li span{font-size:11px}.immersiveApp .pointsFoodGroups li strong{font-size:13px}.immersiveApp .pointsLayoutToggle button{flex:1}}
+@media(min-width:1250px){.immersiveApp .pointsFoodGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:950px){.immersiveApp .pointsStats{grid-template-columns:repeat(2,minmax(0,1fr))}.immersiveApp .pointsFoodGrid,.immersiveApp .pointsRecipeGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.immersiveApp .pointsRecommendations>div{grid-template-columns:repeat(2,minmax(0,1fr))}.immersiveApp .pointsBudget{grid-template-columns:1fr 130px}.immersiveApp .pointsBudget>div{grid-column:1/-1}.immersiveApp .pointsEntryContext{grid-template-columns:1fr 1fr}.immersiveApp .pointsEntryContext>span{grid-column:1/-1;padding-bottom:0}.immersiveApp .pointsHeroImage{min-height:320px}.immersiveApp .pointsHeroCopy{padding:25px}}
+@media(max-width:650px){.immersiveApp .pointsExperience{padding:12px;border-radius:20px}.immersiveApp .pointsHero{grid-template-columns:1fr;border-radius:15px}.immersiveApp .pointsHeroCopy{padding:26px 23px}.immersiveApp .pointsHeroCopy h2{font-size:43px}.immersiveApp .pointsHeroImage{height:240px;min-height:0;object-position:50% 55%}.immersiveApp .pointsHeroPills{margin-top:15px}.immersiveApp .pointsHeroPills span{font-size:10px}.immersiveApp .pointsMethodLine{font-size:11px!important;padding:14px 4px}.immersiveApp .pointsTabs{grid-template-columns:1fr 1fr;gap:5px}.immersiveApp .pointsEntryContext{gap:11px;padding:12px}.immersiveApp .pointsSectionHead{margin:22px 0 16px}.immersiveApp .pointsSectionHead p{font-size:13px}.immersiveApp .pointsStats{gap:9px}.immersiveApp .pointsStats article{padding:16px 12px}.immersiveApp .pointsStats article>b{font-size:30px}.immersiveApp .pointsBudget{grid-template-columns:1fr;padding:17px}.immersiveApp .pointsBudget>div{grid-column:auto}.immersiveApp .pointsWeek>div:last-child{gap:4px}.immersiveApp.immersiveApp .pointsExperience .pointsWeek button{padding:10px 2px;border-radius:10px;min-height:80px}.immersiveApp .pointsWeek button>b{font-size:9px}.immersiveApp .pointsWeek button small{font-size:9px}.immersiveApp .pointsSearch{grid-template-columns:1fr;gap:10px}.immersiveApp .pointsFoodGrid,.immersiveApp .pointsRecipeGrid{gap:9px}.immersiveApp .pointsPhotoWrap{height:135px}.immersiveApp .pointsPhotoScore{font-size:18px;bottom:7px;right:7px;padding:5px 8px}.immersiveApp .pointsFoodCopy{padding:12px 10px}.immersiveApp .pointsFoodCopy>h4{font-size:16px}.immersiveApp .pointsFoodCopy>b{font-size:11px}.immersiveApp .pointsFoodCopy>p{font-size:11px;min-height:36px}.immersiveApp.immersiveApp .pointsExperience .pointsFoodCopy>button{font-size:11px;padding:10px 5px}.immersiveApp .pointsSource summary{font-size:10px}.immersiveApp .pointsRecipeScore>b{font-size:20px}.immersiveApp .pointsRecipeScore small{font-size:10px}.immersiveApp .pointsFoodRegister{grid-template-columns:1fr}.immersiveApp .pointsFoodRegister>.pointsFoodPhoto{min-height:0;height:220px}.immersiveApp .pointsFoodRegister form{padding:20px}.immersiveApp .pointsLabelCalculator form{grid-template-columns:1fr}.immersiveApp .pointsIngredientRows>div{grid-template-columns:minmax(0,1fr) 36px;padding:12px}.immersiveApp .pointsIngredientRows>div>label:first-child{grid-column:1/-1}.immersiveApp .pointsIngredientRows>div>label:nth-child(2){grid-column:1}.immersiveApp .pointsIngredientRows>div>button{grid-column:2}.immersiveApp .pointsDishTotals{gap:13px;padding:17px}.immersiveApp .pointsDishTotals b{font-size:25px}.immersiveApp .pointsDishTotals>span{font-size:12px}.immersiveApp .pointsGuideIntro{grid-template-columns:1fr}.immersiveApp .pointsGuideIntro>div:first-child{padding:22px}.immersiveApp .pointsFormula{padding:24px}.immersiveApp .pointsGuideSteps article{gap:13px;padding:16px}.immersiveApp .pointsGuideSteps article>span{width:33px;height:33px;border-radius:11px;font-size:23px}.immersiveApp .pointsGuideSteps article h4{font-size:18px}.immersiveApp .pointsGuideSteps p{font-size:13px}.immersiveApp .pointsWeekExplanation{padding:20px}.immersiveApp .pointsRecommendations>div{grid-template-columns:1fr}.immersiveApp .pointsRecommendations article{padding:20px}.immersiveApp .pointsFaq{padding:19px}}

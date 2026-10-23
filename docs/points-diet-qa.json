@@ -1,0 +1,32 @@
+{
+  "checks": [
+    "Diet gallery remains the first screen",
+    "Points is a selectable diet with its own image",
+    "Daily reference updates the seven-day reference",
+    "Nine visual food groups are available",
+    "Food search ignores accents and case",
+    "Apple grams recalculate before recording",
+    "A label per 100 ml uses millilitres directly",
+    "All 64 recipe examples show a calculated score",
+    "Dish sums ingredients and oil then divides portions",
+    "Three recorded foods and dishes appear in the meal diary",
+    "Stored points are 3.1 + 2 + 5",
+    "Diary and reference survive a reload",
+    "Deleting a diary item persists",
+    "Mobile point section fits the viewport",
+    "Generated food atlas is cropped as an accessible illustration",
+    "Optimized atlas for bacalao",
+    "Atlas image loads for bacalao",
+    "Optimized atlas for melocoton",
+    "Atlas image loads for melocoton",
+    "Optimized atlas for clara de huevo",
+    "Atlas image loads for clara de huevo",
+    "Guidance explains the method and weekly use",
+    "Unreadable history is preserved and recording is blocked",
+    "A named profile exclusion blocks adding that food",
+    "No browser runtime errors",
+    "No failed local resources"
+  ],
+  "errors": [],
+  "failed": []
+}

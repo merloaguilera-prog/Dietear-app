@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "check": "next build"
+    "check": "next build",
+    "test:points": "node --test tests/points-diet.test.mjs"
   },
   "dependencies": {
     "@zxing/browser": "^0.2.1",
