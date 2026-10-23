@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- Android Browser Helper toggles this component on every launch. -->
         <activity
             android:name="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity"
             android:exported="false">
