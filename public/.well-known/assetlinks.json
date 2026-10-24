@@ -1,11 +1,14 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "com.dietear.app",
       "sha256_cert_fingerprints": [
-        "8A:60:21:94:04:B8:00:FD:B9:E1:76:82:9F:0D:E3:CB:D1:63:17:ED:22:14:3B:46:67:61:EC:8C:C4:FA:91:13"
+        "8A:60:21:94:04:B8:00:FD:B9:E1:76:82:9F:0D:E3:CB:D1:63:17:ED:22:14:3B:46:67:61:EC:8C:C4:FA:91:13",
+        "E9:03:95:0B:19:A2:0E:40:27:C3:51:E3:7D:B0:10:32:B0:9C:51:BF:B6:28:02:CD:C4:AC:C8:D5:57:AA:E2:4A"
       ]
     }
   }
