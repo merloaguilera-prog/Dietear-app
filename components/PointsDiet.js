@@ -1,4 +1,5 @@
 "use client";
+import {writeLocalJson} from "../lib/client-runtime";
 import {useEffect,useMemo,useState} from "react";
 
 const foods=[
@@ -20,7 +21,8 @@ const monday=(date)=>{const d=new Date(date+"T12:00:00");d.setDate(d.getDate()-(
 export default function PointsDiet(){
  const [daily,setDaily]=useState(30),[entries,setEntries]=useState([]),[food,setFood]=useState("0"),[qty,setQty]=useState(1),[ready,setReady]=useState(false);
  useEffect(()=>{try{const saved=JSON.parse(localStorage.getItem("dietear-points-v1")||"{}");if(Number.isInteger(saved.daily)&&saved.daily>=10&&saved.daily<=80)setDaily(saved.daily);if(Array.isArray(saved.entries))setEntries(saved.entries.filter(e=>e&&typeof e.date==="string"&&Number.isFinite(e.points)));}catch{}setReady(true);},[]);
- useEffect(()=>{if(ready){localStorage.setItem("dietear-points-v1",JSON.stringify({daily,entries}));window.dispatchEvent(new Event("dietear:daily-updated"));}},[ready,daily,entries]);
+ useEffect(()=>{if(ready){const saved=writeLocalJson("dietear-points-v1",{daily,entries});setStorageSaved(saved);if(saved)window.dispatchEvent(new Event("dietear:daily-updated"));}},[ready,daily,entries]);
+ const [storageSaved,setStorageSaved]=useState(true);
  const date=today(),week=monday(date);
  const weekEntries=entries.filter(e=>e.date>=week&&e.date<=date);
  const spentToday=entries.filter(e=>e.date===date).reduce((s,e)=>s+e.points,0);
@@ -42,6 +44,7 @@ export default function PointsDiet(){
  </div>
  <div style={{...card,marginTop:16}}><h3 style={{marginTop:0}}>3 · 🍽️ Platos rápidos</h3><div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,210px),1fr))",gap:12}}>{meals.map(m=>{const p=points(m.items.reduce((sum,i)=>sum+foods[i][1],0));return <div key={m.name} style={{background:"#f6fcf8",border:"1px solid #c4e6d2",borderRadius:12,padding:12}}><strong>{m.name}</strong><p style={{fontSize:13}}>{m.items.map(i=>foods[i][0]).join(", ")}</p><button type="button" onClick={()=>record(m.name,p)}>Añadir {p} pt</button></div>})}</div></div>
  <details style={{...card,marginTop:16}}><summary style={{cursor:"pointer",fontWeight:750}}>🔎 Ver lista de alimentos y sus puntos</summary><input type="search" value={search} onChange={e=>setSearch(e.target.value)} placeholder="Buscar alimento" aria-label="Buscar alimentos" style={{width:"100%",margin:"12px 0"}}/><ul>{foods.filter(([name])=>name.toLowerCase().includes(search.toLowerCase())).map(([name,kcal])=><li key={name}>{name} · {points(kcal)} pt</li>)}</ul></details>
+ {!storageSaved&&<p role="alert">No se han podido guardar los últimos cambios. Conserva esta pantalla abierta y revisa el espacio o los permisos de almacenamiento.</p>}
  <details style={{marginTop:16}}><summary style={{cursor:"pointer",fontWeight:700}}>ℹ️ Cómo funciona este método</summary><p>Método orientativo propio: 1 punto por cada 50 kcal, redondeado por ración. No equivale a puntos oficiales de ninguna marca. Los 30 puntos iniciales son un ejemplo editable, no una recomendación personalizada. El saldo semanal suma los presupuestos de siete días sin trasladar puntos entre semanas.</p><p>Prioriza variedad, fibra y proteínas suficientes. No te saltes comidas para ahorrar puntos. Los datos se guardan en este navegador.</p></details>
  </section>;
 }
