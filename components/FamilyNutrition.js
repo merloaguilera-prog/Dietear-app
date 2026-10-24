@@ -1,4 +1,5 @@
 "use client";
+import {writeLocalJson} from "../lib/client-runtime";
 import {useEffect,useState} from "react";
 import HealthJournal from "./HealthJournal";
 const stages=[
@@ -31,10 +32,12 @@ const stageForAge=age=>age<1?0:age<6?1:age<13?2:age<18?3:age>=65?7:4;
 export default function FamilyNutrition(){
  const [situationsSelected,setSituationsSelected]=useState([]),[conditionsSelected,setConditionsSelected]=useState([]),[stage,setStage]=useState(0),[members,setMembers]=useState([]),[name,setName]=useState(""),[age,setAge]=useState(""),[need,setNeed]=useState(""),[ready,setReady]=useState(false);
  useEffect(()=>{try{const a=JSON.parse(localStorage.getItem("dietear-family-nutrition-v1")||"[]");if(Array.isArray(a))setMembers(a.filter(x=>x&&typeof x.name==="string").slice(0,30));}catch{}setReady(true);},[]);
- useEffect(()=>{if(ready)localStorage.setItem("dietear-family-nutrition-v1",JSON.stringify(members));},[members,ready]);
+ const [storageSaved,setStorageSaved]=useState(true);
+ useEffect(()=>{if(ready)setStorageSaved(writeLocalJson("dietear-family-nutrition-v1",members));},[members,ready]);
  const [selectedId,setSelectedId]=useState(null); const selected=members.find(m=>m.id===selectedId)||members[0]||null;
  const add=()=>{if(!name.trim()||age===""||!Number.isInteger(Number(age))||Number(age)<0||Number(age)>120)return;const id=Date.now()+"-"+Math.random();setMembers(m=>[...m,{id,name:name.trim(),age:Number(age),need:need.trim(),conditions:conditionsSelected,situations:situationsSelected}]);setSelectedId(id);setName("");setAge("");setNeed("");setConditionsSelected([]);setSituationsSelected([]);};
  return <section style={{marginTop:20,padding:16,border:"2px solid #57ae89",borderRadius:18,background:"#f2fff7",color:"#1c4533"}}>
+  {!storageSaved&&<p role="alert">No se han podido guardar las últimas fichas. Conserva esta pantalla abierta y revisa el espacio o los permisos de almacenamiento.</p>}
   <h3>🥗 Alimentación para cada etapa de la familia</h3><p>Consejos para bebés, infancia, adolescencia, personas adultas y mayores. Las necesidades dependen de cada persona, no solo de su sexo o edad.</p>
   <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>{stages.map((s,i)=><button type="button" key={s.name} onClick={()=>setStage(i)} aria-pressed={stage===i} style={{border:stage===i?"2px solid #17814d":"1px solid #b9d6c8",borderRadius:12,padding:"8px 12px",background:stage===i?"#d1f6df":"white"}}>{s.icon} {s.name}</button>)}</div>
   <div style={{background:"white",borderRadius:14,padding:14,marginTop:12}}><h4>{stages[stage].icon} {stages[stage].name}</h4><ul>{stages[stage].tips.map(t=><li key={t}>{t}</li>)}</ul></div>

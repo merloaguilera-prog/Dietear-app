@@ -1,56 +1,80 @@
-const CACHE_VERSION = "dietear-shell-v1";
-const APP_SHELL = [
-  "/",
-  "/offline.html",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
-];
+const CACHE_VERSION = "dietear-shell-v2";
+const APP_SHELL = ["/offline.html", "/icons/icon-192.png", "/icons/icon-512.png"];
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE_VERSION).then((cache) => cache.addAll(APP_SHELL)));
+self.addEventListener("install", event => {
+  event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(APP_SHELL)));
   self.skipWaiting();
 });
 
-self.addEventListener("activate", (event) => {
+self.addEventListener("activate", event => {
   event.waitUntil(
-    caches
-      .keys()
-      .then((keys) => Promise.all(keys.filter((key) => key !== CACHE_VERSION).map((key) => caches.delete(key))))
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(key => key.startsWith("dietear-shell-") && key !== CACHE_VERSION).map(key => caches.delete(key))))
       .then(() => self.clients.claim()),
   );
 });
 
-self.addEventListener("fetch", (event) => {
+async function remember(request, response) {
+  if (!response.ok || response.status === 206) return;
+  try {
+    const cache = await caches.open(CACHE_VERSION);
+    await cache.put(request, response);
+  } catch {
+    // A full/blocked cache must not turn a successful request into an error.
+  }
+}
+
+async function cached(request) {
+  try {
+    const cache = await caches.open(CACHE_VERSION);
+    return await cache.match(request);
+  } catch {
+    return undefined;
+  }
+}
+
+self.addEventListener("fetch", event => {
   const request = event.request;
   if (request.method !== "GET") return;
-
   const url = new URL(request.url);
   if (url.origin !== self.location.origin || url.pathname.startsWith("/api/")) return;
 
+  // Next.js flight/prefetch data is deployment-specific and must reach Next.js.
+  if (request.headers.get("RSC") === "1" || url.searchParams.has("_rsc")) return;
+
   if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_VERSION).then((cache) => cache.put(request, copy));
-          return response;
-        })
-        .catch(async () => (await caches.match(request)) || caches.match("/offline.html")),
-    );
+    const response = fetch(request).then(result => {
+      if (result.headers.get("content-type")?.includes("text/html")) {
+        event.waitUntil(remember(request, result.clone()));
+      }
+      return result;
+    }).catch(async () => (await cached(request)) || (await cached("/offline.html")) || new Response(
+      "Sin conexión. Vuelve a intentarlo cuando recuperes Internet.",
+      { status: 503, headers: { "Content-Type": "text/plain; charset=utf-8" } },
+    ));
+    event.respondWith(response);
     return;
   }
 
-  event.respondWith(
-    caches.match(request).then(
-      (cached) =>
-        cached ||
-        fetch(request).then((response) => {
-          if (response.ok) {
-            const copy = response.clone();
-            caches.open(CACHE_VERSION).then((cache) => cache.put(request, copy));
-          }
-          return response;
-        }),
-    ),
-  );
+  // Only hashed Next.js assets are immutable. Images and the manifest can change
+  // at the same URL; use the network first so updates are visible immediately.
+  const immutable = url.pathname.startsWith("/_next/static/");
+  const asset = immutable || ["image", "font", "style", "script"].includes(request.destination) || APP_SHELL.includes(url.pathname);
+  if (!asset) return;
+  const response = (async () => {
+    if (immutable) {
+      const hit = await cached(request);
+      if (hit) return hit;
+    }
+    try {
+      const result = await fetch(request);
+      event.waitUntil(remember(request, result.clone()));
+      return result;
+    } catch (error) {
+      const hit = await cached(request);
+      if (hit) return hit;
+      throw error;
+    }
+  })();
+  event.respondWith(response);
 });

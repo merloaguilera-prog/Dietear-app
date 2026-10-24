@@ -1,4 +1,5 @@
 "use client";
+import {writeLocalJson} from "../lib/client-runtime";
 import {useEffect,useMemo,useState} from "react";
 import {recipes} from "../lib/recipes";
 
@@ -27,6 +28,7 @@ const urgency=days=>days===null?99:days<0?-10:days;
 export default function FridgeIdeas({fridge,onChoose}){
   const [dates,setDates]=useState({});
   const [ready,setReady]=useState(false);
+  const [storageSaved,setStorageSaved]=useState(true);
 
   useEffect(()=>{
     try{
@@ -40,7 +42,7 @@ export default function FridgeIdeas({fridge,onChoose}){
     const next={...dates,[norm(name)]:value};
     if(!value)delete next[norm(name)];
     setDates(next);
-    localStorage.setItem("dietear-expiry-dates",JSON.stringify(next));
+    setStorageSaved(writeLocalJson("dietear-expiry-dates",next));
   };
 
   const pantry=useMemo(()=>fridge.map((item,index)=>{
@@ -66,6 +68,7 @@ export default function FridgeIdeas({fridge,onChoose}){
   const hasMatches=ranked.some(recipe=>recipe.hits>0);
 
   return <div className="fridgeIdeas">
+    {!storageSaved&&<p role="alert">No se han podido guardar las últimas fechas. Conserva esta pantalla abierta y revisa el espacio o los permisos de almacenamiento.</p>}
     <div>
       <small>🧊 NEVERA INTELIGENTE</small>
       <h3>{expiring.length?"Primero, aprovecha lo que caduca antes":hasMatches?"Recetas que aprovechan tu nevera":"Aún no hay recetas con esos ingredientes"}</h3>
