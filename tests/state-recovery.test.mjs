@@ -57,6 +57,17 @@ test("invalid JSON is preserved verbatim before a fresh state is saved", t=>{
   assert.equal(items.get(backups(items)[0]),raw);
 });
 
+test("a malformed saved timestamp cannot throw while opening valid data",t=>{
+  const original=validData();
+  const raw=JSON.stringify({version:2,savedAt:{toString:null},data:original});
+  const items=setup(t,raw);
+  const {_savedDay,...loaded}=loadState();
+  assert.equal(_savedDay,null);
+  assert.deepEqual(loaded,original);
+  assert.equal(saveState(loaded),"recovered");
+  assert.equal(items.get(backups(items)[0]),raw);
+});
+
 test("if backup is blocked, the original is never overwritten", t=>{
   const raw=envelope({shopping:"broken"});
   const items=setup(t,raw,key=>{if(key!==STORE_KEY)throw new DOMException("Full","QuotaExceededError");});
