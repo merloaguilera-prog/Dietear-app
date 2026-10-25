@@ -109,10 +109,11 @@ jobs:
               application = ET.parse(path).getroot().find('application')
               assert application is not None, path
               activities = {node.get(android + 'name'): node for node in application.findall('activity')}
-              assert launcher in activities, f'Missing TWA launcher in {variant}'
-              assert settings not in activities, f'Crash-prone manage-space activity remains in {variant}'
-              assert application.get(android + 'manageSpaceActivity') is None, variant
-              print(f'TWA launcher present; manage-space entry point absent in {variant} merged manifest.')
+              assert launcher in activities and settings in activities, f'Missing TWA activity in {variant}'
+              assert application.get(android + 'manageSpaceActivity') == settings, variant
+              assert activities[settings].get(android + 'exported') == 'false', variant
+              assert activities[settings].get(android + 'enabled') == 'false', variant
+              print(f'TWA launcher and disabled-by-default manage-space component present in {variant} merged manifest.')
           PYTHON
 
       - name: Verify TWA launcher survives R8 in release build
@@ -120,14 +121,14 @@ jobs:
           set -eu
           mapping="app/build/outputs/mapping/release/mapping.txt"
           test -s "$mapping"
-          for component in LauncherActivity; do
+          for component in LauncherActivity ManageDataLauncherActivity; do
             expected="com.google.androidbrowserhelper.trusted.$component"
             if ! grep -Fqx "$expected -> $expected:" "$mapping"; then
               echo "::error::TWA component $component was renamed by R8 or is missing."
               exit 1
             fi
           done
-          echo "TWA launcher retains its name."
+          echo "TWA launcher and manage-space component retain their names."
 
       - name: Prepare minified release APKs for update regression
         run: |
