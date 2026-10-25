@@ -60,3 +60,11 @@ Estado: especificación de implementación; no activar en producción hasta comp
 - Al modificar los detalles, volver a estimar calorías y, cuando corresponda, puntos de la dieta seleccionada; mostrar la diferencia y pedir confirmación antes de guardar.
 - Conservar la descripción original y la corrección confirmada para trazabilidad; no reemplazar silenciosamente el registro.
 - Prueba: foto de ensalada + «añadí dos cucharadas de aceite» modifica la estimación y el total diario tras confirmación.
+
+## Añadir aclaraciones mediante micrófono
+- Junto al campo «Añadir detalles del plato», incluir un botón de micrófono para dictar ingredientes, aceite, salsas, marcas, cantidades y porciones consumidas.
+- Transcribir el dictado al campo editable, permitir revisarlo/corregirlo y pedir confirmación antes de guardarlo.
+- Tras confirmar, recalcular la estimación de calorías o puntos según la dieta activa y actualizar los agregados diarios/semanales/mensuales.
+- Si se deniega el permiso, falla el reconocimiento o el navegador no soporta voz, mantener siempre el campo escrito disponible.
+- Evitar pérdida de texto al detener la grabación, cambiar de campo o cerrar el teclado; indicar visualmente cuándo se escucha.
+- Pruebas: dictar «lleva dos cucharadas de aceite de oliva» rellena el campo, persiste tras guardar y modifica el cálculo al confirmarlo; la denegación del micrófono no bloquea el registro.
