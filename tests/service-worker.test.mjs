@@ -5,7 +5,8 @@ import vm from "node:vm";
 
 const source = readFileSync(new URL("../public/sw.js", import.meta.url), "utf8");
 function worker({network = async () => new Response("fresh", {headers: {"Content-Type": "text/html"}}), blocked = false} = {}) {
-  const handlers = {}, stores = new Map(), deleted = [], fetches = [];
+  const handlers = {}, stores = new Map(), deleted = [], fetches = [], timers = new Map(), signals = [];
+  let timerId = 0;
   const key = request => typeof request === "string" ? new URL(request, "https://dietear.app").href : request.url;
   const caches = {
     async open(name) {
@@ -17,7 +18,10 @@ function worker({network = async () => new Response("fresh", {headers: {"Content
     keys: async () => [...stores.keys()],
     delete: async name => {deleted.push(name); return stores.delete(name);},
   };
-  vm.runInNewContext(source, {URL, Response, caches, fetch: async request => {fetches.push(request.url); return network(request);}, self: {
+  vm.runInNewContext(source, {URL, Response, AbortController, caches,
+    setTimeout: (callback, ms) => { const id = ++timerId; timers.set(id, {callback, ms}); return id; },
+    clearTimeout: id => timers.delete(id),
+    fetch: async (request, options) => {fetches.push(request.url); if (options?.signal) signals.push(options.signal); return network(request);}, self: {
     location: {origin: "https://dietear.app"}, clients: {claim: async () => {}}, skipWaiting() {},
     addEventListener: (name, handler) => {handlers[name] = handler;},
   }});
@@ -30,8 +34,53 @@ function worker({network = async () => new Response("fresh", {headers: {"Content
     await Promise.all(pending);
     return result;
   }
-  return {dispatch, caches, stores, deleted, fetches, handlers};
+  const timeout = () => { for (const {callback, ms} of [...timers.values()]) { assert.equal(ms, 10000); callback(); } };
+  return {dispatch, caches, stores, deleted, fetches, handlers, timers, signals, timeout};
 }
+
+test("a stalled navigation falls back to the saved page and cancels the request", async () => {
+  let stalled = false;
+  const w = worker({network: async () => stalled ? new Promise(() => {}) : new Response("saved", {headers: {"Content-Type": "text/html"}})});
+  await w.dispatch("/");
+  assert.equal(w.timers.size, 0);
+  stalled = true;
+  const pending = w.dispatch("/");
+  assert.equal(w.timers.size, 1);
+  w.timeout();
+  assert.equal(await (await pending).text(), "saved");
+  assert.equal(w.signals.at(-1).aborted, true);
+  assert.equal(w.timers.size, 0);
+});
+
+test("a stalled uncached page uses the offline recovery screen", async () => {
+  const w = worker({network: () => new Promise(() => {})});
+  const cache = await w.caches.open("dietear-shell-v2");
+  await cache.put("/offline.html", new Response("recovery screen"));
+  const pending = w.dispatch("/?section=plan");
+  w.timeout();
+  assert.equal(await (await pending).text(), "recovery screen");
+});
+
+test("a stalled request without cache still offers retry and preserves the URL", async () => {
+  const w = worker({blocked: true, network: () => new Promise(() => {})});
+  const pending = w.dispatch("/?section=progress");
+  w.timeout();
+  const result = await pending;
+  assert.equal(result.status, 503);
+  assert.match(result.headers.get("content-type"), /text\/html/);
+  assert.match(await result.text(), /Volver a intentar/);
+});
+
+test("a slow successful navigation wins before the deadline and clears its timer", async () => {
+  let finish;
+  const w = worker({network: () => new Promise(resolve => {finish = resolve;})});
+  const pending = w.dispatch("/");
+  assert.equal(w.timers.size, 1);
+  finish(new Response("ready", {headers: {"Content-Type": "text/html"}}));
+  assert.equal(await (await pending).text(), "ready");
+  assert.equal(w.timers.size, 0);
+  assert.equal(w.signals[0].aborted, false);
+});
 
 test("a temporary server error never replaces the last working offline page", async () => {
   let fail = false;

@@ -1,5 +1,6 @@
 const CACHE_VERSION = "dietear-shell-v2";
 const APP_SHELL = ["/offline.html", "/icons/icon-192.png", "/icons/icon-512.png"];
+const NAVIGATION_TIMEOUT_MS = 10000;
 
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(APP_SHELL)));
@@ -33,6 +34,26 @@ async function cached(request) {
   }
 }
 
+// A stalled connection does not reject fetch by itself. Bound the wait so a
+// returning user can recover even when Android still reports being online.
+async function fetchNavigation(request) {
+  const controller = new AbortController();
+  let timer;
+  try {
+    return await Promise.race([
+      fetch(request, { signal: controller.signal }),
+      new Promise((_, reject) => {
+        timer = setTimeout(() => {
+          controller.abort();
+          reject(new Error("Navigation timed out"));
+        }, NAVIGATION_TIMEOUT_MS);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 self.addEventListener("fetch", event => {
   const request = event.request;
   if (request.method !== "GET") return;
@@ -43,14 +64,14 @@ self.addEventListener("fetch", event => {
   if (request.headers.get("RSC") === "1" || url.searchParams.has("_rsc")) return;
 
   if (request.mode === "navigate") {
-    const response = fetch(request).then(result => {
+    const response = fetchNavigation(request).then(result => {
       if (result.headers.get("content-type")?.includes("text/html")) {
         event.waitUntil(remember(request, result.clone()));
       }
       return result;
     }).catch(async () => (await cached(request)) || (await cached("/offline.html")) || new Response(
-      "Sin conexión. Vuelve a intentarlo cuando recuperes Internet.",
-      { status: 503, headers: { "Content-Type": "text/plain; charset=utf-8" } },
+      '<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DIETEAR · Reintentar</title><body><main><h1>DIETEAR</h1><p>Sin conexión o la conexión tarda demasiado. Tus datos guardados siguen en este dispositivo.</p><a href="">Volver a intentar</a></main></body></html>',
+      { status: 503, headers: { "Content-Type": "text/html; charset=utf-8" } },
     ));
     event.respondWith(response);
     return;
