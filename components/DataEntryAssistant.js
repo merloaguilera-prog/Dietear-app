@@ -4,7 +4,7 @@ import {applyEntryValue, dictationValue, entryFields, fieldLabel, isEntryField, 
 
 export default function DataEntryAssistant() {
   const [field,setField] = useState(null), [supported,setSupported] = useState(false), [listening,setListening] = useState(false);
-  const [consent,setConsent] = useState(false), [explain,setExplain] = useState(false), [draft,setDraft] = useState(null), [message,setMessage] = useState(''), [bottom,setBottom] = useState(90);
+  const [consent,setConsent] = useState(false), [explain,setExplain] = useState(false), [draft,setDraft] = useState(null), [message,setMessage] = useState(''), [bottom,setBottom] = useState(90), [maxHeight,setMaxHeight] = useState(320);
   const cancel = useRef(null), current = useRef(null), timer = useRef(null);
   function stop() { cancel.current?.(); cancel.current = null; clearTimeout(timer.current); setListening(false); }
   useEffect(() => {
@@ -16,7 +16,8 @@ export default function DataEntryAssistant() {
       current.current = isEntryField(event.target) ? event.target : null; setField(current.current);
     };
     const hide = () => { if (document.hidden) { stop(); setDraft(null); } };
-    const resize = () => { const v = window.visualViewport; setBottom(v && window.innerHeight - v.height > 150 ? Math.max(12,window.innerHeight-v.height-v.offsetTop+12) : 90); };
+    const resize = () => { const v = window.visualViewport; setMaxHeight(Math.max(110,Math.min(320,(v?.height || window.innerHeight)*.42))); setBottom(v && window.innerHeight - v.height > 150 ? Math.max(12,window.innerHeight-v.height-v.offsetTop+12) : 90); };
+    resize();
     document.addEventListener('focusin',focus); document.addEventListener('visibilitychange',hide);
     window.visualViewport?.addEventListener('resize',resize); window.visualViewport?.addEventListener('scroll',resize);
     const observer = new MutationObserver(() => { if (current.current && !current.current.isConnected) { stop(); current.current=null; setField(null); } });
@@ -50,7 +51,7 @@ export default function DataEntryAssistant() {
     if (!applyEntryValue(field,draft.value)) { setMessage('Ese dato no encaja con el formato o los límites del campo. Revisa el valor o escríbelo.'); return; }
     setDraft(null); setMessage('Dato introducido.'); if (advance) next();
   }
-  return <aside className="dataEntryAssistant" data-entry-assistant="true" aria-label="Ayuda para introducir datos" style={{bottom}}>
+  return <aside className="dataEntryAssistant" data-entry-assistant="true" aria-label="Ayuda para introducir datos" style={{bottom,maxHeight}}>
     <div className="entryHeading"><strong>{fieldLabel(field).slice(0,90)}</strong><button type="button" aria-label="Cerrar ayuda de datos" onClick={() => {stop(); setField(null); current.current=null;}}>×</button></div>
     <div className="entryButtons">
       {supported && <button type="button" aria-pressed={listening} onPointerDown={e=>e.preventDefault()} onClick={dictate}>{listening?'■ Detener':'🎙️ Dictar este dato'}</button>}
