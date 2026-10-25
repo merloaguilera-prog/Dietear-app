@@ -53,3 +53,10 @@ Estado: especificación de implementación; no activar en producción hasta comp
 - La misma comida muestra kcal en un plan calórico y puntos en un plan de puntos, con cantidades y reglas verificadas.
 - Editar raciones recalcula el total diario y el saldo del plan elegido.
 - Cambiar de dieta no borra las fotos ni duplica comidas; conserva la trazabilidad del cálculo histórico.
+
+## Corrección y datos adicionales por escrito
+- Después del análisis fotográfico, mostrar un campo opcional «Añadir detalles del plato» para que la persona escriba ingredientes no visibles, método de cocción, aceite, salsa, cantidad consumida, marcas o cualquier aclaración.
+- Ofrecer el mismo campo al registrar por voz o manualmente, sin exigir texto cuando no sea necesario.
+- Al modificar los detalles, volver a estimar calorías y, cuando corresponda, puntos de la dieta seleccionada; mostrar la diferencia y pedir confirmación antes de guardar.
+- Conservar la descripción original y la corrección confirmada para trazabilidad; no reemplazar silenciosamente el registro.
+- Prueba: foto de ensalada + «añadí dos cucharadas de aceite» modifica la estimación y el total diario tras confirmación.
