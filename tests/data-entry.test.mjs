@@ -37,3 +37,14 @@ test('voice start failure is surfaced and partial results are not applied',()=>{
  const results=[];const cancel=startDictation(Speech,{result:x=>results.push(x),end(){},error(){}});
  instance.onresult({results:[Object.assign([{transcript:'partial'}],{isFinal:false})]});assert.deepEqual(results,[]);cancel();
 });
+
+test('voice start is reported by the browser, interim text is visible, and array-like results work',()=>{
+ let instance;class Speech{constructor(){instance=this;}start(){}abort(){}}
+ const events=[];const cancel=startDictation(Speech,{start:()=>events.push('ready'),preview:x=>events.push('preview:'+x),result:x=>events.push('final:'+x),error(){},end(){}});
+ assert.deepEqual(events,[]);assert.equal(instance.interimResults,true);
+ instance.onstart();
+ instance.onresult({results:{0:{0:{transcript:'cuarenta'},isFinal:false},length:1}});
+ instance.onresult({results:{0:{0:{transcript:'cuarenta y siete'},isFinal:true},length:1}});
+ instance.onresult({results:{0:{0:{transcript:'cuarenta y siete'},isFinal:true},length:1}});
+ assert.deepEqual(events,['ready','preview:cuarenta','final:cuarenta y siete']);cancel();
+});
