@@ -39,3 +39,17 @@ Estado: especificación de implementación; no activar en producción hasta comp
 - Añadir una merienda mediante foto y corregir la ración: cambian el subtotal, el total diario y el agregado semanal.
 - Una fotografía sin cantidad confirmada muestra una estimación y su advertencia.
 - Al cambiar de fecha, cada fotografía y su energía siguen vinculadas al día correcto.
+
+## Cálculo según la dieta elegida: calorías o puntos
+- Cada perfil selecciona su plan activo; el registro por fotografía, voz o texto es el mismo, pero la métrica principal cambia según la dieta.
+- Para planes basados en calorías: mostrar kcal estimadas por alimento, plato, comida y día, y el objetivo diario configurado.
+- Para «Dieta por puntos»: calcular los puntos por alimento y ración con las reglas y versión del sistema de puntos seleccionado, mostrando puntos por plato, comida, día y semana, así como saldo restante. No inferir puntos de una fotografía sin conocer ingredientes y cantidades.
+- Mantener los valores nutricionales subyacentes para análisis y permitir cambiar de plan sin perder fotos ni registros históricos; conservar la versión de reglas aplicada para reproducir cálculos pasados.
+- No inventar una tabla universal de puntos: las fórmulas varían entre sistemas y requieren una definición autorizada. Los presupuestos diarios/semanales deben configurarse según el plan y no deducirse solo del peso.
+- Evitar contar dos veces alimentos al registrar fotos de una mesa o varias imágenes de un mismo plato.
+- Si el plan no usa puntos ni un objetivo calórico, mostrar el registro nutricional sin imponer un límite arbitrario.
+
+### Pruebas de aceptación
+- La misma comida muestra kcal en un plan calórico y puntos en un plan de puntos, con cantidades y reglas verificadas.
+- Editar raciones recalcula el total diario y el saldo del plan elegido.
+- Cambiar de dieta no borra las fotos ni duplica comidas; conserva la trazabilidad del cálculo histórico.
