@@ -1,28 +1,31 @@
-# Entrada ágil de datos
+# Entrada ágil de datos — revisión del dictado
 
-Al enfocar un campo de texto, número, fecha, hora o una lista de selección simple,
-DIETEAR muestra «Siguiente campo» y, si el navegador lo admite, «Dictar este dato».
-El avance recorre los campos visibles y editables de la pantalla actual, sin
-activar botones de envío ni pulsar automáticamente «Guardar». Las contraseñas,
-archivos, controles ocultos y campos bloqueados quedan excluidos.
+Al enfocar un campo editable aparece «Siguiente campo» y, si existe soporte,
+«Dictar este dato». El aviso del servicio de voz se muestra antes de ese botón.
+Una pulsación inicia el reconocimiento y solicita el permiso del navegador si
+hace falta. Ya no hay un segundo inicio oculto tras una casilla.
 
-El usuario activa el servicio de voz del navegador tras leer el aviso de audio.
-Solo escucha al pulsarlo, en español, durante un máximo de 20 segundos. No se
-reinicia automáticamente. Se detiene al cambiar de campo, cerrar la ayuda,
-ocultar la aplicación o desmontar la pantalla. DIETEAR no almacena grabaciones;
-el proveedor del navegador puede procesar audio en sus servidores.
+«Activando micrófono» indica que se espera al servicio; «Escuchando» solo aparece
+cuando el navegador confirma el inicio. Los resultados provisionales son visibles.
+El resultado definitivo válido se introduce directamente en el mismo control de
+React y activa el guardado que tenga esa sección. «Deshacer dictado» restaura el
+valor anterior mientras no se haya editado después. El dictado no envía formularios
+ni pulsa botones de guardar; en secciones con guardado explícito este se mantiene.
 
-El texto reconocido se presenta antes de usarlo. «Usar y siguiente» actualiza el
-mismo campo y sus manejadores existentes, conserva el resto del formulario y
-avanza. Si el usuario ha escrito mientras tanto, el dictado no lo sobrescribe.
-Los valores incompatibles con el formato/límites se rechazan sin modificar el
-valor anterior. Se admiten números españoles con coma, centímetros y kilos;
-las listas exigen una opción existente. Las fechas y horas mantienen su selector
-nativo; un dictado ambiguo invita a usarlo manualmente.
+Se conservan los límites, formatos y opciones existentes. Un dato ambiguo no se
+escribe y una edición manual concurrente nunca se sobrescribe. El micrófono se
+cancela al cambiar de campo, cerrar la ayuda u ocultar la aplicación. Hay límites
+para la activación (45 segundos) y la escucha (20 segundos). Los resultados
+repetidos o tardíos no se aplican.
 
-Compatibilidad: la disponibilidad de voz depende del navegador, conexión y
-permisos. En navegadores sin SpeechRecognition se conserva escritura y avance,
-y se indica la alternativa del micrófono del teclado móvil. No añade permisos
-al AAB ni garantiza voz en todos los teléfonos.
+Se distinguen errores de permiso, captura de audio, falta de voz, conexión y
+servicio no disponible. Se ofrece el micrófono del teclado como alternativa. El
+servicio del navegador puede enviar el audio a su proveedor; DIETEAR no guarda
+las grabaciones. No se añade un proveedor de transcripción propio ni permisos
+nuevos al paquete Android.
+
+La disponibilidad real sigue dependiendo del navegador y del teléfono. Pruebas
+con eventos simulados o la presencia de un botón no acreditan una transcripción
+real desde un micrófono físico.
 
 Referencia: https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition
