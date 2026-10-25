@@ -1,6 +1,8 @@
 import "./globals.css";
 import "./design.css";
 import "./color.css";
+import "./data-entry.css";
+import DataEntryAssistant from "../components/DataEntryAssistant";
 import PwaRuntime from "../components/PwaRuntime";
 
 export const metadata = {
@@ -36,6 +38,7 @@ export default function RootLayout({ children }) {
       <body>
         {children}
         <PwaRuntime />
+        <DataEntryAssistant />
       </body>
     </html>
   );
