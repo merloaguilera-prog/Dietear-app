@@ -2,6 +2,7 @@ import "./globals.css";
 import "./design.css";
 import "./color.css";
 import "./data-entry.css";
+import "./exercises.css";
 import DataEntryAssistant from "../components/DataEntryAssistant";
 import PwaRuntime from "../components/PwaRuntime";
 
