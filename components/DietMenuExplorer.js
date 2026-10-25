@@ -10,12 +10,14 @@ const menus=[
 export default function DietMenuExplorer({diet, onPlan}){
  const [menu,setMenu]=useState(null);
  const [recipe,setRecipe]=useState(false);
- const selected=menus[menu];
+ const compatible=["Equilibrada","Mediterránea"].includes(diet);
+ const selected=compatible?menus[menu]:null;
  return <section className="dietMenuExplorer" aria-label="Menús y recetas de la dieta elegida">
   <h3>🍽️ Menús de {diet||"tu dieta"}</h3>
-  <p>Elige una propuesta, consulta la receta y aprende a cocinarla paso a paso.</p>
+  <p>{compatible?"Elige una propuesta, consulta la receta y aprende a cocinarla paso a paso.":"Los menús de este estilo se añadirán después de comprobar ingredientes y restricciones."}</p>
   <p className="dietMenuCaution">Ejemplos generales de cocina. Comprueba ingredientes y adapta cada menú a tus alergias, necesidades y al estilo de dieta elegido antes de incorporarlo a tu plan. No son menús terapéuticos personalizados.</p>
-  <div className="dietMenuChoices">{menus.map((m,i)=><button type="button" key={m.name} className={menu===i?"selected":""} onClick={()=>{setMenu(i);setRecipe(false)}}><b>{m.name}</b><small>{m.description}</small></button>)}</div>
+  {!compatible&&<p className="dietMenuCaution">Estamos preparando menús específicos para este estilo. No mostramos recetas genéricas como si cumplieran sus requisitos: las alergias, la alimentación halal y las dietas terapéuticas necesitan una selección adecuada.</p>}
+  {compatible&&<div className="dietMenuChoices">{menus.map((m,i)=><button type="button" key={m.name} className={menu===i?"selected":""} onClick={()=>{setMenu(i);setRecipe(false)}}><b>{m.name}</b><small>{m.description}</small></button>)}</div>}
   {selected&&<div className="dietMenuRecipe"><h4>{selected.dish}</h4><button type="button" onClick={()=>setRecipe(v=>!v)}>{recipe?"Ocultar receta":"👩‍🍳 Ver receta y cómo prepararla"}</button>
    {recipe&&<div><h5>Ingredientes (2 raciones aproximadas)</h5><ul>{selected.ingredients.map(x=><li key={x}>{x}</li>)}</ul><h5>Preparación paso a paso</h5><ol>{selected.steps.map(x=><li key={x}>{x}</li>)}</ol><p>Consulta cantidades y restricciones antes de guardar esta comida.</p></div>}
    <button type="button" onClick={onPlan}>📅 Abrir mi planificación</button>
