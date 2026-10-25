@@ -109,12 +109,10 @@ jobs:
               application = ET.parse(path).getroot().find('application')
               assert application is not None, path
               activities = {node.get(android + 'name'): node for node in application.findall('activity')}
-              assert launcher in activities and settings in activities, f'Missing TWA activity in {variant}'
-              assert application.get(android + 'manageSpaceActivity') == settings, variant
-              assert activities[settings].get(android + 'exported') == 'false', variant
-              assert any(node.get(android + 'name') == 'android.support.customtabs.trusted.MANAGE_SPACE_URL'
-                         for node in activities[settings].findall('meta-data')), variant
-              print(f'Required TWA activities and settings metadata present in {variant} merged manifest.')
+              assert launcher in activities, f'Missing TWA launcher in {variant}'
+              assert settings not in activities, f'Crash-prone manage-space activity remains in {variant}'
+              assert application.get(android + 'manageSpaceActivity') is None, variant
+              print(f'TWA launcher present; manage-space entry point absent in {variant} merged manifest.')
           PYTHON
 
       - name: Verify TWA launcher survives R8 in release build
@@ -122,14 +120,14 @@ jobs:
           set -eu
           mapping="app/build/outputs/mapping/release/mapping.txt"
           test -s "$mapping"
-          for component in LauncherActivity ManageDataLauncherActivity; do
+          for component in LauncherActivity; do
             expected="com.google.androidbrowserhelper.trusted.$component"
             if ! grep -Fqx "$expected -> $expected:" "$mapping"; then
               echo "::error::TWA component $component was renamed by R8 or is missing."
               exit 1
             fi
           done
-          echo "Both TWA launch and site-settings components retain their names."
+          echo "TWA launcher retains its name."
 
       - name: Prepare minified release APKs for update regression
         run: |
