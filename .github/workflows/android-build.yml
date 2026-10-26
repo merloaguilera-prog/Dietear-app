@@ -112,9 +112,8 @@ jobs:
               assert launcher in activities and settings in activities, f'Missing TWA activity in {variant}'
               assert application.get(android + 'manageSpaceActivity') == settings, variant
               assert activities[settings].get(android + 'exported') == 'false', variant
-              assert any(node.get(android + 'name') == 'android.support.customtabs.trusted.MANAGE_SPACE_URL'
-                         for node in activities[settings].findall('meta-data')), variant
-              print(f'Required TWA activities and settings metadata present in {variant} merged manifest.')
+              assert activities[settings].get(android + 'enabled') == 'false', variant
+              print(f'TWA launcher and disabled-by-default manage-space component present in {variant} merged manifest.')
           PYTHON
 
       - name: Verify TWA launcher survives R8 in release build
@@ -129,7 +128,7 @@ jobs:
               exit 1
             fi
           done
-          echo "Both TWA launch and site-settings components retain their names."
+          echo "TWA launcher and manage-space component retain their names."
 
       - name: Prepare minified release APKs for update regression
         run: |
