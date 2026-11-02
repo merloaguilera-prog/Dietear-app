@@ -152,12 +152,31 @@ export function DesignedFeatureArtwork({ name }) {
   return file ? <Image className="featureArtwork featurePhoto" src={root+file} alt="" width={file==="inicio-completo.png"?1228:1672} height={file.startsWith("visual-")?1672:file==="inicio-completo.png"?1281:941} sizes="(max-width:650px) 45vw, 20vw"/> : null;
 }
 
+// Asignaciones explícitas: evitar que todas las dietas sin foto repitan hd-complete.png.
+// Las fotos adicionales deben revisarse editorialmente antes de ampliar el catálogo.
 const dietPhotos={
-  "Equilibrada":"hd-complete.png", "Mediterránea":"hd-complete.png", "Vegana":"hd-chickpea.png",
-  "Vegetariana":"visual-vegetarian.png", "Sin gluten":"visual-gluten.png", "Sin lactosa":"visual-milk.png",
-  "Hiposódica":"visual-low-salt.png", "Musulmana / Halal":"visual-mosque-real.jpg",
-  "Ayuno intermitente":"visual-agenda.png", "Ganar músculo":"hd-ejercicio.png", "Ganancia muscular":"hd-ejercicio.png",
-  "Rica en fibra":"hd-chickpea.png", "Sin azúcar añadido":"hd-tropical.png", "Sin alimento X":"hd-fit.png"
+  "Equilibrada":"hd-complete.png",
+  "Mediterránea":"hd-alimentacion.png",
+  "Vegana":"hd-chickpea.png",
+  "Vegetariana":"visual-vegetarian.png",
+  "Sin gluten":"visual-gluten.png",
+  "Sin lactosa":"visual-milk.png",
+  "Hiposódica":"visual-low-salt.png",
+  "Musulmana / Halal":"visual-mosque-real.jpg",
+  "Ayuno intermitente":"visual-agenda.png",
+  "Ganar músculo":"hd-ejercicio.png",
+  "Ganancia muscular":"hd-ejercicio.png",
+  "Rica en fibra":"hd-tropical.png",
+  "Sin azúcar añadido":"visual-water.png",
+  "Diabética":"hd-budget.png",
+  "Hipocalórica":"hd-fit.png",
+  "Hipercalórica":"hd-nevera.png",
+  "Rica en proteínas":"recipe-sheet-1.jpg",
+  "Baja en fibra":"recipe-sheet-2.jpg",
+  "Baja en residuos":"recipe-sheet-3.jpg",
+  "Mantenimiento":"recipe-sheet-4.jpg",
+  "Dieta por puntos":"visual-graphs.png",
+  "Sin alimento X":"visual-privacy.png"
 };
 export function DesignedDietArtwork({name}){
   const file=dietPhotos[name]||"hd-complete.png",excluded=name==="Sin lactosa"||name==="Sin gluten";
