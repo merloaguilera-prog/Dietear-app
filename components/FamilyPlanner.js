@@ -1,5 +1,5 @@
 "use client";
-import {useMemo,useState} from "react";
+import {useEffect,useMemo,useState} from "react";
 
 const PRESETS={
   adulto:{label:"Adulto",factor:1},
@@ -15,6 +15,13 @@ export default function FamilyPlanner({profile,setProfile,setPlanner,setShopping
   const stored=Array.isArray(profile.familyMembers)?profile.familyMembers:[];
   const initial=stored.length?stored:Array.from({length:Math.max(1,Number(profile.people)||1)},(_,i)=>freshMember(i));
   const [members,setMembers]=useState(initial);
+  // El perfil se recupera del almacenamiento después del primer render.
+  // Sin esta sincronización, guardar la familia podría sobrescribir fichas existentes.
+  useEffect(()=>{
+    if(Array.isArray(profile.familyMembers)&&profile.familyMembers.length){
+      setMembers(profile.familyMembers);
+    }
+  },[profile.familyMembers]);
   const total=useMemo(()=>members.reduce((sum,member)=>sum+(PRESETS[member.type]?.factor||1),0),[members]);
 
   function update(id,field,value){
