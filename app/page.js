@@ -1,5 +1,5 @@
 "use client";
-import {useEffect,useState} from "react";
+import {useEffect,useRef,useState} from "react";
 import Image from "next/image";
 import {matchesRestriction,normalizeRestriction,tabForSearch} from "../lib/client-runtime";
 import SelectedArtwork, {featureArtwork} from "../components/SelectedArtwork";
@@ -103,22 +103,33 @@ const DIET_CATALOG=[
  {n:25,name:"Dieta nº 25",icon:"🍽️",tone:"rose",note:"Una semana completa para combinar",shift:5}
 ];
 
-export default function Page(){const[storageStatus,setStorageStatus]=useState("saved"),[saveAttempt,setSaveAttempt]=useState(0);const[dietStylesExpanded,setDietStylesExpanded]=useState(false);const[tab,setTab]=useState("hoy"),[trendsOpen,setTrendsOpen]=useState(false),[activityMinutes,setActivityMinutes]=useState("20"),[activityKind,setActivityKind]=useState("Caminar"),[wellbeing,setWellbeing]=useState({sleep:"7",mood:"🙂 Bien",energy:"Media"}),[foodQuery,setFoodQuery]=useState(""),[foodResult,setFoodResult]=useState(""),[dietPrefs,setDietPrefs]=useState({style:"Equilibrada",avoid:"",meals:"4",calories:"",allergens:"",intolerances:""}),[goals,setGoals]=useState(start),[special,setSpecial]=useState(false),[msg,setMsg]=useState(""),[care,setCare]=useState(false),[motivation,setMotivation]=useState(""),[homeAsk,setHomeAsk]=useState(""),[careAsk,setCareAsk]=useState(""),[careTool,setCareTool]=useState(""),[careRecords,setCareRecords]=useState([]),[planner,setPlanner]=useState(()=>emptyWeek()),[weekKey,setWeekKey]=useState(weekKeyFor),[weekArchive,setWeekArchive]=useState({}),[shopping,setShopping]=useState([]),[shoppingFilter,setShoppingFilter]=useState("all"),[section,setSection]=useState(""),[fridge,setFridge]=useState([]),[fridgeText,setFridgeText]=useState(""),[profile,setProfile]=useState({name:"",goal:"Cuidar mi salud",activity:"Moderada",motivation:"Sentirme mejor",time:"30",people:1,height:"",weight:"",age:"",sex:"",steps:"",workActivity:"Sentada/o gran parte del día",exerciseDays:"0",exerciseMinutes:"0"}),[history,setHistory]=useState([]),[incomingQuestion,setIncomingQuestion]=useState(null),[quickChat,setQuickChat]=useState([]),[dietPreview,setDietPreview]=useState(null),[mealMove,setMealMove]=useState(null),[recipeFilter,setRecipeFilter]=useState("all"),[hydrated,setHydrated]=useState(false),[dayKey,setDayKey]=useState(todayKey);useEffect(()=>{const d=loadState()||migrateLegacy();if(!d){setHydrated(true);return;}if(d.goals&&(d.dayKey||d._savedDay)===todayKey()){setGoals(d.dayKey?d.goals:d.goals.map((g,i)=>[g[0],g[1],Math.max(0,+(Number(g[2])-[1.6,6250,34,4][i]).toFixed(2)),g[3],g[4]]))};if(d.planner)setPlanner(normalizeWeek(d.planner,d.profile?.people));if(d.shopping)setShopping(d.shopping);if(d.weekKey)setWeekKey(d.weekKey);if(d.weekArchive)setWeekArchive(d.weekArchive);if(d.fridge)setFridge(d.fridge);if(d.profile){setProfile(p=>({...p,...d.profile}));setDietPrefs(p=>({...p,style:d.profile.dietStyle||p.style,avoid:d.profile.avoid||"",allergens:d.profile.allergens||"",intolerances:d.profile.intolerances||"",calories:d.profile.calories||"",meals:d.profile.meals||"4"}))};if(d.history)setHistory(d.history);if(d.careRecords)setCareRecords(d.careRecords);setHydrated(true)},[]);useEffect(()=>{if(hydrated)setStorageStatus(saveState({goals,planner,shopping,fridge,profile,history,careRecords,dayKey,weekKey,weekArchive}))},[hydrated,goals,planner,shopping,fridge,profile,history,careRecords,dayKey,weekKey,weekArchive,saveAttempt]);useEffect(()=>{const check=()=>{const current=todayKey();if(current!==dayKey){setGoals(freshGoals());setDayKey(current)}};const timer=setInterval(check,60000);document.addEventListener("visibilitychange",check);return()=>{clearInterval(timer);document.removeEventListener("visibilitychange",check)}},[dayKey]);// Al comenzar una nueva semana, conservar la anterior y mostrar la actual.
+export default function Page(){const[storageStatus,setStorageStatus]=useState("saved"),[saveAttempt,setSaveAttempt]=useState(0);const[dietStylesExpanded,setDietStylesExpanded]=useState(false);const[tab,setTab]=useState("hoy"),[trendsOpen,setTrendsOpen]=useState(false),[activityMinutes,setActivityMinutes]=useState("20"),[activityKind,setActivityKind]=useState("Caminar"),[wellbeing,setWellbeing]=useState({sleep:"7",mood:"🙂 Bien",energy:"Media"}),[foodQuery,setFoodQuery]=useState(""),[foodResult,setFoodResult]=useState(""),[dietPrefs,setDietPrefs]=useState({style:"Equilibrada",avoid:"",meals:"4",calories:"",allergens:"",intolerances:""}),[goals,setGoals]=useState(start),[special,setSpecial]=useState(false),[msg,setMsg]=useState(""),[care,setCare]=useState(false),[motivation,setMotivation]=useState(""),[homeAsk,setHomeAsk]=useState(""),[careAsk,setCareAsk]=useState(""),[careTool,setCareTool]=useState(""),[careRecords,setCareRecords]=useState([]),[planner,setPlanner]=useState(()=>emptyWeek()),[weekKey,setWeekKey]=useState(weekKeyFor),[weekArchive,setWeekArchive]=useState({}),[shopping,setShopping]=useState([]),[shoppingFilter,setShoppingFilter]=useState("all"),[section,setSection]=useState(""),[fridge,setFridge]=useState([]),[fridgeText,setFridgeText]=useState(""),[profile,setProfile]=useState({name:"",goal:"Cuidar mi salud",activity:"Moderada",motivation:"Sentirme mejor",time:"30",people:1,height:"",weight:"",age:"",sex:"",steps:"",workActivity:"Sentada/o gran parte del día",exerciseDays:"0",exerciseMinutes:"0"}),[history,setHistory]=useState([]),[incomingQuestion,setIncomingQuestion]=useState(null),[quickChat,setQuickChat]=useState([]),[dietPreview,setDietPreview]=useState(null),[mealMove,setMealMove]=useState(null),[recipeFilter,setRecipeFilter]=useState("all"),[hydrated,setHydrated]=useState(false),[dayKey,setDayKey]=useState(todayKey);useEffect(()=>{const d=loadState()||migrateLegacy();if(!d){setHydrated(true);return;}if(d.goals&&(d.dayKey||d._savedDay)===todayKey()){setGoals(d.dayKey?d.goals:d.goals.map((g,i)=>[g[0],g[1],Math.max(0,+(Number(g[2])-[1.6,6250,34,4][i]).toFixed(2)),g[3],g[4]]))};if(d.planner)setPlanner(normalizeWeek(d.planner,d.profile?.people));if(d.shopping)setShopping(d.shopping);if(d.weekKey)setWeekKey(d.weekKey);if(d.weekArchive)setWeekArchive(d.weekArchive);if(d.fridge)setFridge(d.fridge);if(d.profile){setProfile(p=>({...p,...d.profile}));setDietPrefs(p=>({...p,style:d.profile.dietStyle||p.style,avoid:d.profile.avoid||"",allergens:d.profile.allergens||"",intolerances:d.profile.intolerances||"",calories:d.profile.calories||"",meals:d.profile.meals||"4"}))};if(d.history)setHistory(d.history);if(d.careRecords)setCareRecords(d.careRecords);setHydrated(true)},[]);useEffect(()=>{if(hydrated)setStorageStatus(saveState({goals,planner,shopping,fridge,profile,history,careRecords,dayKey,weekKey,weekArchive}))},[hydrated,goals,planner,shopping,fridge,profile,history,careRecords,dayKey,weekKey,weekArchive,saveAttempt]);useEffect(()=>{const check=()=>{const current=todayKey();if(current!==dayKey){setGoals(freshGoals());setDayKey(current)}};const timer=setInterval(check,60000);document.addEventListener("visibilitychange",check);return()=>{clearInterval(timer);document.removeEventListener("visibilitychange",check)}},[dayKey]);// Avanzar el calendario solo al pasar de una semana a la siguiente.
+// No forzar la semana actual mientras la persona consulta semanas anteriores o futuras.
+const observedCalendarWeek=useRef(null);
 useEffect(()=>{
  if(!hydrated)return;
- const syncWeek=()=>{
+ const check=()=>{
   const current=weekKeyFor();
-  if(current===weekKey)return;
+  const observed=observedCalendarWeek.current;
+  if(observed===null){
+   observedCalendarWeek.current=current;
+   // Restauración tras abrir la aplicación una semana después.
+   if(weekKey!==shiftWeek(current,-1))return;
+  }else{
+   if(observed===current)return;
+   observedCalendarWeek.current=current;
+   if(weekKey!==observed)return;
+  }
   const next=moveToWeek({weekKey,planner,shopping,archive:weekArchive,people:profile.people},current);
   setWeekArchive(next.archive);
   setPlanner(next.planner);
   setShopping(next.shopping);
   setWeekKey(next.weekKey);
  };
- syncWeek();
- const timer=setInterval(syncWeek,60000);
- document.addEventListener("visibilitychange",syncWeek);
- return()=>{clearInterval(timer);document.removeEventListener("visibilitychange",syncWeek)};
+ check();
+ const timer=setInterval(check,60000);
+ document.addEventListener("visibilitychange",check);
+ return()=>{clearInterval(timer);document.removeEventListener("visibilitychange",check)};
 },[hydrated,weekKey,planner,shopping,weekArchive,profile.people]);
 const [screenHistory,setScreenHistory]=useState({entries:[{tab:"hoy",section:"",care:false,careTool:"",trendsOpen:false}],index:0});
 useEffect(()=>{const target=tabForSearch(window.location.search);if(target)setTab(target)},[]);
