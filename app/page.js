@@ -113,7 +113,10 @@ const restrictionTerms=()=>{
  const values=[dietPrefs.allergens,dietPrefs.intolerances,dietPrefs.avoid,profile.allergens,profile.intolerances,profile.avoid,...familyValues].filter(Boolean).join(",");
  return [...new Set(normalizeRestriction(values).replace(/\n/g,",").split(",").flatMap(value=>value.split(";")).map(value=>value.trim()).filter(value=>value.length>2))]
 };
-const mealHasRestriction=meal=>matchesRestriction(meal,restrictionTerms());
+const lactoseFreeSelected=()=>[dietPrefs.style,profile.dietStyle,profile.intolerances,dietPrefs.intolerances].some(value=>/sin lactosa|intolerancia a la lactosa/i.test(String(value||"")));
+const dairyIngredient=/\\b(leche|queso|yogur|yogurt|nata|mantequilla|reques[oó]n|ricotta)\\b/i;
+const mealHasRestriction=meal=>matchesRestriction(meal,restrictionTerms())||(lactoseFreeSelected()&&dairyIngredient.test(String(meal||""))&&!/sin lactosa|vegetal/i.test(String(meal||"")));
+const adaptLactoseFree=meal=>String(meal||"").replace(/\\bleche\\b(?!\\s+sin lactosa)/gi,"leche sin lactosa").replace(/\\bqueso\\b(?!\\s+sin lactosa)/gi,"queso sin lactosa").replace(/\\byogur(t)?\\b(?!\\s+sin lactosa)/gi,"yogur sin lactosa").replace(/\\bnata\\b(?!\\s+sin lactosa)/gi,"nata sin lactosa");
 const easyMealAlternatives=(field,current="")=>{
  const pool={
   breakfast:["Café con leche + tostada integral con tomate y pavo","Yogur natural con avena y fruta","Tostada integral con aceite de oliva y queso fresco"],
@@ -126,6 +129,12 @@ const easyMealAlternatives=(field,current="")=>{
  return (pool[field]||[]).filter(item=>item!==current).slice(0,3)
 };
 const safeMeal = (field, meal) => {
+  // En los menús generados, los lácteos se identifican expresamente como sin lactosa.
+  // Si además hay alergia a proteínas de leche, se mantiene el bloqueo por alergia.
+  if(lactoseFreeSelected()&&dairyIngredient.test(String(meal||""))){
+    const adapted=adaptLactoseFree(meal);
+    if(!mealHasRestriction(adapted))return adapted;
+  }
   if (!mealHasRestriction(meal)) return meal;
   const alternatives = easyMealAlternatives(field, meal).filter(
     (item) => !mealHasRestriction(item),
