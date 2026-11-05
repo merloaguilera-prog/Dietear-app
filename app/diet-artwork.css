@@ -1,4 +1,9 @@
 /* Full picture buttons: the illustration reaches every inner edge of the frame. */
+.immersiveApp.immersiveApp .dietVisualGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)) !important;
+  gap: 18px;
+}
+
 .immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto) {
   position: relative;
   isolation: isolate;
@@ -7,6 +12,7 @@
   align-items: stretch;
   justify-content: flex-end;
   aspect-ratio: 1 / 1.08;
+  width: 100%;
   min-width: 0;
   min-height: 220px;
   padding: 0 !important;
