@@ -1086,3 +1086,15 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
  .recipeBook .recipeBookHead{padding:14px!important}
  .recipeBook .recipeImageWrap{aspect-ratio:4/3}
 }
+
+
+/* Inicio: fotografías protagonistas en los ocho accesos, sin miniaturas ni solapes. */
+.designedHome .homeButtons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:stretch}
+.designedHome .homeBubble{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;min-width:0;max-width:100%;height:auto;overflow:hidden;padding:10px;border-radius:24px;text-align:center;gap:8px}
+.designedHome .homeBubble .bubbleSymbol{display:block;width:100%;height:auto;aspect-ratio:4/3;overflow:hidden;border-radius:16px;flex:none;background:#eaf7e6}
+.designedHome .homeBubble .bubbleSymbol img{display:block;width:100%!important;height:100%!important;object-fit:cover!important;max-width:none}
+.designedHome .homeBubble b{display:block;position:relative;z-index:1;line-height:1.25;white-space:normal;overflow-wrap:anywhere;margin:0}
+.designedHome .homeBubble small{display:none}
+.designedHome .homeMotto{grid-column:1/-1}
+@media(max-width:700px){.designedHome .homeButtons{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.designedHome .homeBubble{padding:9px;border-radius:20px}.designedHome .homeBubble .bubbleSymbol{aspect-ratio:4/3;border-radius:14px}}
+@media(max-width:370px){.designedHome .homeButtons{gap:8px}.designedHome .homeBubble{padding:7px}.designedHome .homeBubble b{font-size:13px}}
