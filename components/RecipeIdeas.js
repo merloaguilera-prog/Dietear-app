@@ -46,14 +46,18 @@ export default function RecipeIdeas({onChoose,maxMinutes=null,mealType="all",pre
   try{localStorage.setItem("dietear-recipe-disliked",JSON.stringify(next))}catch{}
  }
  function changeRecipe(current){
-  const candidates=visible.filter(r=>r.id!==current.id&&r.mealTypes.some(t=>current.mealTypes.includes(t)));
+  const selectedSlot=slots[current.id]||current.mealTypes[0];
+  // La alternativa debe servir para la misma comida, no solo compartir otra categoría.
+  const candidates=visible.filter(r=>r.id!==current.id&&r.mealTypes.includes(selectedSlot));
   if(!candidates.length){setNotice("No hay otra alternativa para esta comida con los filtros actuales. Prueba a ampliar la búsqueda.");return;}
   // Avanzar desde la receta actual, no escoger siempre la primera de la lista.
   const currentIndex=visible.findIndex(r=>r.id===current.id);
   const next=visible.slice(currentIndex+1).find(r=>candidates.some(c=>c.id===r.id))||candidates[0];
   setReplaced(ids=>[...ids,current.id]);
+  setSlots(previous=>({...previous,[next.id]:selectedSlot}));
+  setPortions(previous=>({...previous,[next.id]:previous[current.id]||1}));
   setOpenId(next.id);
-  setNotice("Hemos cambiado «"+current.name+"» por «"+next.name+"». Puedes recuperar las recetas cambiadas.");
+  setNotice("Hemos cambiado «"+current.name+"» por «"+next.name+"» para la misma comida y las mismas raciones. Puedes recuperar las recetas cambiadas.");
  }
  useEffect(()=>{
   if(!openId||!replaced.length)return;
