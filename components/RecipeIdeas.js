@@ -9,7 +9,21 @@ const seasons=[["all","Todo el año"],["invierno","❄️ Invierno"],["primavera
 const seasonNames={invierno:"invierno",primavera:"primavera",verano:"verano",otono:"otoño"};
 export default function RecipeIdeas({onChoose,maxMinutes=null,mealType="all",premiumAccess=false}){
  const [openId,setOpenId]=useState(null),[replaced,setReplaced]=useState([]),[notice,setNotice]=useState(""),[query,setQuery]=useState(""),[favorites,setFavorites]=useState([]),[disliked,setDisliked]=useState([]),[showDisliked,setShowDisliked]=useState(false),[onlyFavorites,setOnlyFavorites]=useState(false),[category,setCategory]=useState("all"),[season,setSeason]=useState("all"),[time,setTime]=useState("all"),[portions,setPortions]=useState({}),[slots,setSlots]=useState({});
- useEffect(()=>{try{const stored=JSON.parse(localStorage.getItem("dietear-recipe-favorites")||"[]");if(Array.isArray(stored))setFavorites(stored);const rejected=JSON.parse(localStorage.getItem("dietear-recipe-disliked")||"[]");if(Array.isArray(rejected))setDisliked(rejected)}catch{}},[]);
+ useEffect(()=>{
+  try{
+   const stored=JSON.parse(localStorage.getItem("dietear-recipe-favorites")||"[]");
+   const rejected=JSON.parse(localStorage.getItem("dietear-recipe-disliked")||"[]");
+   const validIds=new Set(recipes.map(r=>r.id));
+   const clean=list=>Array.isArray(list)?[...new Set(list.filter(id=>typeof id==="string"&&validIds.has(id)))]:[];
+   const dislikedIds=clean(rejected);
+   const favoritesIds=clean(stored).filter(id=>!dislikedIds.includes(id));
+   // Una receta rechazada nunca debe reaparecer entre favoritas tras recargar.
+   setFavorites(favoritesIds);
+   setDisliked(dislikedIds);
+   localStorage.setItem("dietear-recipe-favorites",JSON.stringify(favoritesIds));
+   localStorage.setItem("dietear-recipe-disliked",JSON.stringify(dislikedIds));
+  }catch{setNotice("No se han podido recuperar las preferencias de recetas de este navegador.");}
+ },[]);
  useEffect(()=>{setCategory("all")},[mealType]);
  function toggleFavorite(id){
   const next=favorites.includes(id)?favorites.filter(x=>x!==id):[...favorites,id];
