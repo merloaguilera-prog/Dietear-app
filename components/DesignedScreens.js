@@ -165,21 +165,26 @@ const dietPhotos={
   "Musulmana / Halal":"visual-mosque-real.jpg",
   "Ayuno intermitente":"visual-agenda.png",
   "Ganar músculo":"hd-ejercicio.png",
-  "Ganancia muscular":"hd-ejercicio.png",
+  "Ganancia muscular":"feature-objectives.webp",
   "Rica en fibra":"hd-tropical.png",
   "Sin azúcar añadido":"visual-water.png",
   "Diabética":"hd-budget.png",
   "Hipocalórica":"hd-fit.png",
   "Hipercalórica":"hd-nevera.png",
-  "Rica en proteínas":"recipe-sheet-1.jpg",
-  "Baja en fibra":"recipe-sheet-2.jpg",
-  "Baja en residuos":"recipe-sheet-3.jpg",
-  "Mantenimiento":"recipe-sheet-4.jpg",
-  "Dieta por puntos":"visual-graphs.png",
-  "Sin alimento X":"visual-privacy.png"
+  "Rica en proteínas":"hd-protein.png",
+  "Baja en fibra":"feature-food-preferences.webp",
+  "Baja en residuos":"feature-health-needs.webp",
+  "Mantenimiento":"feature-create-week.webp",
+  "Dieta por puntos":"feature-budget.webp",
+  "Sin alimento X":"feature-food-preferences.webp",
+  "Alta en proteína":"feature-motivation.webp",
+  "Pérdida de grasa saludable":"feature-objectives.webp",
+  "Por puntos (equilibrada)":"feature-generate-shopping.webp",
+  "Baja en grasas saturadas":"feature-special-events.webp"
 };
 export function DesignedDietArtwork({name}){
-  const file=dietPhotos[name]||"hd-complete.png",excluded=name==="Sin lactosa"||name==="Sin gluten";
+  const file=dietPhotos[name],excluded=name==="Sin lactosa"||name==="Sin gluten";
+  if(!file)return <span className="dietChoiceArtwork dietPhoto" aria-hidden="true" style={{display:"grid",placeItems:"center",background:"#e9f8e9",color:"#216b3c",fontSize:"2rem"}}>🌿</span>;
   return <span className={"dietChoiceArtwork dietPhoto "+(excluded?"excludedFood":"")} aria-hidden="true"><Image src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="(max-width:650px) 45vw, 25vw"/>{excluded&&<svg className="dietProhibition" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="39"/><path d="M23 23 77 77"/></svg>}</span>;
 }
 export function DesignedFormArtwork({file}) {return <Image className="formArtwork" src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="90px"/>;}
