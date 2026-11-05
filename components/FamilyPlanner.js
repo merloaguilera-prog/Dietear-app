@@ -1,5 +1,5 @@
 "use client";
-import {useMemo,useState} from "react";
+import {useEffect,useMemo,useState} from "react";
 
 const PRESETS={
   adulto:{label:"Adulto",factor:1},
@@ -8,12 +8,20 @@ const PRESETS={
   mayor:{label:"Persona mayor",factor:.8},
   activa:{label:"Persona muy activa",factor:1.2}
 };
-const freshMember=index=>({id:Date.now()+"-"+index,name:index===0?"Yo":"Persona "+(index+1),type:index===0?"adulto":"menor",allergens:"",avoid:""});
+const DIET_STYLES=["Sin especificar","Equilibrada","Mediterránea","Vegana","Vegetariana","Rica en proteínas","Sin lactosa","Sin gluten","Hiposódica","Diabética","Halal"];
+const freshMember=index=>({id:Date.now()+"-"+index,name:index===0?"Yo":"Persona "+(index+1),type:index===0?"adulto":"menor",dietStyle:"",allergens:"",avoid:""});
 
 export default function FamilyPlanner({profile,setProfile,setPlanner,setShopping,flash,onPlan}){
   const stored=Array.isArray(profile.familyMembers)?profile.familyMembers:[];
   const initial=stored.length?stored:Array.from({length:Math.max(1,Number(profile.people)||1)},(_,i)=>freshMember(i));
   const [members,setMembers]=useState(initial);
+  // El perfil se recupera del almacenamiento después del primer render.
+  // Sin esta sincronización, guardar la familia podría sobrescribir fichas existentes.
+  useEffect(()=>{
+    if(Array.isArray(profile.familyMembers)&&profile.familyMembers.length){
+      setMembers(profile.familyMembers);
+    }
+  },[profile.familyMembers]);
   const total=useMemo(()=>members.reduce((sum,member)=>sum+(PRESETS[member.type]?.factor||1),0),[members]);
 
   function update(id,field,value){
@@ -29,8 +37,10 @@ export default function FamilyPlanner({profile,setProfile,setPlanner,setShopping
     const cleaned=members.map((member,index)=>({
       ...member,
       name:member.name.trim()||"Persona "+(index+1),
-      allergens:member.allergens.trim(),
-      avoid:member.avoid.trim()
+      allergens:(member.allergens||"").trim(),
+      intolerances:(member.intolerances||"").trim(),
+      dietStyle:member.dietStyle||"",
+      avoid:(member.avoid||"").trim()
     }));
     setMembers(cleaned);
     setProfile(current=>({...current,people:cleaned.length,familyMembers:cleaned,familyPortions:Number(total.toFixed(2))}));
@@ -38,15 +48,27 @@ export default function FamilyPlanner({profile,setProfile,setPlanner,setShopping
   }
   function apply(){
     const portions=Math.max(.5,Number(total.toFixed(2)));
-    const cleaned=members.map((member,index)=>({...member,name:member.name.trim()||"Persona "+(index+1)}));
+    const cleaned=members.map((member,index)=>({
+      ...member,
+      name:(member.name||"").trim()||"Persona "+(index+1),
+      dietStyle:member.dietStyle||"",
+      allergens:(member.allergens||"").trim(),
+      intolerances:(member.intolerances||"").trim(),
+      avoid:(member.avoid||"").trim()
+    }));
+    setMembers(cleaned);
     setProfile(current=>({...current,people:cleaned.length,familyMembers:cleaned,familyPortions:portions}));
     setPlanner(plan=>plan.map(day=>({...day,people:cleaned.length,portionFactor:portions})));
     setShopping([]);
-    flash("🍽️ Porciones familiares aplicadas a toda la semana; vuelve a generar la compra");
+    flash("🍽️ Porciones familiares guardadas. Las dietas personales se conservan; falta generar menús separados y compra combinada.");
   }
 
   return <div className="familyPlanner">
     <header style={{padding:"22px",borderRadius:24,background:"linear-gradient(120deg,#e0f7e8,#f6f1ff,#fff2df)",border:"2px solid #91c9a3",marginBottom:18}}><small style={{fontWeight:800,letterSpacing:2}}>MI FAMILIA · ESTUDIO PERSONALIZADO</small><h2 style={{margin:"8px 0",fontSize:"clamp(24px,3vw,34px)"}}>Cada persona, un seguimiento único 💚</h2><p style={{maxWidth:760}}>Crea fichas individuales para organizar la alimentación, los objetivos y los hábitos de cada miembro. Tú decides qué información registrar.</p><div style={{display:"flex",gap:10,flexWrap:"wrap"}}><span style={{background:"white",padding:"10px 15px",borderRadius:16,fontWeight:700}}>👥 {members.length} perfiles</span><span style={{background:"white",padding:"10px 15px",borderRadius:16,fontWeight:700}}>🥗 Plan familiar</span><span style={{background:"white",padding:"10px 15px",borderRadius:16,fontWeight:700}}>🔒 Datos personales</span></div></header>
+    <div className="gentleResult">
+      <b>🥗 Una dieta diferente para cada persona</b>
+      <span>Puedes guardar, por ejemplo, «Vegana» para una persona y «Rica en proteínas» para otra sin que una selección borre la otra. Los menús y la compra combinada por persona aún requieren integración y comprobación; aplicar porciones solo ajusta cantidades, no sustituye las dietas individuales.</span>
+    </div>
     <div className="gentleResult">
       <b>🍽️ Una comida, cantidades diferentes</b>
       <span>DIETEAR calcula una equivalencia orientativa para la compra. Las necesidades clínicas o infantiles deben confirmarse con un profesional.</span>
@@ -60,6 +82,8 @@ export default function FamilyPlanner({profile,setProfile,setPlanner,setShopping
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(190px,1fr))",gap:10,marginTop:12}}>
           <label>Nombre<input value={member.name} onChange={event=>update(member.id,"name",event.target.value)} placeholder="Nombre o apodo"/></label>
           <label>Etapa o necesidad<select value={member.type} onChange={event=>update(member.id,"type",event.target.value)}>{Object.entries(PRESETS).map(([value,item])=><option key={value} value={value}>{item.label}</option>)}</select></label>
+          <label>Estilo de alimentación personal<select value={member.dietStyle||""} onChange={event=>update(member.id,"dietStyle",event.target.value)}>{DIET_STYLES.map(style=><option key={style} value={style==="Sin especificar"?"":style}>{style}</option>)}</select></label>
+          <label>Intolerancias<input value={member.intolerances||""} onChange={event=>update(member.id,"intolerances",event.target.value)} placeholder="Ej.: lactosa"/></label>
           <label>Alergias<input value={member.allergens} onChange={event=>update(member.id,"allergens",event.target.value)} placeholder="Ej.: huevo, marisco…"/></label>
           <label>Prefiere evitar<input value={member.avoid} onChange={event=>update(member.id,"avoid",event.target.value)} placeholder="Ej.: cebolla, picante…"/></label>
         </div>

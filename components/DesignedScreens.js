@@ -5,6 +5,7 @@ import SelectedArtwork from "./SelectedArtwork";
 import { datesForWeek, MEAL_FIELDS, WEEK_DAYS } from "../lib/week-plan";
 import {matchesMeal,normalizeMealText} from "../lib/meal-options";
 import { recipes } from "../lib/recipes";
+import { dietArtworkPath } from "../lib/diet-artwork";
 
 const root = "/dietear-visuals/";
 export function AppSymbol({ name, illustrated = false }) {
@@ -37,7 +38,7 @@ export function DesignedHome({ profile, links, onOpen }) {
       <div className="sceneWelcome"><h2>Hola{profile.name ? ", "+profile.name.split(" ")[0] : ""} ♡</h2><p>Pequeños cambios, grandes resultados. Tu bienestar empieza hoy.</p><button onClick={()=>onOpen("alimentacion","Crear mi dieta")}>Comenzar ahora →</button></div>
     </div>
     <div className="homeButtons" aria-label="Accesos principales de DIETEAR">
-      {links.map((item,i)=><button className={"homeBubble homeBubble-"+i} key={item[0]} onClick={()=>onOpen(item[2],item[3])}><span className="bubbleSymbol" style={{width:78,height:72,overflow:"hidden",borderRadius:14,display:"inline-flex",alignItems:"center",justifyContent:"center",background:"#fff",flexShrink:0}}><Image src={root+({"Alimentación":"hd-alimentacion.png","Ejercicio":"hd-ejercicio.png","Mi Plan":"hd-complete.png","Mi Progreso":"visual-graphs.png","Mi Compra":"hd-budget.png","Mi Nevera":"hd-nevera.png","Salud":"hd-fit.png","Objetivos":"visual-growth.png"})[item[0]]} alt="" width={1254} height={706} sizes="78px" style={{width:"100%",height:"100%",objectFit:"cover"}}/></span><b>{item[0]}</b><small>{item[1]}</small></button>)}
+      {links.map((item,i)=><button className={"homeBubble homeBubble-"+i} key={item[0]} onClick={()=>onOpen(item[2],item[3])}><span className="bubbleSymbol"><Image src={root+({"Alimentación":"hd-alimentacion.png","Ejercicio":"hd-ejercicio.png","Mi Plan":"hd-complete.png","Mi Progreso":"visual-graphs.png","Mi Compra":"hd-budget.png","Mi Nevera":"hd-nevera.png","Salud":"hd-fit.png","Objetivos":"visual-growth.png"})[item[0]]} alt="" width={1254} height={706} sizes="(max-width:600px) 45vw, (max-width:1000px) 24vw, 220px" style={{width:"100%",height:"100%",objectFit:"cover"}}/></span><b>{item[0]}</b><small>{item[1]}</small></button>)}
       <p className="homeMotto">🌿 Una vida más sana está en tus manos.</p>
     </div>
   </section>;
@@ -152,15 +153,12 @@ export function DesignedFeatureArtwork({ name }) {
   return file ? <Image className="featureArtwork featurePhoto" src={root+file} alt="" width={file==="inicio-completo.png"?1228:1672} height={file.startsWith("visual-")?1672:file==="inicio-completo.png"?1281:941} sizes="(max-width:650px) 45vw, 20vw"/> : null;
 }
 
-const dietPhotos={
-  "Equilibrada":"hd-complete.png", "Mediterránea":"hd-complete.png", "Vegana":"hd-chickpea.png",
-  "Vegetariana":"visual-vegetarian.png", "Sin gluten":"visual-gluten.png", "Sin lactosa":"visual-milk.png",
-  "Hiposódica":"visual-low-salt.png", "Musulmana / Halal":"visual-mosque-real.jpg",
-  "Ayuno intermitente":"visual-agenda.png", "Ganar músculo":"hd-ejercicio.png", "Ganancia muscular":"hd-ejercicio.png",
-  "Rica en fibra":"hd-chickpea.png", "Sin azúcar añadido":"hd-tropical.png", "Sin alimento X":"hd-fit.png"
-};
+// Each card receives its own original illustration, never a shared fallback photo.
 export function DesignedDietArtwork({name}){
-  const file=dietPhotos[name]||"hd-complete.png",excluded=name==="Sin lactosa"||name==="Sin gluten";
-  return <span className={"dietChoiceArtwork dietPhoto "+(excluded?"excludedFood":"")} aria-hidden="true"><Image src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="(max-width:650px) 45vw, 25vw"/>{excluded&&<svg className="dietProhibition" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="39"/><path d="M23 23 77 77"/></svg>}</span>;
+  const src=dietArtworkPath(name);
+  if(!src)return null;
+  return <span className="dietChoiceArtwork dietPhoto" aria-hidden="true" data-diet-artwork={name}>
+    <Image src={src} alt="" fill sizes="(max-width:650px) 45vw, (max-width:999px) 40vw, 25vw"/>
+  </span>;
 }
 export function DesignedFormArtwork({file}) {return <Image className="formArtwork" src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="90px"/>;}

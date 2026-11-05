@@ -1039,3 +1039,62 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
  .selectedWelcome>p::before{content:"";position:absolute;left:-11px;bottom:25px;width:20px;height:20px;background:#fff;transform:rotate(45deg);border-left:1px solid #bdd8b7;border-bottom:1px solid #bdd8b7}
  .selectedWelcome>button{grid-column:2;grid-row:4;align-self:start;justify-self:center;font-size:18px;padding:15px 24px;border-radius:22px}
 }
+
+
+/* Mi familia: el encabezado del formulario NO es la cabecera fija de navegación.
+   Evita superposiciones y campos desbordados en teléfonos. */
+.familyPlanner{width:100%;min-width:0;max-width:100%;overflow-wrap:anywhere}
+.familyPlanner>header{
+  position:static;top:auto;z-index:auto;height:auto;min-height:0;
+  display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+  width:100%;max-width:100%;gap:10px;overflow:visible;
+}
+.familyPlanner>header h2{font-size:clamp(22px,5vw,32px)!important;line-height:1.2;margin:0!important;max-width:100%}
+.familyPlanner>header p{max-width:100%;margin:0;line-height:1.55;white-space:normal}
+.familyPlanner>header small{display:block;line-height:1.5;white-space:normal}
+.familyPlanner article{min-width:0;max-width:100%}
+.familyPlanner article label{display:flex;flex-direction:column;gap:6px;min-width:0;max-width:100%;overflow-wrap:anywhere}
+.familyPlanner article input,.familyPlanner article select{display:block;width:100%;max-width:100%;min-width:0;margin:0}
+.familyPlanner article h3{overflow-wrap:anywhere}
+@media(max-width:600px){
+  .familyPlanner>header{padding:16px!important;border-radius:18px!important}
+  .familyPlanner article{padding:12px!important}
+  .familyPlanner article>div[style*="grid"]{grid-template-columns:minmax(0,1fr)!important}
+  .familyPlanner .branchActions{flex-wrap:wrap}
+  .familyPlanner .branchActions button{max-width:100%;white-space:normal}
+}
+
+
+/* Recetario: imágenes y textos nunca se superponen en pantallas estrechas. */
+.recipeBook{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.recipeBook .recipeBookHead{position:static!important;top:auto!important;z-index:auto!important;height:auto!important;min-height:0!important;display:block!important;padding:18px!important;max-width:100%;border-radius:18px}
+.recipeBook .recipeBookHead h3,.recipeBook .recipeBookHead p{position:static;max-width:100%;height:auto;line-height:1.4;white-space:normal}
+.recipeBook .recipeBookGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:18px;align-items:start;min-width:0}
+.recipeBook .recipeIdea{min-width:0;max-width:100%;overflow:hidden;display:flex;flex-direction:column;border-radius:18px}
+.recipeBook .recipeImageWrap{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;isolation:isolate;flex-shrink:0;background:#eef7e9}
+.recipeBook .recipePhoto{display:block!important;width:100%;height:100%;aspect-ratio:auto!important;background-repeat:no-repeat;position:relative}
+.recipeBook .recipeImageWrap .recipeFavorite{position:absolute;right:10px;top:10px;z-index:2}
+.recipeBook .recipeImageWrap .recipeTime{position:absolute;left:10px;bottom:10px;z-index:2;background:#fffef0;padding:4px 9px;border-radius:9px;color:#234b30}
+.recipeBook .recipeCardBody{display:flex;flex-direction:column;gap:10px;min-width:0;padding:14px}
+.recipeBook .recipeCardBody h3,.recipeBook .recipeCardBody p{margin:0;overflow-wrap:anywhere;line-height:1.45}
+.recipeBook .recipePreferenceActions,.recipeBook .recipeIdeaActions{display:flex;gap:8px;flex-wrap:wrap}
+.recipeBook .recipePreferenceActions button,.recipeBook .recipeIdeaActions button{flex:1 1 125px;min-width:0;white-space:normal;overflow-wrap:anywhere}
+.recipeBook .recipeCardBody select,.recipeBook .recipeCardBody input{max-width:100%;min-width:0}
+.recipeBook .recipeCategories,.recipeBook .recipeSearch{display:flex;gap:8px;flex-wrap:wrap;max-width:100%}
+@media(max-width:600px){
+ .recipeBook .recipeBookGrid{grid-template-columns:minmax(0,1fr);gap:14px}
+ .recipeBook .recipeBookHead{padding:14px!important}
+ .recipeBook .recipeImageWrap{aspect-ratio:4/3}
+}
+
+
+/* Inicio: fotografías protagonistas en los ocho accesos, sin miniaturas ni solapes. */
+.designedHome .homeButtons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;align-items:stretch}
+.designedHome .homeBubble{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;min-width:0;max-width:100%;height:auto;overflow:hidden;padding:10px;border-radius:24px;text-align:center;gap:8px}
+.designedHome .homeBubble .bubbleSymbol{display:block;width:100%;height:auto;aspect-ratio:4/3;overflow:hidden;border-radius:16px;flex:none;background:#eaf7e6}
+.designedHome .homeBubble .bubbleSymbol img{display:block;width:100%!important;height:100%!important;object-fit:cover!important;max-width:none}
+.designedHome .homeBubble b{display:block;position:relative;z-index:1;line-height:1.25;white-space:normal;overflow-wrap:anywhere;margin:0}
+.designedHome .homeBubble small{display:none}
+.designedHome .homeMotto{grid-column:1/-1}
+@media(max-width:700px){.designedHome .homeButtons{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.designedHome .homeBubble{padding:9px;border-radius:20px}.designedHome .homeBubble .bubbleSymbol{aspect-ratio:4/3;border-radius:14px}}
+@media(max-width:370px){.designedHome .homeButtons{gap:8px}.designedHome .homeBubble{padding:7px}.designedHome .homeBubble b{font-size:13px}}
