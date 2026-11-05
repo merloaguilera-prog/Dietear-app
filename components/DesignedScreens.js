@@ -5,6 +5,7 @@ import SelectedArtwork from "./SelectedArtwork";
 import { datesForWeek, MEAL_FIELDS, WEEK_DAYS } from "../lib/week-plan";
 import {matchesMeal,normalizeMealText} from "../lib/meal-options";
 import { recipes } from "../lib/recipes";
+import { dietArtworkPath } from "../lib/diet-artwork";
 
 const root = "/dietear-visuals/";
 export function AppSymbol({ name, illustrated = false }) {
@@ -152,39 +153,12 @@ export function DesignedFeatureArtwork({ name }) {
   return file ? <Image className="featureArtwork featurePhoto" src={root+file} alt="" width={file==="inicio-completo.png"?1228:1672} height={file.startsWith("visual-")?1672:file==="inicio-completo.png"?1281:941} sizes="(max-width:650px) 45vw, 20vw"/> : null;
 }
 
-// Asignaciones explícitas: evitar que todas las dietas sin foto repitan hd-complete.png.
-// Las fotos adicionales deben revisarse editorialmente antes de ampliar el catálogo.
-const dietPhotos={
-  "Equilibrada":"hd-complete.png",
-  "Mediterránea":"hd-alimentacion.png",
-  "Vegana":"hd-chickpea.png",
-  "Vegetariana":"visual-vegetarian.png",
-  "Sin gluten":"visual-gluten.png",
-  "Sin lactosa":"visual-milk.png",
-  "Hiposódica":"visual-low-salt.png",
-  "Musulmana / Halal":"visual-mosque-real.jpg",
-  "Ayuno intermitente":"visual-agenda.png",
-  "Ganar músculo":"hd-ejercicio.png",
-  "Ganancia muscular":"feature-objectives.webp",
-  "Rica en fibra":"hd-tropical.png",
-  "Sin azúcar añadido":"visual-water.png",
-  "Diabética":"hd-budget.png",
-  "Hipocalórica":"hd-fit.png",
-  "Hipercalórica":"hd-nevera.png",
-  "Rica en proteínas":"feature-motivation.webp",
-  "Baja en fibra":"feature-food-preferences.webp",
-  "Baja en residuos":"feature-health-needs.webp",
-  "Mantenimiento":"feature-create-week.webp",
-  "Dieta por puntos":"feature-budget.webp",
-  "Sin alimento X":"feature-food-preferences.webp",
-  "Alta en proteína":"feature-modify-plan.webp",
-  "Pérdida de grasa saludable":"feature-objectives.webp",
-  "Por puntos (equilibrada)":"feature-generate-shopping.webp",
-  "Baja en grasas saturadas":"feature-special-events.webp"
-};
+// Each card receives its own original illustration, never a shared fallback photo.
 export function DesignedDietArtwork({name}){
-  const file=dietPhotos[name],excluded=name==="Sin lactosa"||name==="Sin gluten";
-  if(!file)return <span className="dietChoiceArtwork dietPhoto" aria-hidden="true" style={{display:"grid",placeItems:"center",background:"#e9f8e9",color:"#216b3c",fontSize:"2rem"}}>🌿</span>;
-  return <span className={"dietChoiceArtwork dietPhoto "+(excluded?"excludedFood":"")} aria-hidden="true"><Image src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="(max-width:650px) 45vw, 25vw"/>{excluded&&<svg className="dietProhibition" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="39"/><path d="M23 23 77 77"/></svg>}</span>;
+  const src=dietArtworkPath(name);
+  if(!src)return null;
+  return <span className="dietChoiceArtwork dietPhoto" aria-hidden="true" data-diet-artwork={name}>
+    <Image src={src} alt="" fill sizes="(max-width:650px) 45vw, (max-width:999px) 40vw, 25vw"/>
+  </span>;
 }
 export function DesignedFormArtwork({file}) {return <Image className="formArtwork" src={root+file} alt="" width={1254} height={file.startsWith("visual-")?1254:706} sizes="90px"/>;}

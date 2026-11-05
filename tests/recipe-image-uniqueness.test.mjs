@@ -23,8 +23,8 @@ test("cada receta dispone de una celda fotográfica exclusiva",()=>{
  const count=allIds.length;
  assert.ok(count<=64,"Hay "+count+" recetas para 64 celdas; ampliar imágenes antes de añadir recetas");
  assert.match(source,/imageSheet:Math\.floor\(index\/16\),imageCell:index%16/,"La asignación de imágenes debe seguir siendo exclusiva por receta");
- assert.match(photoSource,/recipe\.imageSheet/);
- assert.match(photoSource,/recipe\.imageCell/);
+ assert.match(photoSource,/recipe(?:\?\.|\.)imageSheet/);
+ assert.match(photoSource,/recipe(?:\?\.|\.)imageCell/);
  const cells=allIds.map((_,index)=>Math.floor(index/16)+":"+index%16);
  assert.equal(new Set(cells).size,count);
 });
