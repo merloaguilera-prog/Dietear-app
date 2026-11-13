@@ -3,7 +3,10 @@ const APP_SHELL = ["/offline.html", "/icons/icon-192.png", "/icons/icon-512.png"
 const NAVIGATION_TIMEOUT_MS = 10000;
 
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(APP_SHELL)));
+  // A missing icon or temporary offline page failure must not block worker activation.
+  event.waitUntil(caches.open(CACHE_VERSION).then(async cache => {
+    await Promise.allSettled(APP_SHELL.map(path => cache.add(path)));
+  }));
   self.skipWaiting();
 });
 
