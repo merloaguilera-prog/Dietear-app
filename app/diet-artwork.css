@@ -1,0 +1,113 @@
+/* Full picture buttons: the illustration reaches every inner edge of the frame. */
+.immersiveApp.immersiveApp .dietVisualGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)) !important;
+  gap: 18px;
+}
+
+.immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto) {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+  aspect-ratio: 1 / 1.08;
+  width: 100%;
+  min-width: 0;
+  min-height: 220px;
+  padding: 0 !important;
+  gap: 0;
+  overflow: hidden;
+  border-radius: 23px;
+  box-shadow: 0 6px 0 color-mix(in srgb, var(--accent) 25%, #d5dfc9),
+    0 12px 24px #284e2424 !important;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.immersiveApp.immersiveApp .dietVisualGrid > button > .dietPhoto {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  pointer-events: none;
+}
+
+.immersiveApp.immersiveApp .dietVisualGrid .dietPhoto img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto) > :is(b, small) {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  color: #102316 !important;
+  -webkit-text-fill-color: #102316 !important;
+  background: #fffef2f2;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto) > b {
+  padding: 12px 10px 4px;
+  font-size: clamp(15px, 1.5vw, 20px);
+  font-weight: 800;
+  line-height: 1.25;
+  border-top: 1px solid #ffffffd9;
+}
+
+.immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto) > small {
+  padding: 0 10px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.immersiveApp.immersiveApp .dietVisualGrid > button.selected:has(.dietPhoto) {
+  border-color: #196b39 !important;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 6px #196b39, 0 12px 22px #284e2433 !important;
+}
+
+.immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto):focus-visible {
+  outline: 4px solid #174f35;
+  outline-offset: 5px;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto):hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 650px) {
+  .immersiveApp.immersiveApp .dietVisualGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px 12px;
+  }
+  .immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto) {
+    min-height: 205px;
+    border-radius: 19px;
+  }
+  .immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto) > b {
+    padding: 10px 7px 4px;
+    font-size: 15px;
+  }
+  .immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto) > small {
+    padding: 0 7px 10px;
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .immersiveApp.immersiveApp .dietVisualGrid > button:has(.dietPhoto) {
+    transition: none;
+    transform: none;
+  }
+}
