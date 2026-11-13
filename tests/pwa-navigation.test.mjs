@@ -21,6 +21,6 @@ test("la actualización del service worker invalida la caché anterior",()=>{
 
 test("un recurso auxiliar ausente no bloquea la instalación de la PWA",()=>{
  const install=worker.slice(worker.indexOf('self.addEventListener("install"'),worker.indexOf('self.addEventListener("activate"')));
- assert.match(install,/Promise\.allSettled\(APP_SHELL\.map\(path => cache\.add\(path\)\)\)/);
+ assert.ok(install.includes("Promise.allSettled(APP_SHELL.map(path => cache.add(path)))"));
  assert.doesNotMatch(install,/cache\.addAll\(APP_SHELL\)/);
 });
