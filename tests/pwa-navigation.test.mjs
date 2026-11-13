@@ -18,3 +18,9 @@ test("la actualización del service worker invalida la caché anterior",()=>{
  assert.match(worker,/CACHE_VERSION = "dietear-shell-v3"/);
  assert.match(worker,/keys\.filter\(key => key\.startsWith\("dietear-shell-"\) && key !== CACHE_VERSION\)/);
 });
+
+test("un recurso auxiliar ausente no bloquea la instalación de la PWA",()=>{
+ const install=worker.slice(worker.indexOf('self.addEventListener("install"'),worker.indexOf('self.addEventListener("activate"')));
+ assert.match(install,/Promise\.allSettled\(APP_SHELL\.map\(path => cache\.add\(path\)\)\)/);
+ assert.doesNotMatch(install,/cache\.addAll\(APP_SHELL\)/);
+});
