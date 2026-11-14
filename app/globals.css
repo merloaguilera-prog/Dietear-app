@@ -1129,3 +1129,11 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
 .dietStyleGuideSteps{margin-top:12px;overflow-wrap:anywhere}
 .dietStyleGuideAdvice{background:white;border-radius:16px;padding:18px}
 @media(max-width:580px){.dietStyleGuideRecipes{grid-template-columns:1fr}.dietStyleGuide{padding:12px}}
+
+/* Diet artwork fills its visual panel and stays crisp without overlapping labels. */
+.createDietChoices>button .dietChoiceArtwork{aspect-ratio:3/2;box-shadow:0 5px 16px rgba(22,92,42,.12)}
+.createDietChoices>button .dietChoiceArtwork img{object-fit:cover;object-position:center;transition:transform .22s ease}
+@media(hover:hover){.createDietChoices>button:hover .dietChoiceArtwork img{transform:scale(1.035)}}
+.createDietChoices>button:focus-visible{outline:3px solid #176f3c;outline-offset:3px}
+@media(max-width:600px){.createDietChoices>button .dietChoiceArtwork{aspect-ratio:3/2}}
+@media(prefers-reduced-motion:reduce){.createDietChoices>button .dietChoiceArtwork img{transition:none}.createDietChoices>button:hover .dietChoiceArtwork img{transform:none}}
