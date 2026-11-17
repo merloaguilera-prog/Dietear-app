@@ -38,7 +38,7 @@ function worker({network = async () => new Response("fresh", {headers: {"Content
   return {dispatch, caches, stores, deleted, fetches, handlers, timers, signals, timeout};
 }
 
-test("a stalled navigation falls back to the saved page and cancels the request", async () => {
+test("a stalled navigation uses offline recovery instead of stale HTML and cancels the request", async () => {
   let stalled = false;
   const w = worker({network: async () => stalled ? new Promise(() => {}) : new Response("saved", {headers: {"Content-Type": "text/html"}})});
   await w.dispatch("/");
@@ -47,14 +47,14 @@ test("a stalled navigation falls back to the saved page and cancels the request"
   const pending = w.dispatch("/");
   assert.equal(w.timers.size, 1);
   w.timeout();
-  assert.equal(await (await pending).text(), "saved");
+  assert.match(await (await pending).text(), /Sin conexión|Volver a intentar/);
   assert.equal(w.signals.at(-1).aborted, true);
   assert.equal(w.timers.size, 0);
 });
 
 test("a stalled uncached page uses the offline recovery screen", async () => {
   const w = worker({network: () => new Promise(() => {})});
-  const cache = await w.caches.open("dietear-shell-v2");
+  const cache = await w.caches.open("dietear-shell-v3");
   await cache.put("/offline.html", new Response("recovery screen"));
   const pending = w.dispatch("/?section=plan");
   w.timeout();
@@ -82,14 +82,14 @@ test("a slow successful navigation wins before the deadline and clears its timer
   assert.equal(w.signals[0].aborted, false);
 });
 
-test("a temporary server error never replaces the last working offline page", async () => {
+test("a temporary server error never serves outdated HTML", async () => {
   let fail = false;
   const w = worker({network: async () => {if (fail === "offline") throw new Error("offline"); return new Response(fail ? "error" : "working", {status: fail ? 500 : 200, headers: {"Content-Type": "text/html"}});}});
   assert.equal(await (await w.dispatch("/")).text(), "working");
   fail = true;
   assert.equal((await w.dispatch("/")).status, 500);
   fail = "offline";
-  assert.equal(await (await w.dispatch("/")).text(), "working");
+  assert.match(await (await w.dispatch("/")).text(), /Sin conexión|Volver a intentar/);
 });
 
 test("a blocked cache cannot prevent the online app from opening", async () => {
@@ -134,6 +134,6 @@ test("activation removes only obsolete DIETEAR caches", async () => {
   const pending = [];
   w.handlers.activate({waitUntil: promise => pending.push(promise)});
   await Promise.all(pending);
-  assert.deepEqual(w.deleted, ["dietear-shell-v1"]);
+  assert.deepEqual(w.deleted, ["dietear-shell-v1", "dietear-shell-v2"]);
   assert.equal(w.stores.has("another-app"), true);
 });

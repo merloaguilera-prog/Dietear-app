@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {dictationValue,isEntryField,spokenNumber,startDictation} from '../lib/data-entry.js';
+import {applyEntryValue,dictationValue,isEntryField,spokenNumber,startDictation} from '../lib/data-entry.js';
 const field=(type='text',label='Dato')=>({tagName:'INPUT',type,inputMode:type==='number'?'decimal':'',getAttribute:()=>label,closest:()=>null});
 test('dictation converts Spanish numbers and decimal measurements without guessing sentences',()=>{
  for(const [text,value] of [['cuarenta y seis',46],['setenta y cinco coma cinco',75.5],['ciento sesenta y nueve',169],['ciento veinte',120],['cero coma cero cinco',.05],['75,5',75.5],['seis mil quinientos',6500]])assert.equal(spokenNumber(text),value,text);
@@ -47,4 +47,12 @@ test('voice start is reported by the browser, interim text is visible, and array
  instance.onresult({results:{0:{0:{transcript:'cuarenta y siete'},isFinal:true},length:1}});
  instance.onresult({results:{0:{0:{transcript:'cuarenta y siete'},isFinal:true},length:1}});
  assert.deepEqual(events,['ready','preview:cuarenta','final:cuarenta y siete']);cancel();
+});
+
+test('dictation cannot change detached, disabled or read-only fields',()=>{
+  for(const state of [{isConnected:false},{isConnected:true,disabled:true},{isConnected:true,readOnly:true}]){
+    const node={tagName:'INPUT',value:'original',disabled:false,readOnly:false,...state};
+    assert.equal(applyEntryValue(node,'nuevo'),false);
+    assert.equal(node.value,'original');
+  }
 });
