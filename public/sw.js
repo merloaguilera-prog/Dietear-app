@@ -1,9 +1,12 @@
-const CACHE_VERSION = "dietear-shell-v2";
+const CACHE_VERSION = "dietear-shell-v3";
 const APP_SHELL = ["/offline.html", "/icons/icon-192.png", "/icons/icon-512.png"];
 const NAVIGATION_TIMEOUT_MS = 10000;
 
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(APP_SHELL)));
+  // A missing icon or temporary offline page failure must not block worker activation.
+  event.waitUntil(caches.open(CACHE_VERSION).then(async cache => {
+    await Promise.allSettled(APP_SHELL.map(path => cache.add(path)));
+  }));
   self.skipWaiting();
 });
 
@@ -64,12 +67,9 @@ self.addEventListener("fetch", event => {
   if (request.headers.get("RSC") === "1" || url.searchParams.has("_rsc")) return;
 
   if (request.mode === "navigate") {
-    const response = fetchNavigation(request).then(result => {
-      if (result.headers.get("content-type")?.includes("text/html")) {
-        event.waitUntil(remember(request, result.clone()));
-      }
-      return result;
-    }).catch(async () => (await cached(request)) || (await cached("/offline.html")) || new Response(
+    // Nunca reutilizar HTML de una versión anterior: puede referenciar JS que
+    // ya no existe tras desplegar y dejar Android bloqueado al iniciar.
+    const response = fetchNavigation(request).catch(async () => (await cached("/offline.html")) || new Response(
       '<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DIETEAR · Reintentar</title><body><main><h1>DIETEAR</h1><p>Sin conexión o la conexión tarda demasiado. Tus datos guardados siguen en este dispositivo.</p><a href="">Volver a intentar</a></main></body></html>',
       { status: 503, headers: { "Content-Type": "text/html; charset=utf-8" } },
     ));
