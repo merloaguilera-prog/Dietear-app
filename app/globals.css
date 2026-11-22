@@ -1140,3 +1140,6 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
 
 /* Keep the fixed primary navigation above feature artwork on narrow screens. */
 nav{z-index:1000}
+
+/* Decorative card artwork must not capture taps intended for the fixed mobile navigation. */
+.featureArtwork,.featureArtwork img,.featurePhoto{pointer-events:none}
