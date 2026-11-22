@@ -14,7 +14,7 @@ async function openRecipes(page){await openFeature(page,'Alimentación','Recetas
 test('opens and visits the five areas without runtime errors or mobile overflow',async({page})=>{
  const errors=[];page.on('pageerror',error=>errors.push(error.message));await page.goto('/?source=android');
  await expect(page).toHaveTitle(/DIETEAR/);
- for(const label of ['Alimentación','Mi plan','Progreso','Para mí','Hoy']){await nav(page,label).click();await expect(nav(page,label)).toHaveClass(/active/);await expect(page.locator('main')).toBeVisible();}
+ for(const label of ['Alimentación','Mi plan','Progreso','Para mí','Hoy']){const hit=await nav(page,label).evaluate(button=>{const r=button.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2,top=document.elementFromPoint(x,y),bar=button.closest('nav');return {label:button.innerText,center:[x,y],button:r.toJSON(),bar:bar?.getBoundingClientRect().toJSON(),navZ:getComputedStyle(bar).zIndex,hit:top?.outerHTML.slice(0,300),withinButton:button===top||button.contains(top)}});expect(hit.withinButton,JSON.stringify(hit)).toBe(true);await nav(page,label).click();await expect(nav(page,label)).toHaveClass(/active/);await expect(page.locator('main')).toBeVisible();}
  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
  expect(overflow).toBeLessThanOrEqual(1);expect(errors).toEqual([]);
 });
