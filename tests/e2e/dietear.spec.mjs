@@ -100,5 +100,5 @@ test('a photo stays local until consent, produces an editable draft and register
  await expect.poll(async()=>(await saved(page)).history.filter(item=>item.type==='comida').length).toBe(1);
  const data=await saved(page);expect(data.history.find(item=>item.type==='comida').value).toBe(69.5);expect(JSON.stringify(data)).not.toContain('data:image');
  await page.reload();await openFeature(page,'Alimentación','Analizar alimento');await expect(page.locator('.diaryEntries').getByText('Plato de prueba',{exact:true})).toBeVisible();
- await nav(page,'Progreso').click();await page.getByRole('button',{name:/Mis gráficas/}).first().click();await page.getByRole('button',{name:'🥗 Energía registrada',exact:true}).first().click();await expect(page.locator('.chartSummary').first()).toContainText('69.5');
+ await openFeature(page,'Progreso','Mis gráficas');await expect(page.locator('.evolutionCharts')).toBeVisible();await page.locator('.evolutionCharts').getByRole('button',{name:'🥗 Energía registrada',exact:true}).click();await expect(page.locator('.chartSummary').first()).toContainText('69.5');
 });
