@@ -125,7 +125,10 @@
 /* Keep selected states readable even when older module rules are more specific. */
 .immersiveApp.immersiveApp button,.immersiveApp.immersiveApp button.selected,.immersiveApp.immersiveApp button.active,.immersiveApp.immersiveApp .recipeIdeaActions button:last-child,.immersiveApp.immersiveApp .activityMinutes button.selected,.immersiveApp.immersiveApp .dietVisualGrid button.selected{color:#10170f!important;-webkit-text-fill-color:#10170f!important}
 .immersiveApp.immersiveApp .toast{color:#10170f!important;-webkit-text-fill-color:#10170f!important}
-.immersiveApp.hasOpenedModule .nutritionBridge,.immersiveApp.hasOpenedModule .progressDashboard,.immersiveApp.hasOpenedModule .healthMetrics,.immersiveApp.hasOpenedModule .evolutionCharts,.immersiveApp.hasOpenedModule .profileStudio{display:none}
+.immersiveApp.hasOpenedModule .nutritionBridge,.immersiveApp.hasOpenedModule .progressDashboard,.immersiveApp.hasOpenedModule .healthMetrics,.immersiveApp.hasOpenedModule .profileStudio{display:none}
+/* Charts are the content of the selected progress module, not background content. */
+.immersiveApp.hasOpenedModule .evolutionCharts{display:none}
+.immersiveApp.hasOpenedModule.immersive-progreso:has([data-open-section="Mis gráficas"]) .evolutionCharts{display:block}
 .immersiveApp .featureGrid .featureCard>.featurePhoto{object-fit:cover!important;width:54px!important;height:54px!important;border-radius:12px!important}
 .immersiveApp .featureGrid .featureCard:has(.featurePhoto){grid-template-columns:54px minmax(0,1fr)!important}
 .immersiveApp .featureGrid .featureCard:has(.featurePhoto)>span:not(.selectedArtwork){display:none!important}
