@@ -4,6 +4,7 @@ import "./color.css";
 import "./data-entry.css";
 import "./exercises.css";
 import "./diet-artwork.css";
+import "./easy-mode.css";
 import DataEntryAssistant from "../components/DataEntryAssistant";
 import PwaRuntime from "../components/PwaRuntime";
 

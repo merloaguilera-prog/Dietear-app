@@ -8,3 +8,6 @@ android/native/.gradle/
 android/native/**/build/
 .vercel
 .DS_Store
+
+playwright-report/
+test-results/

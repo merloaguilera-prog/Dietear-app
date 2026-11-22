@@ -5,6 +5,8 @@ import SelectedArtwork from "./SelectedArtwork";
 import { datesForWeek, MEAL_FIELDS, WEEK_DAYS } from "../lib/week-plan";
 import {matchesMeal,normalizeMealText} from "../lib/meal-options";
 import { recipes } from "../lib/recipes";
+import {recipeFitsStyle} from "../lib/recipe-selection.mjs";
+import {mealServings} from "../lib/week-plan";
 import { dietArtworkPath } from "../lib/diet-artwork";
 
 const root = "/dietear-visuals/";
@@ -63,15 +65,15 @@ export function DesignedWeek({ planner, setPlanner, weekKey, changeWeek, setShop
   useEffect(()=>{setDay((new Date().getDay()+6)%7)},[]);
   useEffect(()=>{if(editing&&dialog.current&&!dialog.current.open)dialog.current.showModal()},[editing]);
   const dates=datesForWeek(weekKey), selected=planner[day];
-  const update=(field,value)=>{setPlanner(old=>old.map((item,index)=>index===day?{...item,[field]:value,...(field==="people"?{portionFactor:value}:{})}:item));setShopping([])};
+  const update=(field,value)=>{setPlanner(old=>old.map((item,index)=>index===day?{...item,[field]:value,...(field==="people"?{portionFactor:value,mealServings:{}}:{})}:item));setShopping([])};
   const choose=(name,ingredients=[])=>{if([name,...ingredients.map(x=>x[0])].some(isRestricted)){setMealError("Esta comida contiene un alimento que has excluido.");return}update(editing,name);setEditing(null);flash("Comida guardada en el día elegido")};
-  const available=recipes.filter(r=>showAllMeals||r.mealTypes.includes(editing));
+  const available=recipes.filter(r=>(showAllMeals||r.mealTypes.includes(editing))&&recipeFitsStyle(r,profile.dietStyle)&&!(profile.recipeDislikes||[]).includes(r.id)&&![r.name,...r.ingredients.map(item=>item[0])].some(isRestricted));
   return <section className="designedWeek" aria-label="Mi plan semanal">
     <div className="sceneHeadline"><small>DIETEAR · MI PLAN SEMANAL</small><h1>Tu semana, a tu manera</h1><p>Organiza tus comidas. Personaliza, cambia y adapta a tu rutina.</p></div>
     <div className="designedWeekNav"><button aria-label="Semana anterior" onClick={()=>changeWeek(-1)}>‹</button><b>{dates[0].toLocaleDateString("es-ES",{day:"numeric",month:"short"})} – {dates[6].toLocaleDateString("es-ES",{day:"numeric",month:"short",year:"numeric"})}</b><button aria-label="Semana siguiente" onClick={()=>changeWeek(1)}>›</button></div>
     <div className="designedDays" aria-label="Día del plan">{dates.map((date,index)=><button key={WEEK_DAYS[index]} aria-pressed={day===index} onClick={()=>setDay(index)}><b>{WEEK_DAYS[index].slice(0,3)}</b><span>{date.getDate()}</span></button>)}</div>
     <div className="designedMealRows plannerGrid">{MEAL_FIELDS.map(([field,label],index)=><article className="designedMeal" key={field}>
-      <div className="mealCopy"><label htmlFor={"designed-meal-"+field}>{plain(label)}</label><input id={"designed-meal-"+field} aria-label={plain(label)+" del día elegido"} value={selected?.[field]||""} placeholder="Añadir comida…" onChange={event=>update(field,event.target.value)}/><input className="mealTime" type="time" aria-label={"Hora de "+plain(label)} value={profile.mealTimes?.[field]||mealTimes[index]} onChange={event=>setProfile(old=>({...old,mealTimes:{...old.mealTimes,[field]:event.target.value}}))}/></div>
+      <div className="mealCopy"><label htmlFor={"designed-meal-"+field}>{plain(label)}</label><input id={"designed-meal-"+field} aria-label={plain(label)+" del día elegido"} value={selected?.[field]||""} placeholder="Añadir comida…" onChange={event=>update(field,event.target.value)}/><small>{mealServings(selected,field)} ración(es)</small><input className="mealTime" type="time" aria-label={"Hora de "+plain(label)} value={profile.mealTimes?.[field]||mealTimes[index]} onChange={event=>setProfile(old=>({...old,mealTimes:{...old.mealTimes,[field]:event.target.value}}))}/></div>
       <SelectedArtwork className="mealIllustration" name={mealArt[index]}/>
       <button className="addMealBubble" aria-label={"Elegir receta para "+plain(label)} onClick={()=>{setRecipeSearch("");setShowAllMeals(false);setMealError("");setEditing(field)}}>+</button>
     </article>)}</div>

@@ -12,6 +12,8 @@ La versión actual guarda principalmente en el dispositivo datos introducidos po
 |---|---|---|---|
 | DIETEAR IA | Consulta y contexto autorizado | Responder a la consulta | Solo cuando la persona pulsa enviar |
 | Análisis de alimento | Texto y contexto autorizado | Generar análisis orientativo | Solo cuando se solicita |
+| Foto de plato | Imagen seleccionada, sin perfil sanitario | Crear un borrador estimado editable | Consentimiento y botón Analizar foto; confirmar antes de registrar |
+| Dictado y lectura | Audio o texto según el servicio del navegador/dispositivo | Introducir datos y leer contenido | Acción explícita de la persona |
 | Escáner de producto | Código de barras | Consultar la ficha pública del producto | Solo cuando se escanea |
 | Alojamiento web | Datos técnicos y registros de seguridad | Funcionamiento y protección del servicio | Necesario para usar la app conectada |
 
@@ -19,7 +21,8 @@ La versión actual guarda principalmente en el dispositivo datos introducidos po
 
 - No vender datos personales.
 - No utilizar datos de salud para publicidad personalizada.
-- Solicitar la cámara únicamente al activar el escáner; la imagen se procesa en el dispositivo y se consulta el código detectado.
+- Distinguir el escáner (imagen procesada localmente; se consulta el código) del análisis de platos (imagen enviada a IA tras consentimiento). No se guarda la imagen del plato en el diario.
+- Incluir las fotos y el servicio de voz del navegador en la revisión de declaraciones antes de distribuir esta rama.
 - Explicar que la eliminación de datos locales puede hacerse desde la aplicación o los ajustes del dispositivo.
 - Mantener visible el aviso de que DIETEAR no sustituye atención médica.
 
