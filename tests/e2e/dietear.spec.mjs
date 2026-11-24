@@ -12,17 +12,17 @@ async function mockSpeech(page){await page.addInitScript(()=>{
 async function openRecipes(page){await openFeature(page,'Alimentación','Recetas rápidas');await page.locator('.recipeIdea').first().getByRole('button',{name:'Ver cómo se hace',exact:true}).click();}
 
 test('home photographs fill at least half of every access card on phone and desktop',async({page},testInfo)=>{
- for(const width of [320,393,1280,1920]){
+ for(const width of [320,393,1100,1280,1920]){
   await page.setViewportSize({width,height:900});await page.goto('/');
   const cards=page.locator('.designedHome .homeBubble');await expect(cards).toHaveCount(8);
   await expect.poll(()=>cards.evaluateAll(buttons=>buttons.every(button=>{
    const image=button.querySelector('.bubbleSymbol img');return image?.complete&&image.naturalWidth>0;
   }))).toBe(true);
   const sizes=await cards.evaluateAll(buttons=>buttons.map(button=>{
-   const card=button.getBoundingClientRect(),image=button.querySelector('.bubbleSymbol img').getBoundingClientRect();
-   return {name:button.innerText,coverage:image.width*image.height/(card.width*card.height),within: image.left>=card.left&&image.right<=card.right&&image.top>=card.top&&image.bottom<=card.bottom};
+   const card=button.getBoundingClientRect(),image=button.querySelector('.bubbleSymbol img').getBoundingClientRect(),label=button.querySelector('b');
+   return {name:button.innerText,labelFits:label.scrollWidth<=label.clientWidth+1,coverage:image.width*image.height/(card.width*card.height),within: image.left>=card.left&&image.right<=card.right&&image.top>=card.top&&image.bottom<=card.bottom};
   }));
-  for(const size of sizes){expect(size.coverage,JSON.stringify(size)).toBeGreaterThanOrEqual(.5);expect(size.within,JSON.stringify(size)).toBe(true);}
+  for(const size of sizes){expect(size.coverage,JSON.stringify(size)).toBeGreaterThanOrEqual(.5);expect(size.within,JSON.stringify(size)).toBe(true);expect(size.labelFits,JSON.stringify(size)).toBe(true);}
   await expectNoOverflow(page);
   if(width===393||width===1920){await page.locator('.homeButtons').scrollIntoViewIfNeeded();await testInfo.attach(`inicio-${width}px`,{body:await page.screenshot(),contentType:'image/png'});}
  }
