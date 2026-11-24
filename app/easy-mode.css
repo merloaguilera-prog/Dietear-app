@@ -37,7 +37,7 @@
 }
 .immersiveApp .designedHome .homeBubble>b{
  grid-column:2;grid-row:1;margin:0;padding:10px 7px;min-width:0;
- font-size:clamp(13px,1vw,17px);line-height:1.25;overflow-wrap:normal;
+ font-size:clamp(13px,1vw,15px);line-height:1.25;overflow-wrap:normal;
 }
 .immersiveApp .designedHome .homeBubble>small{display:none}
 @media(max-width:999px){.immersiveApp .designedHome .homeButtons{grid-template-columns:repeat(4,minmax(0,1fr))}}
