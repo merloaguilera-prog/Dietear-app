@@ -21,5 +21,5 @@
   "generatorApp": "DIETEAR",
   "webManifestUrl": "https://dietear.app/manifest.webmanifest",
   "fallbackType": "customtabs",
-  "enableSiteSettingsShortcut": true
+  "enableSiteSettingsShortcut": false
 }
