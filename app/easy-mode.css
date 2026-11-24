@@ -4,6 +4,21 @@
 .immersiveApp{z-index:0!important}
 .dietearBottomNav{position:fixed!important;inset:auto 0 0!important;z-index:2147483647!important;transform:none!important;pointer-events:auto!important}
 .dietearBottomNav>button{position:relative;z-index:1;pointer-events:auto!important;touch-action:manipulation}
+.dietearBottomNav>button{width:100%!important;min-width:0!important;justify-self:stretch}
+.dietearBottomNav>button>b{max-width:100%;overflow-wrap:anywhere}
 @supports(padding-bottom:env(safe-area-inset-bottom)){
  .dietearBottomNav{padding-bottom:max(4px,env(safe-area-inset-bottom))!important;height:calc(78px + env(safe-area-inset-bottom))!important}
 }
+
+/* Let long health metric names wrap inside the profile instead of widening
+   the mobile layout viewport and displacing the fixed navigation hit targets. */
+.healthJournal,.healthJournalFields,.healthJournalFields>label{min-width:0;max-width:100%}
+.healthJournal{overflow-wrap:anywhere}
+.healthJournalFields>label{display:grid;gap:6px;flex:1 1 180px}
+.healthJournal :is(input,select){max-width:100%;box-sizing:border-box}
+.healthJournalFields :is(input,select){width:100%}
+.profileForm{grid-template-columns:repeat(2,minmax(0,1fr))}
+.profileForm>label{min-width:0}
+.profileForm :is(input,select){width:100%;max-width:100%;box-sizing:border-box}
+@media(max-width:650px){.profileForm{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:360px){.dietearBottomNav{grid-template-columns:32px repeat(5,minmax(0,1fr)) 32px!important}}

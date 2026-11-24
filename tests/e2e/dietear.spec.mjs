@@ -11,12 +11,43 @@ async function mockSpeech(page){await page.addInitScript(()=>{
 });}
 async function openRecipes(page){await openFeature(page,'Alimentación','Recetas rápidas');await page.locator('.recipeIdea').first().getByRole('button',{name:'Ver cómo se hace',exact:true}).click();}
 
+async function expectNoOverflow(page){
+ const layout=await page.evaluate(()=>({
+  overflow:document.documentElement.scrollWidth-window.innerWidth,
+  offenders:[...document.querySelectorAll('main *')].filter(node=>{const r=node.getBoundingClientRect();return r.width>0&&(r.right>window.innerWidth+1||r.left < -1);}).slice(0,8).map(node=>({tag:node.tagName,className:node.className,text:node.textContent?.slice(0,70),width:node.getBoundingClientRect().width}))
+ }));
+ expect(layout.overflow,JSON.stringify(layout)).toBeLessThanOrEqual(1);
+}
+async function expectNavTarget(page,label){
+ const hit=await nav(page,label).evaluate(button=>{const r=button.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2,top=document.elementFromPoint(x,y);return {label:button.innerText,width:r.width,height:r.height,withinViewport:r.left>=0&&r.right<=window.innerWidth&&r.top>=0&&r.bottom<=window.innerHeight,withinButton:button===top||button.contains(top)}});
+ expect(hit.withinViewport,JSON.stringify(hit)).toBe(true);
+ expect(hit.width,JSON.stringify(hit)).toBeGreaterThanOrEqual(44);
+ expect(hit.height,JSON.stringify(hit)).toBeGreaterThanOrEqual(44);
+ expect(hit.withinButton,JSON.stringify(hit)).toBe(true);
+}
 test('opens and visits the five areas without runtime errors or mobile overflow',async({page})=>{
  const errors=[];page.on('pageerror',error=>errors.push(error.message));await page.goto('/?source=android');
  await expect(page).toHaveTitle(/DIETEAR/);
- for(const label of ['Alimentación','Mi plan','Progreso','Para mí','Hoy']){const hit=await nav(page,label).evaluate(button=>{const r=button.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2,top=document.elementFromPoint(x,y),bar=button.closest('nav');return {label:button.innerText,center:[x,y],button:r.toJSON(),bar:bar?.getBoundingClientRect().toJSON(),navZ:getComputedStyle(bar).zIndex,hit:top?.outerHTML.slice(0,300),withinButton:button===top||button.contains(top)}});expect(hit.withinButton,JSON.stringify(hit)).toBe(true);await nav(page,label).click({timeout:8000});await expect(nav(page,label)).toHaveClass(/active/);await expect(page.locator('main')).toBeVisible();}
- const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
- expect(overflow).toBeLessThanOrEqual(1);expect(errors).toEqual([]);
+ for(const label of ['Alimentación','Mi plan','Progreso','Para mí','Hoy']){
+  await expectNavTarget(page,label);
+  await nav(page,label).click({timeout:8000});
+  await expect(nav(page,label)).toHaveClass(/active/);
+  await expect(page.locator('main')).toBeVisible();
+  await expectNoOverflow(page);
+ }
+ expect(errors).toEqual([]);
+});
+
+for(const width of [320,393])test(`profile health controls fit at ${width}px and bottom navigation remains reachable after scrolling`,async({page,isMobile})=>{
+ await page.setViewportSize({width,height:727});await page.goto('/');await nav(page,'Para mí').click();
+ await expect(page.locator('.healthJournal')).toBeVisible();await expectNoOverflow(page);
+ const metric=page.locator('.healthJournalFields select').first();
+ await metric.selectOption('hba1c');await expectNoOverflow(page);
+ await metric.selectOption('systolic');await expectNoOverflow(page);
+ await page.evaluate(()=>window.scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'}));
+ await expectNavTarget(page,'Hoy');
+ if(isMobile)await nav(page,'Hoy').tap({timeout:8000});else await nav(page,'Hoy').click({timeout:8000});
+ await expect(nav(page,'Hoy')).toHaveClass(/active/);await expectNoOverflow(page);
 });
 
 test('damaged local data opens with recovery while preserving its original bytes',async({page})=>{

@@ -161,26 +161,26 @@
   border-image: linear-gradient(90deg, #27d438, #b951ed, #ffbd15, #33beea, #fc388b) 1;
   box-shadow: 0 -5px 22px #b0d66d24 !important;
 }
-.immersiveApp.dietearBottomNav > button:nth-of-type(2) { --accent: #089d32; --tint: #edffdf; --glow: #9bdf4d; }
-.immersiveApp.dietearBottomNav > button:nth-of-type(3) { --accent: #9632db; --tint: #f6ecff; --glow: #d5a6f6; }
-.immersiveApp.dietearBottomNav > button:nth-of-type(4) { --accent: #d69400; --tint: #fff7de; --glow: #f6d34f; }
-.immersiveApp.dietearBottomNav > button:nth-of-type(5) { --accent: #168fcf; --tint: #e9faff; --glow: #8bdbf5; }
-.immersiveApp.dietearBottomNav > button:nth-of-type(6) { --accent: #ec197b; --tint: #fff0f7; --glow: #ffa3d0; }
-.immersiveApp.dietearBottomNav button {
+.dietearBottomNav > button:nth-of-type(2) { --accent: #089d32; --tint: #edffdf; --glow: #9bdf4d; }
+.dietearBottomNav > button:nth-of-type(3) { --accent: #9632db; --tint: #f6ecff; --glow: #d5a6f6; }
+.dietearBottomNav > button:nth-of-type(4) { --accent: #d69400; --tint: #fff7de; --glow: #f6d34f; }
+.dietearBottomNav > button:nth-of-type(5) { --accent: #168fcf; --tint: #e9faff; --glow: #8bdbf5; }
+.dietearBottomNav > button:nth-of-type(6) { --accent: #ec197b; --tint: #fff0f7; --glow: #ffa3d0; }
+.dietearBottomNav button {
   width: 100% !important; max-width: 160px; min-width: 0;
   background: linear-gradient(150deg, #fff, var(--tint)) !important;
   border: 1px solid var(--glow) !important;
   box-shadow: none !important;
 }
-.immersiveApp.dietearBottomNav button.active {
+.dietearBottomNav button.active {
   background: linear-gradient(150deg, #fff, var(--tint) 45%, var(--glow)) !important;
   border: 2px solid var(--accent) !important;
   box-shadow: 0 2px 8px #2f463112 !important;
   transform: none;
 }
-.immersiveApp.dietearBottomNav button::before { display: none; }
-.immersiveApp.dietearBottomNav button > span,
-.immersiveApp.dietearBottomNav button > span .lineSymbol {
+.dietearBottomNav button::before { display: none; }
+.dietearBottomNav button > span,
+.dietearBottomNav button > span .lineSymbol {
   color: var(--accent) !important;
   -webkit-text-fill-color: var(--accent) !important;
   background: transparent !important;
@@ -202,7 +202,7 @@
  .immersiveApp .natureActions .naturePhoto { border-radius: 17px; }
 }
 
-.immersiveApp.dietearBottomNav button > span .lineSymbol * { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; stroke: var(--accent) !important; }
+.dietearBottomNav button > span .lineSymbol * { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; stroke: var(--accent) !important; }
 .immersiveApp > header .avatar .lineSymbol { width: 22px; height: 22px; display: block; margin: auto; color: #e9187f; }
 
 /* Give the artwork almost half of every feature card, across all four sections. */
@@ -287,8 +287,8 @@
 .immersiveApp.immersiveApp :is(.featureCard,.homeBubble,.dietVisualGrid button,.branchActions button,.healthAreaGrid button,.designedActivityChoices button) { border-width:3px!important; background:linear-gradient(135deg,#fffef7 0%,var(--tint) 48%,var(--glow) 150%)!important; }
 .immersiveApp.immersiveApp :is(.featureCard,.homeBubble,.dietVisualGrid button):hover { border-color:var(--accent)!important; }
 .immersiveApp.immersiveApp :is(.goal,.planDay,.recipeIdea,.dietPick,.fridgeIdeaGrid article,.dashboardCards article,.metricCards article,.bridgeStats article,.shoppingRow,.designedMeal,.photoCompare article,.createDietForm label,.sourceRule,.evolutionPhotoStudio,.metricStudio,.profileStudio,.connectedModule,.realModule,.people,.appsGrid article,.premiumCard) { border-width:3px!important; border-style:solid!important; border-color:var(--glow,#9ed45a)!important; }
-.immersiveApp.dietearBottomNav button { border-width:2px!important; }
-.immersiveApp.dietearBottomNav button.active { border-width:3px!important; border-color:var(--accent)!important; }
+.dietearBottomNav button { border-width:2px!important; }
+.dietearBottomNav button.active { border-width:3px!important; border-color:var(--accent)!important; }
 .immersiveApp.immersiveApp :is(button,input,select,textarea):focus-visible { outline:3px solid var(--accent,#359d37);outline-offset:3px; }
 .immersiveApp .moduleBanner .squareModulePhoto { object-fit:contain; object-position:center; background:linear-gradient(145deg,#f1ffe0,#fff0f7); }
 @media(min-width:1000px){
