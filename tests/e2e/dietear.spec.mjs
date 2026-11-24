@@ -13,8 +13,8 @@ async function openRecipes(page){await openFeature(page,'Alimentación','Recetas
 
 async function expectNoOverflow(page){
  const layout=await page.evaluate(()=>({
-  overflow:document.documentElement.scrollWidth-window.innerWidth,
-  offenders:[...document.querySelectorAll('main *')].filter(node=>{const r=node.getBoundingClientRect();return r.width>0&&(r.right>window.innerWidth+1||r.left < -1);}).slice(0,8).map(node=>({tag:node.tagName,className:node.className,text:node.textContent?.slice(0,70),width:node.getBoundingClientRect().width}))
+  overflow:Math.max(document.documentElement.scrollWidth,window.innerWidth)-document.documentElement.clientWidth,
+  offenders:[...document.querySelectorAll('main *')].filter(node=>{const r=node.getBoundingClientRect();return r.width>0&&(r.right>document.documentElement.clientWidth+1||r.left < -1);}).slice(0,8).map(node=>({tag:node.tagName,className:node.className,text:node.textContent?.slice(0,70),width:node.getBoundingClientRect().width}))
  }));
  expect(layout.overflow,JSON.stringify(layout)).toBeLessThanOrEqual(1);
 }
