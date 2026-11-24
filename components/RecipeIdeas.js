@@ -8,7 +8,7 @@ import RecipePhoto from './RecipePhoto';
 import ReadingControls from './ReadingControls';
 
 const categories=[['all','Todo el libro'],['breakfast','Desayunos'],['lunch','Comidas'],['dinner','Cenas'],['snack','Meriendas y tentempiés']];
-export default function RecipeIdeas({onChoose, maxMinutes=null, mealType='all', profile={}, restrictions=[], onPreferencesChange}) {
+export default function RecipeIdeas({onChoose, maxMinutes=null, mealType='all', profile={}, restrictions=[], onPreferencesChange, onChangeStyle}) {
   const [openId,setOpenId]=useState(null), [query,setQuery]=useState(''), [legacyFavorites,setLegacyFavorites]=useState([]);
   const [onlyFavorites,setOnlyFavorites]=useState(false), [category,setCategory]=useState('all'), [time,setTime]=useState('all');
   const [portions,setPortions]=useState({}), [slots,setSlots]=useState({});
@@ -29,8 +29,8 @@ export default function RecipeIdeas({onChoose, maxMinutes=null, mealType='all', 
     const alternative=visible.find(item=>item.id!==recipe.id&&item.mealTypes.some(type=>recipe.mealTypes.includes(type)));
     if(alternative) {setOpenId(alternative.id);window.setTimeout(()=>document.getElementById('recipe-'+alternative.id)?.scrollIntoView({block:'center',behavior:'smooth'}),0);}
   }
-  return <div className="recipeBook" id="diet-recipe-book">
-    <header className="recipeBookHead"><small>DIETEAR · EL PLACER DE COMER BIEN</small><h3>Tu libro: {style}</h3><p>{collection.length} recetas de la biblioteca actual. Ingredientes, cantidades y preparación para elegir sin complicarte.</p></header>
+  return <div className="recipeBook" id="diet-recipe-book" role="region" aria-label={"Libro de recetas: "+style} tabIndex={-1}>
+    <header className="recipeBookHead">{onChangeStyle&&<button type="button" className="changeDietStyle" onClick={onChangeStyle}>← Cambiar estilo de alimentación</button>}<small>DIETEAR · EL PLACER DE COMER BIEN</small><h3>Tu libro: {style}</h3><p>{collection.length} recetas de la biblioteca actual. Ingredientes, cantidades y preparación para elegir sin complicarte.</p></header>
     <p className="recipeStyleNote">{styleInfo.note} Las fotografías son ilustrativas; revisa siempre los ingredientes de la ficha.</p>
     <div className="recipeCategories">{categories.map(([key,label])=><button type="button" key={key} aria-pressed={category===key} onClick={()=>setCategory(key)}>{label}</button>)}</div>
     <div className="recipeSearch"><label>Buscar receta o ingrediente<input aria-label="Buscar receta o ingrediente" value={query} onChange={event=>setQuery(event.target.value)} placeholder="Garbanzos, mango, tostadas…"/></label><label>Tiempo disponible<select aria-label="Tiempo disponible" value={time} onChange={event=>setTime(event.target.value)}><option value="all">Todos los tiempos</option><option value="15">Hasta 15 minutos</option><option value="30">Hasta 30 minutos</option></select></label><button type="button" aria-pressed={onlyFavorites} onClick={()=>setOnlyFavorites(!onlyFavorites)}>{onlyFavorites?'Todas las recetas':'♡ Mis favoritas'}</button></div>

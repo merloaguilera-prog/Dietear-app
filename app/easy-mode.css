@@ -22,3 +22,35 @@
 .profileForm :is(input,select){width:100%;max-width:100%;box-sizing:border-box}
 @media(max-width:650px){.profileForm{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:360px){.dietearBottomNav{grid-template-columns:32px repeat(5,minmax(0,1fr)) 32px!important}}
+
+/* Home photographs fill over half of each access card on every screen size. */
+.immersiveApp .designedHome .homeBubble{
+ display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr);grid-template-rows:1fr;
+ height:132px;min-height:132px;padding:0;gap:0;overflow:hidden;text-align:center;
+}
+.immersiveApp .designedHome .homeBubble .bubbleSymbol{
+ display:block;grid-column:1;grid-row:1;width:100%;height:100%;min-height:0;
+ aspect-ratio:auto;border:0;border-radius:0;overflow:hidden;
+}
+.immersiveApp .designedHome .homeBubble .bubbleSymbol img{
+ display:block;width:100%;height:100%;max-width:none;object-fit:cover;
+}
+.immersiveApp .designedHome .homeBubble>b{
+ grid-column:2;grid-row:1;margin:0;padding:10px 7px;min-width:0;
+ font-size:clamp(13px,1.2vw,17px);line-height:1.25;overflow-wrap:anywhere;
+}
+.immersiveApp .designedHome .homeBubble>small{display:none}
+@media(max-width:999px){
+ .immersiveApp .designedHome .homeButtons{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .immersiveApp .designedHome .homeBubble{display:flex;flex-direction:column;align-items:stretch;height:auto;min-height:0}
+ .immersiveApp .designedHome .homeBubble .bubbleSymbol{height:auto;aspect-ratio:4/3;flex:none}
+ .immersiveApp .designedHome .homeBubble>b{display:grid;place-items:center;min-height:42px;padding:7px;font-size:15px}
+}
+@media(max-width:650px){
+ .immersiveApp .designedHome .homeButtons{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+}
+.immersiveApp .recipeBook{scroll-margin-top:90px}
+.immersiveApp .recipeBook:focus{outline:3px solid #3a864e;outline-offset:4px}
+.immersiveApp .recipeBookHead .changeDietStyle{display:block;margin-bottom:14px;min-height:44px;padding:10px 14px}
+.immersiveApp :is(.createDietChoices,.dietGallery .dietVisualGrid){scroll-margin-top:90px}
+@media(max-width:650px){.immersiveApp .recipeBook,.immersiveApp :is(.createDietChoices,.dietGallery .dietVisualGrid){scroll-margin-top:74px}}

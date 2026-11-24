@@ -11,6 +11,37 @@ async function mockSpeech(page){await page.addInitScript(()=>{
 });}
 async function openRecipes(page){await openFeature(page,'Alimentación','Recetas rápidas');await page.locator('.recipeIdea').first().getByRole('button',{name:'Ver cómo se hace',exact:true}).click();}
 
+test('home photographs fill at least half of every access card on phone and desktop',async({page},testInfo)=>{
+ for(const width of [320,393,1280,1920]){
+  await page.setViewportSize({width,height:900});await page.goto('/');
+  const cards=page.locator('.designedHome .homeBubble');await expect(cards).toHaveCount(8);
+  await expect.poll(()=>cards.evaluateAll(buttons=>buttons.every(button=>{
+   const image=button.querySelector('.bubbleSymbol img');return image?.complete&&image.naturalWidth>0;
+  }))).toBe(true);
+  const sizes=await cards.evaluateAll(buttons=>buttons.map(button=>{
+   const card=button.getBoundingClientRect(),image=button.querySelector('.bubbleSymbol img').getBoundingClientRect();
+   return {name:button.innerText,coverage:image.width*image.height/(card.width*card.height),within: image.left>=card.left&&image.right<=card.right&&image.top>=card.top&&image.bottom<=card.bottom};
+  }));
+  for(const size of sizes){expect(size.coverage,JSON.stringify(size)).toBeGreaterThanOrEqual(.5);expect(size.within,JSON.stringify(size)).toBe(true);}
+  await expectNoOverflow(page);
+  if(width===393||width===1920){await page.locator('.homeButtons').scrollIntoViewIfNeeded();await testInfo.attach(`inicio-${width}px`,{body:await page.screenshot(),contentType:'image/png'});}
+ }
+});
+
+test('choosing a diet in the builder reveals its matching book immediately and offers a return',async({page})=>{
+ await page.goto('/');await openFeature(page,'Alimentación','Crear mi dieta');
+ await page.locator('.createDietChoices').getByRole('button',{name:/Vegana/}).click();
+ const book=page.getByRole('region',{name:'Libro de recetas: Vegana',exact:true});
+ await expect(book).toBeFocused();await expect(book.getByRole('heading',{name:'Tu libro: Vegana',exact:true})).toBeInViewport({ratio:1});
+ await expect.poll(async()=>(await saved(page)).profile.dietStyle).toBe('Vegana');
+ await expect(book.locator('.recipeIdea').first()).toBeVisible();
+ await book.getByRole('button',{name:'← Cambiar estilo de alimentación',exact:true}).click();
+ const choice=page.locator('.createDietChoices').getByRole('button',{name:/Vegana/});await expect(choice).toBeFocused();await expect(choice).toBeInViewport();
+ await page.locator('.createDietChoices').getByRole('button',{name:/Vegetariana/}).click();
+ await expect(page.getByRole('region',{name:'Libro de recetas: Vegetariana',exact:true})).toBeFocused();
+ await expect(page.getByRole('heading',{name:'Tu libro: Vegetariana',exact:true})).toBeInViewport({ratio:1});
+});
+
 async function expectNoOverflow(page){
  const layout=await page.evaluate(()=>({
   overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
