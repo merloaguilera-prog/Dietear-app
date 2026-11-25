@@ -36,7 +36,7 @@ No se contacta con testers ni se inventan respuestas sobre su uso. Las pruebas a
 
 1. Obtener el AAB **firmado de código 4**, identificar commit, artefacto y hash y completar su regresión.
 2. Subirlo a Alpha como borrador, revisar errores de procesamiento, firma y códigos; conservar la lista de participantes.
-3. Confirmar un contacto público de privacidad/soporte: la política actual remite al canal de la ficha, pero no proporciona directamente un contacto operativo. No inventar un correo.
+3. Publicar la política actualizada con el contacto de soporte existente en Play: `merloaguilera@gmail.com`, comprobado en Configuración de la tienda. Esta preparación lo añade directamente a la política.
 4. Revisar proveedores activos, conservación y respuestas de Seguridad de datos contra producción. Las pruebas de IA/foto usan respuestas simuladas y no acreditan servicio real ni exactitud nutricional.
 5. Confirmar capturas reales, clasificación, declaraciones de salud y el resultado de pruebas de Play para ese bundle. No anunciar cuentas/familia aislada, dispositivos conectados ni Pro/Billing completos.
 6. Completar la elegibilidad mostrada por Console para solicitar producción. Mantener diferenciada la actualización de Alpha de la publicación pública.

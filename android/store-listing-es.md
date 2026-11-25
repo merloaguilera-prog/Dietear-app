@@ -34,7 +34,7 @@ Los registros se guardan localmente en este navegador o dispositivo. Las consult
 
 ## Categoría propuesta
 
-Salud y bienestar
+Salud y fitness
 
 ## Etiquetas propuestas
 
@@ -47,3 +47,7 @@ https://dietear.app/privacidad
 ## Identificador
 
 com.dietear.app
+
+## Contacto público verificado en Play Console (25/11/2026)
+
+merloaguilera@gmail.com

@@ -11,7 +11,7 @@ export default function PrivacyPage() {
       <a href="/" style={{ color: "#147a4f", fontWeight: 800 }}>← Volver a DIETEAR</a>
       <p style={{ marginTop: 30, color: "#477064", fontWeight: 800 }}>DIETEAR · TODO SUMA</p>
       <h1 style={{ fontSize: "clamp(32px,6vw,52px)", lineHeight: 1.05 }}>Política de privacidad</h1>
-      <p><strong>Última actualización:</strong> 22 de noviembre de 2026.</p>
+      <p><strong>Última actualización:</strong> 25 de noviembre de 2026.</p>
       <p>Esta política explica de forma clara qué datos utiliza DIETEAR, para qué los utiliza y qué control conserva la persona usuaria.</p>
 
       <section style={section}>
@@ -64,7 +64,7 @@ export default function PrivacyPage() {
 
       <section style={section}>
         <h2>9. Tus derechos y contacto</h2>
-        <p>Puedes solicitar información, corrección o eliminación cuando exista tratamiento bajo nuestro control. El canal actualizado de soporte y privacidad se mostrará en la ficha oficial de DIETEAR en Google Play y en <a href="https://dietear.app">dietear.app</a>.</p>
+        <p>Puedes solicitar información, corrección o eliminación cuando exista tratamiento bajo nuestro control. Para consultas de soporte o privacidad puedes escribir a <a href="mailto:merloaguilera@gmail.com">merloaguilera@gmail.com</a>, el contacto público de DIETEAR en Google Play.</p>
       </section>
 
       <section style={section}>
