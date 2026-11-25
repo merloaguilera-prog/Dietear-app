@@ -149,6 +149,9 @@ test('personal objectives allow selecting all, persist independently and stay co
  await page.goto('/');await openFeature(page,'Para mí','Mis objetivos');
  const choices=page.locator('.personalGoalChoices input[type=checkbox]');
  await expect(choices).toHaveCount(9);
+ await expect(choices.first()).toBeInViewport();
+ const banner=page.locator('.personalGoalsModule>.moduleBanner');
+ expect((await banner.boundingBox()).height).toBeLessThanOrEqual(161);
  await page.getByRole('button',{name:'Marcar todos',exact:true}).click();
  await expect(page.getByRole('status').filter({hasText:'9 objetivos elegidos'})).toBeVisible();
  await expect.poll(async()=>(await saved(page)).profile.personalGoals.length).toBe(9);
