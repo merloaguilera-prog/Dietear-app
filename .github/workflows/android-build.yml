@@ -148,9 +148,9 @@ jobs:
           test_keystore="$RUNNER_TEMP/dietear-emulator-test.jks"
           keytool -genkeypair -keystore "$test_keystore" -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 2 -dname "CN=DIETEAR emulator fixture,O=Android test,C=ES" -noprompt
           "$apksigner" sign --ks "$test_keystore" --ks-key-alias androiddebugkey --ks-pass pass:android --key-pass pass:android --out "$smoke_apks/baseline-1.0.1.apk" "$baseline_apk"
-          "$apksigner" sign --ks "$test_keystore" --ks-key-alias androiddebugkey --ks-pass pass:android --key-pass pass:android --out "$smoke_apks/fixed-1.0.2.apk" "$fixed_apk"
+          "$apksigner" sign --ks "$test_keystore" --ks-key-alias androiddebugkey --ks-pass pass:android --key-pass pass:android --out "$smoke_apks/fixed-current.apk" "$fixed_apk"
           "$apksigner" verify "$smoke_apks/baseline-1.0.1.apk"
-          "$apksigner" verify "$smoke_apks/fixed-1.0.2.apk"
+          "$apksigner" verify "$smoke_apks/fixed-current.apk"
 
       - name: Upload release APK fixtures for emulator only
         uses: actions/upload-artifact@v4
@@ -207,7 +207,7 @@ jobs:
       - name: Reproduce the crash, update in place and open DIETEAR
         env:
           BASELINE_APK: ${{ runner.temp }}/smoke-apks/baseline-1.0.1.apk
-          FIXED_APK: ${{ runner.temp }}/smoke-apks/fixed-1.0.2.apk
+          FIXED_APK: ${{ runner.temp }}/smoke-apks/fixed-current.apk
           SMOKE_OUTPUT: ${{ runner.temp }}/dietear-startup-smoke
         run: bash android/native/scripts/smoke-update.sh
 

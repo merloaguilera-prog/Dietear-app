@@ -1,0 +1,6 @@
+<es-ES>
+Mejoramos el arranque de Android y la navegación móvil.
+Elige varios objetivos a la vez, marca tus pasos de hoy y consulta los últimos siete días.
+Fotos de inicio más grandes y libros de recetas diferenciados por estilo de alimentación.
+Mejoras en planificación, lista de la compra, dictado revisable y lectura a distintas velocidades.
+</es-ES>

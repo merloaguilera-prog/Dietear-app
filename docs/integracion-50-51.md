@@ -1,20 +1,18 @@
 # Integración DIETEAR · seguimiento de #50 y #51
 
-Revisión de código: 22/11/2026. Rama de desarrollo; no fusionada con `main` ni
-publicada en producción. Ningún cobro activado. Las tablas distinguen código
-conectado de servicios externos o pruebas físicas pendientes.
+Revisión de publicación: 25/11/2026. El PR #51 fue fusionado en `main` como `fdd1d6cc41a28b66899cbebde9f7fb3325b0a288` y Vercel desplegó la web en producción. Android/Play se comprueban por separado. Ningún cobro activado. Estado y evidencias: [preparación de publicación](publicacion-2026-11-25.md).
 
 ## Inventario de pantallas
 
 | Pantalla / función | Estado y límite comprobable | Código / evidencia |
 | --- | --- | --- |
 | Arranque web y cinco pestañas | Persistencia con recuperación de datos dañados; pruebas unitarias y recorrido E2E | `app/page.js`, `lib/dietear-store.js`, `tests/state-recovery.test.mjs`, `tests/e2e/dietear.spec.mjs` |
-| Arranque Android | TWA 1.0.2 (código 3); conserva los componentes de arranque y prueba de actualización minificada. Pendiente la instalación real desde Play de esta versión | `android/native`, flujo `Android build` |
+| Arranque Android | TWA 1.0.3 (código 4) preparada; conserva los componentes de arranque y prueba de actualización minificada. Pendiente la instalación real desde Play de esta versión | `android/native`, flujo `Android build` |
 | Hoy / objetivos diarios | Registro manual de agua, pasos, actividad y fruta; historial local | `app/page.js`, `components/ConnectedDay.js` |
 | DIETEAR IA | Consulta conectada al proveedor configurado; lectura añadida; requiere comprobación del proveedor real | `components/DietearAI.js`, `app/api/ai/route.js` |
 | Crear mi dieta | Guarda estilo y preferencias; abre el libro filtrado. No genera una prescripción nutricional | `app/page.js`, `lib/recipe-selection.mjs` |
 | Qué como hoy | Libro actual de 64 recetas, búsqueda y filtros; selección conectada al plan | `components/RecipeIdeas.js` |
-| Todo Dietas | Libros filtrados para vegana, vegetariana, sin lactosa y sin gluten por ingredientes declarados. Otras dietas muestran ideas generales con su límite explícito | `lib/recipe-selection.mjs`, `tests/recipe-selection.test.mjs` |
+| Todo Dietas | Ocho libros iniciales de 16 recetas; máximo cinco compartidas por pareja. Filtros por ingredientes declarados. Los estilos sin libro revisado muestran pendiente e ideas generales separadas | `lib/recipe-selection.mjs`, `tests/recipe-selection.test.mjs` |
 | Recetas rápidas | Fotos ilustrativas distintas por receta, ingredientes, raciones, preparación, resumen y lectura. No hay nutrición verificada por ingrediente en este catálogo | `components/RecipeIdeas.js`, `components/RecipePhoto.js` |
 | Favoritas / No me gusta / Cambiar | Favoritas heredadas se conservan; cambios nuevos en el perfil central. Exclusión de no me gusta en nuevas semanas y libros; bandeja para recuperar | `components/RecipeIdeas.js`, pruebas E2E |
 | Mi Nevera | Alta y eliminación manual; sugerencias con los alimentos disponibles | `components/FridgeIdeas.js`, `app/page.js` |
@@ -34,7 +32,7 @@ conectado de servicios externos o pruebas físicas pendientes.
 | Fotos de evolución | Pendiente almacenamiento privado; la pantalla informa de que no se suben fotografías | `app/page.js` |
 | Mis logros / Cómo puedo mejorar | Lectura de registros y objetivos; sugerencias básicas | `app/page.js` |
 | Hidratación / Sueño y descanso | Registro manual en historial; sin medición automática | `app/page.js` |
-| Mi ficha / objetivos / motivaciones | Perfil persistente. Dictado editable con confirmación, siguiente campo y deshacer; se comprueba reapertura | `components/DataEntryAssistant.js`, pruebas E2E |
+| Mi ficha / objetivos / motivaciones | Nueve objetivos combinables, prioridad, pasos manuales y resumen de siete días. Perfil persistente. Dictado editable con confirmación, siguiente campo y deshacer; se comprueba reapertura | `components/DataEntryAssistant.js`, pruebas E2E |
 | Salud y necesidades | Registros e información educativa existentes; no diagnóstico ni ajuste de medicación. Revisión adicional de privacidad pendiente | `components/HealthAreas.js`, `components/HealthJournal.js` |
 | Gustos y alimentos | Preferencias, alergias e intolerancias; cribado básico por nombres e ingredientes, sin garantía sobre trazas/certificaciones | `app/page.js`, `lib/recipe-selection.mjs` |
 | Privacidad y permisos | Información actualizada para foto, voz y lectura; exportación/borrado y aislamiento global deben completarse en fases posteriores | `app/privacidad/page.js`, `android/data-safety-es.md` |

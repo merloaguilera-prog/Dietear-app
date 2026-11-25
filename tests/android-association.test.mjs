@@ -13,3 +13,18 @@ test("the Android web association accepts both the upload build and Play-signed 
   // App-signing fingerprint copied from the user's Play Console evidence, 16 Oct.
   assert.ok(fingerprints.includes("E9:03:95:0B:19:A2:0E:40:27:C3:51:E3:7D:B0:10:32:B0:9C:51:BF:B6:28:02:CD:C4:AC:C8:D5:57:AA:E2:4A"));
 });
+
+// Play Console already contains codes 1, 2 and 3 (checked 25 Nov 2026).
+// A replacement bundle must use a new code, including after regeneration by Bubblewrap.
+test("the next Play bundle uses an unused version and agrees with Bubblewrap",()=>{
+  const manifest=JSON.parse(readFileSync(new URL("../android/twa-manifest.json",import.meta.url),"utf8"));
+  const native=readFileSync(new URL("../android/native/app/build.gradle.kts",import.meta.url),"utf8");
+  const code=Number(native.match(/versionCode\s*=\s*(\d+)/)?.[1]);
+  const name=native.match(/versionName\s*=\s*"([^"]+)"/)?.[1];
+  assert.ok(Number.isInteger(code)&&code>3,"Codes through 3 are already used in Play");
+  assert.equal(manifest.appVersionCode,code);
+  assert.equal(manifest.appVersionName,name);
+  const smoke=readFileSync(new URL("../android/native/scripts/smoke-update.sh",import.meta.url),"utf8");
+  assert.ok(smoke.includes(`versionCode=${code} `));
+  assert.ok(smoke.includes(`versionName=${name}`));
+});
