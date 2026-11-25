@@ -1,0 +1,38 @@
+.personalGoalsStudio{min-width:0;max-width:100%;color:#173e2a;overflow-wrap:anywhere}
+.immersiveApp .personalGoalsHeading{position:static;top:auto;display:block;height:auto;min-height:0;margin:0 0 20px;padding:0;background:transparent;border:0;box-shadow:none}
+.personalGoalsHeading small{font-weight:800;color:#397647;letter-spacing:.06em}
+.personalGoalsHeading h2{margin:8px 0;font-size:clamp(26px,4vw,36px)}
+.personalGoalsHeading p,.personalGoalSteps>p{line-height:1.6}
+.personalGoalChoices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;min-width:0;margin:0;padding:0;border:0}
+.personalGoalChoices legend{margin-bottom:14px;padding:0;font-size:18px;font-weight:800}
+.personalGoalChoice{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;align-items:start;min-width:0;min-height:110px;padding:16px;border:2px solid #b7d595;border-radius:20px;background:linear-gradient(135deg,#fffef8,#eff9df);cursor:pointer}
+.personalGoalChoice:nth-of-type(3n+2){border-color:#dab5ec;background:linear-gradient(135deg,#fff,#f7edff)}
+.personalGoalChoice:nth-of-type(3n){border-color:#edc864;background:linear-gradient(135deg,#fff,#fff7da)}
+.personalGoalChoice[data-selected=true]{border-color:#398550;box-shadow:inset 0 0 0 1px #398550;background:#e9f8dd}
+.personalGoalChoice>span{display:grid;gap:8px;min-width:0}
+.personalGoalChoice strong{font-size:16px;line-height:1.4}
+.personalGoalChoice>span>span{font-size:13px;line-height:1.5;color:#4c634f}
+.personalGoalsStudio input[type=checkbox]{width:22px;height:22px;min-width:22px;min-height:22px;padding:0;margin:2px 0;accent-color:#277342}
+.personalGoalSelectionActions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.personalGoalsStudio button,.personalGoalsEntry button{min-height:44px;padding:10px 14px;max-width:100%;white-space:normal;font:inherit;cursor:pointer}
+.personalGoalsStudio :is(input,select,button):focus-visible{outline:3px solid #216938;outline-offset:3px}
+.personalGoalSummary{padding:16px;margin:20px 0;border:2px solid #8dbb80;border-radius:20px;background:#f2fae9}
+.personalGoalSummary>p[role=status]{font-size:20px;font-weight:800;margin:0 0 12px}
+.personalGoalSummary label{display:grid;gap:7px;min-width:0}
+.personalGoalSummary select{width:100%;min-width:0;max-width:100%;min-height:44px;padding:10px;font:inherit;box-sizing:border-box}
+.personalGoalSummary small,.personalGoalSteps>small,.personalGoalWeek small,.personalGoalsEntry small{display:block;line-height:1.6;margin-top:10px}
+.personalGoalSteps h3{font-size:23px;margin-bottom:8px}
+.personalGoalProgress{display:grid;gap:8px;margin:16px 0;color:#245f3a;font-weight:700}
+.personalGoalProgress progress{width:100%;height:16px;accent-color:#3d8e4f}
+.personalGoalStepGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+.personalGoalStepGrid article{display:flex;flex-direction:column;align-items:stretch;gap:10px;min-width:0;padding:16px;border:2px solid #abd694;border-radius:20px;background:#fffef7}
+.personalGoalStepGrid h4{font-size:17px;margin:0;line-height:1.4}
+.personalGoalStepGrid p{margin:0 0 auto;line-height:1.6}
+.personalGoalDone{display:flex;align-items:center;gap:9px;padding:9px 0;min-height:44px;cursor:pointer;font-size:14px}
+.personalGoalWeek{padding:16px;margin:24px 0;border:2px solid #bd9cde;border-radius:20px;background:#faf4ff}
+.personalGoalWeek summary{cursor:pointer;font-weight:800;min-height:44px;display:list-item;align-content:center}
+.personalGoalWeek>div{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.personalGoalWeek>div>span{display:grid;gap:7px;text-align:center;min-width:0;padding:9px 2px;border:1px solid #d3bddf;border-radius:10px;background:#fff}
+.personalGoalWeek time{font-size:10px}
+.personalGoalsEntry{display:grid;gap:6px;align-content:center;min-width:0}
+@media(max-width:650px){.personalGoalChoices,.personalGoalStepGrid{grid-template-columns:minmax(0,1fr)}.personalGoalSelectionActions button{flex:1 1 120px}}

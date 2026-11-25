@@ -145,6 +145,61 @@ test('an unreviewed style keeps general dishes separate from its pending book',a
  await expect(page.locator('.recipeIdea')).toHaveCount(64);
 });
 
+test('personal objectives allow selecting all, persist independently and stay consistent with the primary goal',async({page})=>{
+ await page.goto('/');await openFeature(page,'Para mí','Mis objetivos');
+ const choices=page.locator('.personalGoalChoices input[type=checkbox]');
+ await expect(choices).toHaveCount(9);
+ await page.getByRole('button',{name:'Marcar todos',exact:true}).click();
+ await expect(page.getByRole('status').filter({hasText:'9 objetivos elegidos'})).toBeVisible();
+ await expect.poll(async()=>(await saved(page)).profile.personalGoals.length).toBe(9);
+ expect((await saved(page)).goals).toHaveLength(4);
+ await page.getByLabel('Mi prioridad ahora',{exact:true}).selectOption('Ganar fuerza');await closeEntryHelp(page);
+ await expect.poll(async()=>(await saved(page)).profile.goal).toBe('Ganar fuerza');
+ await choices.first().uncheck();await expect.poll(async()=>(await saved(page)).profile.personalGoals.length).toBe(8);
+ await page.reload();await openFeature(page,'Para mí','Mis objetivos');
+ await expect(page.getByRole('status').filter({hasText:'8 objetivos elegidos'})).toBeVisible();
+ await expect(choices.first()).not.toBeChecked();await expect(choices.last()).toBeChecked();
+ await page.getByRole('button',{name:'Desmarcar todos',exact:true}).click();
+ await expect.poll(async()=>(await saved(page)).profile.personalGoals).toEqual([]);
+ await page.reload();await openFeature(page,'Para mí','Mis objetivos');
+ await expect(page.getByRole('status').filter({hasText:'0 objetivos elegidos'})).toBeVisible();
+ await expectNoOverflow(page);
+});
+
+test('goal steps persist as explicit daily marks and their links open the related tools',async({page})=>{
+ await page.goto('/');await openFeature(page,'Para mí','Mis objetivos');
+ await page.getByRole('button',{name:'Desmarcar todos',exact:true}).click();
+ const choices=page.locator('.personalGoalChoices');
+ await choices.getByRole('checkbox',{name:/Comer un poco mejor/}).check();
+ await choices.getByRole('checkbox',{name:/Moverme un poco más/}).check();
+ const mark=page.getByRole('checkbox',{name:'Hecho hoy: Comer un poco mejor',exact:true});
+ await mark.check();await expect(page.getByText('1 de 2 pasos marcados hoy',{exact:true})).toBeVisible();
+ await expect.poll(async()=>Object.values((await saved(page)).profile.goalCheckins||{}).flat()).toEqual(['food']);
+ expect((await saved(page)).history).toHaveLength(0);
+ await page.getByRole('button',{name:'Elegir una receta →',exact:true}).click();
+ await expect(page.locator('.dietGallery')).toBeVisible();expect((await saved(page)).history).toHaveLength(0);
+ await page.reload();await openFeature(page,'Para mí','Mis objetivos');await expect(mark).toBeChecked();
+ await page.getByRole('button',{name:'Ver mis actividades →',exact:true}).click();
+ await expect(page.getByRole('button',{name:'Intermedio',exact:true})).toBeVisible();
+ await nav(page,'Hoy').click();
+ await expect(page.getByRole('button',{name:/Objetivos → 2 objetivos elegidos/})).toBeVisible();
+ await expectNoOverflow(page);
+});
+
+test('the profile primary-goal selector retains the other personal objectives',async({page})=>{
+ await page.goto('/');await openFeature(page,'Para mí','Mis objetivos');
+ await page.getByRole('button',{name:'Desmarcar todos',exact:true}).click();
+ const choices=page.locator('.personalGoalChoices');
+ await choices.getByRole('checkbox',{name:/Comer un poco mejor/}).check();
+ await choices.getByRole('checkbox',{name:/Moverme un poco más/}).check();
+ await nav(page,'Para mí').click();
+ await page.getByLabel('Mi objetivo principal',{exact:true}).selectOption('Dormir y descansar mejor');await closeEntryHelp(page);
+ await expect.poll(async()=>(await saved(page)).profile.personalGoals).toEqual(['food','movement','rest']);
+ await page.getByRole('button',{name:'Elegir varios objetivos →',exact:true}).click();
+ await expect(page.getByRole('status').filter({hasText:'3 objetivos elegidos'})).toBeVisible();
+ await expect(page.getByLabel('Mi prioridad ahora',{exact:true})).toHaveValue('Dormir y descansar mejor');
+});
+
 test('recipe portions reach the plan and the shopping quantities without changing other meals',async({page})=>{
  await page.goto('/');await openRecipes(page);
  const recipe=page.locator('#recipe-legumbre');await recipe.getByLabel(/Raciones de/).fill('2');await closeEntryHelp(page);
