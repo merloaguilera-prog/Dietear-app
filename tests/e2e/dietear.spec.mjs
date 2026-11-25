@@ -3,6 +3,26 @@ const nav=(page,name)=>page.locator('nav').getByRole('button',{name,exact:true})
 async function openFeature(page,tab,feature){await nav(page,tab).click();await page.locator('.featureGrid').getByRole('button',{name:new RegExp(feature.replace(/[?]/g,'\\?'))}).click();}
 async function closeEntryHelp(page){const close=page.getByRole('button',{name:'Cerrar ayuda de datos'});if(await close.isVisible())await close.click();}
 const saved=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('dietear-state-v2'))?.data);
+
+test('PRO weekly report exports actual records without private profile details or invented missing nutrients',async({page})=>{
+ await page.addInitScript(()=>{
+  const meal=(id,kcal)=>({id,date:'2026-11-25T12:00:00',type:'comida',label:'Comida privada',food:{version:1,confirmed:true,name:'Comida privada',mealType:'lunch',servings:2,nutrients:{energyKcal:kcal,proteinG:5}}});
+  localStorage.setItem('dietear-state-v2',JSON.stringify({version:2,data:{profile:{name:'Nombre privado'},history:[meal('a',100),meal('b',null)]}}));
+ });
+ await page.goto('/');await openFeature(page,'Para mí','Premium');
+ const report=page.getByRole('region',{name:'Informe semanal DIETEAR PRO',exact:true});
+ await report.getByLabel('Último día del informe').fill('2026-11-25');
+ await expect(report).toContainText('2 comidas confirmadas en 1 de 7 días');
+ await expect(report).toContainText('subtotal conocido: 200 kcal');
+ await expect(report.getByRole('row')).toHaveCount(8);
+ const downloaded=page.waitForEvent('download');await report.getByRole('button',{name:'Descargar informe JSON',exact:true}).click();
+ const download=await downloaded,stream=await download.createReadStream(),chunks=[];
+ for await(const chunk of stream)chunks.push(chunk);
+ const text=Buffer.concat(chunks).toString('utf8'),data=JSON.parse(text);
+ expect(data.entries).toBe(2);expect(data.nutrients.energyKcal).toBeNull();expect(data.partialTotals.energyKcal).toBe(200);
+ expect(text).not.toContain('Nombre privado');expect(text).not.toContain('Comida privada');
+ await expectNoOverflow(page);
+});
 async function mockSpeech(page){await page.addInitScript(()=>{
  window.__spoken=[];window.__recognitions=[];
  Object.defineProperty(window,'speechSynthesis',{configurable:true,value:{speak(utterance){window.__spoken.push({text:utterance.text,rate:utterance.rate});queueMicrotask(()=>utterance.onstart?.());},cancel(){},getVoices(){return [{lang:'es-ES',name:'Prueba'}];}}});

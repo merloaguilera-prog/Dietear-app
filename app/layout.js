@@ -6,6 +6,7 @@ import "./exercises.css";
 import "./diet-artwork.css";
 import "./easy-mode.css";
 import "./personal-goals.css";
+import "./pro-report.css";
 import DataEntryAssistant from "../components/DataEntryAssistant";
 import PwaRuntime from "../components/PwaRuntime";
 

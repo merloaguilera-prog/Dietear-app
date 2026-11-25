@@ -1,0 +1,9 @@
+.proWeeklyReport{max-width:100%;min-width:0;padding:20px;border:2px solid #66b887;border-radius:20px;background:#f4fff7;color:#17492e}
+.proWeeklyReport label{display:grid;gap:6px;max-width:22rem;font-weight:700}
+.proWeeklyReport input{box-sizing:border-box;width:100%;min-width:0;padding:12px;font:inherit;border:2px solid #439462;border-radius:10px;background:#fff;color:#17492e}
+.proWeeklyReport .nutritionCards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:12px;margin:16px 0}
+.proWeeklyReport article{padding:12px;border:1px solid #76b48d;border-radius:12px;background:#fff;min-width:0}
+.proWeeklyReport h4{margin:0 0 8px}.proWeeklyReport p{line-height:1.55;overflow-wrap:anywhere}
+.weeklyReportTable{max-width:100%;overflow:auto;margin:16px 0;border:1px solid #76b48d;border-radius:10px;background:#fff}
+.weeklyReportTable table{width:100%;border-collapse:collapse;font-size:1rem}.weeklyReportTable th,.weeklyReportTable td{padding:10px;text-align:left;border-bottom:1px solid #c6e4d1;white-space:nowrap}.weeklyReportTable caption{padding:12px;text-align:left;white-space:normal}
+.proWeeklyReport :focus-visible{outline:3px solid #145f3b;outline-offset:3px}.proWeeklyReport button{min-height:44px;font-size:1rem}
