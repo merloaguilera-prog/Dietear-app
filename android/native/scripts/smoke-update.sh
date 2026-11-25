@@ -81,8 +81,8 @@ app_uid="$("${adb_command[@]}" shell stat -c %u "/data/user/0/$app_package" | tr
 "${adb_command[@]}" shell input keyevent KEYCODE_BACK
 "${adb_command[@]}" install -r "$FIXED_APK"
 "${adb_command[@]}" shell dumpsys package "$app_package" > "$SMOKE_OUTPUT/fixed-package.txt"
-grep -q 'versionCode=3 ' "$SMOKE_OUTPUT/fixed-package.txt"
-grep -q 'versionName=1.0.2' "$SMOKE_OUTPUT/fixed-package.txt"
+grep -q 'versionCode=4 ' "$SMOKE_OUTPUT/fixed-package.txt"
+grep -q 'versionName=1.0.3' "$SMOKE_OUTPUT/fixed-package.txt"
 test "$("${adb_command[@]}" shell cat "/data/user/0/$app_package/files/update-smoke-marker" | tr -d '\r')" = retain-me
 
 # Open the updated app twice and require actual DIETEAR page content.
@@ -120,5 +120,5 @@ for launch in 1 2; do
   "${adb_command[@]}" exec-out screencap -p > "$SMOKE_OUTPUT/fixed-launch-$launch.png"
   test "$visible" = true
 done
-printf '%s\n' '{"androidApi":36,"baselineVersion":"1.0.1","baselineCrashReproduced":true,"updatedVersion":"1.0.2","privateDataRetained":true,"successfulColdLaunches":2,"dietearPageVisible":true,"visiblePagePixelsVerified":true,"apkBuildType":"minified release; emulator test certificate"}' > "$SMOKE_OUTPUT/result.json"
-echo 'Android 16: baseline crash reproduced; 1.0.2 installs as an update and opens twice.'
+printf '%s\n' '{"androidApi":36,"baselineVersion":"1.0.1","baselineCrashReproduced":true,"updatedVersion":"1.0.3","privateDataRetained":true,"successfulColdLaunches":2,"dietearPageVisible":true,"visiblePagePixelsVerified":true,"apkBuildType":"minified release; emulator test certificate"}' > "$SMOKE_OUTPUT/result.json"
+echo 'Android 16: baseline crash reproduced; 1.0.3 installs as an update and opens twice.'

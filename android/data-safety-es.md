@@ -31,5 +31,5 @@ La versión actual guarda principalmente en el dispositivo datos introducidos po
 - Confirmar los proveedores reales y sus periodos de conservación.
 - Vercel Analytics, publicidad, autenticación y sincronización no están integrados en esta versión; volver a comprobarlo antes de cada envío.
 - Confirmar cifrado en tránsito para todas las conexiones.
-- Confirmar un correo público de soporte y privacidad.
+- Contacto público comprobado en Configuración de la tienda (25/11/2026): merloaguilera@gmail.com; añadido a la política de privacidad en esta preparación.
 - Revisar cada respuesta del formulario de Play Console contra el comportamiento de producción.

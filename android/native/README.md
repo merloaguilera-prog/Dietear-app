@@ -10,7 +10,7 @@ Proyecto TWA nativo preparado para `com.dietear.app`, API 36 y Java 17.
 - La compilación de producción consume la clave exclusivamente mediante secretos de GitHub Actions.
 - La dependencia oficial es Android Browser Helper 2.7.4.
 
-## Actualización 1.0.2 (código 3)
+## Actualización 1.0.3 (código 4)
 
 Android Browser Helper 2.7.4 llama a `ManageDataLauncherActivity.addSiteSettingsShortcut` al arrancar y activa/desactiva ese componente mediante PackageManager. La librería no declara esa actividad en su AAR; debe declararla la aplicación. Su ausencia en 1.0.1 provoca `IllegalArgumentException` aunque R8 conserve los nombres.
 
@@ -20,11 +20,13 @@ Con la `LauncherActivity` base, eliminar el componente mantiene el fallo: el có
 
 El flujo también se ejecuta en `codex/android-startup-shortcuts` para generar el AAB firmado de esta corrección sin fusionar cambios en producción. Los pull requests siguen sin acceder a secretos de firma. El trabajo del emulador no recibe secretos: usa dos APK de release minificados, vueltos a firmar con una clave temporal de pruebas. El AAB de Play mantiene la clave de subida original.
 
-La prueba de regresión construye la base 1.0.1 del commit `1dcf5a935d079291b4049f8baff88c85e8b14264`, reproduce el fallo, instala 1.0.2 con `adb install -r`, comprueba un marcador de datos privados y exige dos aperturas con contenido DIETEAR visible en Android 16. No equivale a verificar la instalación desde Google Play en el móvil de la usuaria.
+La prueba de regresión construye la base 1.0.1 del commit `1dcf5a935d079291b4049f8baff88c85e8b14264`, reproduce el fallo, instala 1.0.3 con `adb install -r`, comprueba un marcador de datos privados y exige dos aperturas con contenido DIETEAR visible en Android 16. No equivale a verificar la instalación desde Google Play en el móvil de la usuaria.
 
 La comprobación visual combina el texto de accesibilidad con píxeles reales de la zona central de la página en dos fotogramas consecutivos. Una superficie blanca no cuenta como apertura correcta. El emulador usa el backend `software` vigente y 3 GB de RAM; se conservan capturas y métricas como evidencia.
 
 Fuentes oficiales: [actividad y requisito de manifiesto](https://github.com/GoogleChrome/android-browser-helper/blob/main/androidbrowserhelper/src/main/java/com/google/androidbrowserhelper/trusted/ManageDataLauncherActivity.java), [manifiesto del ejemplo TWA](https://github.com/GoogleChrome/android-browser-helper/blob/main/demos/twa-basic/src/main/AndroidManifest.xml).
+
+La revisión de Play Console del 25/11/2026 confirma que 1.0.2/código 3 ya está subido desde octubre. Esta corrección usa 1.0.3/código 4 para evitar que Play rechace reutilizar un código. La firma y el paquete se conservan. El flujo #74 validó la corrección anterior en emulador; el código 4 exige su nueva ejecución.
 
 ## Generar el AAB
 
@@ -42,11 +44,7 @@ repositorio. El AAB sin firmar no se puede publicar en Google Play.
 5. Publicar esa huella en `https://dietear.app/.well-known/assetlinks.json`.
 6. Instalar una compilación de prueba y verificar que se abre sin barra del navegador.
 
-La huella incluida actualmente en `assetlinks.json` corresponde a la clave de
-subida y permite verificar instalaciones firmadas directamente con ella. Antes
-de distribuir desde Google Play hay que añadir también la huella del certificado
-de **firma de la aplicación** que proporciona Play App Signing; no debe
-confundirse con la clave de subida.
+`assetlinks.json` incluye las huellas de carga y de firma de aplicación registradas en el proyecto. Deben contrastarse con Integridad de la app en Play Console; no sustituirlas al regenerar el paquete ni confundir la clave de carga con Play App Signing.
 
 No se debe considerar terminado hasta compilar, firmar e instalar el paquete en un dispositivo Android real.
 
@@ -65,7 +63,7 @@ y nunca se añade al repositorio ni a los artefactos del flujo.
 ## Desarrollo #51 (22/11/2026)
 
 La aplicación Android es una TWA: el contenido web se sirve desde la URL de
-`strings.xml`. Esta rama conserva paquete, versión 1.0.2/código 3 y firma. El flujo
+`strings.xml`. Esta rama conserva paquete, versión 1.0.3/código 4 y firma. El flujo
 Android vuelve a comprobar la compilación minificada y el arranque/actualización
 en emulador; no sube nada a Google Play. Su prueba de contenido carga el dominio
 configurado y **no valida las nuevas pantallas de esta rama** hasta que se use
