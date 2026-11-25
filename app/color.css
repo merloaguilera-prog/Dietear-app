@@ -38,7 +38,7 @@
 .immersiveApp .metricCards .formArtwork { width:100%; height:135px; object-fit:cover; border-radius:13px; }
 .immersiveApp .metricCards b { font-weight:700; color:#172215; }
 .immersiveApp .metricForm label { padding:12px; border-radius:15px; background:#fffdf8; border:1px solid #dac7f5; }
-.immersiveApp > nav button > span .lineSymbol { width:29px;height:29px; }
+.dietearBottomNav button > span .lineSymbol { width:29px;height:29px; }
 @media(max-width:760px){
  .immersiveApp .metricCards { grid-template-columns:repeat(2,minmax(0,1fr)); }
  .immersiveApp .metricCards b { font-size:19px; }
@@ -155,39 +155,39 @@
 .immersiveApp.immersiveApp .shoppingRow > button:first-child { background: transparent !important; border: 0 !important; box-shadow: none; }
 
 /* Fixed footer: coloured icons, light buttons and an unmistakable active tab. */
-.immersiveApp > nav {
+.dietearBottomNav {
   background: #fffffff7;
   border-top: 3px solid transparent;
   border-image: linear-gradient(90deg, #27d438, #b951ed, #ffbd15, #33beea, #fc388b) 1;
   box-shadow: 0 -5px 22px #b0d66d24 !important;
 }
-.immersiveApp.immersiveApp > nav > button:nth-of-type(2) { --accent: #089d32; --tint: #edffdf; --glow: #9bdf4d; }
-.immersiveApp.immersiveApp > nav > button:nth-of-type(3) { --accent: #9632db; --tint: #f6ecff; --glow: #d5a6f6; }
-.immersiveApp.immersiveApp > nav > button:nth-of-type(4) { --accent: #d69400; --tint: #fff7de; --glow: #f6d34f; }
-.immersiveApp.immersiveApp > nav > button:nth-of-type(5) { --accent: #168fcf; --tint: #e9faff; --glow: #8bdbf5; }
-.immersiveApp.immersiveApp > nav > button:nth-of-type(6) { --accent: #ec197b; --tint: #fff0f7; --glow: #ffa3d0; }
-.immersiveApp.immersiveApp > nav button {
+.dietearBottomNav > button:nth-of-type(2) { --accent: #089d32; --tint: #edffdf; --glow: #9bdf4d; }
+.dietearBottomNav > button:nth-of-type(3) { --accent: #9632db; --tint: #f6ecff; --glow: #d5a6f6; }
+.dietearBottomNav > button:nth-of-type(4) { --accent: #d69400; --tint: #fff7de; --glow: #f6d34f; }
+.dietearBottomNav > button:nth-of-type(5) { --accent: #168fcf; --tint: #e9faff; --glow: #8bdbf5; }
+.dietearBottomNav > button:nth-of-type(6) { --accent: #ec197b; --tint: #fff0f7; --glow: #ffa3d0; }
+.dietearBottomNav button {
   width: 100% !important; max-width: 160px; min-width: 0;
   background: linear-gradient(150deg, #fff, var(--tint)) !important;
   border: 1px solid var(--glow) !important;
   box-shadow: none !important;
 }
-.immersiveApp.immersiveApp > nav button.active {
+.dietearBottomNav button.active {
   background: linear-gradient(150deg, #fff, var(--tint) 45%, var(--glow)) !important;
   border: 2px solid var(--accent) !important;
   box-shadow: 0 2px 8px #2f463112 !important;
   transform: none;
 }
-.immersiveApp.immersiveApp > nav button::before { display: none; }
-.immersiveApp.immersiveApp > nav button > span,
-.immersiveApp.immersiveApp > nav button > span .lineSymbol {
+.dietearBottomNav button::before { display: none; }
+.dietearBottomNav button > span,
+.dietearBottomNav button > span .lineSymbol {
   color: var(--accent) !important;
   -webkit-text-fill-color: var(--accent) !important;
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
 }
-.immersiveApp > nav button b { color: #10170f !important; -webkit-text-fill-color: #10170f !important; }
+.dietearBottomNav button b { color: #10170f !important; -webkit-text-fill-color: #10170f !important; }
 @media (prefers-reduced-motion: reduce) {
   .immersiveApp.immersiveApp button { transition: none; }
 }
@@ -202,7 +202,7 @@
  .immersiveApp .natureActions .naturePhoto { border-radius: 17px; }
 }
 
-.immersiveApp.immersiveApp > nav button > span .lineSymbol * { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; stroke: var(--accent) !important; }
+.dietearBottomNav button > span .lineSymbol * { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; stroke: var(--accent) !important; }
 .immersiveApp > header .avatar .lineSymbol { width: 22px; height: 22px; display: block; margin: auto; color: #e9187f; }
 
 /* Give the artwork almost half of every feature card, across all four sections. */
@@ -287,8 +287,8 @@
 .immersiveApp.immersiveApp :is(.featureCard,.homeBubble,.dietVisualGrid button,.branchActions button,.healthAreaGrid button,.designedActivityChoices button) { border-width:3px!important; background:linear-gradient(135deg,#fffef7 0%,var(--tint) 48%,var(--glow) 150%)!important; }
 .immersiveApp.immersiveApp :is(.featureCard,.homeBubble,.dietVisualGrid button):hover { border-color:var(--accent)!important; }
 .immersiveApp.immersiveApp :is(.goal,.planDay,.recipeIdea,.dietPick,.fridgeIdeaGrid article,.dashboardCards article,.metricCards article,.bridgeStats article,.shoppingRow,.designedMeal,.photoCompare article,.createDietForm label,.sourceRule,.evolutionPhotoStudio,.metricStudio,.profileStudio,.connectedModule,.realModule,.people,.appsGrid article,.premiumCard) { border-width:3px!important; border-style:solid!important; border-color:var(--glow,#9ed45a)!important; }
-.immersiveApp.immersiveApp > nav button { border-width:2px!important; }
-.immersiveApp.immersiveApp > nav button.active { border-width:3px!important; border-color:var(--accent)!important; }
+.dietearBottomNav button { border-width:2px!important; }
+.dietearBottomNav button.active { border-width:3px!important; border-color:var(--accent)!important; }
 .immersiveApp.immersiveApp :is(button,input,select,textarea):focus-visible { outline:3px solid var(--accent,#359d37);outline-offset:3px; }
 .immersiveApp .moduleBanner .squareModulePhoto { object-fit:contain; object-position:center; background:linear-gradient(145deg,#f1ffe0,#fff0f7); }
 @media(min-width:1000px){
@@ -433,9 +433,9 @@
 @media(max-width:600px){.organGroup{padding:12px}.organGroup .healthAreaGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.organDetailForm{grid-template-columns:1fr}.healthAreaDetail{padding:16px!important}.organCard>button b{font-size:14px}.organCard .organCheck{padding:10px 8px;font-size:12px}.organIntro{padding:16px}.organDetailActions button{width:100%}}
 /* Cookbook, readable nutrition sheets and connected navigation. */
 .organSymbol svg{width:100%;height:100%;max-width:110px;max-height:110px}
-.immersiveApp>nav{display:grid!important;grid-template-columns:64px repeat(5,minmax(0,145px)) 64px!important;gap:7px!important;justify-content:center}
-.immersiveApp>nav .historyNav{display:flex!important;flex-direction:column;align-items:center;justify-content:center;background:#e0f4ff!important;border:3px solid #54a6cd!important;color:#152019!important;border-radius:18px!important;padding:4px!important;min-width:0!important}
-.immersiveApp>nav .historyNav:last-child{background:#fff1c5!important;border-color:#e8b735!important}.historyNav svg{width:25px;height:25px}.historyNav b{font-size:10px!important}.historyNav:disabled{opacity:.45}
+.dietearBottomNav{display:grid!important;grid-template-columns:64px repeat(5,minmax(0,145px)) 64px!important;gap:7px!important;justify-content:center}
+.dietearBottomNav .historyNav{display:flex!important;flex-direction:column;align-items:center;justify-content:center;background:#e0f4ff!important;border:3px solid #54a6cd!important;color:#152019!important;border-radius:18px!important;padding:4px!important;min-width:0!important}
+.dietearBottomNav .historyNav:last-child{background:#fff1c5!important;border-color:#e8b735!important}.historyNav svg{width:25px;height:25px}.historyNav b{font-size:10px!important}.historyNav:disabled{opacity:.45}
 .recipeBookHead,.foodAnalysisResult>header,.savedCareRecords header{position:static!important;top:auto!important;height:auto!important;min-height:0!important;width:auto!important;z-index:auto!important;box-sizing:border-box;display:block!important}
 .realModule:has(.quickRecipesStudio){display:block!important}.realModule:has(.quickRecipesStudio)>.moduleBanner{display:none!important}
 .recipeBook{color:#152019;width:100%;min-width:0}.recipeBookHead{padding:26px!important;border:4px solid #55b797;border-radius:26px;background:linear-gradient(125deg,#e0ffcc,#fff0ad,#ffe0e7)!important;margin:0 0 20px!important}.recipeBookHead h3{font-size:30px!important;color:#12251b}.recipeBookHead p{max-width:650px;line-height:1.6}.recipeCategories{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0}.recipeCategories button{border:3px solid #55b58a!important;border-radius:18px;background:#e5ffcb;color:#17231a;font-weight:700;padding:12px 16px}.recipeCategories button:nth-child(2){background:#fff2b2;border-color:#dfb335!important}.recipeCategories button:nth-child(3){background:#ffdce9;border-color:#d886ac!important}.recipeCategories button:nth-child(4){background:#dfedff;border-color:#77a4d7!important}.recipeCategories button:nth-child(5){background:#ede0ff;border-color:#ab85ce!important}.recipeCategories button[aria-pressed=true]{box-shadow:0 0 0 3px #263f30}
@@ -443,4 +443,7 @@
 .mealChooser{max-height:88dvh!important;overflow:auto!important;padding:24px!important;border:4px solid #80b28a!important;background:#f7ffe9!important}.mealChooser form{display:grid;gap:8px}.mealChooser input{color:#152019!important}.mealChooser form button,.mealChooserFilters button{border:3px solid #b3a16b!important;border-radius:14px;padding:11px;background:#fff0ba;color:#152019;font-weight:700}.mealChooser form p{font-size:14px;color:#253929}.mealChooserFilters{display:flex;gap:10px;margin:14px 0}.mealChooserFilters button:last-child{background:#e4ecff;border-color:#94add8!important}.mealChooserFilters button[aria-pressed=true]{box-shadow:0 0 0 2px #22372b}.mealChooserList{max-height:48dvh!important;overflow:auto!important}.mealChooserList button{border:3px solid #91b386!important;background:#fffdeb!important;color:#152019!important;border-radius:16px!important;margin-bottom:9px}.mealChooserList button:nth-child(3n+2){background:#ffe5ed!important;border-color:#d59ab5!important}.mealChooserList button:nth-child(3n){background:#e5f1ff!important;border-color:#89aacf!important}.mealChooserList svg{width:30px;height:30px}.mealChooserList small{font-size:12px!important;white-space:normal!important}
 .foodAnalysis{color:#152019;line-height:1.65;font-weight:500;min-width:0}.foodAnalysis h3,.foodAnalysis h4{color:#101711!important}.foodAnalysis form{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;padding:18px;background:#fff4d3;border:3px solid #cba64c;border-radius:22px}.foodAnalysis form label{display:grid;gap:6px;flex:1;min-width:140px}.foodAnalysis input{padding:12px;background:#fff;border:2px solid #8bad83;border-radius:12px;color:#152019;font:inherit;width:100%;box-sizing:border-box}.foodAnalysis button{padding:12px;background:#e2f9d8;border:3px solid #71a88b;border-radius:15px;color:#152019;font-weight:700}.foodAnalysisResult>header{background:#e4fbdc!important;padding:22px!important;border:3px solid #8fbb8b!important;border-radius:22px;margin:20px 0!important}.foodAnalysisResult>header h3{font-size:27px!important}.foodAnalysisResult>section{border:3px solid #afbe85;border-radius:22px;padding:20px;background:#fffcf0;margin:16px 0}.foodAnalysisResult>section:nth-child(3n){background:#f0f6ff;border-color:#9ab9d5}.foodAnalysisResult>section:nth-child(3n+1){background:#fff0f5;border-color:#d4a0b9}.nutritionTable{overflow-x:auto}.nutritionTable table{border-collapse:collapse;width:100%;min-width:450px;font-size:14px}.nutritionTable td,.nutritionTable th{padding:11px 9px;text-align:left;border-bottom:1px solid #9cba96;color:#152019}.nutritionTable thead{background:#e2efda}.nutritionTable th{font-weight:700}.foodAnalysis a{color:#164e36;text-decoration:underline;overflow-wrap:anywhere}.foodAnalysis details summary{cursor:pointer;font-weight:700;padding:12px 0}.foodDietGrid,.foodUseGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.foodDietGrid article,.foodUseGrid article{background:#f5ffe5;border:3px solid #94b984;border-radius:18px;padding:15px}.foodDietGrid article:nth-child(even),.foodUseGrid article:nth-child(even){background:#ffefda;border-color:#d4ad72}.foodAnalysis li{margin-bottom:9px}.foodAnalysis [role=alert]{background:#ffebe7;padding:12px;border:2px solid #c5786c;border-radius:12px}
 @media(max-width:1050px){.recipeBookGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:650px){.immersiveApp>nav{grid-template-columns:38px repeat(5,minmax(0,1fr)) 38px!important;gap:3px!important;padding:5px 4px!important;height:78px!important;box-sizing:border-box}.immersiveApp>nav button{min-width:0!important;padding:4px 1px!important}.immersiveApp>nav button b{font-size:9px!important}.immersiveApp>nav .historyNav{border-width:2px!important;border-radius:12px!important}.historyNav svg{width:20px;height:20px}.recipeBookGrid{grid-template-columns:1fr}.recipeBookHead{padding:19px!important}.recipeBookHead h3{font-size:25px!important}.recipeCategories{gap:7px}.recipeCategories button{padding:9px 10px;font-size:13px}.recipeSearch{display:grid;grid-template-columns:1fr;min-width:0}.recipeSearch label{min-width:0}.recipeCardBody{padding:17px}.mealChooser{padding:18px!important;max-width:95vw!important;box-sizing:border-box}.mealChooserList{max-height:42dvh!important}.foodAnalysis form{display:grid;grid-template-columns:1fr}.foodDietGrid,.foodUseGrid{grid-template-columns:1fr}.foodAnalysisResult>section{padding:15px}.foodAnalysisResult>header{padding:17px!important}}
+@media(max-width:650px){.dietearBottomNav{grid-template-columns:38px repeat(5,minmax(0,1fr)) 38px!important;gap:3px!important;padding:5px 4px!important;height:78px!important;box-sizing:border-box}.dietearBottomNav button{min-width:0!important;padding:4px 1px!important}.dietearBottomNav button b{font-size:9px!important}.dietearBottomNav .historyNav{border-width:2px!important;border-radius:12px!important}.historyNav svg{width:20px;height:20px}.recipeBookGrid{grid-template-columns:1fr}.recipeBookHead{padding:19px!important}.recipeBookHead h3{font-size:25px!important}.recipeCategories{gap:7px}.recipeCategories button{padding:9px 10px;font-size:13px}.recipeSearch{display:grid;grid-template-columns:1fr;min-width:0}.recipeSearch label{min-width:0}.recipeCardBody{padding:17px}.mealChooser{padding:18px!important;max-width:95vw!important;box-sizing:border-box}.mealChooserList{max-height:42dvh!important}.foodAnalysis form{display:grid;grid-template-columns:1fr}.foodDietGrid,.foodUseGrid{grid-template-columns:1fr}.foodAnalysisResult>section{padding:15px}.foodAnalysisResult>header{padding:17px!important}}
+
+/* The seven-button mobile bar must stay above tappable feature cards. */
+.dietearBottomNav{position:fixed!important;left:0;right:0;bottom:0;z-index:10000!important;isolation:isolate}

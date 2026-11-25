@@ -1,0 +1,54 @@
+.readingControls,.mealDiary,.dailyNutrition{border:2px solid #73b887;border-radius:18px;background:#f8fff4;color:#183e2b;padding:16px;margin:16px 0;min-width:0;overflow-wrap:anywhere}.readingControls button,.mealDiary button,.recipeDisliked button,.exerciseGuide button{min-height:44px;border:2px solid #39764c;border-radius:12px;padding:10px 14px;background:#edf8e5;color:#173e2a;font:inherit;cursor:pointer}.readingControls button:disabled,.mealDiary button:disabled{opacity:.55;cursor:default}.readingModes,.readingButtons,.exerciseLevels{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}.readingModes [aria-pressed=true],.exerciseLevels [aria-pressed=true]{background:#1c623e;color:#fff}.readingControls label{display:grid;gap:5px}.readingControls select{max-width:100%;min-height:44px}.readingActive{background:#e1f8d0;border-left:4px solid #217144;padding:10px}.readingControls p{line-height:1.65}.readingControls small{display:block;line-height:1.5}.exerciseGuide{border-top:1px solid #8fb998;padding:14px 0}.exerciseGuide h4{font-size:19px;margin:6px 0}.exerciseLevels button{min-height:44px;padding:10px 16px;border:2px solid #39764c;border-radius:14px;font:inherit;color:#173e2a}.entryDraft textarea{display:block;width:100%;min-height:65px;font:inherit;margin:6px 0}.easyMode :focus-visible,.readingControls :focus-visible,.mealDiary :focus-visible,.recipeBook :focus-visible{outline:3px solid #165e39;outline-offset:3px}.recipeDisliked{padding:12px;border:1px solid #82b68d;border-radius:12px;margin:12px 0}.recipeActionsExtra{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.recipeStyleNote{padding:12px;background:#fff9e7;border:1px solid #bca660;border-radius:12px;line-height:1.6}.mealDiary label{display:grid;gap:6px;margin:10px 0}.mealDiary input,.mealDiary select,.mealDiary textarea{min-width:0;width:100%;min-height:44px;padding:10px;border:1px solid #6e9677;border-radius:9px;font:inherit}.mealDiary .photoConsent{display:flex;align-items:flex-start;gap:10px}.photoConsent input{width:24px;min-height:24px}.mealPhotoPreview{display:block;max-width:100%;max-height:280px;object-fit:contain;border-radius:14px;margin:12px 0}.mealNutrients,.nutritionCards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr));gap:10px}.nutritionCards div{padding:10px;background:white;border-radius:12px;border:1px solid #b5d3a7}.nutritionCards b{display:block;font-size:22px}.diaryEntries{padding:0;list-style:none}.diaryEntries li{padding:12px 0;border-top:1px solid #bdd4b3}.mealDiary small{display:block;line-height:1.6}.diaryError{color:#9b2417}.diaryActions{display:flex;gap:10px;flex-wrap:wrap}.mealDiary h2{font-size:clamp(24px,4vw,34px)}
+
+/* Keep the bottom controls above every feature card and sticky panel. */
+.immersiveApp{z-index:0!important}
+.dietearBottomNav{position:fixed!important;inset:auto 0 0!important;z-index:2147483647!important;transform:none!important;pointer-events:auto!important}
+.dietearBottomNav>button{position:relative;z-index:1;pointer-events:auto!important;touch-action:manipulation}
+.dietearBottomNav>button{width:100%!important;min-width:0!important;justify-self:stretch}
+.dietearBottomNav>button>b{max-width:100%;overflow-wrap:anywhere}
+@supports(padding-bottom:env(safe-area-inset-bottom)){
+ .dietearBottomNav{padding-bottom:max(4px,env(safe-area-inset-bottom))!important;height:calc(78px + env(safe-area-inset-bottom))!important}
+}
+
+/* Let long health metric names wrap inside the profile instead of widening
+   the mobile layout viewport and displacing the fixed navigation hit targets. */
+.healthJournal,.healthJournalFields,.healthJournalFields>label{min-width:0;max-width:100%}
+.healthJournal{overflow-wrap:anywhere}
+.healthJournalFields>label{display:grid;gap:6px;flex:1 1 180px}
+.healthJournal :is(input,select){max-width:100%;box-sizing:border-box}
+.healthJournalFields :is(input,select){width:100%}
+.profileForm{grid-template-columns:repeat(2,minmax(0,1fr))}
+.profileForm>label{min-width:0}
+.profileForm :is(input,select){width:100%;max-width:100%;box-sizing:border-box}
+@media(max-width:650px){.profileForm{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:360px){.dietearBottomNav{grid-template-columns:32px repeat(5,minmax(0,1fr)) 32px!important}}
+
+/* Home photographs fill over half of each access card on every screen size. */
+.immersiveApp .designedHome .homeBubble{
+ display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+ height:auto;min-height:0;padding:0;gap:0;overflow:hidden;text-align:center;
+}
+.immersiveApp .designedHome .homeBubble .bubbleSymbol{
+ display:block;width:100%;height:auto;min-height:0;aspect-ratio:4/3;flex:none;
+ border:0;border-radius:0;overflow:hidden;
+}
+.immersiveApp .designedHome .homeBubble .bubbleSymbol img{
+ display:block;width:100%;height:100%;max-width:none;object-fit:cover;
+}
+.immersiveApp .designedHome .homeBubble>b{
+ display:grid;place-items:center;margin:0;padding:7px;min-width:0;min-height:42px;
+ font-size:15px;line-height:1.25;overflow-wrap:normal;
+}
+.immersiveApp .designedHome .homeBubble>small{display:none}
+@media(max-width:999px){.immersiveApp .designedHome .homeButtons{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:650px){
+ .immersiveApp .designedHome .homeButtons{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+}
+.immersiveApp .recipeBook{scroll-margin-top:90px}
+.immersiveApp .recipeBook:focus{outline:3px solid #3a864e;outline-offset:4px}
+.immersiveApp .recipeBookHead .changeDietStyle{display:block;margin-bottom:14px;min-height:44px;padding:10px 14px}
+.recipeBookScope{margin:14px 0;padding:14px;border:1px solid #8fba81;border-radius:16px;background:#f3fbe9}
+.recipeBookScope p{line-height:1.5;margin:0 0 10px}
+.recipeBookScope button{min-height:44px;padding:10px 14px;border-radius:12px;max-width:100%;white-space:normal}
+.immersiveApp :is(.createDietChoices,.dietGallery .dietVisualGrid){scroll-margin-top:90px}
+@media(max-width:650px){.immersiveApp .recipeBook,.immersiveApp :is(.createDietChoices,.dietGallery .dietVisualGrid){scroll-margin-top:74px}}

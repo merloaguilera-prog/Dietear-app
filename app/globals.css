@@ -1137,3 +1137,9 @@ nav{box-shadow:0 -8px 24px rgba(38,73,45,.09)!important;backdrop-filter:blur(12p
 .createDietChoices>button:focus-visible{outline:3px solid #176f3c;outline-offset:3px}
 @media(max-width:600px){.createDietChoices>button .dietChoiceArtwork{aspect-ratio:3/2}}
 @media(prefers-reduced-motion:reduce){.createDietChoices>button .dietChoiceArtwork img{transition:none}.createDietChoices>button:hover .dietChoiceArtwork img{transform:none}}
+
+/* Keep the fixed primary navigation above feature artwork on narrow screens. */
+nav{z-index:1000}
+
+/* Decorative card artwork must not capture taps intended for the fixed mobile navigation. */
+.featureArtwork,.featureArtwork img,.featurePhoto{pointer-events:none}

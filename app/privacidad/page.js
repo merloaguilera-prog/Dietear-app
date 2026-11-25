@@ -11,7 +11,7 @@ export default function PrivacyPage() {
       <a href="/" style={{ color: "#147a4f", fontWeight: 800 }}>← Volver a DIETEAR</a>
       <p style={{ marginTop: 30, color: "#477064", fontWeight: 800 }}>DIETEAR · TODO SUMA</p>
       <h1 style={{ fontSize: "clamp(32px,6vw,52px)", lineHeight: 1.05 }}>Política de privacidad</h1>
-      <p><strong>Última actualización:</strong> 14 de octubre de 2026.</p>
+      <p><strong>Última actualización:</strong> 22 de noviembre de 2026.</p>
       <p>Esta política explica de forma clara qué datos utiliza DIETEAR, para qué los utiliza y qué control conserva la persona usuaria.</p>
 
       <section style={section}>
@@ -21,7 +21,7 @@ export default function PrivacyPage() {
 
       <section style={section}>
         <h2>2. Datos que puedes introducir</h2>
-        <p>De forma voluntaria puedes registrar datos de perfil, objetivos, alimentación, actividad, peso y medidas, hábitos, alergias, preferencias, medicación o información de salud. También puedes escribir consultas y usar la cámara para leer el código de barras de un producto.</p>
+        <p>De forma voluntaria puedes registrar datos de perfil, objetivos, alimentación, actividad, peso y medidas, hábitos, alergias, preferencias, medicación o información de salud. También puedes escribir consultas, dictar datos, elegir una foto de un plato y usar la cámara para leer el código de barras de un producto.</p>
       </section>
 
       <section style={section}>
@@ -34,6 +34,8 @@ export default function PrivacyPage() {
         <ul>
           <li><strong>DIETEAR IA:</strong> la consulta y el contexto que decidas incluir se envían al proveedor de inteligencia artificial configurado para generar la respuesta.</li>
           <li><strong>Análisis de alimentos:</strong> el texto que escribas y el contexto que autorices pueden enviarse al proveedor de IA para realizar el análisis solicitado.</li>
+          <li><strong>Foto de comida:</strong> solo si autorizas el envío y pulsas «Analizar foto», se envía la imagen al proveedor de IA configurado (OpenAI o la pasarela de IA de Vercel). No se adjunta tu perfil de salud. La propuesta es editable y solo se guarda como texto y nutrientes tras tu confirmación; la imagen no se guarda en el diario.</li>
+          <li><strong>Dictado y lectura:</strong> el reconocimiento de voz lo presta tu navegador y puede enviar audio a su proveedor. DIETEAR no guarda grabaciones. La lectura usa el servicio de voz del dispositivo o navegador y puede depender de sus proveedores y ajustes.</li>
           <li><strong>Consulta de productos:</strong> un código de barras puede consultarse en servicios públicos de información alimentaria para localizar la ficha del producto.</li>
           <li><strong>Alojamiento:</strong> la aplicación se sirve mediante infraestructura web que puede tratar datos técnicos necesarios, como registros de seguridad, dirección IP aproximada y tipo de navegador.</li>
         </ul>
@@ -42,7 +44,7 @@ export default function PrivacyPage() {
 
       <section style={section}>
         <h2>5. Cámara y permisos</h2>
-        <p>La cámara solo se solicita cuando activas el escáner de códigos. La lectura se realiza en el dispositivo y DIETEAR envía el código detectado, no la imagen de la cámara, al servicio de información alimentaria. Puedes denegar o retirar el permiso desde los ajustes del dispositivo o navegador y escribir el código manualmente.</p>
+        <p>El escáner solicita cámara cuando lo activas. Para las fotos de comidas, el selector del dispositivo permite elegir una imagen o tomarla cuando el sistema ofrece esa opción. La foto no se envía hasta que autorizas su análisis y pulsas el botón correspondiente. La lectura se realiza en el dispositivo y DIETEAR envía el código detectado, no la imagen de la cámara, al servicio de información alimentaria. Puedes denegar o retirar el permiso desde los ajustes del dispositivo o navegador y escribir el código manualmente.</p>
       </section>
 
       <section style={section}>

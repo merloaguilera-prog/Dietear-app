@@ -61,3 +61,19 @@ El flujo de GitHub Actions exige estos cuatro secretos fuera de pull requests:
 
 La clave se reconstruye únicamente en el directorio temporal del runner, con permisos restrictivos,
 y nunca se añade al repositorio ni a los artefactos del flujo.
+
+## Desarrollo #51 (22/11/2026)
+
+La aplicación Android es una TWA: el contenido web se sirve desde la URL de
+`strings.xml`. Esta rama conserva paquete, versión 1.0.2/código 3 y firma. El flujo
+Android vuelve a comprobar la compilación minificada y el arranque/actualización
+en emulador; no sube nada a Google Play. Su prueba de contenido carga el dominio
+configurado y **no valida las nuevas pantallas de esta rama** hasta que se use
+una URL de prueba o se publique una versión web comprobada. Las pruebas de
+Playwright con Pixel 5 son emulación de interfaz en Chromium, no pruebas de
+Android real ni de permisos de micrófono/cámara o voz TTS del teléfono.
+
+Antes de distribuir: probar esta vista previa en Chrome Android, confirmar
+lectura ×1/×2/×3 y calidad de voz, dictado y reapertura de datos; comprobar el AAB
+instalado desde la prueba cerrada con las cuentas autorizadas. No sustituir esa
+evidencia por el resultado de la compilación.

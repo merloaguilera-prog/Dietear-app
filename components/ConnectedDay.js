@@ -1,24 +1,25 @@
 "use client";
 import {useEffect,useState} from "react";
 import Image from "next/image";
+import {selectedPersonalGoalIds} from "../lib/personal-goals.mjs";
 
 const dayKey=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-")};
 const card={border:"2px solid #b8e2c5",borderRadius:18,padding:16,background:"#fff",minWidth:0};
-export default function ConnectedDay({history=[],fridge=[],shopping=[],goals=[],planner=[],onOpen}){
+export default function ConnectedDay({history=[],fridge=[],shopping=[],profile={},planner=[],onOpen,dietStyle=''}){
  const [points,setPoints]=useState(null),[habits,setHabits]=useState(null),[day,setDay]=useState("");
  useEffect(()=>{const read=()=>{try{const today=dayKey();setDay(today);const p=JSON.parse(localStorage.getItem("dietear-points-v1")||"{}");const h=JSON.parse(localStorage.getItem("dietear-daily-habits")||"{}");setPoints({daily:Number.isFinite(p.daily)?p.daily:30,used:Array.isArray(p.entries)?p.entries.filter(e=>e.date===today).reduce((n,e)=>n+(Number(e.points)||0),0):0});setHabits(h.day===today&&Array.isArray(h.items)?h.items:[])}catch{setPoints(null);setHabits(null)}};read();window.addEventListener("focus",read);window.addEventListener("dietear:daily-updated",read);window.addEventListener("storage",read);return()=>{window.removeEventListener("focus",read);window.removeEventListener("dietear:daily-updated",read);window.removeEventListener("storage",read)}},[]);
  const latest=Array.isArray(history)?history[history.length-1]:null;
- const goalCount=Array.isArray(goals)?goals.length:0;
+ const goalCount=selectedPersonalGoalIds(profile).length;
  const shoppingCount=Array.isArray(shopping)?shopping.length:0;
  const dayIndex=(new Date().getDay()+6)%7;
  const todayPlan=Array.isArray(planner)?planner[dayIndex]:null;
  const plannedMeals=todayPlan?["breakfast","midmorning1","midmorning2","lunch","snack1","snack2","dinner"].map(key=>todayPlan[key]).filter(x=>typeof x==="string"&&x.trim()):[];
  const fridgeCount=Array.isArray(fridge)?fridge.length:0;
  const cards=[
- {title:"Alimentación",emoji:"🥗",detail:points?points.used+" puntos registrados hoy · "+Math.max(0,points.daily-points.used)+" restantes":"Abre tu registro de comidas",tab:"alimentacion",section:"Todo Dietas"},
+ {title:"Alimentación",emoji:"🥗",detail:points&&['Dieta por puntos','Por puntos (equilibrada)'].includes(dietStyle)?points.used+" puntos registrados hoy · "+Math.max(0,points.daily-points.used)+" restantes":"Abre tu registro de comidas",tab:"alimentacion",section:"Todo Dietas"},
  {title:"Actividad",emoji:"👟",detail:habits?.includes("walk")?"Movimiento marcado hoy":"Registra tus pasos o tu ejercicio",tab:"progreso",section:"Pasos y actividad"},
  {title:"Salud y descanso",emoji:"💗",detail:habits?.includes("rest")?"Descanso marcado hoy":"Consulta tus medidas y tu descanso",tab:"progreso",section:"Peso y medidas"},
- {title:"Objetivos",emoji:"🎯",detail:goalCount?goalCount+" objetivo(s) guardados · revisa tu evolución":latest?"Consulta tus registros y tu evolución":"Consulta tus metas y registra avances",tab:"perfil",section:"Mis objetivos"}
+ {title:"Objetivos",emoji:"🎯",detail:goalCount?goalCount+(goalCount===1?" objetivo elegido":" objetivos elegidos")+" · revisa tus pasos":latest?"Consulta tus registros y tu evolución":"Consulta tus metas y registra avances",tab:"perfil",section:"Mis objetivos"}
  ];
  return <section aria-label="Mi día conectado" style={{border:"3px solid #77ce79",borderRadius:24,background:"linear-gradient(130deg,#f0ffdf,#fff4fc)",padding:"clamp(14px,3vw,24px)",margin:"20px 0",color:"#183d2d"}}>
  <div style={{display:"flex",alignItems:"center",gap:16,flexWrap:"wrap"}}>

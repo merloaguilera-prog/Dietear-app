@@ -9,6 +9,7 @@ on:
       - "public/**"
       - "tests/**"
       - "package*.json"
+      - "playwright.config.mjs"
       - ".github/workflows/web-check.yml"
   push:
     branches: [main]
@@ -19,6 +20,7 @@ on:
       - "public/**"
       - "tests/**"
       - "package*.json"
+      - "playwright.config.mjs"
       - ".github/workflows/web-check.yml"
 
 permissions:
@@ -27,7 +29,7 @@ permissions:
 jobs:
   web:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v5
@@ -37,3 +39,17 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - name: Install test browser
+        run: npx playwright install --with-deps chromium
+      - name: Exercise web and Android-sized screens
+        run: npm run test:e2e
+      - name: Upload browser test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dietear-web-e2e
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7

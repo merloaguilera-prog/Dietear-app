@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function DietearAI({ profile, fridge, planner, history=[], careRecords=[], onPlan, incomingQuestion }) {
+import ReadingControls from "./ReadingControls";
+
+export default function DietearAI({ onPreferencesChange, profile, fridge, planner, history=[], careRecords=[], onPlan, incomingQuestion }) {
   const [q, setQ] = useState("");
   const [answer, setAnswer] = useState("");
   const [sources, setSources] = useState([]);
@@ -53,6 +55,6 @@ export default function DietearAI({ profile, fridge, planner, history=[], careRe
     <div className="aiModes"><button className={mode === "buscar" ? "selected" : ""} onClick={() => setMode("buscar")}>⚡ Buscar</button><button className={mode === "investigar" ? "selected" : ""} onClick={() => setMode("investigar")}>🔎 Investigar</button></div>
     <div className="aiComposer"><textarea aria-label="Pregunta para DIETEAR" value={q} onChange={event => setQ(event.target.value)} placeholder="Ej.: Busca una cena sencilla, económica y sin lactosa para cuatro personas…" onKeyDown={event => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); ask(); } }} /><button disabled={loading || !q.trim()} onClick={() => ask()}>{loading ? "Buscando entre las ramas…" : "Preguntar a DIETEAR →"}</button></div>
     <div className="aiPrompts">{["¿Qué puedo comer hoy?", "Busca opciones económicas", "Compara esta información de nutrición"].map(item => <button key={item} onClick={() => setQ(item)}>{item}</button>)}</div>
-    {(loading || answer) && <div className="aiAnswer" role="status" aria-live="polite">{loading ? <div className="aiLoading"><i/><span>Consultando y contrastando información…</span></div> : <><small>RESPUESTA DIETEAR</small><div className="aiText">{answer}</div>{sources.length > 0 && <div className="aiSources"><b>Fuentes consultadas</b>{sources.map((source, index) => <a key={index} href={source.url} target="_blank" rel="noreferrer">{index + 1}. {source.title}</a>)}</div>}<div className="aiAct"><button onClick={() => onPlan?.()}>📅 Abrir Mi Plan</button></div></>}</div>}
+    {(loading || answer) && <div className="aiAnswer" role="status" aria-live="polite">{loading ? <div className="aiLoading"><i/><span>Consultando y contrastando información…</span></div> : <><small>RESPUESTA DIETEAR</small><div className="aiText">{answer}</div><ReadingControls title="Respuesta DIETEAR" summary={answer} preferredRate={profile.readingRate} onRateChange={readingRate=>onPreferencesChange?.({readingRate})}/>{sources.length > 0 && <div className="aiSources"><b>Fuentes consultadas</b>{sources.map((source, index) => <a key={index} href={source.url} target="_blank" rel="noreferrer">{index + 1}. {source.title}</a>)}</div>}<div className="aiAct"><button onClick={() => onPlan?.()}>📅 Abrir Mi Plan</button></div></>}</div>}
   </section>;
 }

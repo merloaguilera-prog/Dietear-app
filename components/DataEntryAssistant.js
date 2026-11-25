@@ -43,7 +43,7 @@ export default function DataEntryAssistant() {
       cancel.current=startDictation(window.SpeechRecognition||window.webkitSpeechRecognition,{
         start:()=>{clearTimeout(timer.current);setStarting(false);setListening(true);setMessage('Escuchando: di el dato de este campo.');timer.current=setTimeout(()=>{stop();setMessage('Dictado detenido. Puedes intentarlo de nuevo.');},20000);},
         preview:text=>{if(current.current===target){setDraft({text,value:null,previous,provisional:true});setMessage('Escuchando…');}},
-        result:text=>{stop();introduce(target,text,previous);},
+        result:text=>{stop();if(current.current===target){setDraft({text,previous,provisional:false});setMessage('Transcripción lista. Revísala y pulsa «Usar este dato».');}},
         error:code=>{stop();setMessage(dictationError(code));},
         end:()=>{clearTimeout(timer.current);setStarting(false);setListening(false);setMessage(old=>old.startsWith('Escuchando')||old.startsWith('Activando')?'El navegador no ha devuelto un dato definitivo. Si hay texto debajo, revísalo; también puedes usar el micrófono del teclado.':old);},
       });
@@ -52,11 +52,11 @@ export default function DataEntryAssistant() {
   }
   return <aside className="dataEntryAssistant" data-entry-assistant="true" aria-label="Ayuda para introducir datos" style={{bottom,maxHeight}}>
     <div className="entryHeading"><strong>{fieldLabel(field).slice(0,90)}</strong><button type="button" aria-label="Cerrar ayuda de datos" onClick={()=>{stop();setField(null);current.current=null;}}>×</button></div>
-    {supported&&<small>Al pulsar «Dictar», el servicio de voz del navegador procesa tu audio y puede enviarlo a su proveedor. DIETEAR no guarda grabaciones. El dato válido se introduce en este campo; puedes deshacerlo.</small>}
+    {supported&&<small>Al pulsar «Dictar», el servicio de voz del navegador procesa tu audio y puede enviarlo a su proveedor. DIETEAR no guarda grabaciones. Revisa la transcripción antes de usarla.</small>}
     <div className="entryButtons">{supported&&<button type="button" aria-pressed={listening||starting} onPointerDown={e=>e.preventDefault()} onClick={dictate}>{listening?'■ Detener':starting?'■ Cancelar activación':'🎙️ Dictar este dato'}</button>}<button type="button" onPointerDown={e=>e.preventDefault()} onClick={next}>Siguiente campo →</button></div>
     {!supported&&<small>Este navegador no admite dictado directo. Toca el campo y utiliza el micrófono del teclado de tu móvil.</small>}
     {message&&<p role="status">{message}</p>}
     {undo&&<button type="button" onClick={()=>{stop();if(field.value!==undo.value){setMessage('El dato se ha editado después. Se conserva tu última corrección.');setUndo(null);return;}applyEntryValue(field,undo.previous,{validate:false});setUndo(null);setMessage('Se ha restaurado el dato anterior.');}}>Deshacer dictado</button>}
-    {draft&&<div className="entryDraft"><p>{draft.provisional?'Estoy entendiendo:':'He entendido:'} <b>{draft.text}</b></p>{draft.provisional&&<button type="button" onClick={()=>{stop();introduce(field,draft.text,draft.previous);}}>Usar este texto</button>}<button type="button" onClick={()=>{stop();setDraft(null);setMessage('Texto descartado.');}}>Descartar</button></div>}
+    {draft&&<div className="entryDraft"><label>{draft.provisional?'Estoy entendiendo:':'Revisar transcripción'}<textarea aria-label="Transcripción del dictado" value={draft.text} onChange={event=>{stop();setDraft({...draft,text:event.target.value,provisional:false});}}/></label><button type="button" onClick={()=>{stop();introduce(field,draft.text,draft.previous);}}>Usar este dato</button><button type="button" onClick={()=>{stop();setDraft(null);setMessage('Texto descartado.');}}>Descartar</button></div>}
   </aside>;
 }
