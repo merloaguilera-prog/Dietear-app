@@ -6,6 +6,7 @@ Selecciones revisadas el 25/11/2026 a partir de las 64 recetas existentes. No se
 
 - Ocho libros con 16 recetas cada uno, antes de aplicar exclusiones personales o «No me gusta».
 - Un máximo de cinco recetas compartidas entre dos libros y dos libros por receta.
+- Las tres primeras propuestas de cada libro son distintas de las de los otros siete; se conserva el orden editorial al mostrarlo.
 - «Ver más recetas compatibles» abre el catálogo completo tras comprobar los ingredientes; «Mis favoritas» conserva acceso a recetas compatibles guardadas fuera de la selección.
 - La selección se aplica a «Crear mi dieta» y «Todo Dietas». La búsqueda de recetas rápidas y el generador de semanas conservan el catálogo compatible existente; el límite de coincidencias corresponde a los ocho libros iniciales.
 - Los estilos sin recetario propio revisado indican que está pendiente; sus ideas generales se abren aparte y no se presentan como una dieta específica. La adecuación clínica, trazas, certificaciones y nutrición por ingrediente siguen pendientes de validación.

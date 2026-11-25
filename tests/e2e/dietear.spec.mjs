@@ -123,6 +123,7 @@ test('diet books differ, offer the full catalogue separately and reset when swit
  await page.locator('.dietVisualGrid').getByRole('button',{name:/Mediterránea/}).click();
  await expect(page.locator('.recipeIdea')).toHaveCount(16);const mediterranean=await ids();
  expect(balanced.filter(id=>mediterranean.includes(id)).length).toBeLessThanOrEqual(5);
+ expect(balanced.slice(0,3).filter(id=>mediterranean.slice(0,3).includes(id))).toHaveLength(0);
  await page.getByRole('button',{name:'♡ Mis favoritas',exact:true}).click();
  await expect(page.locator('.recipeIdea')).toHaveCount(1);await expect(page.locator('#recipe-legumbre')).toBeVisible();
  await page.getByRole('button',{name:'Todas las recetas',exact:true}).click();await expect(page.locator('.recipeIdea')).toHaveCount(16);

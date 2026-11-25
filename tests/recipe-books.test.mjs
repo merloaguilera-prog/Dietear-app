@@ -30,6 +30,10 @@ test('no pair of default books shares more than five dishes and no dish appears 
   assert.ok(shared.length<=MAX_SHARED_RECIPES,books[i].name+' / '+books[j].name+': '+shared.join(', '));
  }
 });
+test('the first three proposals are different in every initial book',()=>{
+ const featured=books.flatMap(book=>selectRecipeBook(recipes,book.name).slice(0,3).map(recipe=>recipe.id));
+ assert.equal(featured.length,24);assert.equal(new Set(featured).size,24);
+});
 test('personal restrictions apply to both selected and expanded catalogues without backfilling',()=>{
  const restrictions=['frutos secos','soja','gluten'];
  for(const expanded of [false,true])for(const recipe of selectRecipeBook(recipes,'Vegana',{restrictions,expanded})){
