@@ -113,6 +113,37 @@ test('diet books filter ingredients, hide dislikes and persist favorites',async(
  await expect(page.getByRole('button',{name:'Quitar de favoritas: '+favorite,exact:true})).toBeVisible();
 });
 
+test('diet books differ, offer the full catalogue separately and reset when switching styles',async({page})=>{
+ await page.goto('/');await openFeature(page,'Alimentación','Todo Dietas');
+ await page.locator('.dietVisualGrid').getByRole('button',{name:/Equilibrada/}).click();
+ const ids=()=>page.locator('.recipeIdea').evaluateAll(cards=>cards.map(card=>card.id));
+ await expect(page.locator('.recipeIdea')).toHaveCount(16);const balanced=await ids();
+ await page.locator('#recipe-legumbre').getByRole('button',{name:'Guardar favorita: Ensalada templada con legumbres',exact:true}).click();
+ await page.getByRole('button',{name:'← Cambiar estilo de alimentación',exact:true}).click();
+ await page.locator('.dietVisualGrid').getByRole('button',{name:/Mediterránea/}).click();
+ await expect(page.locator('.recipeIdea')).toHaveCount(16);const mediterranean=await ids();
+ expect(balanced.filter(id=>mediterranean.includes(id)).length).toBeLessThanOrEqual(5);
+ await page.getByRole('button',{name:'♡ Mis favoritas',exact:true}).click();
+ await expect(page.locator('.recipeIdea')).toHaveCount(1);await expect(page.locator('#recipe-legumbre')).toBeVisible();
+ await page.getByRole('button',{name:'Todas las recetas',exact:true}).click();await expect(page.locator('.recipeIdea')).toHaveCount(16);
+ await page.getByRole('button',{name:'Ver más recetas compatibles',exact:true}).click();
+ await expect(page.locator('.recipeIdea')).toHaveCount(64);
+ await page.getByRole('button',{name:'← Cambiar estilo de alimentación',exact:true}).click();
+ await page.locator('.dietVisualGrid').getByRole('button',{name:/Vegana/}).click();
+ await expect(page.locator('.recipeIdea')).toHaveCount(16);
+ await expect(page.getByRole('button',{name:'Ver más recetas compatibles',exact:true})).toHaveAttribute('aria-pressed','false');
+});
+
+test('an unreviewed style keeps general dishes separate from its pending book',async({page})=>{
+ await page.goto('/');await openFeature(page,'Alimentación','Todo Dietas');
+ await page.locator('.dietVisualGrid').getByRole('button',{name:/Hiposódica/}).click();
+ await expect(page.getByRole('heading',{name:'Recetario específico pendiente: Hiposódica',exact:true})).toBeInViewport();
+ await expect(page.locator('.recipeIdea')).toHaveCount(0);
+ await page.getByRole('button',{name:'Consultar recetas generales',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'Ideas generales · Hiposódica',exact:true})).toBeVisible();
+ await expect(page.locator('.recipeIdea')).toHaveCount(64);
+});
+
 test('recipe portions reach the plan and the shopping quantities without changing other meals',async({page})=>{
  await page.goto('/');await openRecipes(page);
  const recipe=page.locator('#recipe-legumbre');await recipe.getByLabel(/Raciones de/).fill('2');await closeEntryHelp(page);

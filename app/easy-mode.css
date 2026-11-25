@@ -47,5 +47,8 @@
 .immersiveApp .recipeBook{scroll-margin-top:90px}
 .immersiveApp .recipeBook:focus{outline:3px solid #3a864e;outline-offset:4px}
 .immersiveApp .recipeBookHead .changeDietStyle{display:block;margin-bottom:14px;min-height:44px;padding:10px 14px}
+.recipeBookScope{margin:14px 0;padding:14px;border:1px solid #8fba81;border-radius:16px;background:#f3fbe9}
+.recipeBookScope p{line-height:1.5;margin:0 0 10px}
+.recipeBookScope button{min-height:44px;padding:10px 14px;border-radius:12px;max-width:100%;white-space:normal}
 .immersiveApp :is(.createDietChoices,.dietGallery .dietVisualGrid){scroll-margin-top:90px}
 @media(max-width:650px){.immersiveApp .recipeBook,.immersiveApp :is(.createDietChoices,.dietGallery .dietVisualGrid){scroll-margin-top:74px}}
