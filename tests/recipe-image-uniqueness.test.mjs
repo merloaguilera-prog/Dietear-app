@@ -19,12 +19,13 @@ test("cada receta tiene un nombre único",()=>{
  assert.equal(new Set(allNames.map(name=>name.trim().toLocaleLowerCase("es"))).size,allNames.length,"Hay platos repetidos en el recetario");
 });
 
-test("cada receta dispone de una celda fotográfica exclusiva",()=>{
- const count=allIds.length;
- assert.ok(count<=64,"Hay "+count+" recetas para 64 celdas; ampliar imágenes antes de añadir recetas");
- assert.match(source,/imageSheet:Math\.floor\(index\/16\),imageCell:index%16/,"La asignación de imágenes debe seguir siendo exclusiva por receta");
+test("las fotografías existentes son exclusivas y las recetas adicionales quedan sin foto",()=>{
+ const photographed=Math.min(allIds.length,64);
+ assert.match(source,/imageSheet:index<64\?Math\.floor\(index\/16\):null/);
+ assert.match(source,/imageCell:index<64\?index%16:null/);
  assert.match(photoSource,/recipe(?:\?\.|\.)imageSheet/);
  assert.match(photoSource,/recipe(?:\?\.|\.)imageCell/);
- const cells=allIds.map((_,index)=>Math.floor(index/16)+":"+index%16);
- assert.equal(new Set(cells).size,count);
+ const cells=allIds.slice(0,photographed).map((_,index)=>Math.floor(index/16)+":"+index%16);
+ assert.equal(new Set(cells).size,photographed);
+ assert.ok(allIds.length>photographed,"El test también cubre las recetas pendientes de fotografía");
 });

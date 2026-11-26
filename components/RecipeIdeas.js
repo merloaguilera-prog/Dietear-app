@@ -7,6 +7,7 @@ import {recipeFitsStyle, recipeHasRestriction, recipeStyle} from '../lib/recipe-
 import {recipeBookForStyle, selectRecipeBook} from '../lib/recipe-books.mjs';
 import RecipePhoto from './RecipePhoto';
 import ReadingControls from './ReadingControls';
+import {dietGuide} from '../lib/diet-guides.mjs';
 
 const categories=[['all','Todo el libro'],['breakfast','Desayunos'],['lunch','Comidas'],['dinner','Cenas'],['snack','Meriendas y tentempiés']];
 export default function RecipeIdeas({onChoose, maxMinutes=null, mealType='all', profile={}, restrictions=[], onPreferencesChange, onChangeStyle, curated=false}) {
@@ -19,23 +20,31 @@ export default function RecipeIdeas({onChoose, maxMinutes=null, mealType='all', 
   const dislikes=Array.isArray(profile.recipeDislikes)?profile.recipeDislikes:[];
   const style=profile.dietStyle||'Equilibrada', styleInfo=recipeStyle(style), book=recipeBookForStyle(style);
   const bookPending=curated&&!book&&!expandedBook&&!onlyFavorites;
+  const requiresClinicalReview=curated&&book&&!styleInfo.canPlan;
   function toggleFavorite(id) {
     const next=favorites.includes(id)?favorites.filter(item=>item!==id):[...favorites,id];
     if(onPreferencesChange)onPreferencesChange({recipeFavorites:next});
     else {setLegacyFavorites(next);try{localStorage.setItem('dietear-recipe-favorites',JSON.stringify(next));}catch{}}
   }
   function dislike(id) {onPreferencesChange?.({recipeDislikes:[...new Set([...dislikes,id])],recipeFavorites:favorites.filter(item=>item!==id)});}
-  const collection=curated?selectRecipeBook(recipes,style,{restrictions,expanded:expandedBook||onlyFavorites}):recipes.filter(recipe=>recipeFitsStyle(recipe,style)&&!recipeHasRestriction(recipe,restrictions));
+  const photoReady=recipe=>Number.isInteger(recipe.imageSheet)&&recipe.imageSheet>=0&&recipe.imageSheet<4&&Number.isInteger(recipe.imageCell)&&recipe.imageCell>=0&&recipe.imageCell<16;
+  const eligibleRecipes=recipes.filter(photoReady);
+  const photographedCollection=curated?selectRecipeBook(eligibleRecipes,style,{restrictions,expanded:expandedBook||onlyFavorites}):eligibleRecipes.filter(recipe=>recipeFitsStyle(recipe,style)&&!recipeHasRestriction(recipe,restrictions));
+  const fullCollection=curated?selectRecipeBook(recipes,style,{restrictions,expanded:expandedBook||onlyFavorites}):recipes.filter(recipe=>recipeFitsStyle(recipe,style)&&!recipeHasRestriction(recipe,restrictions));
+  // Prioritize photographs; only use unillustrated dishes to complete a short book.
+  const collection=photographedCollection.length>=20?photographedCollection:[...photographedCollection,...fullCollection.filter(recipe=>!photoReady(recipe)).slice(0,20-photographedCollection.length)];
   const visible=collection.filter(r=>!dislikes.includes(r.id)&&(!maxMinutes||r.minutes<=maxMinutes)&&(time==='all'||r.minutes<=Number(time))&&(mealType==='all'||r.mealTypes.includes(mealType))&&(category==='all'||(category==='snack'?r.mealTypes.some(type=>['midmorning1','snack1','snack2'].includes(type)):r.mealTypes.includes(category)))&&(!onlyFavorites||favorites.includes(r.id))&&matchesMeal(r,query));
   function change(recipe) {
     const alternative=visible.find(item=>item.id!==recipe.id&&item.mealTypes.some(type=>recipe.mealTypes.includes(type)));
     if(alternative) {setOpenId(alternative.id);window.setTimeout(()=>document.getElementById('recipe-'+alternative.id)?.scrollIntoView({block:'center',behavior:'smooth'}),0);}
   }
   return <div className="recipeBook" id="diet-recipe-book" role="region" aria-label={"Libro de recetas: "+style} tabIndex={-1}>
-    <header className="recipeBookHead">{onChangeStyle&&<button type="button" className="changeDietStyle" onClick={onChangeStyle}>← Cambiar estilo de alimentación</button>}<small>DIETEAR · EL PLACER DE COMER BIEN</small><h3>{bookPending?'Recetario específico pendiente: ':!book?'Ideas generales · ':'Tu libro: '}{style}</h3>{!bookPending&&<p>{collection.length} recetas {curated&&book&&!expandedBook&&!onlyFavorites?'seleccionadas para este estilo':'de la biblioteca actual'}. Ingredientes, cantidades y preparación para elegir sin complicarte.</p>}</header>
+    <header className="recipeBookHead">{onChangeStyle&&<button type="button" className="changeDietStyle" onClick={onChangeStyle}>← Cambiar estilo de alimentación</button>}<small>DIETEAR · EL PLACER DE COMER BIEN</small><h3>{bookPending?'Recetario específico pendiente: ':!book?'Ideas generales · ':'Tu libro: '}{style}</h3>{!bookPending&&<p>{collection.length} recetas {curated&&book&&!expandedBook&&!onlyFavorites?'seleccionadas para este estilo':'de la biblioteca actual'}. Priorizamos las recetas con fotografía; si faltan platos para completar el libro, añadimos opciones sin imagen. Ingredientes, cantidades y preparación para elegir sin complicarte.</p>}</header>
+    {curated && <section className="dietGuide" aria-label={"En qué consiste la dieta "+style}><h4>¿En qué consiste la dieta {style}?</h4><ReadingControls key={style} title={"la dieta "+style} summary={dietGuide(style)} preferredRate={profile.readingRate} onRateChange={readingRate=>onPreferencesChange?.({readingRate})}/><p>Después de esta explicación encontrarás el recetario disponible para este estilo. Las dietas terapéuticas sin recetario validado se identifican como pendientes.</p></section>}
+    {requiresClinicalReview&&<p className="recipeStyleNote" role="status"><strong>Selección de ideas en revisión, no dieta terapéutica validada.</strong> Estas recetas no garantizan la cantidad de sodio, fibra, energía o hidratos adecuada, ni certificación halal. No generes un plan clínico automático: revisa ingredientes, etiquetas, porciones y necesidades con un profesional sanitario cuando corresponda.</p>}
     <p className="recipeStyleNote">{styleInfo.note} Las fotografías son ilustrativas; revisa siempre los ingredientes de la ficha.</p>
     {curated&&<div className="recipeBookScope">
-      <p>{bookPending?'Estamos preparando el recetario propio de este estilo. Puedes consultar ideas generales por separado, sin atribuirles adecuación a esta dieta.':book&&!expandedBook&&!onlyFavorites?'Una selección propia para que cada estilo tenga platos diferentes.':book?'Catálogo ampliado de recetas compatibles; puede compartir platos con otros estilos.':'Estas son ideas generales, no un recetario validado para este estilo.'}</p>
+      <p>{bookPending?'Estamos preparando el recetario propio de este estilo. Puedes consultar ideas generales por separado, sin atribuirles adecuación a esta dieta.':book&&!expandedBook&&!onlyFavorites?'Una selección culinaria orientativa para explorar platos; no implica validación nutricional ni clínica.':book?'Catálogo ampliado de recetas compatibles; puede compartir platos con otros estilos.':'Estas son ideas generales, no un recetario validado para este estilo.'}</p>
       <button type="button" aria-pressed={expandedBook} onClick={()=>{setExpandedBook(!expandedBook);setOnlyFavorites(false);}}>{expandedBook?'Volver a la selección del estilo':book?'Ver más recetas compatibles':'Consultar recetas generales'}</button>
     </div>}
     <div className="recipeCategories">{categories.map(([key,label])=><button type="button" key={key} aria-pressed={category===key} onClick={()=>setCategory(key)}>{label}</button>)}</div>
