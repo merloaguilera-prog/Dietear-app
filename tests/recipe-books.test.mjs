@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {mealServings} from '../lib/week-plan.js';
 import {recipeFitsStyle,recipeHasRestriction} from '../lib/recipe-selection.mjs';
-import {RECIPE_BOOKS,MAX_SHARED_RECIPES,recipeBookForStyle,selectRecipeBook} from '../lib/recipe-books.mjs';
+import {RECIPE_BOOKS,ADDITIONAL_RECIPE_BOOKS,MAX_SHARED_RECIPES,recipeBookForStyle,selectRecipeBook} from '../lib/recipe-books.mjs';
 
 const source=readFileSync(new URL('../lib/recipes.js',import.meta.url),'utf8');
 const expanded=readFileSync(new URL('../lib/recipes-expanded.json',import.meta.url),'utf8');
@@ -63,4 +63,16 @@ test('new catalogue entries require editorial selection before entering a defaul
  const recipe={...recipes[0],id:'new-dish',name:'Nueva propuesta'};
  assert.equal(selectRecipeBook([...recipes,recipe],'Equilibrada').some(item=>item.id===recipe.id),false);
  assert.equal(selectRecipeBook([...recipes,recipe],'Equilibrada',{expanded:true}).some(item=>item.id===recipe.id),true);
+});
+
+test('new nonclinical collections contain real unique recipes and remain separate from clinical diets',()=>{
+ const byId=new Map(recipes.map(r=>[r.id,r]));
+ for(const book of Object.values(ADDITIONAL_RECIPE_BOOKS)){
+  assert.equal(book.recipeIds.length,12,book.name);
+  assert.equal(new Set(book.recipeIds).size,12,book.name);
+  for(const id of book.recipeIds)assert.ok(byId.has(id),id);
+  assert.equal(selectRecipeBook(recipes,book.name).length,12);
+ }
+ assert.equal(recipeBookForStyle('Diabética'),null);
+ assert.equal(recipeBookForStyle('Hiposódica'),null);
 });
