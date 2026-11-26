@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {mealServings} from '../lib/week-plan.js';
 import {recipeFitsStyle,recipeHasRestriction} from '../lib/recipe-selection.mjs';
-import {RECIPE_BOOKS,ADDITIONAL_RECIPE_BOOKS,MAX_SHARED_RECIPES,RECIPE_BOOK_TARGET,recipeBookAudit,recipeBookForStyle,selectRecipeBook} from '../lib/recipe-books.mjs';
+import {RECIPE_BOOKS,ADDITIONAL_RECIPE_BOOKS,MAX_SHARED_RECIPES,RECIPE_BOOK_TARGET,recipeBookAudit,expandRecipeBook,recipeBookForStyle,selectRecipeBook} from '../lib/recipe-books.mjs';
 
 const source=readFileSync(new URL('../lib/recipes.js',import.meta.url),'utf8');
 const expanded=readFileSync(new URL('../lib/recipes-expanded.json',import.meta.url),'utf8');
@@ -18,7 +18,7 @@ test('eight distinct books contain real recipes compatible with their ingredient
   assert.equal(book.recipeIds.length,16,book.name);
   assert.equal(new Set(book.recipeIds).size,16,book.name);
   for(const id of book.recipeIds){assert.ok(byId.has(id),id);assert.equal(recipeFitsStyle(byId.get(id),book.name),true,book.name+': '+id);}
-  assert.deepEqual(selectRecipeBook(recipes,book.name).map(recipe=>recipe.id),book.recipeIds);
+  assert.deepEqual(selectRecipeBook(recipes,book.name).slice(0,book.recipeIds.length).map(recipe=>recipe.id),book.recipeIds);
  }
 });
 test('no pair of default books shares more than five dishes and no dish appears in more than two',()=>{
@@ -82,3 +82,5 @@ test('muscle and protein collections are culinary ideas, not certified macros',(
 test('seven clinical collections remain blocked from automatic planning',()=>{for(const style of ['Hiposódica','Musulmana / Halal','Diabética','Hipocalórica','Hipercalórica','Baja en fibra','Baja en residuos']){assert.equal(recipeBookForStyle(style).recipeIds.length,12,style);}});
 
 test('publication audit rejects duplicate IDs and insufficient meal variety',()=>{const book={recipeIds:['receta-20','receta-20','receta-13']};const audit=recipeBookAudit(book,recipes);assert.deepEqual(audit.duplicates,['receta-20']);assert.equal(audit.meetsMinimum,false);assert.equal(RECIPE_BOOK_TARGET.total,20);});
+
+test('expanded books have at least twenty distinct recipes and meal coverage',()=>{for(const book of [...Object.values(RECIPE_BOOKS),...Object.values(ADDITIONAL_RECIPE_BOOKS)]){const expanded=expandRecipeBook(book,recipes);const audit=recipeBookAudit(expanded,recipes);assert.equal(audit.meetsMinimum,true,book.name+': '+JSON.stringify(audit));}});
