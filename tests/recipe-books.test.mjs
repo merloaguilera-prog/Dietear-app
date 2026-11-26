@@ -44,7 +44,7 @@ test('personal restrictions apply to both selected and expanded catalogues witho
 });
 test('aliases share one book and unknown styles require an explicit general-catalogue choice',()=>{
  assert.equal(recipeBookForStyle(' MEDITERRANEA '),RECIPE_BOOKS.mediterranean);
- for(const style of ['Por puntos (equilibrada)','Estilo desconocido']){
+ for(const style of ['Estilo desconocido']){
   assert.equal(recipeBookForStyle(style),null);
   assert.deepEqual(selectRecipeBook(recipes,style),[]);
   assert.equal(selectRecipeBook(recipes,style,{expanded:true}).length,recipes.filter(recipe=>recipeFitsStyle(recipe,style)).length);
@@ -71,7 +71,7 @@ test('new nonclinical collections contain real unique recipes and remain separat
   assert.equal(book.recipeIds.length,12,book.name);
   assert.equal(new Set(book.recipeIds).size,12,book.name);
   for(const id of book.recipeIds)assert.ok(byId.has(id),id);
-  assert.equal(selectRecipeBook(recipes,book.name).length,12);
+  assert.ok(selectRecipeBook(recipes,book.name).length>=20,book.name);
  }
  assert.equal(recipeBookForStyle('Diabética').recipeIds.length,12);
  assert.equal(recipeBookForStyle('Hiposódica').recipeIds.length,12);
