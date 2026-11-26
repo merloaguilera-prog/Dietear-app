@@ -76,3 +76,5 @@ test('new nonclinical collections contain real unique recipes and remain separat
  assert.equal(recipeBookForStyle('Diabética'),null);
  assert.equal(recipeBookForStyle('Hiposódica'),null);
 });
+
+test('muscle and protein collections are culinary ideas, not certified macros',()=>{assert.equal(recipeBookForStyle('Rica en proteínas').recipeIds.length,12);assert.equal(recipeBookForStyle('Ganancia muscular').recipeIds.length,12);});
