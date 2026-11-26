@@ -12,12 +12,12 @@
     "ingredients": [
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -39,17 +39,17 @@
     "ingredients": [
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Tomate",
-        80.0,
+        80,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -71,17 +71,17 @@
     "ingredients": [
       [
         "Yogur natural",
-        125.0,
+        125,
         "g"
       ],
       [
         "Avena",
-        30.0,
+        30,
         "g"
       ],
       [
         "Fruta de temporada",
-        100.0,
+        100,
         "g"
       ]
     ],
@@ -103,17 +103,17 @@
     "ingredients": [
       [
         "Avena",
-        40.0,
+        40,
         "g"
       ],
       [
         "Leche",
-        200.0,
+        200,
         "ml"
       ],
       [
         "Plátano",
-        100.0,
+        100,
         "g"
       ]
     ],
@@ -135,17 +135,17 @@
     "ingredients": [
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Huevo",
-        1.0,
+        1,
         "ud"
       ],
       [
         "Aceite de oliva",
-        5.0,
+        5,
         "ml"
       ]
     ],
@@ -167,17 +167,17 @@
     "ingredients": [
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Aguacate",
-        60.0,
+        60,
         "g"
       ],
       [
         "Tomate",
-        80.0,
+        80,
         "g"
       ]
     ],
@@ -199,17 +199,17 @@
     "ingredients": [
       [
         "Fruta de temporada",
-        150.0,
+        150,
         "g"
       ],
       [
         "Queso fresco",
-        60.0,
+        60,
         "g"
       ],
       [
         "Pan integral",
-        40.0,
+        40,
         "g"
       ]
     ],
@@ -231,17 +231,17 @@
     "ingredients": [
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Crema de cacahuete sin azúcar",
-        15.0,
+        15,
         "g"
       ],
       [
         "Plátano",
-        80.0,
+        80,
         "g"
       ]
     ],
@@ -262,7 +262,7 @@
     "ingredients": [
       [
         "Fruta de temporada",
-        150.0,
+        150,
         "g"
       ]
     ],
@@ -283,7 +283,7 @@
     "ingredients": [
       [
         "Yogur natural",
-        125.0,
+        125,
         "g"
       ]
     ],
@@ -304,12 +304,12 @@
     "ingredients": [
       [
         "Fruta de temporada",
-        150.0,
+        150,
         "g"
       ],
       [
         "Nueces sin sal",
-        20.0,
+        20,
         "g"
       ]
     ],
@@ -330,17 +330,17 @@
     "ingredients": [
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Pavo cocido",
-        50.0,
+        50,
         "g"
       ],
       [
         "Tomate",
-        60.0,
+        60,
         "g"
       ]
     ],
@@ -361,17 +361,17 @@
     "ingredients": [
       [
         "Hummus",
-        60.0,
+        60,
         "g"
       ],
       [
         "Pepino",
-        100.0,
+        100,
         "g"
       ],
       [
         "Zanahoria",
-        100.0,
+        100,
         "g"
       ]
     ],
@@ -392,12 +392,12 @@
     "ingredients": [
       [
         "Queso fresco",
-        60.0,
+        60,
         "g"
       ],
       [
         "Fruta de temporada",
-        150.0,
+        150,
         "g"
       ]
     ],
@@ -418,12 +418,12 @@
     "ingredients": [
       [
         "Yogur griego natural",
-        125.0,
+        125,
         "g"
       ],
       [
         "Frutos rojos",
-        100.0,
+        100,
         "g"
       ]
     ],
@@ -443,27 +443,27 @@
     "ingredients": [
       [
         "Huevo",
-        2.0,
+        2,
         "ud"
       ],
       [
         "Calabacín",
-        100.0,
+        100,
         "g"
       ],
       [
         "Pimiento",
-        60.0,
+        60,
         "g"
       ],
       [
         "Lechuga",
-        80.0,
+        80,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -485,27 +485,27 @@
     "ingredients": [
       [
         "Lentejas cocidas",
-        180.0,
+        180,
         "g"
       ],
       [
         "Zanahoria",
-        80.0,
+        80,
         "g"
       ],
       [
         "Cebolla",
-        40.0,
+        40,
         "g"
       ],
       [
         "Tomate triturado",
-        80.0,
+        80,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -526,27 +526,27 @@
     "ingredients": [
       [
         "Pasta integral",
-        70.0,
+        70,
         "g"
       ],
       [
         "Calabacín",
-        100.0,
+        100,
         "g"
       ],
       [
         "Pimiento",
-        80.0,
+        80,
         "g"
       ],
       [
         "Tomate triturado",
-        80.0,
+        80,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -567,22 +567,22 @@
     "ingredients": [
       [
         "Calabacín",
-        200.0,
+        200,
         "g"
       ],
       [
         "Patata",
-        120.0,
+        120,
         "g"
       ],
       [
         "Cebolla",
-        40.0,
+        40,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -603,32 +603,32 @@
     "ingredients": [
       [
         "Lechuga",
-        80.0,
+        80,
         "g"
       ],
       [
         "Mango",
-        80.0,
+        80,
         "g"
       ],
       [
         "Piña",
-        80.0,
+        80,
         "g"
       ],
       [
         "Aguacate",
-        50.0,
+        50,
         "g"
       ],
       [
         "Garbanzos cocidos",
-        100.0,
+        100,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -649,32 +649,32 @@
     "ingredients": [
       [
         "Lechuga",
-        80.0,
+        80,
         "g"
       ],
       [
         "Tomate",
-        100.0,
+        100,
         "g"
       ],
       [
         "Pepino",
-        80.0,
+        80,
         "g"
       ],
       [
         "Huevo",
-        1.0,
+        1,
         "ud"
       ],
       [
         "Garbanzos cocidos",
-        120.0,
+        120,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -695,22 +695,22 @@
     "ingredients": [
       [
         "Garbanzos cocidos",
-        180.0,
+        180,
         "g"
       ],
       [
         "Espinacas",
-        150.0,
+        150,
         "g"
       ],
       [
         "Ajo",
-        1.0,
+        1,
         "ud"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -732,22 +732,22 @@
     "ingredients": [
       [
         "Alubias cocidas",
-        180.0,
+        180,
         "g"
       ],
       [
         "Pimiento",
-        100.0,
+        100,
         "g"
       ],
       [
         "Tomate",
-        100.0,
+        100,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -768,17 +768,17 @@
     "ingredients": [
       [
         "Lentejas cocidas",
-        180.0,
+        180,
         "g"
       ],
       [
         "Pepino",
-        100.0,
+        100,
         "g"
       ],
       [
         "Tomate",
-        80.0,
+        80,
         "g"
       ],
       [
@@ -788,7 +788,7 @@
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -809,22 +809,22 @@
     "ingredients": [
       [
         "Garbanzos cocidos",
-        180.0,
+        180,
         "g"
       ],
       [
         "Calabacín",
-        150.0,
+        150,
         "g"
       ],
       [
         "Tomate triturado",
-        100.0,
+        100,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -845,27 +845,27 @@
     "ingredients": [
       [
         "Cuscús",
-        60.0,
+        60,
         "g"
       ],
       [
         "Garbanzos cocidos",
-        100.0,
+        100,
         "g"
       ],
       [
         "Zanahoria",
-        80.0,
+        80,
         "g"
       ],
       [
         "Calabacín",
-        100.0,
+        100,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -886,27 +886,27 @@
     "ingredients": [
       [
         "Quinoa",
-        60.0,
+        60,
         "g"
       ],
       [
         "Pimiento",
-        80.0,
+        80,
         "g"
       ],
       [
         "Calabacín",
-        100.0,
+        100,
         "g"
       ],
       [
         "Huevo",
-        1.0,
+        1,
         "ud"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -927,22 +927,22 @@
     "ingredients": [
       [
         "Pasta integral",
-        70.0,
+        70,
         "g"
       ],
       [
         "Atún al natural escurrido",
-        80.0,
+        80,
         "g"
       ],
       [
         "Tomate triturado",
-        120.0,
+        120,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -963,22 +963,22 @@
     "ingredients": [
       [
         "Pasta integral",
-        70.0,
+        70,
         "g"
       ],
       [
         "Brócoli",
-        180.0,
+        180,
         "g"
       ],
       [
         "Ajo",
-        1.0,
+        1,
         "ud"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -999,22 +999,22 @@
     "ingredients": [
       [
         "Arroz",
-        65.0,
+        65,
         "g"
       ],
       [
         "Guisantes",
-        100.0,
+        100,
         "g"
       ],
       [
         "Zanahoria",
-        100.0,
+        100,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1035,22 +1035,22 @@
     "ingredients": [
       [
         "Arroz integral precocido",
-        125.0,
+        125,
         "g"
       ],
       [
         "Garbanzos cocidos",
-        120.0,
+        120,
         "g"
       ],
       [
         "Pimiento",
-        100.0,
+        100,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1071,22 +1071,22 @@
     "ingredients": [
       [
         "Patata",
-        180.0,
+        180,
         "g"
       ],
       [
         "Huevo",
-        1.0,
+        1,
         "ud"
       ],
       [
         "Judías verdes",
-        180.0,
+        180,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1107,17 +1107,17 @@
     "ingredients": [
       [
         "Boniato",
-        200.0,
+        200,
         "g"
       ],
       [
         "Pavo fresco",
-        150.0,
+        150,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1139,22 +1139,22 @@
     "ingredients": [
       [
         "Pavo fresco",
-        150.0,
+        150,
         "g"
       ],
       [
         "Champiñones",
-        150.0,
+        150,
         "g"
       ],
       [
         "Arroz",
-        60.0,
+        60,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1176,12 +1176,12 @@
     "ingredients": [
       [
         "Pollo",
-        150.0,
+        150,
         "g"
       ],
       [
         "Calabacín",
-        200.0,
+        200,
         "g"
       ],
       [
@@ -1191,7 +1191,7 @@
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1213,22 +1213,22 @@
     "ingredients": [
       [
         "Pollo",
-        150.0,
+        150,
         "g"
       ],
       [
         "Pimiento rojo",
-        100.0,
+        100,
         "g"
       ],
       [
         "Pimiento verde",
-        100.0,
+        100,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1249,27 +1249,27 @@
     "ingredients": [
       [
         "Tortilla integral de trigo",
-        1.0,
+        1,
         "ud"
       ],
       [
         "Pollo",
-        120.0,
+        120,
         "g"
       ],
       [
         "Lechuga",
-        50.0,
+        50,
         "g"
       ],
       [
         "Tomate",
-        80.0,
+        80,
         "g"
       ],
       [
         "Aceite de oliva",
-        5.0,
+        5,
         "ml"
       ]
     ],
@@ -1290,27 +1290,27 @@
     "ingredients": [
       [
         "Tortilla integral de trigo",
-        1.0,
+        1,
         "ud"
       ],
       [
         "Hummus",
-        70.0,
+        70,
         "g"
       ],
       [
         "Zanahoria",
-        80.0,
+        80,
         "g"
       ],
       [
         "Pepino",
-        80.0,
+        80,
         "g"
       ],
       [
         "Lechuga",
-        40.0,
+        40,
         "g"
       ]
     ],
@@ -1331,22 +1331,22 @@
     "ingredients": [
       [
         "Salmón",
-        150.0,
+        150,
         "g"
       ],
       [
         "Brócoli",
-        180.0,
+        180,
         "g"
       ],
       [
         "Patata",
-        150.0,
+        150,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1367,22 +1367,22 @@
     "ingredients": [
       [
         "Merluza",
-        150.0,
+        150,
         "g"
       ],
       [
         "Tomate triturado",
-        150.0,
+        150,
         "g"
       ],
       [
         "Guisantes",
-        100.0,
+        100,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1403,27 +1403,27 @@
     "ingredients": [
       [
         "Bacalao fresco",
-        150.0,
+        150,
         "g"
       ],
       [
         "Calabacín",
-        100.0,
+        100,
         "g"
       ],
       [
         "Pimiento",
-        80.0,
+        80,
         "g"
       ],
       [
         "Tomate triturado",
-        120.0,
+        120,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1444,22 +1444,22 @@
     "ingredients": [
       [
         "Atún al natural escurrido",
-        80.0,
+        80,
         "g"
       ],
       [
         "Patata",
-        180.0,
+        180,
         "g"
       ],
       [
         "Tomate",
-        100.0,
+        100,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1480,17 +1480,17 @@
     "ingredients": [
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Sardinas en conserva escurridas",
-        80.0,
+        80,
         "g"
       ],
       [
         "Tomate",
-        80.0,
+        80,
         "g"
       ]
     ],
@@ -1511,22 +1511,22 @@
     "ingredients": [
       [
         "Huevo",
-        2.0,
+        2,
         "ud"
       ],
       [
         "Champiñones",
-        120.0,
+        120,
         "g"
       ],
       [
         "Espinacas",
-        100.0,
+        100,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1547,22 +1547,22 @@
     "ingredients": [
       [
         "Huevo",
-        2.0,
+        2,
         "ud"
       ],
       [
         "Calabacín",
-        150.0,
+        150,
         "g"
       ],
       [
         "Cebolla",
-        50.0,
+        50,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1583,22 +1583,22 @@
     "ingredients": [
       [
         "Huevo",
-        2.0,
+        2,
         "ud"
       ],
       [
         "Tomate triturado",
-        200.0,
+        200,
         "g"
       ],
       [
         "Cebolla",
-        40.0,
+        40,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1619,27 +1619,27 @@
     "ingredients": [
       [
         "Tofu firme",
-        150.0,
+        150,
         "g"
       ],
       [
         "Brócoli",
-        100.0,
+        100,
         "g"
       ],
       [
         "Pimiento",
-        100.0,
+        100,
         "g"
       ],
       [
         "Zanahoria",
-        80.0,
+        80,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1660,22 +1660,22 @@
     "ingredients": [
       [
         "Tofu firme",
-        150.0,
+        150,
         "g"
       ],
       [
         "Tomate",
-        200.0,
+        200,
         "g"
       ],
       [
         "Albahaca",
-        5.0,
+        5,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1696,22 +1696,22 @@
     "ingredients": [
       [
         "Zanahoria",
-        200.0,
+        200,
         "g"
       ],
       [
         "Lentejas cocidas",
-        150.0,
+        150,
         "g"
       ],
       [
         "Cebolla",
-        40.0,
+        40,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1732,27 +1732,27 @@
     "ingredients": [
       [
         "Garbanzos cocidos",
-        150.0,
+        150,
         "g"
       ],
       [
         "Zanahoria",
-        80.0,
+        80,
         "g"
       ],
       [
         "Calabacín",
-        100.0,
+        100,
         "g"
       ],
       [
         "Puerro",
-        60.0,
+        60,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1773,32 +1773,32 @@
     "ingredients": [
       [
         "Tomate",
-        250.0,
+        250,
         "g"
       ],
       [
         "Pepino",
-        80.0,
+        80,
         "g"
       ],
       [
         "Pimiento",
-        40.0,
+        40,
         "g"
       ],
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ],
       [
         "Vinagre",
-        5.0,
+        5,
         "ml"
       ]
     ],
@@ -1819,17 +1819,17 @@
     "ingredients": [
       [
         "Quinoa",
-        60.0,
+        60,
         "g"
       ],
       [
         "Mango",
-        100.0,
+        100,
         "g"
       ],
       [
         "Pepino",
-        100.0,
+        100,
         "g"
       ],
       [
@@ -1839,7 +1839,7 @@
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1860,27 +1860,27 @@
     "ingredients": [
       [
         "Remolacha cocida",
-        150.0,
+        150,
         "g"
       ],
       [
         "Queso fresco",
-        80.0,
+        80,
         "g"
       ],
       [
         "Lechuga",
-        80.0,
+        80,
         "g"
       ],
       [
         "Nueces sin sal",
-        15.0,
+        15,
         "g"
       ],
       [
         "Aceite de oliva",
-        10.0,
+        10,
         "ml"
       ]
     ],
@@ -1903,22 +1903,22 @@
     "ingredients": [
       [
         "Avena",
-        35.0,
+        35,
         "g"
       ],
       [
         "Yogur natural",
-        125.0,
+        125,
         "g"
       ],
       [
         "Manzana",
-        100.0,
+        100,
         "g"
       ],
       [
         "Canela",
-        1.0,
+        1,
         "g"
       ]
     ],
@@ -1941,17 +1941,17 @@
     "ingredients": [
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Ricota",
-        60.0,
+        60,
         "g"
       ],
       [
         "Fresas",
-        100.0,
+        100,
         "g"
       ]
     ],
@@ -1974,17 +1974,17 @@
     "ingredients": [
       [
         "Yogur natural",
-        125.0,
+        125,
         "g"
       ],
       [
         "Mango",
-        100.0,
+        100,
         "g"
       ],
       [
         "Avena",
-        30.0,
+        30,
         "g"
       ]
     ],
@@ -2007,17 +2007,17 @@
     "ingredients": [
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Hummus",
-        50.0,
+        50,
         "g"
       ],
       [
         "Pepino",
-        80.0,
+        80,
         "g"
       ]
     ],
@@ -2039,12 +2039,12 @@
     "ingredients": [
       [
         "Mandarina",
-        150.0,
+        150,
         "g"
       ],
       [
         "Almendras sin sal",
-        20.0,
+        20,
         "g"
       ]
     ],
@@ -2066,17 +2066,17 @@
     "ingredients": [
       [
         "Plátano",
-        100.0,
+        100,
         "g"
       ],
       [
         "Leche",
-        200.0,
+        200,
         "ml"
       ],
       [
         "Avena",
-        30.0,
+        30,
         "g"
       ]
     ],
@@ -2099,27 +2099,27 @@
     "ingredients": [
       [
         "Pan integral",
-        60.0,
+        60,
         "g"
       ],
       [
         "Huevo",
-        1.0,
+        1,
         "ud"
       ],
       [
         "Tomate",
-        80.0,
+        80,
         "g"
       ],
       [
         "Lechuga",
-        30.0,
+        30,
         "g"
       ],
       [
         "Aceite de oliva",
-        5.0,
+        5,
         "ml"
       ]
     ],
@@ -2127,6 +2127,479 @@
       "Cocina el huevo con el aceite hasta que esté completamente cuajado.",
       "Lava y corta las verduras.",
       "Rellena el pan con el huevo y las verduras."
+    ]
+  },
+  {
+    "id": "receta-65",
+    "name": "Tostada de pera, ricota y canela",
+    "minutes": 8,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60,
+        "g"
+      ],
+      [
+        "Ricota",
+        50,
+        "g"
+      ],
+      [
+        "Pera",
+        100,
+        "g"
+      ],
+      [
+        "Canela",
+        1,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Tuesta el pan.",
+      "Lava y corta la pera en láminas.",
+      "Unta la ricota y coloca la pera encima.",
+      "Espolvorea la canela al servir."
+    ]
+  },
+  {
+    "id": "receta-66",
+    "name": "Avena nocturna con kiwi y chía",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Avena",
+        45,
+        "g"
+      ],
+      [
+        "Leche",
+        150,
+        "ml"
+      ],
+      [
+        "Kiwi",
+        90,
+        "g"
+      ],
+      [
+        "Semillas de chía",
+        10,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Mezcla la avena, la leche y la chía en un recipiente.",
+      "Refrigera durante la noche.",
+      "Pela y trocea el kiwi.",
+      "Añade el kiwi justo antes de comer."
+    ]
+  },
+  {
+    "id": "receta-67",
+    "name": "Tostada de hummus y rabanitos",
+    "minutes": 7,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Pan integral",
+        60,
+        "g"
+      ],
+      [
+        "Hummus",
+        50,
+        "g"
+      ],
+      [
+        "Rabanitos",
+        60,
+        "g"
+      ],
+      [
+        "Limón",
+        10,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta los rabanitos en rodajas finas.",
+      "Tuesta el pan.",
+      "Extiende el hummus y coloca los rabanitos.",
+      "Termina con unas gotas de limón."
+    ]
+  },
+  {
+    "id": "receta-68",
+    "name": "Bol de yogur con melocotón y pipas",
+    "minutes": 5,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Yogur natural",
+        125,
+        "g"
+      ],
+      [
+        "Melocotón",
+        120,
+        "g"
+      ],
+      [
+        "Pipas de calabaza sin sal",
+        15,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y corta el melocotón.",
+      "Sirve el yogur en un bol.",
+      "Añade la fruta y las pipas al momento."
+    ]
+  },
+  {
+    "id": "receta-69",
+    "name": "Berenjena asada con lentejas y tomate",
+    "minutes": 35,
+    "mealTypes": [
+      "lunch"
+    ],
+    "ingredients": [
+      [
+        "Berenjena",
+        200,
+        "g"
+      ],
+      [
+        "Lentejas cocidas",
+        130,
+        "g"
+      ],
+      [
+        "Tomate triturado",
+        100,
+        "g"
+      ],
+      [
+        "Cebolla",
+        50,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Calienta el horno a 200 °C.",
+      "Corta la berenjena en mitades y hornéala hasta que esté tierna.",
+      "Pocha la cebolla con el aceite y añade tomate y lentejas.",
+      "Sirve las lentejas sobre la berenjena asada."
+    ]
+  },
+  {
+    "id": "receta-70",
+    "name": "Merluza al papillote con puerro",
+    "minutes": 25,
+    "mealTypes": [
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Merluza",
+        150,
+        "g"
+      ],
+      [
+        "Puerro",
+        100,
+        "g"
+      ],
+      [
+        "Zanahoria",
+        100,
+        "g"
+      ],
+      [
+        "Limón",
+        20,
+        "ml"
+      ],
+      [
+        "Aceite de oliva",
+        10,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Calienta el horno a 190 °C.",
+      "Lava y corta el puerro y la zanahoria en tiras finas.",
+      "Coloca verduras y merluza en papel apto para horno, con limón y aceite.",
+      "Cierra el paquete y hornea hasta que el pescado esté bien cocinado."
+    ]
+  },
+  {
+    "id": "receta-71",
+    "name": "Arroz integral con calabaza y alubias",
+    "minutes": 30,
+    "mealTypes": [
+      "lunch"
+    ],
+    "ingredients": [
+      [
+        "Arroz integral precocido",
+        130,
+        "g"
+      ],
+      [
+        "Calabaza",
+        160,
+        "g"
+      ],
+      [
+        "Alubias cocidas",
+        120,
+        "g"
+      ],
+      [
+        "Cebolla",
+        40,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Corta la calabaza en cubos y cocina hasta ablandar.",
+      "Pocha la cebolla con el aceite.",
+      "Añade las alubias y el arroz precocido, siguiendo las indicaciones del envase.",
+      "Mezcla con la calabaza y sirve caliente."
+    ]
+  },
+  {
+    "id": "receta-72",
+    "name": "Tortilla de espinacas con champiñones",
+    "minutes": 18,
+    "mealTypes": [
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Huevo",
+        2,
+        "ud"
+      ],
+      [
+        "Espinacas",
+        100,
+        "g"
+      ],
+      [
+        "Champiñones",
+        120,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Limpia y corta los champiñones.",
+      "Saltéalos con las espinacas hasta que pierdan el agua.",
+      "Bate los huevos y añade las verduras.",
+      "Cuaja la tortilla completamente por ambos lados."
+    ]
+  },
+  {
+    "id": "receta-73",
+    "name": "Pollo al horno con manzana y zanahoria",
+    "minutes": 40,
+    "mealTypes": [
+      "lunch"
+    ],
+    "ingredients": [
+      [
+        "Pollo",
+        160,
+        "g"
+      ],
+      [
+        "Manzana",
+        100,
+        "g"
+      ],
+      [
+        "Zanahoria",
+        140,
+        "g"
+      ],
+      [
+        "Cebolla",
+        50,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Precalienta el horno a 200 °C.",
+      "Trocea la zanahoria, la manzana y la cebolla.",
+      "Coloca el pollo con las verduras y el aceite en una bandeja.",
+      "Hornea hasta que el pollo esté completamente cocinado."
+    ]
+  },
+  {
+    "id": "receta-74",
+    "name": "Crema de guisantes con huevo cocido",
+    "minutes": 22,
+    "mealTypes": [
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Guisantes",
+        180,
+        "g"
+      ],
+      [
+        "Patata",
+        100,
+        "g"
+      ],
+      [
+        "Cebolla",
+        40,
+        "g"
+      ],
+      [
+        "Huevo",
+        1,
+        "ud"
+      ],
+      [
+        "Aceite de oliva",
+        10,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cuece el huevo hasta que esté completamente hecho.",
+      "Cuece los guisantes, la patata y la cebolla hasta que estén tiernos.",
+      "Tritura las verduras con parte del agua de cocción y el aceite.",
+      "Sirve con el huevo picado."
+    ]
+  },
+  {
+    "id": "receta-75",
+    "name": "Pasta con berenjena y albahaca",
+    "minutes": 25,
+    "mealTypes": [
+      "lunch"
+    ],
+    "ingredients": [
+      [
+        "Pasta integral",
+        75,
+        "g"
+      ],
+      [
+        "Berenjena",
+        150,
+        "g"
+      ],
+      [
+        "Tomate triturado",
+        120,
+        "g"
+      ],
+      [
+        "Albahaca",
+        5,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cuece la pasta según el envase.",
+      "Corta y saltea la berenjena con el aceite.",
+      "Añade el tomate y cocina hasta que espese.",
+      "Mezcla con la pasta y termina con albahaca."
+    ]
+  },
+  {
+    "id": "receta-76",
+    "name": "Salteado de tofu con judías verdes",
+    "minutes": 20,
+    "mealTypes": [
+      "dinner"
+    ],
+    "ingredients": [
+      [
+        "Tofu firme",
+        150,
+        "g"
+      ],
+      [
+        "Judías verdes",
+        170,
+        "g"
+      ],
+      [
+        "Zanahoria",
+        80,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        10,
+        "ml"
+      ],
+      [
+        "Limón",
+        10,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Cuece las judías verdes hasta que estén tiernas.",
+      "Corta el tofu y la zanahoria.",
+      "Saltea el tofu y la zanahoria con el aceite.",
+      "Añade las judías y el limón y mezcla antes de servir."
     ]
   }
 ]
