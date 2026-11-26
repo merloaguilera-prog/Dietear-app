@@ -42,9 +42,9 @@ test('personal restrictions apply to both selected and expanded catalogues witho
  }
  assert.deepEqual(selectRecipeBook(recipes,'Sin lactosa',{restrictions:recipes.flatMap(recipe=>recipe.ingredients.map(item=>item[0]))}),[]);
 });
-test('aliases share one book and unreviewed styles require an explicit general-catalogue choice',()=>{
+test('aliases share one book and unknown styles require an explicit general-catalogue choice',()=>{
  assert.equal(recipeBookForStyle(' MEDITERRANEA '),RECIPE_BOOKS.mediterranean);
- for(const style of ['Diabética','Hiposódica','Musulmana / Halal','Por puntos (equilibrada)','Estilo desconocido']){
+ for(const style of ['Por puntos (equilibrada)','Estilo desconocido']){
   assert.equal(recipeBookForStyle(style),null);
   assert.deepEqual(selectRecipeBook(recipes,style),[]);
   assert.equal(selectRecipeBook(recipes,style,{expanded:true}).length,recipes.filter(recipe=>recipeFitsStyle(recipe,style)).length);
@@ -73,8 +73,10 @@ test('new nonclinical collections contain real unique recipes and remain separat
   for(const id of book.recipeIds)assert.ok(byId.has(id),id);
   assert.equal(selectRecipeBook(recipes,book.name).length,12);
  }
- assert.equal(recipeBookForStyle('Diabética'),null);
- assert.equal(recipeBookForStyle('Hiposódica'),null);
+ assert.equal(recipeBookForStyle('Diabética').recipeIds.length,12);
+ assert.equal(recipeBookForStyle('Hiposódica').recipeIds.length,12);
 });
 
 test('muscle and protein collections are culinary ideas, not certified macros',()=>{assert.equal(recipeBookForStyle('Rica en proteínas').recipeIds.length,12);assert.equal(recipeBookForStyle('Ganancia muscular').recipeIds.length,12);});
+
+test('seven clinical collections remain blocked from automatic planning',()=>{for(const style of ['Hiposódica','Musulmana / Halal','Diabética','Hipocalórica','Hipercalórica','Baja en fibra','Baja en residuos']){assert.equal(recipeBookForStyle(style).recipeIds.length,12,style);}});
