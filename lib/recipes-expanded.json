@@ -2601,5 +2601,106 @@
       "Saltea el tofu y la zanahoria con el aceite.",
       "Añade las judías y el limón y mezcla antes de servir."
     ]
+  },
+  {
+    "id": "receta-77",
+    "name": "Bol de yogur con fresas y nueces",
+    "minutes": 10,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Yogur natural",
+        125,
+        "g"
+      ],
+      [
+        "Fresas",
+        120,
+        "g"
+      ],
+      [
+        "Nueces",
+        15,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Lava y corta las fresas.",
+      "Sirve el yogur y añade las fresas.",
+      "Trocea las nueces y repártelas encima."
+    ]
+  },
+  {
+    "id": "receta-78",
+    "name": "Huevos revueltos con tomate",
+    "minutes": 10,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Huevo",
+        2,
+        "ud"
+      ],
+      [
+        "Tomate",
+        120,
+        "g"
+      ],
+      [
+        "Aceite de oliva",
+        5,
+        "ml"
+      ]
+    ],
+    "steps": [
+      "Lava y corta el tomate.",
+      "Bate los huevos.",
+      "Cocina los huevos con el aceite hasta que cuajen por completo.",
+      "Sirve junto al tomate."
+    ]
+  },
+  {
+    "id": "receta-79",
+    "name": "Pudding de chía y mango",
+    "minutes": 245,
+    "mealTypes": [
+      "breakfast",
+      "midmorning1",
+      "snack1",
+      "snack2"
+    ],
+    "ingredients": [
+      [
+        "Semillas de chía",
+        25,
+        "g"
+      ],
+      [
+        "Leche",
+        180,
+        "ml"
+      ],
+      [
+        "Mango",
+        100,
+        "g"
+      ]
+    ],
+    "steps": [
+      "Mezcla la chía con la leche.",
+      "Deja reposar en frío al menos cuatro horas hasta que espese.",
+      "Pela y trocea el mango.",
+      "Sirve el mango encima."
+    ]
   }
 ]
