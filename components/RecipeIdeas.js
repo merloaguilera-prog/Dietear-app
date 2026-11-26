@@ -7,6 +7,7 @@ import {recipeFitsStyle, recipeHasRestriction, recipeStyle} from '../lib/recipe-
 import {recipeBookForStyle, selectRecipeBook} from '../lib/recipe-books.mjs';
 import RecipePhoto from './RecipePhoto';
 import ReadingControls from './ReadingControls';
+import {dietGuide} from '../lib/diet-guides.mjs';
 
 const categories=[['all','Todo el libro'],['breakfast','Desayunos'],['lunch','Comidas'],['dinner','Cenas'],['snack','Meriendas y tentempiés']];
 export default function RecipeIdeas({onChoose, maxMinutes=null, mealType='all', profile={}, restrictions=[], onPreferencesChange, onChangeStyle, curated=false}) {
@@ -33,6 +34,7 @@ export default function RecipeIdeas({onChoose, maxMinutes=null, mealType='all', 
   }
   return <div className="recipeBook" id="diet-recipe-book" role="region" aria-label={"Libro de recetas: "+style} tabIndex={-1}>
     <header className="recipeBookHead">{onChangeStyle&&<button type="button" className="changeDietStyle" onClick={onChangeStyle}>← Cambiar estilo de alimentación</button>}<small>DIETEAR · EL PLACER DE COMER BIEN</small><h3>{bookPending?'Recetario específico pendiente: ':!book?'Ideas generales · ':'Tu libro: '}{style}</h3>{!bookPending&&<p>{collection.length} recetas {curated&&book&&!expandedBook&&!onlyFavorites?'seleccionadas para este estilo':'de la biblioteca actual'}. Ingredientes, cantidades y preparación para elegir sin complicarte.</p>}</header>
+    {curated && <section className="dietGuide" aria-label={"En qué consiste la dieta "+style}><h4>¿En qué consiste la dieta {style}?</h4><ReadingControls key={style} title={"la dieta "+style} summary={dietGuide(style)} preferredRate={profile.readingRate} onRateChange={readingRate=>onPreferencesChange?.({readingRate})}/><p>Después de esta explicación encontrarás el recetario disponible para este estilo. Las dietas terapéuticas sin recetario validado se identifican como pendientes.</p></section>}
     <p className="recipeStyleNote">{styleInfo.note} Las fotografías son ilustrativas; revisa siempre los ingredientes de la ficha.</p>
     {curated&&<div className="recipeBookScope">
       <p>{bookPending?'Estamos preparando el recetario propio de este estilo. Puedes consultar ideas generales por separado, sin atribuirles adecuación a esta dieta.':book&&!expandedBook&&!onlyFavorites?'Una selección propia para que cada estilo tenga platos diferentes.':book?'Catálogo ampliado de recetas compatibles; puede compartir platos con otros estilos.':'Estas son ideas generales, no un recetario validado para este estilo.'}</p>
